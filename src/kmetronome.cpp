@@ -22,6 +22,7 @@
 #include "kmetronome.h"
 
 #include <iostream>
+#include <cmath>
 #include <qlabel.h>
 #include <qevent.h>
 #include <kapplication.h>

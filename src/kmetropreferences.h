@@ -33,10 +33,12 @@ class KMetroPreferences : public KMetroPreferencesBase
     Q_OBJECT
 public:
     KMetroPreferences():KMetroPreferencesBase() {}
-    void fillConnections(QStringList& lst) { m_connection->insertStringList(lst); }
+    void fillInputConnections(QStringList lst) { m_in_connection->insertStringList(lst); }
+    void fillOutputConnections(QStringList lst) { m_out_connection->insertStringList(lst); }
     
     bool getAutoConnect() { return m_autoconn->isChecked(); }
-    QString getOutputConnection() { return m_connection->currentText(); }
+    QString getOutputConnection() { return m_out_connection->currentText(); }
+    QString getInputConnection() { return m_in_connection->currentText(); }
     int getChannel() { return m_channel->value(); }
     int getProgram() { return m_program->value(); }
     int getResolution() { return m_resolution->value(); }
@@ -45,7 +47,8 @@ public:
     int getVelocity() { return m_velocity->value(); }
     
     void setAutoConnect(bool newValue) { m_autoconn->setChecked(newValue); }
-    void setOutputConnection(QString newValue) { m_connection->setCurrentText(newValue); }
+    void setOutputConnection(QString newValue) { m_out_connection->setCurrentText(newValue); }
+    void setInputConnection(QString newValue) { m_in_connection->setCurrentText(newValue); }
     void setChannel(int newValue) { m_channel->setValue(newValue); }
     void setProgram(int newValue) { m_program->setValue(newValue); }
     void setResolution(int newValue) { m_resolution->setValue(newValue); }

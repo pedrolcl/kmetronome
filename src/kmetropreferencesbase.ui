@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>398</width>
-            <height>219</height>
+            <width>395</width>
+            <height>298</height>
         </rect>
     </property>
     <property name="caption">
@@ -27,12 +27,12 @@
                 <cstring>m_autoconn</cstring>
             </property>
             <property name="text">
-                <string>Automatic output port connection on startup</string>
+                <string>Automatic ports connection on startup</string>
             </property>
         </widget>
         <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>layout9</cstring>
+                <cstring>layout15</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -44,11 +44,17 @@
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>1</hsizetype>
+                            <hsizetype>5</hsizetype>
                             <vsizetype>1</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>160</width>
+                            <height>0</height>
+                        </size>
                     </property>
                     <property name="text">
                         <string>Output port connection:</string>
@@ -56,7 +62,52 @@
                 </widget>
                 <widget class="KComboBox">
                     <property name="name">
-                        <cstring>m_connection</cstring>
+                        <cstring>m_out_connection</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout16</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>5</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>160</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="text">
+                        <string>Input port connection:</string>
+                    </property>
+                </widget>
+                <widget class="KComboBox">
+                    <property name="name">
+                        <cstring>m_in_connection</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
@@ -92,7 +143,7 @@
                             <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>5</hsizetype>
-                                    <vsizetype>0</vsizetype>
+                                    <vsizetype>5</vsizetype>
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
@@ -443,6 +494,7 @@
 </connections>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>kcombobox.h</includehint>
     <includehint>kcombobox.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>

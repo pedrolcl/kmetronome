@@ -46,7 +46,6 @@ KMetronome::KMetronome()
         m_thread->start();
     }
     readConfiguration();
-    m_thread->list_ports();
 }
 
 KMetronome::~KMetronome()
@@ -88,6 +87,7 @@ void KMetronome::saveConfiguration()
     config->writeEntry("rithmDenominator", m_thread->getRithmDenominator());
     config->writeEntry("autoconnect", m_thread->getAutoConnect());
     config->writeEntry("outputConn", m_thread->getOutputConn());
+    config->writeEntry("inputConn", m_thread->getInputConn());
 }
 
 void KMetronome::readConfiguration()
@@ -113,18 +113,24 @@ void KMetronome::readConfiguration()
     m_thread->setAutoConnect(autoconn);
     if(autoconn) {
 	m_thread->setOutputConn(config->readEntry("outputConn", "64:0"));
+	m_thread->setInputConn(config->readEntry("inputConn", "64:0"));
 	m_thread->connect_output();
+	m_thread->connect_input();
     }
 }
 
 void KMetronome::optionsPreferences()
 {
     KMetroPreferences dlg;
-    dlg.fillConnections(*m_thread->list_ports());
+    dlg.fillOutputConnections(m_thread->outputConnections());
+    dlg.fillInputConnections(m_thread->inputConnections());
     dlg.setAutoConnect(m_thread->getAutoConnect());
     QString conn = m_thread->getOutputConn();
     if (conn != NULL && !conn.isEmpty())
 	dlg.setOutputConnection(conn);
+    conn = m_thread->getInputConn();
+    if (conn != NULL && !conn.isEmpty())
+	dlg.setInputConnection(conn);
     dlg.setChannel(m_thread->getChannel());
     dlg.setProgram(m_thread->getProgram());
     dlg.setResolution(m_thread->getResolution());
@@ -134,8 +140,10 @@ void KMetronome::optionsPreferences()
     if (dlg.exec())
     {
 	m_thread->disconnect_output();
+	m_thread->disconnect_input();
 	m_thread->setAutoConnect(dlg.getAutoConnect());
 	m_thread->setOutputConn(dlg.getOutputConnection());
+	m_thread->setInputConn(dlg.getInputConnection());
 	m_thread->setChannel(dlg.getChannel());
 	m_thread->setProgram(dlg.getProgram());
 	m_thread->setResolution(dlg.getResolution());
@@ -143,6 +151,7 @@ void KMetronome::optionsPreferences()
 	m_thread->setStrongNote(dlg.getStrongNote());
 	m_thread->setVelocity(dlg.getVelocity());
 	m_thread->connect_output();
+	m_thread->connect_input();
     } 
 }
 

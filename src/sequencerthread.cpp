@@ -41,7 +41,8 @@ SequencerThread::SequencerThread(QWidget *parent):QThread(),
 	m_ts_num(4),
 	m_ts_div(4),
 	m_autoconnect(false),
-	m_outputConn("")
+	m_outputConn(""),
+	m_inputConn("")
 {
     int err;
     err = snd_seq_open(&m_handle, "default", SND_SEQ_OPEN_DUPLEX, SND_SEQ_NONBLOCK);
@@ -84,15 +85,25 @@ SequencerThread::~SequencerThread()
     checkAlsaError(err, "Closing");
 }
 
-QStringList * SequencerThread::list_ports()
+QStringList SequencerThread::inputConnections()
 {
+    return list_ports(SND_SEQ_PORT_CAP_READ | SND_SEQ_PORT_CAP_SUBS_READ);
+}
+
+QStringList SequencerThread::outputConnections()
+{
+    return list_ports(SND_SEQ_PORT_CAP_WRITE | SND_SEQ_PORT_CAP_SUBS_WRITE);
+}
+
+QStringList SequencerThread::list_ports(unsigned int mask)
+{
+    QStringList list;
     snd_seq_client_info_t *cinfo;
     snd_seq_port_info_t *pinfo;
     snd_seq_client_info_alloca(&cinfo);
     snd_seq_port_info_alloca(&pinfo);
     snd_seq_client_info_set_client(cinfo, -1);
-    QStringList *list = new QStringList();
-    list->append(i18n("No connection"));
+    list += NO_CONNECTION;
     while (snd_seq_query_next_client(m_handle, cinfo) >= 0) {
 	int client = snd_seq_client_info_get_client(cinfo);
 	if (client == SND_SEQ_CLIENT_SYSTEM || client == m_client)
@@ -100,14 +111,11 @@ QStringList * SequencerThread::list_ports()
 	snd_seq_port_info_set_client(pinfo, client);
 	snd_seq_port_info_set_port(pinfo, -1);
 	while (snd_seq_query_next_port(m_handle, pinfo) >= 0) {
-	    if ((snd_seq_port_info_get_capability(pinfo)
-		& (SND_SEQ_PORT_CAP_WRITE | SND_SEQ_PORT_CAP_SUBS_WRITE))
-		!= (SND_SEQ_PORT_CAP_WRITE | SND_SEQ_PORT_CAP_SUBS_WRITE))
+	    if ((snd_seq_port_info_get_capability(pinfo) & mask) != mask)
 		continue;
-	    QString item = QString("%1:%2")
+	    list += QString("%1:%2")
 			   .arg(snd_seq_client_info_get_name(cinfo))
 			   .arg(snd_seq_port_info_get_port(pinfo));
-	    list->append(item);
 	}
     }
     return list;
@@ -116,22 +124,47 @@ QStringList * SequencerThread::list_ports()
 void SequencerThread::connect_output()
 {
     snd_seq_addr_t dest;
-    int err;
-    err = snd_seq_parse_address(m_handle, &dest, m_outputConn.ascii());
-    checkAlsaError(err, "snd_seq_parse_address");
-    err = snd_seq_connect_to(m_handle, m_output, dest.client, dest.port);
-    checkAlsaError(err, "snd_seq_connect_to");
+    if (m_outputConn.isEmpty() || m_outputConn == NO_CONNECTION)
+    	return;
+    checkAlsaError(snd_seq_parse_address(m_handle, &dest, m_outputConn.ascii()), 
+    		   "snd_seq_parse_address");
+    checkAlsaError(snd_seq_connect_to(m_handle, m_output, dest.client, dest.port), 
+                   "snd_seq_connect_to");
 }
 
 void SequencerThread::disconnect_output()
 {
     snd_seq_addr_t dest;
-    int err;
-    err = snd_seq_parse_address(m_handle, &dest, m_outputConn.ascii());
-    checkAlsaError(err, "snd_seq_parse_address");
-    err = snd_seq_disconnect_to(m_handle, m_output, dest.client, dest.port);
-    checkAlsaError(err, "snd_seq_connect_to");
+    if (m_outputConn.isEmpty() || m_outputConn == NO_CONNECTION)
+    	return;
+    checkAlsaError(snd_seq_parse_address(m_handle, &dest, m_outputConn.ascii()),
+    		   "snd_seq_parse_address");
+    checkAlsaError(snd_seq_disconnect_to(m_handle, m_output, dest.client, dest.port),
+    		   "snd_seq_disconnect_to");
 }
+
+void SequencerThread::connect_input()
+{
+    snd_seq_addr_t src;
+    if (m_inputConn.isEmpty() || m_inputConn == NO_CONNECTION)
+    	return;
+    checkAlsaError(snd_seq_parse_address(m_handle, &src, m_inputConn.ascii()), 
+    		   "snd_seq_parse_address");
+    checkAlsaError(snd_seq_connect_from(m_handle, m_input, src.client, src.port), 
+                   "snd_seq_connect_from");
+}
+
+void SequencerThread::disconnect_input()
+{
+    snd_seq_addr_t src;
+    if (m_inputConn.isEmpty() || m_inputConn == NO_CONNECTION)
+    	return;
+    checkAlsaError(snd_seq_parse_address(m_handle, &src, m_inputConn.ascii()),
+    		   "snd_seq_parse_address");
+    checkAlsaError(snd_seq_disconnect_from(m_handle, m_input, src.client, src.port),
+    		   "snd_seq_disconnect_from");
+}
+
 
 void SequencerThread::metronome_note(unsigned char note, unsigned int tick)
 {
@@ -172,7 +205,6 @@ void SequencerThread::metronome_pattern(unsigned int tick)
 void SequencerThread::metronome_set_program()
 {
     snd_seq_event_t ev;
-
     snd_seq_ev_clear(&ev);
     snd_seq_ev_set_pgmchange(&ev, m_channel, m_program);
     snd_seq_ev_set_source(&ev, m_output);
@@ -183,15 +215,13 @@ void SequencerThread::metronome_set_program()
 
 void SequencerThread::metronome_set_tempo()
 {
-    int err;
     snd_seq_queue_tempo_t *qtempo;
     int tempo = (int) (6e7 / m_bpm);
     snd_seq_queue_tempo_alloca(&qtempo);
     snd_seq_queue_tempo_set_tempo(qtempo, tempo);
     snd_seq_queue_tempo_set_ppq(qtempo, m_resolution);
-    err = snd_seq_set_queue_tempo(m_handle, m_queue, qtempo);
-    checkAlsaError(err, "queue_set_tempo");
-    snd_seq_drain_output(m_handle);
+    checkAlsaError(snd_seq_set_queue_tempo(m_handle, m_queue, qtempo), "queue_set_tempo");
+    checkAlsaError(snd_seq_drain_output(m_handle), "drain_output");
 }
 
 void SequencerThread::updateView()
@@ -256,11 +286,8 @@ void SequencerThread::run()
 
 void SequencerThread::metronome_start()
 {
-    int err;
-    err = snd_seq_start_queue(m_handle, m_queue, NULL);
-    checkAlsaError(err, "Queue start");
-    err = snd_seq_drain_output(m_handle);
-    checkAlsaError(err, "Drain output");
+    checkAlsaError(snd_seq_start_queue(m_handle, m_queue, NULL), "Queue start");
+    checkAlsaError(snd_seq_drain_output(m_handle), "Drain output");
     metronome_pattern(0);
     m_bar = 1;
     m_beat = 1;
@@ -269,19 +296,13 @@ void SequencerThread::metronome_start()
 
 void SequencerThread::metronome_stop()
 {
-    int err;
-    err = snd_seq_stop_queue(m_handle, m_queue, NULL);
-    checkAlsaError(err, "Queue stop");
-    err = snd_seq_drain_output(m_handle);
-    checkAlsaError(err, "Drain output");
+    checkAlsaError(snd_seq_stop_queue(m_handle, m_queue, NULL), "Queue stop");
+    checkAlsaError(snd_seq_drain_output(m_handle), "Drain output");
 }
 
 void SequencerThread::metronome_continue()
 {
-    int err;
-    err = snd_seq_continue_queue(m_handle, m_queue, NULL);
-    checkAlsaError(err, "Queue continue");
-    err = snd_seq_drain_output(m_handle);
-    checkAlsaError(err, "Drain output");
+    checkAlsaError(snd_seq_continue_queue(m_handle, m_queue, NULL), "Queue continue");
+    checkAlsaError(snd_seq_drain_output(m_handle), "Drain output");
 }
 

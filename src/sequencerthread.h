@@ -23,6 +23,7 @@
 
 #include <qthread.h>
 #include <qevent.h>
+#include <klocale.h>
 #include <alsa/asoundlib.h>
 
 #define METRONOME_EVENT_TYPE (QEvent::User + 1)
@@ -38,6 +39,8 @@
 #define TRANSPORT_PLAY 0
 #define TRANSPORT_STOP 1
 #define TRANSPORT_CONT 2
+
+static QString NO_CONNECTION = i18n("No connection");
 
 class MetronomeEvent : public QCustomEvent
 {
@@ -79,6 +82,7 @@ public:
     void setRithmDenominator(int newValue) { m_ts_div = newValue; }
     void setAutoConnect(bool newValue) { m_autoconnect = newValue; }
     void setOutputConn(QString newValue) { m_outputConn = newValue; }
+    void setInputConn(QString newValue) { m_inputConn = newValue; }
     int getWeakNote() { return m_weak_note; }
     int getStrongNote() { return m_strong_note; }
     int getVelocity() { return m_velocity; }
@@ -90,6 +94,7 @@ public:
     int getRithmDenominator() { return m_ts_div; }
     bool getAutoConnect() { return m_autoconnect; }
     QString getOutputConn() { return m_outputConn; }
+    QString getInputConn() { return m_inputConn; }
 
     virtual void run();    
     void metronome_start();
@@ -98,9 +103,12 @@ public:
     void metronome_set_program();
     void metronome_set_tempo();
     void metronome_set_rithm();
-    QStringList * list_ports();
     void connect_output();
     void disconnect_output();
+    void connect_input();
+    void disconnect_input();
+    QStringList inputConnections();
+    QStringList outputConnections();
     
 private:
     int checkAlsaError(int rc, const char *message);
@@ -111,6 +119,7 @@ private:
     void metronome_note(unsigned char note, unsigned int tick);
     void metronome_echo(unsigned int tick, int ev_type);
     void metronome_pattern(unsigned int tick);
+    QStringList list_ports(unsigned int mask);
 
     QWidget *m_widget;
     snd_seq_t *m_handle;
@@ -132,6 +141,7 @@ private:
     int m_ts_div; /* time signature: denominator */
     bool m_autoconnect;
     QString m_outputConn;
+    QString m_inputConn;
 };
 
 #endif

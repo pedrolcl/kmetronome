@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-03-27 14:02+0200\n"
+"POT-Creation-Date: 2005-04-04 23:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,71 +59,131 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
-#: rc.cpp:4
-msgid "Config"
+#: rc.cpp:3
+msgid "This button starts playing the rithm pattern"
 msgstr ""
 
 #: rc.cpp:5
-msgid "Exit"
+msgid "This button stops playing the rithm pattern"
 msgstr ""
 
 #: rc.cpp:6
-msgid "Measure"
+msgid "Config"
 msgstr ""
 
 #: rc.cpp:7
-msgid "Beat"
+msgid "This button opens the configuration window"
 msgstr ""
 
 #: rc.cpp:8
-msgid "Beats/Bar"
+msgid "Exit"
 msgstr ""
 
 #: rc.cpp:9
-msgid "Rithm figure"
+msgid "This button exits the program"
 msgstr ""
 
 #: rc.cpp:10
-msgid "Tempo (in quarters per minute)"
+msgid "Measure"
 msgstr ""
 
 #: rc.cpp:11
-msgid "Preferences"
+msgid ""
+"This is the measure (bar) number played since the play button has been "
+"pressed."
 msgstr ""
 
 #: rc.cpp:12
-msgid "Automatic output port connection on startup"
+msgid "Beat"
 msgstr ""
 
 #: rc.cpp:13
-msgid "Output port connection:"
+msgid "This is the part number played for the current measure"
 msgstr ""
 
 #: rc.cpp:14
-msgid "Channel"
+msgid "Beats/Bar"
 msgstr ""
 
 #: rc.cpp:15
-msgid "Weak note"
+msgid ""
+"This is the number of parts for each measure.<br>\n"
+"Values are from 1 to 32.<br>\n"
+"It is the numerator of the time signature specification."
 msgstr ""
 
 #: rc.cpp:16
-msgid "Program"
+msgid "Rithm figure"
 msgstr ""
 
 #: rc.cpp:17
-msgid "Strong note"
+msgid ""
+"This is the part figure for the rithm.<br>\n"
+"Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
+"It is the denominator in the time signature specification."
 msgstr ""
 
 #: rc.cpp:18
-msgid "Resolution"
+msgid "Tempo (in quarters per minute)"
 msgstr ""
 
 #: rc.cpp:19
+msgid ""
+"This slider changes the <i>tempo</i>, or speed of the rithm.<br>\n"
+"Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
+msgstr ""
+
+#: rc.cpp:20
+msgid "The current <i>tempo</i> value"
+msgstr ""
+
+#: rc.cpp:21
+msgid "Preferences"
+msgstr ""
+
+#: rc.cpp:22
+msgid "Automatic ports connection on startup"
+msgstr ""
+
+#: rc.cpp:23
+msgid ""
+"If this checkbox is activated, the the program will remember the connections "
+"for the input and output ports, and try to reconnect them at program startup."
+msgstr ""
+
+#: rc.cpp:24
+msgid "Output port connection:"
+msgstr ""
+
+#: rc.cpp:25
+msgid "Input port connection:"
+msgstr ""
+
+#: rc.cpp:26
+msgid "Channel"
+msgstr ""
+
+#: rc.cpp:27
+msgid "Weak note"
+msgstr ""
+
+#: rc.cpp:28
+msgid "Program"
+msgstr ""
+
+#: rc.cpp:29
+msgid "Strong note"
+msgstr ""
+
+#: rc.cpp:30
+msgid "Resolution"
+msgstr ""
+
+#: rc.cpp:31
 msgid "Note velocity"
 msgstr ""
 
-#: sequencerthread.cpp:95
+#: sequencerthread.cpp:46
 msgid "No connection"
 msgstr ""
 

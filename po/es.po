@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"POT-Creation-Date: 2005-03-27 14:02+0200\n"
-"PO-Revision-Date: 2005-03-27 14:06+0200\n"
+"POT-Creation-Date: 2005-04-04 23:10+0200\n"
+"PO-Revision-Date: 2005-04-04 23:11+0200\n"
 "Last-Translator: Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>\n"
 "Language-Team: Español <rosegarden-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -59,71 +59,145 @@ msgstr "Metrónomo MIDI"
 msgid "Play"
 msgstr "Iniciar"
 
-#: rc.cpp:4
+#: rc.cpp:3
+msgid "This button starts playing the rithm pattern"
+msgstr "Este botón inicia la ejecución del patrón rítmico"
+
+#: rc.cpp:5
+msgid "This button stops playing the rithm pattern"
+msgstr "Este botón interrumpe la ejecución del patrón rítmico"
+
+#: rc.cpp:6
 msgid "Config"
 msgstr "Configurar"
 
-#: rc.cpp:5
+#: rc.cpp:7
+msgid "This button opens the configuration window"
+msgstr "Este botón abre la ventana de configuración"
+
+#: rc.cpp:8
 msgid "Exit"
 msgstr "Terminar"
 
-#: rc.cpp:6
+#: rc.cpp:9
+msgid "This button exits the program"
+msgstr "Este botón cierra el programa"
+
+#: rc.cpp:10
 msgid "Measure"
 msgstr "Compás"
 
-#: rc.cpp:7
+#: rc.cpp:11
+msgid ""
+"This is the measure (bar) number played since the play button has been "
+"pressed."
+msgstr ""
+"Este es el número de compases que han transcurrido desde la pulsación del "
+"botón de iniciar."
+
+#: rc.cpp:12
 msgid "Beat"
 msgstr "Parte"
 
-#: rc.cpp:8
-msgid "Beats/Bar"
-msgstr "Partes por Compás"
+#: rc.cpp:13
+msgid "This is the part number played for the current measure"
+msgstr "Este es el número de parte que ha sonado para el compás actual"
 
-#: rc.cpp:9
+#: rc.cpp:14
+msgid "Beats/Bar"
+msgstr "Partes/Compás"
+
+#: rc.cpp:15
+msgid ""
+"This is the number of parts for each measure.<br>\n"
+"Values are from 1 to 32.<br>\n"
+"It is the numerator of the time signature specification."
+msgstr ""
+"Este es el número de partes para cada compás.<br>\n"
+"Admite valores desde 1 a 32.<br>\n"
+"Este es el numerador de la especificación de ritmo."
+
+#: rc.cpp:16
 msgid "Rithm figure"
 msgstr "Figura rítmica"
 
-#: rc.cpp:10
+#: rc.cpp:17
+msgid ""
+"This is the part figure for the rithm.<br>\n"
+"Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
+"It is the denominator in the time signature specification."
+msgstr ""
+"Esta es la figura que corresponde a una parte rímica.<br>\n"
+"Los valores significan 1, 2, 4, 8, 16, 32 y 64.<br>\n"
+"Es el denominador de la especificación de ritmo."
+
+#: rc.cpp:18
 msgid "Tempo (in quarters per minute)"
 msgstr "Tempo (en negras por minuto)"
 
-#: rc.cpp:11
+#: rc.cpp:19
+msgid ""
+"This slider changes the <i>tempo</i>, or speed of the rithm.<br>\n"
+"Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
+msgstr ""
+"Este deslizador cambia el <i>tempo</i>, o velocidad del ritmo.<br>\n"
+"Los valores van desde 25 hasta 250 negras por minuto. (<i>unidades del "
+"Metrónomo de Maelzel</i>)."
+
+#: rc.cpp:20
+msgid "The current <i>tempo</i> value"
+msgstr "El valor actual del <i>tempo</i>."
+
+#: rc.cpp:21
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: rc.cpp:12
-msgid "Automatic output port connection on startup"
-msgstr "Conexión automática de la salida al iniciar"
+#: rc.cpp:22
+msgid "Automatic ports connection on startup"
+msgstr "Conexión automática de los puertos al iniciar"
 
-#: rc.cpp:13
+#: rc.cpp:23
+msgid ""
+"If this checkbox is activated, the the program will remember the connections "
+"for the input and output ports, and try to reconnect them at program startup."
+msgstr ""
+"Si esta casilla está marcada, el programa recordará las conexiones para los "
+"puertos de entrada y de salida, e intentará su reconexión al inicio del "
+"programa."
+
+#: rc.cpp:24
 msgid "Output port connection:"
 msgstr "Conexión de la salida:"
 
-#: rc.cpp:14
+#: rc.cpp:25
+msgid "Input port connection:"
+msgstr "Conexión de la entrada:"
+
+#: rc.cpp:26
 msgid "Channel"
 msgstr "Canal"
 
-#: rc.cpp:15
+#: rc.cpp:27
 msgid "Weak note"
 msgstr "Nota débil"
 
-#: rc.cpp:16
+#: rc.cpp:28
 msgid "Program"
 msgstr "Programa"
 
-#: rc.cpp:17
+#: rc.cpp:29
 msgid "Strong note"
 msgstr "Nota fuerte"
 
-#: rc.cpp:18
+#: rc.cpp:30
 msgid "Resolution"
 msgstr "Resolución"
 
-#: rc.cpp:19
+#: rc.cpp:31
 msgid "Note velocity"
 msgstr "Velocidad"
 
-#: sequencerthread.cpp:95
+#: sequencerthread.cpp:46
 msgid "No connection"
 msgstr "Sin conexión"
 

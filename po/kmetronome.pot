@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2005-03-27 14:02+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: kmetronomeview.cpp:61
+msgid " - Whole"
+msgstr ""
+
+#: kmetronomeview.cpp:62
+msgid " - Half"
+msgstr ""
+
+#: kmetronomeview.cpp:63
+msgid " - Quarter"
+msgstr ""
+
+#: kmetronomeview.cpp:64
+msgid " - Eighth"
+msgstr ""
+
+#: kmetronomeview.cpp:65
+msgid " - Sixteenth"
+msgstr ""
+
+#: kmetronomeview.cpp:66
+msgid " - Thirty-Second"
+msgstr ""
+
+#: kmetronomeview.cpp:67
+msgid " - Sixty-Fourth"
+msgstr ""
+
+#: main.cpp:34
+msgid "KDE MIDI Metronome using ALSA sequencer"
+msgstr ""
+
+#: main.cpp:46
+msgid "KMetronome"
+msgstr ""
+
+#: rc.cpp:1
+msgid "MIDI Metronome"
+msgstr ""
+
+#: rc.cpp:2
+msgid "Play"
+msgstr ""
+
+#: rc.cpp:4
+msgid "Config"
+msgstr ""
+
+#: rc.cpp:5
+msgid "Exit"
+msgstr ""
+
+#: rc.cpp:6
+msgid "Measure"
+msgstr ""
+
+#: rc.cpp:7
+msgid "Beat"
+msgstr ""
+
+#: rc.cpp:8
+msgid "Beats/Bar"
+msgstr ""
+
+#: rc.cpp:9
+msgid "Rithm figure"
+msgstr ""
+
+#: rc.cpp:10
+msgid "Tempo (in quarters per minute)"
+msgstr ""
+
+#: rc.cpp:11
+msgid "Preferences"
+msgstr ""
+
+#: rc.cpp:12
+msgid "Automatic output port connection on startup"
+msgstr ""
+
+#: rc.cpp:13
+msgid "Output port connection:"
+msgstr ""
+
+#: rc.cpp:14
+msgid "Channel"
+msgstr ""
+
+#: rc.cpp:15
+msgid "Weak note"
+msgstr ""
+
+#: rc.cpp:16
+msgid "Program"
+msgstr ""
+
+#: rc.cpp:17
+msgid "Strong note"
+msgstr ""
+
+#: rc.cpp:18
+msgid "Resolution"
+msgstr ""
+
+#: rc.cpp:19
+msgid "Note velocity"
+msgstr ""
+
+#: sequencerthread.cpp:95
+msgid "No connection"
+msgstr ""
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr ""
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr ""

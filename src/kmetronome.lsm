@@ -1,0 +1,16 @@
+Begin3
+Title:          KMetronome -- KDE ALSA Sequencer based MIDI Metronome
+Version:        0.1
+Entered-date:   
+Description:    
+Keywords:       KDE Qt ALSA MIDI Metronome
+Author:         Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+Maintained-by:  Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+Home-page:      
+Alternate-site: 
+Primary-site:   http://kmetronome.sourceforge.net
+                xxxxxx  kmetronome-0.1.tar.gz
+                xxx     kmetronome-0.1.lsm
+Platform:       Linux. Needs KDE, ALSA
+Copying-policy: GPL
+End

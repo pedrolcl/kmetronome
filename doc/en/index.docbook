@@ -1,0 +1,344 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY kmetronome "<application>KMetronome</application>">
+  <!ENTITY kappname "&kmetronome;"><!-- Do *not* replace kappname-->
+  <!ENTITY package "kde-module"><!-- kdebase, kdeadmin, etc -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"><!-- change language only here -->
+]>
+<!-- ................................................................ -->
+<book lang="&language;">
+
+<bookinfo>
+<title>The &kmetronome; Handbook</title>
+<authorgroup>
+<author>
+<firstname>Pedro</firstname>
+<othername></othername>
+<surname>Lopez&#45;Cabanillas</surname>
+<affiliation>
+<address><email>plcl&#64;users&#46;sourceforge&#46;net</email></address>
+</affiliation>
+</author>
+</authorgroup>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+<copyright>
+<year>2005</year>
+<holder>Pedro Lopez&#45;Cabanillas</holder>
+</copyright>
+
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<!-- Date and version information of the documentation
+Don't forget to include this last date and this last revision number, we
+need them for translation coordination !
+Please respect the format of the date (YYYY-MM-DD) and of the version
+(V.MM.LL), it could be used by automation scripts.
+Do NOT change these in the translation. -->
+
+<date>2005-03-25</date>
+<releaseinfo>0&#46;1</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para>
+&kmetronome; is a MIDI based metronome using the ALSA sequencer.
+</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KMetronome</keyword>
+<keyword>Metronome</keyword>
+<keyword>ALSA</keyword>
+<keyword>MIDI</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<para>&kmetronome; is a MIDI based metronome using the ALSA sequencer.</para>
+<para>The intended audience are musicians and music students. Like the solid,
+real metronomes it is a tool to keep the rithm while playing musical
+instruments.</para>
+
+<para>It uses MIDI for sound generation instead of digital
+audio, allowing low CPU usage and very accurate timing thanks to the ALSA
+sequencer.</para>
+
+<para>
+Report problems, bugs and feature requests to the mailing lists or the tracking
+system at <ulink
+url="http://sourceforge.net/projects/kmetronome">SourceForge project
+site</ulink></para>
+
+</chapter>
+
+<chapter id="using-kmetronome">
+<title>Using &kmetronome;</title>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kmetronome;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="screenshot1.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<sect1 id="kmetronome-features">
+<title>&kmetronome; features</title>
+
+<para>You only need to adjust some controls, like the tempo slider, the
+beats/bar spin box and the rithm figure selector. Press the play button
+to start. Use the stop button at your convenience.</para>
+
+<para>Tempo can be set from 25 to 250 qpm using the slider. The units are
+quarters by minute (Maelzel Metronome units).</para>
+
+<para>Beats/Bar can be set from 1 to 32 beats. These are the number of beats on
+each measure or bar, and it is the numerator on the time signature as it would
+be notated.</para>
+
+<para>The rithm figure is the denominator on the time signature specification,
+and represents how long is each beat. Changing this figure doesn't change the
+meaning of the tempo units. </para>
+</sect1>
+
+<sect1 id="kmetronome-configuration">
+<title>&kmetronome; configuration</title>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kmetronome; configuration
+dialog</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="screenshot2.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+&kmetronome; has limited session management capabilities. It can remember one
+connection for the ALSA output port, and reconnect this port at startup. You
+don't need this feature if you prefer to make such connections by hand, using
+aconnect or any other equivalent utility, or if you use an external session
+manager like the patchbay included with the program <ulink
+url="http://qjackctl.sourceforge.net">QJackCtl</ulink>. There is no support
+planned for LASH/LADCCA.</para>
+
+<para>
+Channel is usually 9, meaning the percussion channel of a MIDI synthesizer. It
+can be a number beween 0 and 15.</para>
+
+<para>
+Program can be any value between 0 and 127. Most synthesizers don't understand
+program changes for the percussion channel, or require unsupported bank
+changes too.</para>
+
+<para>
+Resolution is the number of ticks (time units) for each quarter note. Values are
+from 48 to 480.</para>
+
+<para>
+Strong note is played as the first beat in every measure, while any other beat
+in the same measure is played using the weak note. Values are from 0 to 127, and
+the defaults 33 and 34 are the General MIDI sounds for metronome
+click and metronome bell.
+</para>
+
+<para>
+Note velocity is the volume for the played notes. Values from 0 to 127.
+</para>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title>Command Reference</title>
+
+<sect1 id="kmetronome-mainwindow">
+<title>The main &kmetronome; window</title>
+
+<sect2>
+<title>The File Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quits</action> &kmetronome;</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+
+<sect2>
+<title>The Settings Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure KMetronome...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Configures</action> &kmetronome;</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title>The <guimenu>Help</guimenu> Menu</title>
+&help.menu.documentation;
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="external-control">
+<title>External Control</title>
+<para>
+&kmetronome; can be controlled using its DCOP interface, and/or MIDI
+System Realtime messages.</para>
+
+<sect1 id="kmetronome-dcop">
+<title>DCOP Interface</title>
+<para>
+&kmetronome; provides three functions thru DCOP: play(), stop() and cont(). You
+can use a DCOP-enabled program to control &kmetronome; like
+kdcop or the commandline utility dcop.
+</para>
+<para>
+For instance, these commands can be used from a shell prompt:
+<screen>
+$ dcop kmetronome transport play
+$ dcop kmetronome transport stop
+$ dcop kmetronome transport cont
+</screen>
+</para>
+</sect1>
+
+<sect1 id="kmetronome-midi">
+<title>&kmetronome; MIDI System Realtime Interface</title>
+<para>
+You can use a MIDI device generating MIDI System Realtime messages to control
+&kmetronome;. System Realtime messages accepted are: Start (0xFA), Stop
+(0xFC) and Continue (0xFB).</para>
+<para>
+Many master MIDI keyboards and MIDI buttons devices provide those three MIDI
+transport controls. You need to connect your external MIDI devices to the
+computer using MIDI (or USB) cables, and connect the corresponding ALSA port to
+the input port of &kmetronome;. This connection must be done by hand, or
+using a session management software like QJackCtl.</para>
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title>Credits and License</title>
+
+<para>
+&kmetronome;
+</para>
+<para>
+Program copyright 2005 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+</para>
+
+<para>
+Documentation copyright 2005 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+
+&underGPL;
+
+</chapter>
+
+<appendix id="installation">
+<title>Installation</title>
+
+<sect1 id="getting-kmetronome">
+<title>How to obtain &kmetronome;</title>
+
+<para>
+Here you can find the last version:
+<ulink
+url="http://sourceforge.net/projects/kmetronome">Project home page</ulink>
+</para>
+
+</sect1>
+
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>
+In order to successfully use &kmetronome;, you need &kde; 3.X. and ALSA
+drivers and library.
+</para>
+
+<para>
+ALSA library, drivers and utilities can be found at
+<ulink url="http://www.alsa-project.org">ALSA home page</ulink>.
+</para>
+
+<para>
+You can find a list of changes at
+<ulink
+url="http://kmetronome.sourceforge.net">http://kmetronome.sourceforge.net
+</ulink>
+</para>
+</sect1>
+
+<sect1 id="compilation">
+<title>Compilation and Installation</title>
+
+&install.compile.documentation;
+
+</sect1>
+
+<sect1 id="configuration">
+<title>Configuration</title>
+<para>X</para>
+</sect1>
+
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+-->
+

@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>400</width>
-            <height>295</height>
+            <width>421</width>
+            <height>318</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -47,7 +47,7 @@
         </property>
         <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>layout12</cstring>
+                <cstring>layout16</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -76,6 +76,9 @@
                             <property name="text">
                                 <string>Play</string>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>This button starts playing the rithm pattern</string>
+                            </property>
                         </widget>
                         <widget class="KPushButton">
                             <property name="name">
@@ -95,6 +98,9 @@
                             <property name="text">
                                 <string>Stop</string>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>This button stops playing the rithm pattern</string>
+                            </property>
                         </widget>
                         <widget class="KPushButton">
                             <property name="name">
@@ -110,6 +116,9 @@
                             </property>
                             <property name="text">
                                 <string>Config</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>This button opens the configuration window</string>
                             </property>
                         </widget>
                         <widget class="KPushButton">
@@ -127,12 +136,15 @@
                             <property name="text">
                                 <string>Exit</string>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>This button exits the program</string>
+                            </property>
                         </widget>
                     </vbox>
                 </widget>
                 <widget class="QLayoutWidget">
                     <property name="name">
-                        <cstring>layout11</cstring>
+                        <cstring>layout15</cstring>
                     </property>
                     <vbox>
                         <property name="name">
@@ -210,6 +222,9 @@
                                             <property name="segmentStyle">
                                                 <enum>Filled</enum>
                                             </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>This is the measure (bar) number played since the play button has been pressed.</string>
+                                            </property>
                                         </widget>
                                     </vbox>
                                 </widget>
@@ -265,6 +280,9 @@
                                             <property name="segmentStyle">
                                                 <enum>Filled</enum>
                                             </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>This is the part number played for the current measure</string>
+                                            </property>
                                         </widget>
                                     </vbox>
                                 </widget>
@@ -272,7 +290,7 @@
                         </widget>
                         <widget class="QLayoutWidget">
                             <property name="name">
-                                <cstring>layout10</cstring>
+                                <cstring>layout14</cstring>
                             </property>
                             <hbox>
                                 <property name="name">
@@ -280,11 +298,14 @@
                                 </property>
                                 <widget class="QLayoutWidget">
                                     <property name="name">
-                                        <cstring>layout8</cstring>
+                                        <cstring>layout12</cstring>
                                     </property>
                                     <vbox>
                                         <property name="name">
                                             <cstring>unnamed</cstring>
+                                        </property>
+                                        <property name="spacing">
+                                            <number>12</number>
                                         </property>
                                         <widget class="QLabel">
                                             <property name="name">
@@ -293,7 +314,7 @@
                                             <property name="sizePolicy">
                                                 <sizepolicy>
                                                     <hsizetype>7</hsizetype>
-                                                    <vsizetype>1</vsizetype>
+                                                    <vsizetype>0</vsizetype>
                                                     <horstretch>0</horstretch>
                                                     <verstretch>0</verstretch>
                                                 </sizepolicy>
@@ -301,13 +322,13 @@
                                             <property name="minimumSize">
                                                 <size>
                                                     <width>0</width>
-                                                    <height>0</height>
+                                                    <height>24</height>
                                                 </size>
                                             </property>
                                             <property name="maximumSize">
                                                 <size>
                                                     <width>32767</width>
-                                                    <height>32767</height>
+                                                    <height>24</height>
                                                 </size>
                                             </property>
                                             <property name="text">
@@ -329,7 +350,7 @@
                                             <property name="minimumSize">
                                                 <size>
                                                     <width>75</width>
-                                                    <height>0</height>
+                                                    <height>23</height>
                                                 </size>
                                             </property>
                                             <property name="maximumSize">
@@ -347,12 +368,17 @@
                                             <property name="value">
                                                 <number>4</number>
                                             </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>This is the number of parts for each measure.&lt;br&gt;
+Values are from 1 to 32.&lt;br&gt;
+It is the numerator of the time signature specification.</string>
+                                            </property>
                                         </widget>
                                     </vbox>
                                 </widget>
                                 <widget class="QLayoutWidget">
                                     <property name="name">
-                                        <cstring>layout9</cstring>
+                                        <cstring>layout13</cstring>
                                     </property>
                                     <vbox>
                                         <property name="name">
@@ -365,10 +391,22 @@
                                             <property name="sizePolicy">
                                                 <sizepolicy>
                                                     <hsizetype>7</hsizetype>
-                                                    <vsizetype>1</vsizetype>
+                                                    <vsizetype>0</vsizetype>
                                                     <horstretch>0</horstretch>
                                                     <verstretch>0</verstretch>
                                                 </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>24</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>24</height>
+                                                </size>
                                             </property>
                                             <property name="text">
                                                 <string>Rithm figure</string>
@@ -381,7 +419,7 @@
                                             <property name="minimumSize">
                                                 <size>
                                                     <width>200</width>
-                                                    <height>0</height>
+                                                    <height>30</height>
                                                 </size>
                                             </property>
                                             <property name="maximumSize">
@@ -392,6 +430,11 @@
                                             </property>
                                             <property name="currentItem">
                                                 <number>0</number>
+                                            </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>This is the part figure for the rithm.&lt;br&gt;
+Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
+It is the denominator in the time signature specification.</string>
                                             </property>
                                         </widget>
                                     </vbox>
@@ -470,6 +513,10 @@
                             <property name="tickInterval">
                                 <number>5</number>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rithm.&lt;br&gt;
+Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i&gt;).</string>
+                            </property>
                         </widget>
                     </vbox>
                 </widget>
@@ -496,6 +543,9 @@
                     </property>
                     <property name="value" stdset="0">
                         <number>100</number>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The current &lt;i&gt;tempo&lt;/i&gt; value</string>
                     </property>
                 </widget>
             </hbox>

@@ -40,8 +40,6 @@
 #define TRANSPORT_STOP 1
 #define TRANSPORT_CONT 2
 
-static QString NO_CONNECTION = i18n("No connection");
-
 class MetronomeEvent : public QCustomEvent
 {
 public:
@@ -142,6 +140,7 @@ private:
     bool m_autoconnect;
     QString m_outputConn;
     QString m_inputConn;
+    QString NO_CONNECTION;
 };
 
 #endif

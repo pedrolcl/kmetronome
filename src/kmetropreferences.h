@@ -32,7 +32,7 @@ class KMetroPreferences : public KMetroPreferencesBase
 {
     Q_OBJECT
 public:
-    KMetroPreferences():KMetroPreferencesBase() {}
+    KMetroPreferences():KMetroPreferencesBase() { }
     void fillInputConnections(QStringList lst) { m_in_connection->insertStringList(lst); }
     void fillOutputConnections(QStringList lst) { m_out_connection->insertStringList(lst); }
     

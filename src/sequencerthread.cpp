@@ -42,7 +42,8 @@ SequencerThread::SequencerThread(QWidget *parent):QThread(),
 	m_ts_div(4),
 	m_autoconnect(false),
 	m_outputConn(""),
-	m_inputConn("")
+	m_inputConn(""),
+	NO_CONNECTION(i18n("No connection"))
 {
     int err;
     err = snd_seq_open(&m_handle, "default", SND_SEQ_OPEN_DUPLEX, SND_SEQ_NONBLOCK);

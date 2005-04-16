@@ -33,6 +33,8 @@ k_dcop:
     virtual void play() = 0;
     virtual void stop() = 0;
     virtual void cont() = 0;
+    virtual int setTempo(int newTempo) = 0;
+    virtual int setTimeSignature(int numerator, int denominator) = 0;
 };
  
 #endif

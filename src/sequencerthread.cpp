@@ -41,6 +41,7 @@ SequencerThread::SequencerThread(QWidget *parent):QThread(),
 	m_ts_num(4),
 	m_ts_div(4),
 	m_autoconnect(false),
+	m_playing(false),
 	m_outputConn(""),
 	m_inputConn(""),
 	NO_CONNECTION(i18n("No connection"))
@@ -293,17 +294,20 @@ void SequencerThread::metronome_start()
     m_bar = 1;
     m_beat = 1;
     updateView();
+    m_playing = true;
 }
 
 void SequencerThread::metronome_stop()
 {
     checkAlsaError(snd_seq_stop_queue(m_handle, m_queue, NULL), "Queue stop");
     checkAlsaError(snd_seq_drain_output(m_handle), "Drain output");
+    m_playing = false;
 }
 
 void SequencerThread::metronome_continue()
 {
     checkAlsaError(snd_seq_continue_queue(m_handle, m_queue, NULL), "Queue continue");
     checkAlsaError(snd_seq_drain_output(m_handle), "Drain output");
+    m_playing = true;
 }
 

@@ -91,6 +91,7 @@ public:
     int getRithmNumerator() { return m_ts_num; }
     int getRithmDenominator() { return m_ts_div; }
     bool getAutoConnect() { return m_autoconnect; }
+    bool isPlaying() { return m_playing; }
     QString getOutputConn() { return m_outputConn; }
     QString getInputConn() { return m_inputConn; }
 
@@ -138,6 +139,7 @@ private:
     int m_ts_num; /* time signature: numerator */
     int m_ts_div; /* time signature: denominator */
     bool m_autoconnect;
+    bool m_playing;
     QString m_outputConn;
     QString m_inputConn;
     QString NO_CONNECTION;

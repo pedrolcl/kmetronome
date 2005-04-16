@@ -50,7 +50,14 @@ public:
      * Default Destructor
      */
     virtual ~KMetronome();
+    
     bool queryExit();
+    
+    /**
+     * DCOP interface (KMetroIface)
+     */
+    int  setTempo(int newTempo);
+    int  setTimeSignature(int numerator, int denominator);
     
 public slots:
     void play();

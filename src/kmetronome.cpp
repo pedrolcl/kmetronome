@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <qlabel.h>
 #include <qevent.h>
 #include <kapplication.h>
@@ -211,6 +212,38 @@ void KMetronome::beatsBarChanged(int beats)
 void KMetronome::rithmFigureChanged(int figure)
 {
     m_thread->setRithmDenominator((int)pow(2, figure));
+}
+
+int KMetronome::setTempo(int newTempo)
+{
+    if (newTempo < 25 || newTempo > 250) {
+	return -1;   
+    } else {
+	m_view->setTempo(newTempo);    
+    }
+    return 0;
+}
+
+int KMetronome::setTimeSignature(int numerator, int denominator)
+{
+    static const int valids[] = {1, 2, 4, 8, 16, 32, 64};
+    bool invalid = true;
+    for(int i=0; i<7; ++i) {
+    	if (denominator == valids[i]) {
+    	    invalid = false;
+    	    break;
+    	}
+    }
+    if (m_thread->isPlaying() ||
+        numerator < 1 || numerator > 32 || 
+        invalid) {
+	return -1;
+    } else {
+	m_view->setBeatsBar(numerator);
+	m_view->setFigure(denominator);
+	m_thread->setRithmDenominator(denominator);
+    }
+    return 0;
 }
 
 #include "kmetronome.moc"

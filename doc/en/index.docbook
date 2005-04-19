@@ -137,7 +137,8 @@ dialog</screeninfo>
 
 <para>
 &kmetronome; has limited session management capabilities. It can remember one
-connection for the ALSA output port, and reconnect this port at startup. You
+connection for the ALSA output port, and one connection for its input port. 
+Connections are stored when the program exits and remembered at startup. You
 don't need this feature if you prefer to make such connections by hand, using
 aconnect or any other equivalent utility, or if you use an external session
 manager like the patchbay included with the program <ulink
@@ -225,7 +226,7 @@ System Realtime messages.</para>
 <sect1 id="kmetronome-dcop">
 <title>DCOP Interface</title>
 <para>
-&kmetronome; provides three functions thru DCOP: play(), stop() and cont(). You
+&kmetronome; provides some functions through its DCOP interface. You
 can use a DCOP-enabled program to control &kmetronome; like
 kdcop or the commandline utility dcop.
 </para>
@@ -235,6 +236,8 @@ For instance, these commands can be used from a shell prompt:
 $ dcop kmetronome transport play
 $ dcop kmetronome transport stop
 $ dcop kmetronome transport cont
+$ dcop kmetronome transport setTempo 150
+$ dcop kmetronome transport setTimeSignature 3 8
 </screen>
 </para>
 </sect1>
@@ -317,11 +320,6 @@ url="http://kmetronome.sourceforge.net">http://kmetronome.sourceforge.net
 
 &install.compile.documentation;
 
-</sect1>
-
-<sect1 id="configuration">
-<title>Configuration</title>
-<para>X</para>
 </sect1>
 
 </appendix>

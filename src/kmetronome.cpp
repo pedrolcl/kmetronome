@@ -43,6 +43,7 @@ KMetronome::KMetronome()
     m_thread = new SequencerThread(this);
     setCentralWidget(m_view);
     setupActions();
+    setAutoSaveSettings();
     if (!m_thread->running()) {
         m_thread->start();
     }
@@ -153,6 +154,7 @@ void KMetronome::optionsPreferences()
 	m_thread->setVelocity(dlg.getVelocity());
 	m_thread->connect_output();
 	m_thread->connect_input();
+	m_thread->metronome_set_tempo();
     } 
 }
 

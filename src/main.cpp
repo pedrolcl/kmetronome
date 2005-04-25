@@ -31,7 +31,7 @@
 #endif
 
 static const char description[] =
-    I18N_NOOP("KDE MIDI Metronome using ALSA sequencer");
+    I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
 
 static const char version[] = VERSION;
 

@@ -1,1 +1,89 @@
- 
+2005-04-25 23:41  plcl
+
+	* updated version number
+
+2005-04-25 23:32  plcl
+
+	* removed some unneeded files
+
+2005-04-25 23:25  plcl
+
+	* minor changes
+
+2005-04-25 23:11  plcl
+
+	* more .cvsignore stuff
+
+2005-04-25 23:10  plcl
+
+	* .cvsignore files updated
+
+2005-04-25 23:09  plcl
+
+	* minor changes
+
+2005-04-25 23:08  plcl
+
+	* autosave settings (window size...) * apply tempo/resolution
+	  changes after config. dialog accept changes
+
+2005-04-23 22:00  plcl
+
+	* bug in sequencerthread: set_program event must be direct.
+
+2005-04-19 22:53  plcl
+
+	* build system update
+
+2005-04-19 22:31  plcl
+
+	* documentation update
+
+2005-04-16 23:22  plcl
+
+	* more files to ignore
+
+2005-04-16 23:21  plcl
+
+	* new DCOP interface commands: setTempo and setTimeSignature
+
+2005-04-04 23:27  plcl
+
+	* several unneeded files removed
+
+2005-04-04 23:21  plcl
+
+	* Documentation updated
+
+2005-04-04 23:21  plcl
+
+	* Spanish translation updated
+
+2005-04-04 23:20  plcl
+
+	* User interface updates * version number raised
+
+2005-04-03 03:11  plcl
+
+	* Configuration option to reconnect the input port
+
+2005-04-03 03:09  plcl
+
+	* Eclipse CDT project files
+
+2005-03-30 00:06  plcl
+
+	* Some systems need to include <cmath> for pow().
+
+2005-03-29 22:51  plcl
+
+	* Fist public release
+
+2005-03-29 20:34  plcl
+
+	* Initial import
+
+2005-03-29 20:34  plcl
+
+	* Initial revision
+

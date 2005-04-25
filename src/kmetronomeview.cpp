@@ -51,20 +51,13 @@ KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
     connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rithmFigureChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
 
-    QPixmap img1(f1_xpm);
-    QPixmap img2(f2_xpm);
-    QPixmap img4(f4_xpm);
-    QPixmap img8(f8_xpm);
-    QPixmap img16(f16_xpm);
-    QPixmap img32(f32_xpm);
-    QPixmap img64(f64_xpm);
-    m_figure->insertItem(img1, i18n(" - Whole"));
-    m_figure->insertItem(img2, i18n(" - Half"));
-    m_figure->insertItem(img4, i18n(" - Quarter"));
-    m_figure->insertItem(img8, i18n(" - Eighth"));
-    m_figure->insertItem(img16, i18n(" - Sixteenth"));
-    m_figure->insertItem(img32, i18n(" - Thirty-Second"));
-    m_figure->insertItem(img64, i18n(" - Sixty-Fourth"));
+    m_figure->insertItem(QPixmap(f1_xpm), i18n(" - Whole"));
+    m_figure->insertItem(QPixmap(f2_xpm), i18n(" - Half"));
+    m_figure->insertItem(QPixmap(f4_xpm), i18n(" - Quarter"));
+    m_figure->insertItem(QPixmap(f8_xpm), i18n(" - Eighth"));
+    m_figure->insertItem(QPixmap(f16_xpm), i18n(" - Sixteenth"));
+    m_figure->insertItem(QPixmap(f32_xpm), i18n(" - Thirty-Second"));
+    m_figure->insertItem(QPixmap(f64_xpm), i18n(" - Sixty-Fourth"));
     m_figure->setCurrentItem(2);
 }
 

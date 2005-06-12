@@ -48,7 +48,7 @@ KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
     connect( m_playbtn, SIGNAL(clicked()), parent, SLOT(play()) );
     connect( m_stopbtn, SIGNAL(clicked()), parent, SLOT(stop()) );
     connect( m_beatsBar, SIGNAL(valueChanged(int)), parent, SLOT(beatsBarChanged(int)) );
-    connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rithmFigureChanged(int)) );
+    connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rhythmFigureChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
 
     m_figure->insertItem(QPixmap(f1_xpm), i18n(" - Whole"));

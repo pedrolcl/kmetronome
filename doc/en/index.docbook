@@ -66,7 +66,7 @@ Do NOT change these in the translation. -->
 
 <para>&kmetronome; is a MIDI based metronome using the ALSA sequencer.</para>
 <para>The intended audience are musicians and music students. Like the solid,
-real metronomes it is a tool to keep the rithm while playing musical
+real metronomes it is a tool to keep the rhythm while playing musical
 instruments.</para>
 
 <para>It uses MIDI for sound generation instead of digital
@@ -102,7 +102,7 @@ site</ulink></para>
 <title>&kmetronome; features</title>
 
 <para>You only need to adjust some controls, like the tempo slider, the
-beats/bar spin box and the rithm figure selector. Press the play button
+beats/bar spin box and the rhythm figure selector. Press the play button
 to start. Use the stop button at your convenience.</para>
 
 <para>Tempo can be set from 25 to 250 qpm using the slider. The units are
@@ -112,7 +112,7 @@ quarters by minute (Maelzel Metronome units).</para>
 each measure or bar, and it is the numerator on the time signature as it would
 be notated.</para>
 
-<para>The rithm figure is the denominator on the time signature specification,
+<para>The rhythm figure is the denominator on the time signature specification,
 and represents how long is each beat. Changing this figure doesn't change the
 meaning of the tempo units. </para>
 </sect1>

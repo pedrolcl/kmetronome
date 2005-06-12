@@ -66,7 +66,7 @@ public slots:
     void optionsPreferences();
     void tempoChanged(int);
     void beatsBarChanged(int);
-    void rithmFigureChanged(int);
+    void rhythmFigureChanged(int);
 
 protected:
     void customEvent( QCustomEvent * e );

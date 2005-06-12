@@ -60,11 +60,11 @@ msgid "Play"
 msgstr "Iniciar"
 
 #: rc.cpp:3
-msgid "This button starts playing the rithm pattern"
+msgid "This button starts playing the rhythm pattern"
 msgstr "Este botón inicia la ejecución del patrón rítmico"
 
 #: rc.cpp:5
-msgid "This button stops playing the rithm pattern"
+msgid "This button stops playing the rhythm pattern"
 msgstr "Este botón interrumpe la ejecución del patrón rítmico"
 
 #: rc.cpp:6
@@ -118,12 +118,12 @@ msgstr ""
 "Este es el numerador de la especificación de ritmo."
 
 #: rc.cpp:16
-msgid "Rithm figure"
+msgid "Rhythm figure"
 msgstr "Figura rítmica"
 
 #: rc.cpp:17
 msgid ""
-"This is the part figure for the rithm.<br>\n"
+"This is the part figure for the rhythm.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
 "It is the denominator in the time signature specification."
 msgstr ""
@@ -137,7 +137,7 @@ msgstr "Tempo (en negras por minuto)"
 
 #: rc.cpp:19
 msgid ""
-"This slider changes the <i>tempo</i>, or speed of the rithm.<br>\n"
+"This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
 "Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
 msgstr ""
 "Este deslizador cambia el <i>tempo</i>, o velocidad del ritmo.<br>\n"

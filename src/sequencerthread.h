@@ -76,8 +76,8 @@ public:
     void setChannel(int newValue) { m_channel = newValue; }
     void setResolution(int newValue) { m_resolution = newValue; }
     void setBpm(int newValue) { m_bpm = newValue; }
-    void setRithmNumerator(int newValue) { m_ts_num = newValue; }
-    void setRithmDenominator(int newValue) { m_ts_div = newValue; }
+    void setRhythmNumerator(int newValue) { m_ts_num = newValue; }
+    void setRhythmDenominator(int newValue) { m_ts_div = newValue; }
     void setAutoConnect(bool newValue) { m_autoconnect = newValue; }
     void setOutputConn(QString newValue) { m_outputConn = newValue; }
     void setInputConn(QString newValue) { m_inputConn = newValue; }
@@ -88,8 +88,8 @@ public:
     int getChannel() { return m_channel; }
     int getResolution() { return m_resolution; }
     int getBpm() { return m_bpm; }
-    int getRithmNumerator() { return m_ts_num; }
-    int getRithmDenominator() { return m_ts_div; }
+    int getRhythmNumerator() { return m_ts_num; }
+    int getRhythmDenominator() { return m_ts_div; }
     bool getAutoConnect() { return m_autoconnect; }
     bool isPlaying() { return m_playing; }
     QString getOutputConn() { return m_outputConn; }
@@ -101,7 +101,7 @@ public:
     void metronome_continue();
     void metronome_set_program();
     void metronome_set_tempo();
-    void metronome_set_rithm();
+    void metronome_set_rhythm();
     void connect_output();
     void disconnect_output();
     void connect_input();

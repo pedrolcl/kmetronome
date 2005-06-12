@@ -85,8 +85,8 @@ void KMetronome::saveConfiguration()
     config->writeEntry("velocity", m_thread->getVelocity());
     config->writeEntry("resolution", m_thread->getResolution());
     config->writeEntry("tempo", m_thread->getBpm());
-    config->writeEntry("rithmNumerator", m_thread->getRithmNumerator());
-    config->writeEntry("rithmDenominator", m_thread->getRithmDenominator());
+    config->writeEntry("rhythmNumerator", m_thread->getRhythmNumerator());
+    config->writeEntry("rhythmDenominator", m_thread->getRhythmDenominator());
     config->writeEntry("autoconnect", m_thread->getAutoConnect());
     config->writeEntry("outputConn", m_thread->getOutputConn());
     config->writeEntry("inputConn", m_thread->getInputConn());
@@ -103,11 +103,11 @@ void KMetronome::readConfiguration()
     m_thread->setVelocity(config->readNumEntry("velocity", METRONOME_VELOCITY));
     m_thread->setResolution(config->readNumEntry("resolution", METRONOME_RESOLUTION));
     int tempo = config->readNumEntry("tempo", 100);
-    int ts_num = config->readNumEntry("rithmNumerator", 4);
-    int ts_div = config->readNumEntry("rithmDenominator", 4);
+    int ts_num = config->readNumEntry("rhythmNumerator", 4);
+    int ts_div = config->readNumEntry("rhythmDenominator", 4);
     m_thread->setBpm(tempo);
-    m_thread->setRithmNumerator(ts_num);
-    m_thread->setRithmDenominator(ts_div);
+    m_thread->setRhythmNumerator(ts_num);
+    m_thread->setRhythmDenominator(ts_div);
     m_view->setBeatsBar(ts_num);
     m_view->setFigure(ts_div);
     m_view->setTempo(tempo);
@@ -208,12 +208,12 @@ void KMetronome::tempoChanged(int newTempo)
 
 void KMetronome::beatsBarChanged(int beats)
 {
-    m_thread->setRithmNumerator(beats);
+    m_thread->setRhythmNumerator(beats);
 }
 
-void KMetronome::rithmFigureChanged(int figure)
+void KMetronome::rhythmFigureChanged(int figure)
 {
-    m_thread->setRithmDenominator((int)pow(2, figure));
+    m_thread->setRhythmDenominator((int)pow(2, figure));
 }
 
 int KMetronome::setTempo(int newTempo)
@@ -243,7 +243,7 @@ int KMetronome::setTimeSignature(int numerator, int denominator)
     } else {
 	m_view->setBeatsBar(numerator);
 	m_view->setFigure(denominator);
-	m_thread->setRithmDenominator(denominator);
+	m_thread->setRhythmDenominator(denominator);
     }
     return 0;
 }

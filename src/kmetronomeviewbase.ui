@@ -77,7 +77,7 @@
                                 <string>Play</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>This button starts playing the rithm pattern</string>
+                                <string>This button starts playing the rhythm pattern</string>
                             </property>
                         </widget>
                         <widget class="KPushButton">
@@ -99,7 +99,7 @@
                                 <string>Stop</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>This button stops playing the rithm pattern</string>
+                                <string>This button stops playing the rhythm pattern</string>
                             </property>
                         </widget>
                         <widget class="KPushButton">
@@ -409,7 +409,7 @@ It is the numerator of the time signature specification.</string>
                                                 </size>
                                             </property>
                                             <property name="text">
-                                                <string>Rithm figure</string>
+                                                <string>Rhythm figure</string>
                                             </property>
                                         </widget>
                                         <widget class="KComboBox">
@@ -432,7 +432,7 @@ It is the numerator of the time signature specification.</string>
                                                 <number>0</number>
                                             </property>
                                             <property name="whatsThis" stdset="0">
-                                                <string>This is the part figure for the rithm.&lt;br&gt;
+                                                <string>This is the part figure for the rhythm.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
 It is the denominator in the time signature specification.</string>
                                             </property>
@@ -514,7 +514,7 @@ It is the denominator in the time signature specification.</string>
                                 <number>5</number>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rithm.&lt;br&gt;
+                                <string>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rhythm.&lt;br&gt;
 Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i&gt;).</string>
                             </property>
                         </widget>

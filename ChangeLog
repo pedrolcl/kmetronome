@@ -1,3 +1,12 @@
+2005-06-20 21:17  plcl
+
+	* Implemented double click event handler, changing tempo as 
+	  suggested by Chris.
+
+2005-06-12 23:51  plcl
+
+	* Fix a typo. Thanks to Chris Cannam.
+
 2005-04-25 23:41  plcl
 
 	* updated version number

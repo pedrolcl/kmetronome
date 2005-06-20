@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-04-19 22:37+0200\n"
+"POT-Creation-Date: 2005-06-20 21:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,36 +15,44 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: kmetronomeview.cpp:61
+#: kmetronomeview.cpp:56
 msgid " - Whole"
 msgstr ""
 
-#: kmetronomeview.cpp:62
+#: kmetronomeview.cpp:57
 msgid " - Half"
 msgstr ""
 
-#: kmetronomeview.cpp:63
+#: kmetronomeview.cpp:58
 msgid " - Quarter"
 msgstr ""
 
-#: kmetronomeview.cpp:64
+#: kmetronomeview.cpp:59
 msgid " - Eighth"
 msgstr ""
 
-#: kmetronomeview.cpp:65
+#: kmetronomeview.cpp:60
 msgid " - Sixteenth"
 msgstr ""
 
-#: kmetronomeview.cpp:66
+#: kmetronomeview.cpp:61
 msgid " - Thirty-Second"
 msgstr ""
 
-#: kmetronomeview.cpp:67
+#: kmetronomeview.cpp:62
 msgid " - Sixty-Fourth"
 msgstr ""
 
+#: kmetronomeview.cpp:104
+msgid "Tempo"
+msgstr ""
+
+#: kmetronomeview.cpp:104
+msgid "Enter new Tempo:"
+msgstr ""
+
 #: main.cpp:34
-msgid "KDE MIDI Metronome using ALSA sequencer"
+msgid "KDE MIDI metronome using ALSA sequencer"
 msgstr ""
 
 #: main.cpp:46

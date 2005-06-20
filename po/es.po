@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"POT-Creation-Date: 2005-04-19 22:37+0200\n"
-"PO-Revision-Date: 2005-04-04 23:11+0200\n"
+"POT-Creation-Date: 2005-06-20 21:24+0200\n"
+"PO-Revision-Date: 2005-06-20 21:28+0200\n"
 "Last-Translator: Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>\n"
 "Language-Team: Español <rosegarden-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -15,36 +15,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: kmetronomeview.cpp:61
+#: kmetronomeview.cpp:56
 msgid " - Whole"
 msgstr " - Redonda"
 
-#: kmetronomeview.cpp:62
+#: kmetronomeview.cpp:57
 msgid " - Half"
 msgstr " - Blanca"
 
-#: kmetronomeview.cpp:63
+#: kmetronomeview.cpp:58
 msgid " - Quarter"
 msgstr " - Negra"
 
-#: kmetronomeview.cpp:64
+#: kmetronomeview.cpp:59
 msgid " - Eighth"
 msgstr " - Corchea"
 
-#: kmetronomeview.cpp:65
+#: kmetronomeview.cpp:60
 msgid " - Sixteenth"
 msgstr " - Semicorchea"
 
-#: kmetronomeview.cpp:66
+#: kmetronomeview.cpp:61
 msgid " - Thirty-Second"
 msgstr " - Fusa"
 
-#: kmetronomeview.cpp:67
+#: kmetronomeview.cpp:62
 msgid " - Sixty-Fourth"
 msgstr " - Semifusa"
 
+#: kmetronomeview.cpp:104
+msgid "Tempo"
+msgstr "Tempo"
+
+#: kmetronomeview.cpp:104
+msgid "Enter new Tempo:"
+msgstr "Introducir nuevo Tempo:"
+
 #: main.cpp:34
-msgid "KDE MIDI Metronome using ALSA sequencer"
+msgid "KDE MIDI metronome using ALSA sequencer"
 msgstr "Metrónomo MIDI para KDE usando el secuenciador de ALSA"
 
 #: main.cpp:46
@@ -212,3 +220,4 @@ msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"
 msgstr "plcl@users.sourceforge.net"
+

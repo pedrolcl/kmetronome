@@ -44,7 +44,10 @@ public:
     void setBeatsBar(int newValue) { m_beatsBar->setValue(newValue); }
     void setFigure(int newValue);
     void enableControls(bool);
-    
+
+protected:
+    virtual void mouseDoubleClickEvent ( QMouseEvent * e );
+        
 public slots:
     virtual void m_tempo_valueChanged(int);
 };

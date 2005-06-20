@@ -24,6 +24,8 @@
 #include <qpixmap.h>
 #include <klocale.h>
 #include <kiconloader.h>
+#include <klineeditdlg.h>
+#include <qvalidator.h>
 
 #include "kmetronomeview.h"
 #include "f1.xpm"
@@ -94,4 +96,17 @@ void KmetronomeView::enableControls(bool e)
     m_beatsBar->setEnabled(e);
     m_figure->setEnabled(e);
 }
+
+void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
+{
+    bool ok = false;
+    QIntValidator validator(25, 250, this);
+    QString newTempo = KLineEditDlg::getText( i18n("Tempo"), i18n("Enter new Tempo:"),
+					      QString("%1").arg(m_tempo->value()),
+					      &ok, this, &validator );
+    if (ok) {
+    	m_tempo->setValue(newTempo.toInt());
+    }
+}
+
 #include "kmetronomeview.moc"

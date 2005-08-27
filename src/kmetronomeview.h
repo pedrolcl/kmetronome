@@ -24,7 +24,8 @@
 #include <kcombobox.h>
 #include <knuminput.h>
 #include <qslider.h>
-#include <kmetronomeviewbase.h>
+
+#include "kmetronomeviewbase.h"
 
 /**
 Central View Widget Implementation

@@ -181,22 +181,31 @@ void KMetronome::cont()
 
 void KMetronome::customEvent( QCustomEvent * e )
 {
-    if(e->type() == METRONOME_EVENT_TYPE) {
-	MetronomeEvent *me = (MetronomeEvent *)e;
-	m_view->display(me->bar(), me->beat());
-    } else if (e->type() ==  TRANSPORT_EVENT_TYPE) {
-	TransportEvent *te = (TransportEvent *)e;
-	switch(te->getAction()) {
-	case TRANSPORT_PLAY:
-	    play();
-	    break;
-	case TRANSPORT_STOP:
-	    stop();
-	    break;
-	case TRANSPORT_CONT:
-	    cont();
-	    break;
-	}
+    switch (e->type()) {
+        case METRONOME_EVENT_TYPE:
+        	MetronomeEvent *me = dynamic_cast<MetronomeEvent *>(e);
+        	m_view->display(me->bar(), me->beat());
+            break;
+        case TRANSPORT_EVENT_TYPE:
+        	TransportEvent *te = dynamic_cast<TransportEvent *>(e);
+        	switch(te->getAction()) {
+        	case TRANSPORT_PLAY:
+        	    play();
+        	    break;
+        	case TRANSPORT_STOP:
+        	    stop();
+        	    break;
+        	case TRANSPORT_CONT:
+        	    cont();
+        	    break;
+        	}
+            break;
+        case NOTATION_EVENT_TYPE:
+            NotationEvent *ne = dynamic_cast<NotationEvent *>(e);
+            setTimeSignature(ne->getNumerator(), ne->getDenominator());
+            break;
+        default:
+            break;
     }
 }
 
@@ -219,9 +228,9 @@ void KMetronome::rhythmFigureChanged(int figure)
 int KMetronome::setTempo(int newTempo)
 {
     if (newTempo < 25 || newTempo > 250) {
-	return -1;   
+    	return -1;   
     } else {
-	m_view->setTempo(newTempo);    
+    	m_view->setTempo(newTempo);    
     }
     return 0;
 }
@@ -236,14 +245,12 @@ int KMetronome::setTimeSignature(int numerator, int denominator)
     	    break;
     	}
     }
-    if (m_thread->isPlaying() ||
-        numerator < 1 || numerator > 32 || 
-        invalid) {
-	return -1;
+    if (m_thread->isPlaying() ||  numerator < 1 || numerator > 32 || invalid) {
+    	return -1;
     } else {
-	m_view->setBeatsBar(numerator);
-	m_view->setFigure(denominator);
-	m_thread->setRhythmDenominator(denominator);
+    	m_view->setBeatsBar(numerator);
+    	m_view->setFigure(denominator);
+    	m_thread->setRhythmDenominator(denominator);
     }
     return 0;
 }

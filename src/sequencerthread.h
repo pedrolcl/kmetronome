@@ -28,6 +28,7 @@
 
 #define METRONOME_EVENT_TYPE (QEvent::User + 1)
 #define TRANSPORT_EVENT_TYPE (QEvent::User + 2)
+#define NOTATION_EVENT_TYPE  (QEvent::User + 3)
 
 #define METRONOME_CHANNEL 9
 #define METRONOME_STRONG_NOTE 34
@@ -60,6 +61,18 @@ public:
     int getAction() const { return m_action; }
 private:
     int m_action;
+};
+
+class NotationEvent : public QCustomEvent
+{
+public:
+     NotationEvent( int numerator, int denominator )
+    : QCustomEvent( NOTATION_EVENT_TYPE ), m_numerator(numerator), m_denominator(denominator) {}
+     int getNumerator() const { return m_numerator; }
+     int getDenominator() const { return m_denominator; }
+private:
+     int m_numerator;
+     int m_denominator;
 };
 
 class SequencerThread : public QThread
@@ -115,6 +128,8 @@ private:
     void midi_play();
     void midi_stop();
     void midi_cont();
+    void midi_notation(int numerator, int denominator);
+    void parse_sysex(snd_seq_event_t *ev);
     void metronome_note(unsigned char note, unsigned int tick);
     void metronome_echo(unsigned int tick, int ev_type);
     void metronome_pattern(unsigned int tick);

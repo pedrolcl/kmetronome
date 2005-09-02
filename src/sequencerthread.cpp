@@ -256,6 +256,50 @@ void SequencerThread::midi_cont()
     KApplication::postEvent(m_widget, new TransportEvent(TRANSPORT_CONT));
 }
 
+void SequencerThread::midi_notation(int numerator, int denominator)
+{
+    KApplication::postEvent(m_widget, new NotationEvent(numerator, denominator));
+}
+
+void SequencerThread::parse_sysex(snd_seq_event_t *ev)
+{
+    int num, den;
+    unsigned char *ptr = (unsigned char *)(ev->data.ext.ptr);
+    if (ev->data.ext.len < 6) return;
+    if (*ptr++ != 0xf0) return;
+    int msgId = *ptr++;
+    if (msgId != 0x7f) return; // Universal Real Time
+    int deviceId = *ptr++;
+    if (deviceId != 0x7f) return; // broadcast
+    int subId1 = *ptr++;
+    int subId2 = *ptr++;
+    switch (subId1) {
+        case 0x03: // Notation
+            switch (subId2) {
+                case 0x02:
+                case 0x42:
+                    if (ev->data.ext.len < 9) return;
+                    *ptr++;
+                    num = *ptr++;
+                    den = *ptr++;
+                    midi_notation(num, den);
+                    break;
+            }
+            break;
+        case 0x06: // MMC
+            switch (subId2) {
+                case 0x01: // Stop
+                    midi_stop();
+                    break;
+                case 0x02: // Play
+                case 0x03: // Deferred Play
+                    midi_play();
+                    break;
+            }
+            break;
+    }
+}
+
 void SequencerThread::run()
 {
     struct pollfd *pfds;
@@ -265,34 +309,37 @@ void SequencerThread::run()
     pfds = (pollfd *)alloca(sizeof(*pfds) * npfds);
     snd_seq_poll_descriptors(m_handle, pfds, npfds, POLLIN);
     while(true) {
-	rt = poll(pfds, npfds, 1000);
-	if (rt >= 0)
-	do {
-	    snd_seq_event_t *ev;
-	    err = snd_seq_event_input(m_handle, &ev);
-	    if (err >= 0 && ev) {
-		switch (ev->type) {
-		case SND_SEQ_EVENT_USR0:
-		    metronome_pattern(ev->time.tick);
-		    m_bar++;
-		    m_beat = 0;
-		    break;
-		case SND_SEQ_EVENT_USR1:
-		    m_beat++;
-		    updateView();
-		    break;
-		case SND_SEQ_EVENT_START:
-		    midi_play();
-		    break;
-		case SND_SEQ_EVENT_CONTINUE:
-		    midi_cont();
-		    break;
-		case SND_SEQ_EVENT_STOP:
-		    midi_stop();
-		    break;
-		}
-	    }
-	} while (snd_seq_event_input_pending(m_handle, 0) > 0);
+    	rt = poll(pfds, npfds, 1000);
+    	if (rt >= 0)
+        	do {
+        	    snd_seq_event_t *ev;
+        	    err = snd_seq_event_input(m_handle, &ev);
+        	    if (err >= 0 && ev) {
+            		switch (ev->type) {
+                		case SND_SEQ_EVENT_USR0:
+                		    metronome_pattern(ev->time.tick);
+                		    m_bar++;
+                		    m_beat = 0;
+                		    break;
+                		case SND_SEQ_EVENT_USR1:
+                		    m_beat++;
+                		    updateView();
+                		    break;
+                		case SND_SEQ_EVENT_START:
+                		    midi_play();
+                		    break;
+                		case SND_SEQ_EVENT_CONTINUE:
+                		    midi_cont();
+                		    break;
+                		case SND_SEQ_EVENT_STOP:
+                		    midi_stop();
+                		    break;
+                        case SND_SEQ_EVENT_SYSEX:
+                            parse_sysex(ev);
+                            break;
+               		}
+        	    }
+        	} while (snd_seq_event_input_pending(m_handle, 0) > 0);
     }
 }
 
@@ -304,7 +351,7 @@ void SequencerThread::metronome_start()
                     "drain_output (metronome_start)");
     metronome_pattern(0);
     m_bar = 1;
-    m_beat = 1;
+    m_beat = 0;
     updateView();
     m_playing = true;
 }

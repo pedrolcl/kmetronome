@@ -1,0 +1,66 @@
+%define name    kmetronome
+%define version @VERSION@
+%define release 1 
+
+Name:           %{name}
+Version:        %{version}
+Release:        %mkrel %{release}
+License:        GPL
+Summary:        KDE MIDI Metronome using ALSA Sequencer
+Group:          Sound
+URL:            http://kmetronome.sourceforge.net
+Packager:       Pedro Lopez-Cabanillas
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
+Source:         %{name}-%{version}.tar.bz2
+BuildRequires:	cmake
+BuildRequires:	libalsa2-devel
+
+%description
+KMetronome is a MIDI metronome with KDE interface, based on the ALSA 
+sequencer. The intended audience is musicians and music students. Like 
+solid, real metronomes it is a tool to keep the rhythm while playing musical 
+instruments. It uses MIDI for sound generation instead of digital audio, 
+allowing low CPU usage, and very accurate timing thanks to the ALSA sequencer.
+
+%prep
+%setup -q a 1
+
+%build
+cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%make DESTDIR=$RPM_BUILD_ROOT install
+
+install -d $RPM_BUILD_ROOT%{_menudir}
+cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
+?package(%{name}):command="%{name}" \
+icon="%{name}.png" needs="X11" section="Multimedia/Sound" \
+title="KMetronome" longtitle="ALSA MIDI Metronome"
+EOF
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post
+%{update_menus}
+
+%postun
+%{clean_menus}
+
+%files
+%defattr(-, root, root)
+%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc %{_docdir}/HTML/en/%{name}/*
+%{_bindir}/*
+%{_datadir}/icons/*
+%{_datadir}/applications/*
+%{_datadir}/locale/*
+%{_menudir}/*
+
+%changelog
+* Thu Dec 28 2006 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8
+- CMake build system
+* Fri Sep 23 2005 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.6
+- first public release.

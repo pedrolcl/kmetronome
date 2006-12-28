@@ -26,10 +26,6 @@
 #include <klocale.h>
 #include <dcopclient.h>
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 static const char description[] =
     I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
 

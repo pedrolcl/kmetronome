@@ -14,6 +14,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source:         %{name}-%{version}.tar.bz2
 BuildRequires:	cmake
 BuildRequires:	libalsa2-devel
+BuildRequires:	kdelibs-devel
 
 %description
 KMetronome is a MIDI metronome with KDE interface, based on the ALSA 

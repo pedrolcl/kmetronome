@@ -23,7 +23,7 @@
 </authorgroup>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 <copyright>
-<year>2005</year>
+<year>2005-2006</year>
 <holder>Pedro Lopez&#45;Cabanillas</holder>
 </copyright>
 
@@ -40,8 +40,8 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2005-03-25</date>
-<releaseinfo>0&#46;1</releaseinfo>
+<date>2006-12-29</date>
+<releaseinfo>0&#46;8</releaseinfo>
 
 <!-- Abstract about this handbook -->
 

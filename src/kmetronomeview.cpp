@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2006 Pedro Lopez-Cabanillas                        *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
  *   <plcl@users.sourceforge.net>                                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,10 +25,10 @@
 #include <qpixmap.h>
 #include <klocale.h>
 #include <kiconloader.h>
-#include <klineeditdlg.h>
-#include <qvalidator.h>
+#include <kinputdialog.h>
 
 #include "kmetronomeview.h"
+#include "defs.h"
 #include "f1.xpm"
 #include "f2.xpm"
 #include "f4.xpm"
@@ -101,12 +101,12 @@ void KmetronomeView::enableControls(bool e)
 void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
 {
     bool ok = false;
-    QIntValidator validator(25, 250, this);
-    QString newTempo = KLineEditDlg::getText( i18n("Tempo"), i18n("Enter new Tempo:"),
-					      QString("%1").arg(m_tempo->value()),
-					      &ok, this, &validator );
+    int newTempo = KInputDialog::getInteger( 
+    					i18n("Tempo"), i18n("Enter new Tempo:"),
+    					m_tempo->value(), TEMPO_MIN, TEMPO_MAX, 1, 10,
+					    &ok, this );
     if (ok) {
-    	m_tempo->setValue(newTempo.toInt());
+    	m_tempo->setValue(newTempo);
     }
 }
 

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2006 Pedro Lopez-Cabanillas                        *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
  *   <plcl@users.sourceforge.net>                                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,17 +30,6 @@
 #define METRONOME_EVENT_TYPE (QEvent::User + 1)
 #define TRANSPORT_EVENT_TYPE (QEvent::User + 2)
 #define NOTATION_EVENT_TYPE  (QEvent::User + 3)
-
-#define METRONOME_CHANNEL 9
-#define METRONOME_STRONG_NOTE 34
-#define METRONOME_WEAK_NOTE 33
-#define METRONOME_VELOCITY 100
-#define METRONOME_PROGRAM 0
-#define METRONOME_RESOLUTION 120
-
-#define TRANSPORT_PLAY 0
-#define TRANSPORT_STOP 1
-#define TRANSPORT_CONT 2
 
 class MetronomeEvent : public QCustomEvent
 {
@@ -95,6 +84,8 @@ public:
     void setAutoConnect(bool newValue) { m_autoconnect = newValue; }
     void setOutputConn(QString newValue) { m_outputConn = newValue; }
     void setInputConn(QString newValue) { m_inputConn = newValue; }
+    void setNoteDuration(int newValue) { m_noteDuration = newValue; }
+    void setSendNoteOff(bool newValue) { m_useNoteOff = newValue; }
     int getWeakNote() { return m_weak_note; }
     int getStrongNote() { return m_strong_note; }
     int getVelocity() { return m_velocity; }
@@ -108,7 +99,9 @@ public:
     bool isPlaying() { return m_playing; }
     QString getOutputConn() { return m_outputConn; }
     QString getInputConn() { return m_inputConn; }
-
+    int getNoteDuration() { return m_noteDuration; }
+    bool getSendNoteOff() { return m_useNoteOff; }
+    
     virtual void run();    
     void metronome_start();
     void metronome_stop();
@@ -142,7 +135,7 @@ private:
     int m_input;
     int m_output;
     int m_queue;
-    
+
     int m_bar;
     int m_beat;
     int m_weak_note;
@@ -154,8 +147,11 @@ private:
     int m_bpm;
     int m_ts_num; /* time signature: numerator */
     int m_ts_div; /* time signature: denominator */
+    int m_noteDuration;
+    int m_patternDuration;
     bool m_autoconnect;
     bool m_playing;
+    bool m_useNoteOff;
     QString m_outputConn;
     QString m_inputConn;
     QString NO_CONNECTION;

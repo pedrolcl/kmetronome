@@ -18,3 +18,27 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,            *
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
+
+#ifndef DEFS_H_
+#define DEFS_H_
+
+#define TEMPO_MIN 25
+#define TEMPO_MAX 250
+#define TEMPO_DEFAULT 100
+#define NOTE_DURATION 10 
+
+#define RHYTHM_TS_NUM 4
+#define RHYTHM_TS_DEN 4
+
+#define METRONOME_CHANNEL 9
+#define METRONOME_STRONG_NOTE 34
+#define METRONOME_WEAK_NOTE 33
+#define METRONOME_VELOCITY 100
+#define METRONOME_PROGRAM 0
+#define METRONOME_RESOLUTION 120
+
+#define TRANSPORT_PLAY 0
+#define TRANSPORT_STOP 1
+#define TRANSPORT_CONT 2
+
+#endif /*DEFS_H_*/

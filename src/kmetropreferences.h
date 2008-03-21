@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2006 Pedro Lopez-Cabanillas                        *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
  *   <plcl@users.sourceforge.net>                                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -45,6 +45,8 @@ public:
     int getWeakNote() { return m_weak_note->value(); }
     int getStrongNote() { return m_strong_note->value(); }
     int getVelocity() { return m_velocity->value(); }
+    int getDuration() { return m_duration->value(); }
+    bool getSendNoteOff() { return m_use_noteoff->isChecked(); } 
     
     void setAutoConnect(bool newValue) { m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue) { m_out_connection->setCurrentText(newValue); }
@@ -55,6 +57,8 @@ public:
     void setWeakNote(int newValue) { m_weak_note->setValue(newValue); }
     void setStrongNote(int newValue) { m_strong_note->setValue(newValue); }
     void setVelocity(int newValue) { m_velocity->setValue(newValue); }
+    void setDuration(int newValue) { m_duration->setValue(newValue); }
+    void setSendNoteOff(bool newValue) { m_use_noteoff->setChecked(newValue); }
 };
 
 #endif // _KMETROPREF_H_

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2006 Pedro Lopez-Cabanillas                        *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
  *   <plcl@users.sourceforge.net>                                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -76,6 +76,9 @@ private:
     void setupActions();
     void saveConfiguration();
     void readConfiguration();
+    void processMetronomeEvent( QCustomEvent * e );
+    void processTransportEvent( QCustomEvent * e );
+    void processNotationEvent( QCustomEvent * e );
     
     KmetronomeView *m_view;
     SequencerThread *m_thread;

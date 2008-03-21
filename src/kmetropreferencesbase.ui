@@ -1,5 +1,25 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>KMetroPreferencesBase</class>
+<comment>
+KMetronome - ALSA Sequencer based MIDI metronome
+Copyright (C) 2005-2008 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+
+This program is free software; you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by 
+the Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA
+</comment>
+<author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
 <widget class="QDialog">
     <property name="name">
         <cstring>KMetroPreferencesBase</cstring>
@@ -8,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>395</width>
-            <height>298</height>
+            <width>387</width>
+            <height>260</height>
         </rect>
     </property>
     <property name="caption">
@@ -105,7 +125,7 @@
                         </size>
                     </property>
                     <property name="text">
-                        <string>Input port connection:</string>
+                        <string>Optional Input port conn:</string>
                     </property>
                 </widget>
                 <widget class="KComboBox">
@@ -417,6 +437,69 @@
         </widget>
         <widget class="QLayoutWidget">
             <property name="name">
+                <cstring>layout14</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>m_use_noteoff</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Send NOTE OFF events</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>34</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel8</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>90</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="text">
+                        <string>Note duration</string>
+                    </property>
+                </widget>
+                <widget class="KIntSpinBox">
+                    <property name="name">
+                        <cstring>m_duration</cstring>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="value">
+                        <number>10</number>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
                 <cstring>Layout1</cstring>
             </property>
             <hbox>
@@ -494,16 +577,16 @@
         <receiver>KMetroPreferencesBase</receiver>
         <slot>reject()</slot>
     </connection>
+    <connection>
+        <sender>m_use_noteoff</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>m_duration</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
 </connections>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kcombobox.h</includehint>
-    <includehint>kcombobox.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>
 </includehints>
 </UI>

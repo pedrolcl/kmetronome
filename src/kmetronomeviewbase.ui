@@ -1,5 +1,24 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>KmetronomeViewBase</class>
+<comment>
+KMetronome - ALSA Sequencer based MIDI metronome
+Copyright (C) 2005-2008 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+
+This program is free software; you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by 
+the Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA
+</comment>
+<author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
 <widget class="QWidget">
     <property name="name">
         <cstring>KmetronomeViewBase</cstring>
@@ -508,7 +527,7 @@ It is the denominator in the time signature specification.</string>
                                 <enum>Horizontal</enum>
                             </property>
                             <property name="tickmarks">
-                                <enum>Right</enum>
+                                <enum>Below</enum>
                             </property>
                             <property name="tickInterval">
                                 <number>5</number>
@@ -570,9 +589,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>kcombobox.h</includehint>

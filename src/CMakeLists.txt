@@ -34,6 +34,7 @@ SET(kmetronome_SRCS
 	kmetropreferences.h
 	main.cpp
 	qt_kde.h
+	defs.h
 	sequencerthread.cpp
 	sequencerthread.h )
 

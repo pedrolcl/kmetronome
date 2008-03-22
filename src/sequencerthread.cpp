@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include <iostream>
+#include <stdexcept>
 #include <qstringlist.h>
 #include <kapplication.h>
 #include <klocale.h>
@@ -40,11 +41,19 @@ SequencerThread::SequencerThread(QWidget *parent) :
 	m_ts_div(RHYTHM_TS_DEN), m_noteDuration(NOTE_DURATION),
 	m_autoconnect(false), m_playing(false), m_useNoteOff(true),
 	m_outputConn(""), m_inputConn(""),
-	NO_CONNECTION(i18n("No connection")) {
+	NO_CONNECTION(i18n("No connection")) 
+{
 	int err;
-	err = snd_seq_open(&m_handle, "default", SND_SEQ_OPEN_DUPLEX,
-			SND_SEQ_NONBLOCK);
+	err = snd_seq_open(&m_handle, "default", SND_SEQ_OPEN_DUPLEX, SND_SEQ_NONBLOCK);
 	checkAlsaError(err, "Sequencer open");
+	if (err < 0) {
+		QString errorstr = i18n("Fatal error opening the ALSA sequencer. Function: snd_seq_open().\n"
+		                   "This usually happens when the kernel doesn't have ALSA support, "
+		                   "or the device node (/dev/snd/seq) doesn't exists, "
+				           "or the kernel module (snd_seq) is not loaded.\n"
+				           "Please check your ALSA/MIDI configuration. Returned error was: %1 (%2)").arg(err).arg(snd_strerror(err));
+		throw new std::runtime_error(errorstr.data());
+	}
 	m_client = snd_seq_client_id(m_handle);
 	snd_seq_set_client_name(m_handle, "KMetronome");
 	m_input = snd_seq_create_simple_port(m_handle, "input", 

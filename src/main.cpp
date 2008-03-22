@@ -19,12 +19,14 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include "kmetronome.h"
+#include <exception>
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
+#include <kmessagebox.h>
 #include <dcopclient.h>
+#include "kmetronome.h"
 
 static const char description[] =
     I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
@@ -37,36 +39,36 @@ static const char version[] = VERSION;
     KCmdLineLastOption
 };*/
 
-int main(int argc, char **argv)
-{
-    KAboutData about("kmetronome", I18N_NOOP("KMetronome"), version, description,
-		     KAboutData::License_GPL, "(C) 2005 Pedro Lopez-Cabanillas", 0, 0,
-		     "plcl@users.sourceforge.net");
-    about.addAuthor( "Pedro Lopez-Cabanillas", 0, "plcl@users.sourceforge.net" );
-    KCmdLineArgs::init(argc, argv, &about);
-    //KCmdLineArgs::addCmdLineOptions( options );
-    KApplication app;
-    app.dcopClient()->registerAs(app.name(), false);
-	
-    KMetronome *mainWin = 0;
+int main(int argc, char **argv) {
+	KAboutData about("kmetronome", I18N_NOOP("KMetronome"), version, description, KAboutData::License_GPL,
+			"(C) 2005 Pedro Lopez-Cabanillas", 0, 0,
+			"plcl@users.sourceforge.net");
+	about.addAuthor("Pedro Lopez-Cabanillas", 0, "plcl@users.sourceforge.net");
+	KCmdLineArgs::init(argc, argv, &about);
+	//KCmdLineArgs::addCmdLineOptions( options );
+	KApplication app;
+	app.dcopClient()->registerAs(app.name(), false);
 
-    if (app.isRestored())
-    {
-        RESTORE(KMetronome);
-    }
-    else
-    {
-        // no session.. just start up normally
-        //KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+	KMetronome *mainWin = 0;
 
-        mainWin = new KMetronome();
-        app.setMainWidget( mainWin );
-        mainWin->show();
-
-        //args->clear();
-    }
-
-    // mainWin has WDestructiveClose flag by default, so it will delete itself.
-    return app.exec();
+	try {
+		if (app.isRestored())
+		{
+			RESTORE(KMetronome);
+		}
+		else
+		{
+			// no session.. just start up normally
+			//KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+			mainWin = new KMetronome();
+			app.setMainWidget( mainWin );
+			mainWin->show();
+			//args->clear();
+		}
+		// mainWin has WDestructiveClose flag by default, so it will delete itself.
+		return app.exec();
+	} catch ( std::exception *ex ) {
+		KMessageBox::error(0, ex->what());
+	}
 }
 

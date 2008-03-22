@@ -23,7 +23,7 @@
 </authorgroup>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 <copyright>
-<year>2005-2006</year>
+<year>2005-2008</year>
 <holder>Pedro Lopez&#45;Cabanillas</holder>
 </copyright>
 
@@ -40,8 +40,8 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2006-12-29</date>
-<releaseinfo>0&#46;8</releaseinfo>
+<date>2008-03-22</date>
+<releaseinfo>0&#46;8&#46;2</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -99,7 +99,7 @@ site</ulink></para>
 </para>
 
 <sect1 id="kmetronome-features">
-<title>&kmetronome; features</title>
+<title>Features</title>
 
 <para>You only need to adjust some controls, like the tempo slider, the
 beats/bar spin box and the rhythm figure selector. Press the play button
@@ -117,8 +117,58 @@ and represents how long is each beat. Changing this figure doesn't change the
 meaning of the tempo units. </para>
 </sect1>
 
+<sect1 id="getting-started">
+<title>Getting Started</title>
+
+<para>
+This program uses the MIDI protocol, so it is a good idea to 
+to have some basic notions about MIDI in order to fully understand the concepts behind it. 
+You can find here a good introduction: <ulink url="http://borg.com/~jglatt/tutr/whatmidi.htm">What
+is MIDI (borg.com/~jglatt).</ulink>
+</para>
+
+<para>
+&kmetronome; produces MIDI events. If you want to hear the events translated into sounds 
+you need to connect the MIDI OUT port from this program to the MIDI
+IN port of a MIDI synthesizer. It can be either a hardware MIDI
+synthesizer or a software one. If it is an external hardware
+synthesizer, you also need an ALSA supported MIDI interface installed in your
+computer, and a MIDI cable attached to both the computer's MIDI
+interface, and the synthesizer MIDI IN socket.
+</para>
+
+<para>
+If you don't have an external MIDI synthesizer, you can still use
+the program with a MIDI software synthesizer supporting ALSA
+sequencer connections, like <ulink url="http://qsynth.sourceforge.net/">QSynth</ulink>.
+Start your software synthesizer before &kmetronome;, and then make the
+connection between the two programs, either on &kmetronome;'s “Config”
+dialog or using an external connection manager like <ulink url="http://qjackctl.sourceforge.net/">QJackCtl</ulink>.
+Here you can see an image of the three programs working together.
+</para>
+
+<para>
+Don't forget to install a good <ulink url="http://en.wikipedia.org/wiki/SoundFont">Sound Font</ulink> into QSynth's "Setup..." dialog.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kmetronome; running along with QSynth and QJackCtl</screeninfo>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshot3.png" format="PNG"/>
+      </imageobject>
+      <textobject>
+        <phrase>Screenshot</phrase>
+      </textobject>
+    </mediaobject>
+</screenshot>
+</para>
+
+</sect1>
+
 <sect1 id="kmetronome-configuration">
-<title>&kmetronome; configuration</title>
+<title>Configuration</title>
 
 <para>
 <screenshot>
@@ -134,7 +184,7 @@ dialog</screeninfo>
 	</mediaobject>
 </screenshot>
 </para>
-
+ 
 <para>
 &kmetronome; has limited session management capabilities. It can remember one
 connection for the ALSA output port, and one connection for its input port. 
@@ -142,8 +192,7 @@ Connections are stored when the program exits and remembered at startup. You
 don't need this feature if you prefer to make such connections by hand, using
 aconnect or any other equivalent utility, or if you use an external session
 manager like the patchbay included with the program <ulink
-url="http://qjackctl.sourceforge.net">QJackCtl</ulink>. There is no support
-planned for LASH/LADCCA.</para>
+url="http://qjackctl.sourceforge.net">QJackCtl</ulink>.</para>
 
 <para>
 Channel is usually 9, meaning the percussion channel of a MIDI synthesizer. It
@@ -162,12 +211,20 @@ from 48 to 480.</para>
 Strong note is played as the first beat in every measure, while any other beat
 in the same measure is played using the weak note. Values are from 0 to 127, and
 the defaults 33 and 34 are the General MIDI sounds for metronome
-click and metronome bell.
-</para>
+click and metronome bell.</para>
 
 <para>
-Note velocity is the volume for the played notes. Values from 0 to 127.
-</para>
+Note velocity changes the volume to the played notes. Values from 0 to 127.</para>
+
+<para>
+Send NOTE OFF events checkbox. Percussion sounds usually don't need Note Off events to be 
+sent after every Note On. Un-check it only if your synthesizer or instrument supports this 
+setting.</para>
+
+<para>
+Note duration is the length (in number of ticks) of the time span between a Note On and its corresponding 
+Note Off event. This control is enabled only when Send NOT OFF events is also enabled.
+Very low values can cause muted clicks on some synthesizers.</para>
 
 </sect1>
 </chapter>
@@ -242,8 +299,31 @@ $ dcop kmetronome transport setTimeSignature 3 8
 </para>
 </sect1>
 
+<sect1 id="kmetronome-sysex">
+<title>Universal System Exclusive messages</title>
+<para>&kmetronome; understands some Universal System Exclusive messages. Because the device ID is not yet implemented, 
+all the recogniced messages must be marked as broadcast (0x7F).</para> 
+<para>MTC Message: Time Signature Change Message 
+<screen>
+Format: 0xF0 0x7F 0x7F 0x03 Command Length Numerator Denominator ... 0xF7
+                            0x02: TS change 
+                            0x42: TS change 
+</screen>
+Notes: both commands affect only the next scheduled patterns after receiving the command. 
+Length is at least 2. Extra bytes following Numerator and Denominator are ignored.
+</para>
+<para>MMC Messages
+<screen>
+Format: 0xF0 0x7F 0x7F 0x06 Command 0xF7
+                            0x01: Stop
+                            0x02: Play
+                            0x03: Deferred Play
+</screen>  
+</para>
+</sect1>
+
 <sect1 id="kmetronome-midi">
-<title>&kmetronome; MIDI System Realtime Interface</title>
+<title>MIDI System Realtime Interface</title>
 <para>
 You can use a MIDI device generating MIDI System Realtime messages to control
 &kmetronome;. System Realtime messages accepted are: Start (0xFA), Stop
@@ -256,7 +336,6 @@ the input port of &kmetronome;. This connection must be done by hand, or
 using a session management software like QJackCtl.</para>
 </sect1>
 </chapter>
-
 
 <chapter id="credits">
 <title>Credits and License</title>

@@ -1,207 +1,255 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-06-20 21:24+0200\n"
+"POT-Creation-Date: 2008-03-23 19:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: ENCODING\n"
 
-#: kmetronomeview.cpp:56
+#: src/kmetronomeview.cpp:57
 msgid " - Whole"
 msgstr ""
 
-#: kmetronomeview.cpp:57
+#: src/kmetronomeview.cpp:58
 msgid " - Half"
 msgstr ""
 
-#: kmetronomeview.cpp:58
+#: src/kmetronomeview.cpp:59
 msgid " - Quarter"
 msgstr ""
 
-#: kmetronomeview.cpp:59
+#: src/kmetronomeview.cpp:60
 msgid " - Eighth"
 msgstr ""
 
-#: kmetronomeview.cpp:60
+#: src/kmetronomeview.cpp:61
 msgid " - Sixteenth"
 msgstr ""
 
-#: kmetronomeview.cpp:61
+#: src/kmetronomeview.cpp:62
 msgid " - Thirty-Second"
 msgstr ""
 
-#: kmetronomeview.cpp:62
+#: src/kmetronomeview.cpp:63
 msgid " - Sixty-Fourth"
 msgstr ""
 
-#: kmetronomeview.cpp:104
+#: src/kmetronomeview.cpp:105
 msgid "Tempo"
 msgstr ""
 
-#: kmetronomeview.cpp:104
+#: src/kmetronomeview.cpp:105
 msgid "Enter new Tempo:"
 msgstr ""
 
-#: main.cpp:34
+#: src/main.cpp:32
 msgid "KDE MIDI metronome using ALSA sequencer"
 msgstr ""
 
-#: main.cpp:46
+#: src/main.cpp:43
 msgid "KMetronome"
 msgstr ""
 
-#: rc.cpp:1
+#: src/sequencerthread.cpp:44
+msgid "No connection"
+msgstr ""
+
+#: src/sequencerthread.cpp:50
+msgid ""
+"Fatal error opening the ALSA sequencer. Function: snd_seq_open().\n"
+"This usually happens when the kernel doesn't have ALSA support, or the "
+"device node (/dev/snd/seq) doesn't exists, or the kernel module (snd_seq) is "
+"not loaded.\n"
+"Please check your ALSA/MIDI configuration. Returned error was: %1 (%2)"
+msgstr ""
+
+#: po/rc.cpp:3
+#, no-c-format
 msgid "MIDI Metronome"
 msgstr ""
 
-#: rc.cpp:2
+#: po/rc.cpp:6
+#, no-c-format
 msgid "Play"
 msgstr ""
 
-#: rc.cpp:3
+#: po/rc.cpp:9
+#, no-c-format
 msgid "This button starts playing the rhythm pattern"
 msgstr ""
 
-#: rc.cpp:5
+#: po/rc.cpp:15
+#, no-c-format
 msgid "This button stops playing the rhythm pattern"
 msgstr ""
 
-#: rc.cpp:6
+#: po/rc.cpp:18
+#, no-c-format
 msgid "Config"
 msgstr ""
 
-#: rc.cpp:7
+#: po/rc.cpp:21
+#, no-c-format
 msgid "This button opens the configuration window"
 msgstr ""
 
-#: rc.cpp:8
+#: po/rc.cpp:24
+#, no-c-format
 msgid "Exit"
 msgstr ""
 
-#: rc.cpp:9
+#: po/rc.cpp:27
+#, no-c-format
 msgid "This button exits the program"
 msgstr ""
 
-#: rc.cpp:10
+#: po/rc.cpp:30
+#, no-c-format
 msgid "Measure"
 msgstr ""
 
-#: rc.cpp:11
+#: po/rc.cpp:33
+#, no-c-format
 msgid ""
 "This is the measure (bar) number played since the play button has been "
 "pressed."
 msgstr ""
 
-#: rc.cpp:12
+#: po/rc.cpp:36
+#, no-c-format
 msgid "Beat"
 msgstr ""
 
-#: rc.cpp:13
+#: po/rc.cpp:39
+#, no-c-format
 msgid "This is the part number played for the current measure"
 msgstr ""
 
-#: rc.cpp:14
+#: po/rc.cpp:42
+#, no-c-format
 msgid "Beats/Bar"
 msgstr ""
 
-#: rc.cpp:15
+#: po/rc.cpp:45
+#, no-c-format
 msgid ""
 "This is the number of parts for each measure.<br>\n"
 "Values are from 1 to 32.<br>\n"
 "It is the numerator of the time signature specification."
 msgstr ""
 
-#: rc.cpp:16
+#: po/rc.cpp:50
+#, no-c-format
 msgid "Rhythm figure"
 msgstr ""
 
-#: rc.cpp:17
+#: po/rc.cpp:53
+#, no-c-format
 msgid ""
 "This is the part figure for the rhythm.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
 "It is the denominator in the time signature specification."
 msgstr ""
 
-#: rc.cpp:18
+#: po/rc.cpp:58
+#, no-c-format
 msgid "Tempo (in quarters per minute)"
 msgstr ""
 
-#: rc.cpp:19
+#: po/rc.cpp:61
+#, no-c-format
 msgid ""
 "This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
 "Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
 msgstr ""
 
-#: rc.cpp:20
+#: po/rc.cpp:65
+#, no-c-format
 msgid "The current <i>tempo</i> value"
 msgstr ""
 
-#: rc.cpp:21
+#: po/rc.cpp:68
+#, no-c-format
 msgid "Preferences"
 msgstr ""
 
-#: rc.cpp:22
+#: po/rc.cpp:71
+#, no-c-format
 msgid "Automatic ports connection on startup"
 msgstr ""
 
-#: rc.cpp:23
+#: po/rc.cpp:74
+#, no-c-format
 msgid ""
 "If this checkbox is activated, the the program will remember the connections "
 "for the input and output ports, and try to reconnect them at program startup."
 msgstr ""
 
-#: rc.cpp:24
+#: po/rc.cpp:77
+#, no-c-format
 msgid "Output port connection:"
 msgstr ""
 
-#: rc.cpp:25
-msgid "Input port connection:"
+#: po/rc.cpp:80
+#, no-c-format
+msgid "Optional Input port conn:"
 msgstr ""
 
-#: rc.cpp:26
+#: po/rc.cpp:83
+#, no-c-format
 msgid "Channel"
 msgstr ""
 
-#: rc.cpp:27
+#: po/rc.cpp:86
+#, no-c-format
 msgid "Weak note"
 msgstr ""
 
-#: rc.cpp:28
+#: po/rc.cpp:89
+#, no-c-format
 msgid "Program"
 msgstr ""
 
-#: rc.cpp:29
+#: po/rc.cpp:92
+#, no-c-format
 msgid "Strong note"
 msgstr ""
 
-#: rc.cpp:30
+#: po/rc.cpp:95
+#, no-c-format
 msgid "Resolution"
 msgstr ""
 
-#: rc.cpp:31
+#: po/rc.cpp:98
+#, no-c-format
 msgid "Note velocity"
 msgstr ""
 
-#: sequencerthread.cpp:47
-msgid "No connection"
+#: po/rc.cpp:101
+#, no-c-format
+msgid "Send NOTE OFF events"
 msgstr ""
 
-#: _translatorinfo.cpp:1
+#: po/rc.cpp:104
+#, no-c-format
+msgid "Note duration"
+msgstr ""
+
+#: po/rc.cpp:113
 msgid ""
 "_: NAME OF TRANSLATORS\n"
 "Your names"
 msgstr ""
 
-#: _translatorinfo.cpp:3
+#: po/rc.cpp:115
 msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"

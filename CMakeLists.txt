@@ -1,10 +1,28 @@
+# KMetronome - ALSA Sequencer based MIDI metronome
+# Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA 02110-1301, USA
+
 # The name of our project is "KMETRONOME". CMakeLists files in this project can
 # refer to the root source directory of the project as ${KMETRONOME_SOURCE_DIR} 
 # and to the root binary directory of the project as ${KMETRONOME_BINARY_DIR}
 PROJECT(KMETRONOME)
 
 # CMake supports KDE checks since this version number
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4.2)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4.4)
 
 # Show full commands and messages. It generates a lot of console output.
 # It is necessary for Eclipse warning/error parser, 
@@ -91,6 +109,12 @@ IF(ALSA_FOUND)
 ELSE(ALSA_FOUND)
     MESSAGE(FATAL_ERROR "Please install the required package. Aborting")
 ENDIF(ALSA_FOUND)
+
+FIND_PACKAGE(KDECONFIG)
+IF(KDECONFIG_EXECUTABLE)
+    MESSAGE(STATUS "Program kde-config found (${KDECONFIG_EXECUTABLE})")
+    #MESSAGE("KDE3PREFIX: ${KDE3PREFIX}")
+ENDIF(KDECONFIG_EXECUTABLE)
     
 FIND_PACKAGE(MSGFMT REQUIRED)
 IF(MSGFMT_FOUND)
@@ -116,20 +140,20 @@ SET(CMAKE_CXX_FLAGS_RELEASE         "-O2 -w -fexceptions -DNDEBUG")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO  "-O2 -g -Wall -fexceptions -DDEBUG")
 SET(CMAKE_CXX_FLAGS_DEBUG           "-O0 -g3 -Wall -fexceptions -DDEBUG")
 
-MESSAGE(STATUS "kmetronome ${VERSION} will be built for install into ${CMAKE_INSTALL_PREFIX}")
+MESSAGE(STATUS "kmetronome ${VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 IF(WANT_DEBUG)
     IF(WANT_FULLDBG)
-        MESSAGE(STATUS "Configured to compile including full debug information in the executables")
+        MESSAGE(STATUS "Build configuration: full debug")
         SET(CMAKE_BUILD_TYPE Debug CACHE STRING
             "Choose the type of build, options are: Debug Release RelWithDebInfo" FORCE)
     ELSE(WANT_FULLDBG)
-        MESSAGE(STATUS "Configured to compile including debug information in the executables")
+        MESSAGE(STATUS "Build configuration: debug")
         SET(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING
             "Choose the type of build, options are: Debug Release RelWithDebInfo" FORCE)
     ENDIF(WANT_FULLDBG)
 ELSE(WANT_DEBUG)
-    MESSAGE(STATUS "Configured to compile for release without debug information")
+    MESSAGE(STATUS "Build configuration: release")
     SET(CMAKE_BUILD_TYPE Release CACHE STRING
         "Choose the type of build, options are: Debug Release RelWithDebInfo" FORCE)
 ENDIF(WANT_DEBUG)

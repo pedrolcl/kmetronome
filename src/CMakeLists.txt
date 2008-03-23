@@ -1,3 +1,21 @@
+# KMetronome - ALSA Sequencer based MIDI metronome
+# Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA 02110-1301, USA
+
 IF(NOT KMETRONOME_SOURCE_DIR)
     MESSAGE(FATAL_ERROR "You need to run cmake or ccmake at the root directory")
 ENDIF(NOT KMETRONOME_SOURCE_DIR)
@@ -65,22 +83,17 @@ TARGET_LINK_LIBRARIES( kmetronome
 
 # Install targets
 INSTALL( TARGETS kmetronome
-         RUNTIME DESTINATION bin )
-
-# Install GUI resource files
-#FILE(GLOB RC_FILES *.rc)
-#INSTALL( FILES ${RC_FILES}
-#         DESTINATION share/apps/kmetronome )
+         RUNTIME DESTINATION ${KDE3EXECDIR} )
 
 # Install desktop file
 INSTALL( FILES kmetronome.desktop
-         DESTINATION share/applications )
+         DESTINATION ${KDE3MENUDIR} )
 
 # Icons
 INSTALL( FILES hi16-app-kmetronome.png
-         DESTINATION share/icons/hicolor/16x16/apps
+         DESTINATION ${KDE3ICONDIR}/hicolor/16x16/apps
          RENAME kmetronome.png )
 
 INSTALL( FILES hi32-app-kmetronome.png
-         DESTINATION share/icons/hicolor/32x32/apps
+         DESTINATION ${KDE3ICONDIR}/hicolor/32x32/apps
          RENAME kmetronome.png )

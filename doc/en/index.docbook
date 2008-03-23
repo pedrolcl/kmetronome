@@ -40,7 +40,7 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2008-03-22</date>
+<date>2008-03-24</date>
 <releaseinfo>0&#46;8&#46;2</releaseinfo>
 
 <!-- Abstract about this handbook -->
@@ -106,7 +106,9 @@ beats/bar spin box and the rhythm figure selector. Press the play button
 to start. Use the stop button at your convenience.</para>
 
 <para>Tempo can be set from 25 to 250 qpm using the slider. The units are
-quarters by minute (Maelzel Metronome units).</para>
+quarters by minute (Mälzel Metronome units). You can also double click with
+the mouse over the main window to open a dialog box where you can enter a new
+tempo directly with the keyboard.</para>
 
 <para>Beats/Bar can be set from 1 to 32 beats. These are the number of beats on
 each measure or bar, and it is the numerator on the time signature as it would
@@ -277,8 +279,8 @@ Very low values can cause muted clicks on some synthesizers.</para>
 <chapter id="external-control">
 <title>External Control</title>
 <para>
-&kmetronome; can be controlled using its DCOP interface, and/or MIDI
-System Realtime messages.</para>
+&kmetronome; can be controlled using its DCOP interface,
+System Realtime and System Exclusive MIDI messages.</para>
 
 <sect1 id="kmetronome-dcop">
 <title>DCOP Interface</title>
@@ -344,11 +346,11 @@ using a session management software like QJackCtl.</para>
 &kmetronome;
 </para>
 <para>
-Program copyright 2005-2006 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Program copyright 2005-2008 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <para>
-Documentation copyright 2005-2006 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Documentation copyright 2005-2008 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -382,6 +384,11 @@ drivers and library.
 </para>
 
 <para>
+The build system requires <ulink url="http://www.cmake.org">CMake</ulink> 
+2.4.4 or newer.
+</para>
+
+<para>
 ALSA library, drivers and utilities can be found at
 <ulink url="http://www.alsa-project.org">ALSA home page</ulink>.
 </para>
@@ -397,7 +404,18 @@ url="http://kmetronome.sourceforge.net">http://kmetronome.sourceforge.net
 <sect1 id="compilation">
 <title>Compilation and Installation</title>
 
-&install.compile.documentation;
+<para>
+In order to compile and install &kmetronome; on your system, type the following 
+in the base directory of the &kmetronome; distribution:
+<screen>
+% cmake .
+% make
+% make install
+</screen>
+Since &kmetronome; uses <command>cmake</command> and <command>make</command> 
+you should have no trouble compiling it. Should you run into problems please 
+report them to the author or the project's bug tracking system.
+</para>
 
 </sect1>
 
@@ -418,4 +436,3 @@ End:
 
 vim:tabstop=2:shiftwidth=2:expandtab
 -->
-

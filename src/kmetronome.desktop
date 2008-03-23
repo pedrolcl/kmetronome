@@ -6,3 +6,4 @@ Icon=kmetronome
 Type=Application
 Comment=KDE MIDI Metronome Using ALSA Sequencer
 Comment[es]=Metrónomo MIDI de KDE utilizando el secuenciador ALSA
+Categories=AudioVideo;Music;Education

@@ -212,6 +212,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND cp -r src kmetronome-${VERSION}
     COMMAND cp CMakeLists.txt AUTHORS ChangeLog COPYING INSTALL NEWS README TODO *.spec.in kmetronome-${VERSION}
     COMMAND tar -cj --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
+    COMMAND tar -cz --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
     COMMAND rm -rf kmetronome-${VERSION}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )

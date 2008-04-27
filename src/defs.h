@@ -41,4 +41,7 @@
 #define TRANSPORT_STOP 1
 #define TRANSPORT_CONT 2
 
+#define VOLUME_CC  7
+#define BALANCE_CC 10
+
 #endif /*DEFS_H_*/

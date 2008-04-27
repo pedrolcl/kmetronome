@@ -101,6 +101,7 @@ public:
     QString getInputConn() { return m_inputConn; }
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
+    void sendControlChange(int cc, int value);
     
     virtual void run();    
     void metronome_start();

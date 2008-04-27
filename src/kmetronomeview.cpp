@@ -27,6 +27,7 @@
 #include <kiconloader.h>
 #include <kinputdialog.h>
 
+#include "knob.h"
 #include "kmetronomeview.h"
 #include "defs.h"
 #include "f1.xpm"
@@ -44,6 +45,11 @@ KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
     m_configbtn->setIconSet(SmallIconSet("configure"));
     m_playbtn->setIconSet(SmallIconSet("player_play"));
     m_stopbtn->setIconSet(SmallIconSet("player_stop"));
+   
+//    m_volume->notchSize(1);
+//    m_balance->notchSize(1);
+//    m_volume->notchTarget(1.0);
+//    m_balance->notchTarget(1.0);
     
     connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
@@ -53,6 +59,8 @@ KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
     connect( m_beatsBar, SIGNAL(valueChanged(int)), parent, SLOT(beatsBarChanged(int)) );
     connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rhythmFigureChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
+    connect( m_volume, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
+    connect( m_balance, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
 
     m_figure->insertItem(QPixmap(f1_xpm), i18n(" - Whole"));
     m_figure->insertItem(QPixmap(f2_xpm), i18n(" - Half"));

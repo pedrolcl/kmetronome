@@ -283,4 +283,14 @@ int KMetronome::setTimeSignature(int numerator, int denominator)
 	return 0;
 }
 
+void KMetronome::volumeChanged(int vol)
+{
+	m_thread->sendControlChange(VOLUME_CC, vol);
+}
+
+void KMetronome::balanceChanged(int bal)
+{
+	m_thread->sendControlChange(BALANCE_CC, bal);	
+}
+
 #include "kmetronome.moc"

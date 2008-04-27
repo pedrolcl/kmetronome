@@ -67,6 +67,8 @@ public slots:
     void tempoChanged(int);
     void beatsBarChanged(int);
     void rhythmFigureChanged(int);
+    void volumeChanged(int);
+    void balanceChanged(int);
 
 protected:
     void customEvent( QCustomEvent * e );

@@ -21,7 +21,7 @@ IF(NOT KMETRONOME_SOURCE_DIR)
 ENDIF(NOT KMETRONOME_SOURCE_DIR)
 
 IF(USE_PCH)
-    ADD_QTKDE_PRECOMPILED_HEADER(precompiled_headers qt_kde.h)
+    ADD_PRECOMPILED_HEADER(precompiled_headers qt_kde.h)
 ENDIF(USE_PCH)
 
 LINK_DIRECTORIES(
@@ -43,6 +43,8 @@ SET(kmetronome_SRCS
 	f4.xpm
 	f64.xpm
 	f8.xpm
+	knob.h
+	knob.cpp
 	kmetroiface.h
 	kmetronome.cpp
 	kmetronome.h
@@ -60,7 +62,7 @@ SET(kmetronome_UI
 	kmetronomeviewbase.ui
 	kmetropreferencesbase.ui )
 
-SET(kmetronome_DCOP 
+SET(kmetronome_DCOP
 	kmetroiface.h
 )
 

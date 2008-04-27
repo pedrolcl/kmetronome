@@ -340,15 +340,3 @@ void SequencerThread::metronome_continue() {
 	checkAlsaError(snd_seq_drain_output(m_handle),"drain_output (metronome_continue)");
 	m_playing = true;
 }
-
-void SequencerThread::sendControlChange(int cc, int value)
-{
-	snd_seq_event_t ev;
-	snd_seq_ev_clear(&ev);
-	snd_seq_ev_set_controller(&ev, m_channel, cc, value);
-	snd_seq_ev_set_source(&ev, m_output);
-	snd_seq_ev_set_subs(&ev);
-	snd_seq_ev_set_direct(&ev);
-	checkAlsaError(snd_seq_event_output(m_handle, &ev),"event_output (control change)");
-	checkAlsaError(snd_seq_drain_output(m_handle), "drain_output (control change)");
-}

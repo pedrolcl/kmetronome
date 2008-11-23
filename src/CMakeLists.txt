@@ -25,77 +25,60 @@ IF(USE_PCH)
 ENDIF(USE_PCH)
 
 LINK_DIRECTORIES(
-    ${KDE3_LIB_DIR} 
     ${ALSA_LIB_DIR}
 )
 
-INCLUDE_DIRECTORIES(AFTER
-    ${QT_INCLUDE_DIR} 
-    ${KDE3_INCLUDE_DIR} 
-    ${ALSA_INC_DIR}
-)
-
 SET(kmetronome_SRCS 
-	f16.xpm
-	f1.xpm
-	f2.xpm
-	f32.xpm
-	f4.xpm
-	f64.xpm
-	f8.xpm
-	knob.h
-	knob.cpp
-	kmetroiface.h
-	kmetronome.cpp
-	kmetronome.h
-	kmetronomeview.cpp
-	kmetronomeview.h
-	kmetropreferences.cpp
-	kmetropreferences.h
-	main.cpp
-	qt_kde.h
-	defs.h
-	sequencerthread.cpp
-	sequencerthread.h )
+    classicstyle.h
+    classicstyle.cpp
+    knob.h
+    knob.cpp
+    kmetronome.h
+    kmetronome.cpp
+    kmetronomeview.h
+    kmetronomeview.cpp
+    kmetropreferences.h
+    kmetropreferences.cpp
+    main.cpp
+    qt_kde.h
+    defs.h
+    sequenceradapter.h
+    sequenceradapter.cpp 
+)
 
 SET(kmetronome_UI 
-	kmetronomeviewbase.ui
-	kmetropreferencesbase.ui )
-
-SET(kmetronome_DCOP
-	kmetroiface.h
-)
-
-KDE3_ADD_DCOP_SKELS(kmetronome_SRCS ${kmetronome_DCOP})
-KDE3_ADD_DCOP_STUBS(kmetronome_SRCS ${kmetronome_DCOP}) 
-KDE3_ADD_UI_FILES(kmetronome_SRCS ${kmetronome_UI})
-KDE3_AUTOMOC(${kmetronome_SRCS})
-KDE3_ADD_EXECUTABLE(kmetronome ${kmetronome_SRCS})
+    kmetronomeviewbase.ui
+    kmetropreferencesbase.ui )
+	
+QT4_ADD_RESOURCES(kmetronome_SRCS kmetronome.qrc)
+KDE4_ADD_UI_FILES(kmetronome_SRCS ${kmetronome_UI})
+QT4_ADD_DBUS_ADAPTOR(kmetronome_SRCS 
+                     net.sourceforge.kmetronome.xml
+                     kmetronome.h KMetronome)
+KDE4_ADD_EXECUTABLE(kmetronome ${kmetronome_SRCS})
 
 IF(USE_PCH)
     ADD_DEPENDENCIES(kmetronome precompiled_headers)
 ENDIF(USE_PCH)
 
-TARGET_LINK_LIBRARIES( kmetronome
-    ${QT_AND_KDECORE_LIBS} 
-    ${ALSA_LIBS} 
-    kdeui
-    kio
+TARGET_LINK_LIBRARIES(kmetronome
+    ${KDE4_KDEUI_LIBS}
+    ${ALSA_LIBS}
+    aseqmm
 )
 
 # Install targets
 INSTALL( TARGETS kmetronome
-         RUNTIME DESTINATION ${KDE3EXECDIR} )
-
-# Install desktop file
-INSTALL( FILES kmetronome.desktop
-         DESTINATION ${KDE3MENUDIR} )
+         RUNTIME DESTINATION ${BIN_INSTALL_DIR})
 
 # Icons
-INSTALL( FILES hi16-app-kmetronome.png
-         DESTINATION ${KDE3ICONDIR}/hicolor/16x16/apps
+INSTALL( FILES icons/hi16-app-kmetronome.png
+         DESTINATION  ${ICON_INSTALL_DIR}/hicolor/16x16/apps
          RENAME kmetronome.png )
 
-INSTALL( FILES hi32-app-kmetronome.png
-         DESTINATION ${KDE3ICONDIR}/hicolor/32x32/apps
+INSTALL( FILES icons/hi32-app-kmetronome.png
+         DESTINATION  ${ICON_INSTALL_DIR}/hicolor/32x32/apps
          RENAME kmetronome.png )
+
+INSTALL( FILES net.sourceforge.kmetronome.xml 
+         DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )

@@ -63,11 +63,39 @@
 <project-mappings/>
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+
 <storageModule moduleId="org.eclipse.cdt.core.pathentry">
 <pathentry kind="src" path=""/>
 <pathentry kind="out" path=""/>
 <pathentry kind="con" path="org.eclipse.cdt.make.core.DISCOVERED_SCANNER_INFO"/>
-<pathentry include="/usr/lib/qt3/include" kind="inc" path="" system="true"/>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+<buildTargets>
+<target name="distclean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>make</buildCommand>
+<buildArguments>VERBOSE=1</buildArguments>
+<buildTarget>distclean</buildTarget>
+<stopOnError>false</stopOnError>
+<useDefaultCommand>true</useDefaultCommand>
+<runAllBuilders>false</runAllBuilders>
+</target>
+<target name="all" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>make</buildCommand>
+<buildArguments>VERBOSE=1</buildArguments>
+<buildTarget>all</buildTarget>
+<stopOnError>false</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+<runAllBuilders>true</runAllBuilders>
+</target>
+<target name="cmake" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>cmake</buildCommand>
+<buildArguments/>
+<buildTarget>. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr</buildTarget>
+<stopOnError>false</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+<runAllBuilders>true</runAllBuilders>
+</target>
+</buildTargets>
 </storageModule>
 </cconfiguration>
 </storageModule>

@@ -16,73 +16,48 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-# The name of our project is "KMETRONOME". CMakeLists files in this project can
-# refer to the root source directory of the project as ${KMETRONOME_SOURCE_DIR} 
-# and to the root binary directory of the project as ${KMETRONOME_BINARY_DIR}
 PROJECT(KMETRONOME)
 
-# CMake supports KDE checks since this version number
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4.4)
-
-# Show full commands and messages. It generates a lot of console output.
-SET(CMAKE_VERBOSE_MAKEFILE ON)
-
-# Seems that relative paths break some scripts. Don't set it ON
 SET(CMAKE_USE_RELATIVE_PATHS OFF)
-
-# Rebuild the object files if the rules have changed, but not the actual source 
-# files or headers (e.g. if you changed the some compiler switches)
-SET(CMAKE_SKIP_RULE_DEPENDENCY OFF)
-
-# Misc settings
-SET(CMAKE_COLOR_MAKEFILE ON)
-SET(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# Additional CMake modules for 3rd party library checks reside here
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 
-# kmetronome version string
 SET (VERSION_MAJOR "0")
-SET (VERSION_MINOR "8")
-SET (VERSION_PATCH "3")
-SET (VERSION_SUFFIX "svn")
+SET (VERSION_MINOR "9")
+SET (VERSION_PATCH "0")
+SET (VERSION_SUFFIX "kde4")
 SET (VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}${VERSION_SUFFIX})
 ADD_DEFINITIONS(-D'VERSION="${VERSION}"')
 
-# User options
-OPTION(WANT_PCH "Use precompiled headers" OFF)
+OPTION(WANT_PCH    "Use precompiled headers" OFF)
+OPTION(WANT_STATIC "Use aseqmm static library" ON)
 
-# Save the compiler flags
-SET(SAVED_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+FIND_PACKAGE(Qt4 REQUIRED)
+FIND_PACKAGE(KDE4 REQUIRED)
+INCLUDE(KDE4Defaults)
+INCLUDE_DIRECTORIES ( 
+    ${KDE4_INCLUDES} 
+    ${QT_INCLUDES}
+    ${KMETRONOME_SOURCE_DIR}/aseqmm/include )
+LINK_DIRECTORIES ( ${KMETRONOME_BINARY_DIR} )
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
+SET(LIB "lib${LIB_SUFFIX}")
+SET(LIBRARY_OUTPUT_PATH "")
+SET(EXECUTABLE_OUTPUT_PATH "")
 
-# Check for KDE3
-FIND_PACKAGE(KDE3 REQUIRED QUIET)
-IF(QT_FOUND)
-    ADD_DEFINITIONS(${QT_DEFINITIONS})
-    MESSAGE(STATUS "Found Qt3 (version ${qt_version_str})")
-    #MESSAGE("QT_LIBRARIES: ${QT_LIBRARIES}")
-ELSE(QT_FOUND)
-    MESSAGE(FATAL_ERROR "Qt3 package not found")
-ENDIF(QT_FOUND)
-IF(KDE3_FOUND)
-    ADD_DEFINITIONS(${KDE3_DEFINITIONS})
-    #MESSAGE("KDE3PREFIX: ${KDE3PREFIX}")
-    KDE3_PRINT_RESULTS()
-    #MESSAGE("QT_AND_KDECORE_LIBS: ${QT_AND_KDECORE_LIBS}")
-ELSE(KDE3_FOUND)    
-    MESSAGE(FATAL_ERROR "KDE3 Not found")
-ENDIF(KDE3_FOUND)
+MESSAGE(STATUS "Build configuration: ${CMAKE_BUILD_TYPE}")
 
-# Restore the compiler flags after FindKDE3
-SET(CMAKE_CXX_FLAGS "${SAVED_CXX_FLAGS} -fexceptions") 
+# LIBRARY BUILD TYPE
+IF(WANT_STATIC)
+    SET(BUILD_SHARED_LIBS OFF)
+ELSE(WANT_STATIC)
+    SET(BUILD_SHARED_LIBS ON)
+ENDIF(WANT_STATIC)
 
-# Provide the KDE3 prefix as a default prefix (if the user has CMake 2.4.4)
-IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    SET(CMAKE_INSTALL_PREFIX ${KDE3PREFIX} CACHE PATH
-        "Install path prefix, prepended onto install directories." FORCE)
-ENDIF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT) 
+FIND_PACKAGE(MSGFMT REQUIRED)
+IF(MSGFMT_FOUND)
+    MESSAGE(STATUS "Program msgfmt found (${MSGFMT_EXECUTABLE})")
+ENDIF(MSGFMT_FOUND)
 
-# Check for PKG-CONFIG
 FIND_PACKAGE(PkgConfig REQUIRED)
 IF(PKG_CONFIG_FOUND)
     MESSAGE(STATUS "Program pkg-config found (${PKG_CONFIG_EXECUTABLE})")
@@ -90,10 +65,7 @@ ELSE(PKG_CONFIG_FOUND)
     MESSAGE(FATAL_ERROR "Program pkg-config not found")
 ENDIF(PKG_CONFIG_FOUND)
 
-# Initialize some variables
 SET(HAVE_ALSA FALSE)
-
-# Check for ALSA 1.0
 PKG_CHECK_MODULES(ALSA REQUIRED alsa>=1.0)
 IF(ALSA_FOUND)
     SET(HAVE_ALSA TRUE)
@@ -108,23 +80,6 @@ ELSE(ALSA_FOUND)
     MESSAGE(FATAL_ERROR "Please install the required package. Aborting")
 ENDIF(ALSA_FOUND)
 
-FIND_PACKAGE(KDECONFIG)
-IF(KDECONFIG_EXECUTABLE)
-    MESSAGE(STATUS "Program kde-config found (${KDECONFIG_EXECUTABLE})")
-    #MESSAGE("KDE3PREFIX: ${KDE3PREFIX}")
-ENDIF(KDECONFIG_EXECUTABLE)
-    
-FIND_PACKAGE(MSGFMT REQUIRED)
-IF(MSGFMT_FOUND)
-    MESSAGE(STATUS "Program msgfmt found (${MSGFMT_EXECUTABLE})")
-ENDIF(MSGFMT_FOUND)
-
-FIND_PACKAGE(MEINPROC REQUIRED)
-IF(MEINPROC_FOUND)
-    MESSAGE(STATUS "Program meinproc found (${MEINPROC_EXECUTABLE})")
-ENDIF(MEINPROC_FOUND)
-
-# Check GCC for PCH support
 SET(USE_PCH FALSE)
 IF(WANT_PCH)
     FIND_PACKAGE(PCHSupport)
@@ -136,30 +91,29 @@ ENDIF(WANT_PCH)
 
 MESSAGE(STATUS "kmetronome ${VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 
-# Recurse into the "src" subdirectory. This does not actually
-# cause another cmake executable to run. The same process will walk through
-# the project's entire directory structure.
-# Output directory will be "RGbuild/"
+ADD_SUBDIRECTORY(aseqmm build/aseqmm)
 ADD_SUBDIRECTORY(src build)
-
-# Build and install the translations directory
 ADD_SUBDIRECTORY(po build/po)
+ADD_SUBDIRECTORY(doc/en build/doc/en)
 
-# Build and install the documentation directory
-ADD_SUBDIRECTORY(doc build/doc)
+INCLUDE(DBusMacros)
+dbus_add_activation_service(net.sourceforge.kmetronome.service.in)
 
-# uninstall custom target
+CONFIGURE_FILE(
+    "${CMAKE_SOURCE_DIR}/kmetronome.spec.in"
+    "${CMAKE_SOURCE_DIR}/kmetronome.spec"
+    IMMEDIATE @ONLY)
+
 CONFIGURE_FILE(
     "${CMAKE_SOURCE_DIR}/cmake_admin/cmake_uninstall.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE @ONLY)
-
 ADD_CUSTOM_TARGET(uninstall
     "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 
-# Custom target trying to clean the CMake generated files
 ADD_CUSTOM_TARGET ( distclean
     COMMAND rm -f  {,src/,po/,doc/}CMakeCache.txt
+    COMMAND rm -f  {,src/,po/,doc/}CTestTestfile.cmake
     COMMAND rm -f  {,src/,po/,doc/}cmake_install.cmake
     COMMAND rm -f  {,src/,po/,doc/}cmake_uninstall.cmake
     COMMAND rm -f  {,src/,po/,doc/}CPackConfig.cmake
@@ -167,30 +121,30 @@ ADD_CUSTOM_TARGET ( distclean
     COMMAND rm -f  {,src/,po/,doc/}install_manifest.txt
     COMMAND rm -f  {,src/,po/,doc/}progress.make
     COMMAND rm -f  {,src/,po/,doc/}kmetronome.spec
+    COMMAND rm -f  {,src/,po/,doc/}net.sourceforge.kmetronome.service
     COMMAND rm -f  {,src/,po/,doc/}Makefile
     COMMAND rm -rf {,src/,po/,doc/}CMakeFiles
+    COMMAND rm -rf {,src/,po/,doc/}CMakeTmp
     COMMAND rm -rf {,src/,po/,doc/}_CPack_Packages
     COMMAND rm -rf build/*
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 ADD_DEPENDENCIES(distclean clean)
 
-# configure the RPM spec
-CONFIGURE_FILE(
-    "${CMAKE_SOURCE_DIR}/kmetronome.spec.in"
-    "${CMAKE_SOURCE_DIR}/kmetronome.spec"
-    IMMEDIATE @ONLY)
-
-# tarball target
 ADD_CUSTOM_TARGET ( tarball
     COMMAND mkdir -p kmetronome-${VERSION}
     COMMAND cp -r cmake_admin kmetronome-${VERSION}
     COMMAND cp -r doc kmetronome-${VERSION}
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
-    COMMAND cp CMakeLists.txt AUTHORS ChangeLog COPYING INSTALL NEWS README TODO *.spec.in kmetronome-${VERSION}
+    COMMAND cp -r aseqmm kmetronome-${VERSION}
+    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
     COMMAND tar -cj --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
     COMMAND tar -cz --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
     COMMAND rm -rf kmetronome-${VERSION}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
+
+INSTALL( FILES kmetronome.desktop
+         DESTINATION ${XDG_APPS_INSTALL_DIR} )
+

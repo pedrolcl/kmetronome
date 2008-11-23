@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -20,4 +19,19 @@
  ***************************************************************************/
 
 #include "kmetropreferences.h"
-#include "kmetropreferences.moc"
+
+void KMetroPreferences::setOutputConnection(QString newValue) 
+{
+    int index = m_out_connection->findText(newValue);
+    if (index >= 0) {
+        m_out_connection->setCurrentIndex(index);
+    }
+}
+
+void KMetroPreferences::setInputConnection(QString newValue) 
+{ 
+    int index = m_in_connection->findText(newValue);
+    if (index >= 0) {
+        m_in_connection->setCurrentIndex(index);
+    }
+}

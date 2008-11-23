@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -22,26 +21,23 @@
 #ifndef KMETRONOMEVIEW_H
 #define KMETRONOMEVIEW_H
 
+#include <QMouseEvent>
+#include <QStyle>
 #include <kcombobox.h>
 #include <knuminput.h>
-#include <qslider.h>
 
-#include "kmetronomeviewbase.h"
+#include "ui_kmetronomeviewbase.h"
 
-/**
-Central View Widget Implementation
-@author Pedro Lopez-Cabanillas
-*/
-class KmetronomeView : public KmetronomeViewBase
+class KmetronomeView : public QWidget, Ui::KmetronomeViewBase
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    KmetronomeView(QWidget *parent = 0, const char *name = 0);
-    ~KmetronomeView();
+    KmetronomeView(QWidget *parent = 0);
+    virtual ~KmetronomeView() {}
     void display(int, int);
     int getTempo() { return m_tempo->value(); }
     int getBeatsBar() { return m_beatsBar->value(); }
-    int getFigure() { return m_figure->currentItem(); }
+    int getFigure() { return m_figure->currentIndex(); }
     void setTempo(int newValue) { m_tempo->setValue(newValue); }
     void setBeatsBar(int newValue) { m_beatsBar->setValue(newValue); }
     void setFigure(int newValue);
@@ -50,8 +46,15 @@ public:
 protected:
     virtual void mouseDoubleClickEvent ( QMouseEvent * e );
         
-public slots:
+public Q_SLOTS:
     virtual void m_tempo_valueChanged(int);
+    void displayWeakVelocity(int v) { m_dial1->setValue(v); }
+    void displayStrongVelocity(int v) { m_dial2->setValue(v); }
+    void displayVolume(int v) { m_dial3->setValue(v); }
+    void displayBalance(int v) { m_dial4->setValue(v); }
+    
+private:
+    QStyle* m_dialStyle;
 };
 
 #endif

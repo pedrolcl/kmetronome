@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,37 +18,45 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
+#include <QLCDNumber>
+#include <QMouseEvent>
+
 #include <kapplication.h>
-#include <qlcdnumber.h>
 #include <kpushbutton.h>
-#include <qpixmap.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kinputdialog.h>
 
 #include "knob.h"
+#include "classicstyle.h"
 #include "kmetronomeview.h"
 #include "defs.h"
-#include "f1.xpm"
-#include "f2.xpm"
-#include "f4.xpm"
-#include "f8.xpm"
-#include "f16.xpm"
-#include "f32.xpm"
-#include "f64.xpm"
 
-KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
- : KmetronomeViewBase(parent, name)
+KmetronomeView::KmetronomeView(QWidget *parent)
+     : QWidget(parent), Ui::KmetronomeViewBase()
 {
-    m_exitbtn->setIconSet(SmallIconSet("exit"));
-    m_configbtn->setIconSet(SmallIconSet("configure"));
-    m_playbtn->setIconSet(SmallIconSet("player_play"));
-    m_stopbtn->setIconSet(SmallIconSet("player_stop"));
-   
-//    m_volume->notchSize(1);
-//    m_balance->notchSize(1);
-//    m_volume->notchTarget(1.0);
-//    m_balance->notchTarget(1.0);
+    setupUi(this);
+    
+    m_exitbtn->setIcon(KIcon("application-exit"));
+    m_configbtn->setIcon(KIcon("configure"));
+    m_playbtn->setIcon(KIcon("media-playback-start"));
+    m_stopbtn->setIcon(KIcon("media-playback-stop"));
+
+    m_dialStyle = new ClassicStyle();
+    m_dialStyle->setParent(this);
+    
+    m_dial1->setStyle(m_dialStyle);
+    m_dial2->setStyle(m_dialStyle);
+    m_dial3->setStyle(m_dialStyle);
+    m_dial4->setStyle(m_dialStyle);
+    m_dial1->setRange(0, 127);
+    m_dial2->setRange(0, 127);
+    m_dial3->setRange(0, 127);
+    m_dial4->setRange(0, 127);
+    m_dial1->setDialMode(Knob::LinearMode);
+    m_dial2->setDialMode(Knob::LinearMode);
+    m_dial3->setDialMode(Knob::LinearMode);
+    m_dial4->setDialMode(Knob::LinearMode);
     
     connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
@@ -59,22 +66,11 @@ KmetronomeView::KmetronomeView(QWidget *parent, const char *name)
     connect( m_beatsBar, SIGNAL(valueChanged(int)), parent, SLOT(beatsBarChanged(int)) );
     connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rhythmFigureChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
-    connect( m_volume, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
-    connect( m_balance, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
 
-    m_figure->insertItem(QPixmap(f1_xpm), i18n(" - Whole"));
-    m_figure->insertItem(QPixmap(f2_xpm), i18n(" - Half"));
-    m_figure->insertItem(QPixmap(f4_xpm), i18n(" - Quarter"));
-    m_figure->insertItem(QPixmap(f8_xpm), i18n(" - Eighth"));
-    m_figure->insertItem(QPixmap(f16_xpm), i18n(" - Sixteenth"));
-    m_figure->insertItem(QPixmap(f32_xpm), i18n(" - Thirty-Second"));
-    m_figure->insertItem(QPixmap(f64_xpm), i18n(" - Sixty-Fourth"));
-    m_figure->setCurrentItem(2);
-}
-
-KmetronomeView::~KmetronomeView()
-{
-    qWarning("KmetronomeView Destroyed");
+    connect( m_dial1, SIGNAL(valueChanged(int)), parent, SLOT(weakVeloChanged(int)) );
+    connect( m_dial2, SIGNAL(valueChanged(int)), parent, SLOT(strongVeloChanged(int)) );
+    connect( m_dial3, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
+    connect( m_dial4, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
 }
 
 void KmetronomeView::display(int bar, int beat) 
@@ -88,8 +84,8 @@ void KmetronomeView::setFigure(int newValue)
     int ts_dd;
     int x = newValue;
     for(ts_dd = 0; x > 1; x /= 2)
-	++ts_dd;
-    m_figure->setCurrentItem(ts_dd);
+        ++ts_dd;
+    m_figure->setCurrentIndex(ts_dd);
 }
 
 void KmetronomeView::m_tempo_valueChanged(int newTempo)
@@ -117,5 +113,3 @@ void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
     	m_tempo->setValue(newTempo);
     }
 }
-
-#include "kmetronomeview.moc"

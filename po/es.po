@@ -1,13 +1,14 @@
 # translation of es.po to Spanish
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
-# Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>, 2005, 2008.
+# Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"POT-Creation-Date: 2008-03-23 19:49+0100\n"
-"PO-Revision-Date: 2008-03-23 20:33+0100\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?atid=731542&group_id=134956\n"
+"POT-Creation-Date: 2008-11-23 20:20+0100\n"
+"PO-Revision-Date: 2008-11-23 20:45+0100\n"
 "Last-Translator: Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -15,156 +16,162 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: src/kmetronomeview.cpp:57
-msgid " - Whole"
-msgstr " - Redonda"
-
-#: src/kmetronomeview.cpp:58
-msgid " - Half"
-msgstr " - Blanca"
-
-#: src/kmetronomeview.cpp:59
-msgid " - Quarter"
-msgstr " - Negra"
-
-#: src/kmetronomeview.cpp:60
-msgid " - Eighth"
-msgstr " - Corchea"
-
-#: src/kmetronomeview.cpp:61
-msgid " - Sixteenth"
-msgstr " - Semicorchea"
-
-#: src/kmetronomeview.cpp:62
-msgid " - Thirty-Second"
-msgstr " - Fusa"
-
-#: src/kmetronomeview.cpp:63
-msgid " - Sixty-Fourth"
-msgstr " - Semifusa"
-
-#: src/kmetronomeview.cpp:105
+#: src/kmetronomeview.cpp:109
 msgid "Tempo"
-msgstr "Tempo"
+msgstr ""
 
-#: src/kmetronomeview.cpp:105
+#: src/kmetronomeview.cpp:109
 msgid "Enter new Tempo:"
-msgstr "Introducir nuevo Tempo:"
+msgstr "Introducir nuevo tempo:"
 
-#: src/main.cpp:32
+#: src/main.cpp:29
 msgid "KDE MIDI metronome using ALSA sequencer"
-msgstr "Metrónomo MIDI para KDE usando el secuenciador de ALSA"
+msgstr "Metrónomo MIDI de KDE utilizando el secuenciador de ALSA "
 
-#: src/main.cpp:43
+#: src/main.cpp:40
 msgid "KMetronome"
-msgstr "KMetronome"
+msgstr ""
 
-#: src/sequencerthread.cpp:44
+#: src/main.cpp:42
+msgid "(C) 2005-2008 Pedro Lopez-Cabanillas"
+msgstr ""
+
+#: src/main.cpp:44
+msgid "Pedro Lopez-Cabanillas"
+msgstr ""
+
+#: src/sequenceradapter.cpp:53
 msgid "No connection"
 msgstr "Sin conexión"
 
-#: src/sequencerthread.cpp:50
+#: src/sequenceradapter.cpp:62
 msgid ""
 "Fatal error opening the ALSA sequencer. Function: snd_seq_open().\n"
 "This usually happens when the kernel doesn't have ALSA support, or the "
 "device node (/dev/snd/seq) doesn't exists, or the kernel module (snd_seq) is "
 "not loaded.\n"
-"Please check your ALSA/MIDI configuration. Returned error was: %1 (%2)"
+"Please check your ALSA/MIDI configuration. Returned error was: %1"
 msgstr ""
 "Error fatal abriendo el secuenciador ALSA. Función: snd_seq_open().\n"
 "Esto ocurre normalmente cuando el núcleo no tiene soporte ALSA, o el "
 "nodo de dispositivo (/dev/snd/seq) no existe, o bien el módulo del núcleo "
 "(snd_seq) no ha sido cargado.\n"
-"Por favor, compruebe la configuración de ALSA y MIDI. "
-"El error devuelto ha sido %1 (%2) "
+"Por favor, compruebe la configuración de ALSA y MIDI."
+"El error devuelto ha sido: %1"
 
+#: src/sequenceradapter.cpp:67
+msgid "Error"
+msgstr ""
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 56
 #: po/rc.cpp:3
-#, no-c-format
 msgid "MIDI Metronome"
 msgstr "Metrónomo MIDI"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 73
 #: po/rc.cpp:6
-#, no-c-format
-msgid "Play"
-msgstr "Iniciar"
-
-#: po/rc.cpp:9
-#, no-c-format
 msgid "This button starts playing the rhythm pattern"
-msgstr "Este botón inicia la ejecución del patrón rítmico"
+msgstr "Este botón inicia la reproducción del patrón rítmico"
 
-#: po/rc.cpp:15
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 76
+#: po/rc.cpp:9
+msgid "Play"
+msgstr "Reproducir"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 92
+#: po/rc.cpp:12
 msgid "This button stops playing the rhythm pattern"
-msgstr "Este botón interrumpe la ejecución del patrón rítmico"
+msgstr "Este botón detiene la reproducción del patrón rítmico"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 95
+#: po/rc.cpp:15
+msgid "Stop"
+msgstr "Parar"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 108
 #: po/rc.cpp:18
-#, no-c-format
-msgid "Config"
-msgstr "Configurar"
-
-#: po/rc.cpp:21
-#, no-c-format
 msgid "This button opens the configuration window"
 msgstr "Este botón abre la ventana de configuración"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 111
+#: po/rc.cpp:21
+msgid "Config"
+msgstr "Configuración"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 124
 #: po/rc.cpp:24
-#, no-c-format
+msgid "This button exits the program"
+msgstr "Este botón termina el programa"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 127
+#: po/rc.cpp:27
 msgid "Exit"
 msgstr "Terminar"
 
-#: po/rc.cpp:27
-#, no-c-format
-msgid "This button exits the program"
-msgstr "Este botón cierra el programa"
-
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 154
 #: po/rc.cpp:30
-#, no-c-format
 msgid "Measure"
 msgstr "Compás"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 176
 #: po/rc.cpp:33
-#, no-c-format
 msgid ""
 "This is the measure (bar) number played since the play button has been "
 "pressed."
 msgstr ""
-"Este es el número de compases que han transcurrido desde la pulsación del "
-"botón de iniciar."
+"Este es el número de compás ejecutado desde que fue pulsado el botón "
+"Reproducir."
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 205
 #: po/rc.cpp:36
-#, no-c-format
 msgid "Beat"
 msgstr "Parte"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 227
 #: po/rc.cpp:39
-#, no-c-format
 msgid "This is the part number played for the current measure"
-msgstr "Este es el número de parte que ha sonado para el compás actual"
+msgstr "Este es el número de parte ejecutado para el compás actual"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 269
 #: po/rc.cpp:42
-#, no-c-format
 msgid "Beats/Bar"
 msgstr "Partes/Compás"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 302
 #: po/rc.cpp:45
-#, no-c-format
 msgid ""
 "This is the number of parts for each measure.<br>\n"
 "Values are from 1 to 32.<br>\n"
 "It is the numerator of the time signature specification."
 msgstr ""
-"Este es el número de partes para cada compás.<br>\n"
-"Admite valores desde 1 a 32.<br>\n"
+"Este es el número de partes para cada compás <br>\n"
+"Valores admisibles entre 1 y 32<br>\n"
 "Este es el numerador de la especificación de ritmo."
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 340
 #: po/rc.cpp:50
-#, no-c-format
 msgid "Rhythm figure"
 msgstr "Figura rítmica"
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 367
 #: po/rc.cpp:53
-#, no-c-format
 msgid ""
 "This is the part figure for the rhythm.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
@@ -174,13 +181,87 @@ msgstr ""
 "Los valores significan 1, 2, 4, 8, 16, 32 y 64.<br>\n"
 "Es el denominador de la especificación de ritmo."
 
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 377
 #: po/rc.cpp:58
-#, no-c-format
+msgid "Whole"
+msgstr "Redonda "
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 386
+#: po/rc.cpp:61
+msgid "Half"
+msgstr "Blanca"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 395
+#: po/rc.cpp:64
+msgid "Quarter"
+msgstr "Negra"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 404
+#: po/rc.cpp:67
+msgid "Eighth"
+msgstr "Corchea"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 413
+#: po/rc.cpp:70
+msgid "Sixteenth"
+msgstr "Semicorchea"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 422
+#: po/rc.cpp:73
+msgid "Thirty-Second"
+msgstr "Fusa"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 431
+#: po/rc.cpp:76
+msgid "Sixty-Fourth"
+msgstr "Semifusa"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 451
+#: po/rc.cpp:79
+msgid "Vel. Weak"
+msgstr "Vel.Débil"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 461
+#: po/rc.cpp:82
+msgid "Vel. Strong"
+msgstr "Vel.Fuerte"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 471
+#: po/rc.cpp:85
+msgid "CC7 Volume"
+msgstr "CC7 Volumen"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 481
+#: po/rc.cpp:88
+msgid "CC10 Pan"
+msgstr "CC10 Balance"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 545
+#: po/rc.cpp:91
+msgid "The current <i>tempo</i> value"
+msgstr "El valor actual del <i>tempo</i>"
+
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 566
+#: po/rc.cpp:94
 msgid "Tempo (in quarters per minute)"
 msgstr "Tempo (en negras por minuto)"
 
-#: po/rc.cpp:61
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetronomeviewbase.ui line 592
+#: po/rc.cpp:97
 msgid ""
 "This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
 "Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
@@ -189,23 +270,15 @@ msgstr ""
 "Los valores van desde 25 hasta 250 negras por minuto. (<i>unidades del "
 "Metrónomo de Mälzel</i>)."
 
-#: po/rc.cpp:65
-#, no-c-format
-msgid "The current <i>tempo</i> value"
-msgstr "El valor actual del <i>tempo</i>."
-
-#: po/rc.cpp:68
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 33
+#: po/rc.cpp:101
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: po/rc.cpp:71
-#, no-c-format
-msgid "Automatic ports connection on startup"
-msgstr "Conexión automática de los puertos al iniciar"
-
-#: po/rc.cpp:74
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 42
+#: po/rc.cpp:104
 msgid ""
 "If this checkbox is activated, the the program will remember the connections "
 "for the input and output ports, and try to reconnect them at program startup."
@@ -214,65 +287,85 @@ msgstr ""
 "los puertos de entrada y de salida, e intentará su reconexión al inicio "
 "del programa."
 
-#: po/rc.cpp:77
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 45
+#: po/rc.cpp:107
+msgid "Automatic ports connection on startup"
+msgstr "Conexión automática de los puertos al iniciar"
+
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 66
+#: po/rc.cpp:110
 msgid "Output port connection:"
 msgstr "Conexión de la salida:"
 
-#: po/rc.cpp:80
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 102
+#: po/rc.cpp:113
 msgid "Optional Input port conn:"
 msgstr "Conexión opcional de la entrada:"
 
-#: po/rc.cpp:83
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 138
+#: po/rc.cpp:116
 msgid "Channel"
 msgstr "Canal"
 
-#: po/rc.cpp:86
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 181
+#: po/rc.cpp:119
 msgid "Weak note"
 msgstr "Nota débil"
 
-#: po/rc.cpp:89
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 214
+#: po/rc.cpp:122
 msgid "Program"
 msgstr "Programa"
 
-#: po/rc.cpp:92
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 257
+#: po/rc.cpp:125
 msgid "Strong note"
-msgstr "Nota fuerte"
+msgstr "Note fuerte"
 
-#: po/rc.cpp:95
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 284
+#: po/rc.cpp:128
 msgid "Resolution"
 msgstr "Resolución"
 
-#: po/rc.cpp:98
-#, no-c-format
-msgid "Note velocity"
-msgstr "Velocidad"
-
-#: po/rc.cpp:101
-#, no-c-format
-msgid "Send NOTE OFF events"
-msgstr "Emitir eventos NOTE OFF"
-
-#: po/rc.cpp:104
-#, no-c-format
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 330
+#: po/rc.cpp:131
 msgid "Note duration"
 msgstr "Duración"
 
-#: po/rc.cpp:113
-msgid ""
-"_: NAME OF TRANSLATORS\n"
-"Your names"
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 354
+#: po/rc.cpp:134
+msgid "Send NOTE OFF events"
+msgstr "Emitir eventos NOTE OFF"
+
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 406
+#: po/rc.cpp:137
+msgid "&OK"
+msgstr "&Aceptar"
+
+#. i18n: tag string
+#. i18n: file src/kmetropreferencesbase.ui line 422
+#: po/rc.cpp:140
+msgid "&Cancel"
+msgstr "&Cancelar"
+
+#: po/rc.cpp:141
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
 msgstr "Pedro López-Cabanillas"
 
-#: po/rc.cpp:115
-msgid ""
-"_: EMAIL OF TRANSLATORS\n"
-"Your emails"
-msgstr "plcl@users.sourceforge.net"
+#: po/rc.cpp:142
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "plcl@users.sf.net"
 

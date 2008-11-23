@@ -1,3 +1,7 @@
+2008-11-23 00:00 plcl
+
+	* Converted to KDE4/Qt4
+
 2008-03-24 00:00 plcl
 
 	* Fix the crash at startup when ALSA is not loaded

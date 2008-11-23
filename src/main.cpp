@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,13 +18,11 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include <exception>
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <dcopclient.h>
 #include "kmetronome.h"
 
 static const char description[] =
@@ -40,35 +37,31 @@ static const char version[] = VERSION;
 };*/
 
 int main(int argc, char **argv) {
-	KAboutData about("kmetronome", I18N_NOOP("KMetronome"), version, description, KAboutData::License_GPL,
-			"(C) 2005 Pedro Lopez-Cabanillas", 0, 0,
-			"plcl@users.sourceforge.net");
-	about.addAuthor("Pedro Lopez-Cabanillas", 0, "plcl@users.sourceforge.net");
+	KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, 
+	                 ki18n(description), KAboutData::License_GPL,
+	                 ki18n("(C) 2005-2008 Pedro Lopez-Cabanillas"), 
+	                 KLocalizedString(), 0, "plcl@users.sourceforge.net");
+    about.addAuthor( ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(), 
+                     "plcl@users.sourceforge.net" );
 	KCmdLineArgs::init(argc, argv, &about);
+    //KCmdLineOptions options;
+    //options.add("+[URL]", ki18n( "Document to open" ));
 	//KCmdLineArgs::addCmdLineOptions( options );
+
 	KApplication app;
-	app.dcopClient()->registerAs(app.name(), false);
-
 	KMetronome *mainWin = 0;
-
-	try {
-		if (app.isRestored())
-		{
-			RESTORE(KMetronome);
-		}
-		else
-		{
-			// no session.. just start up normally
-			//KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-			mainWin = new KMetronome();
-			app.setMainWidget( mainWin );
-			mainWin->show();
-			//args->clear();
-		}
-		// mainWin has WDestructiveClose flag by default, so it will delete itself.
-		return app.exec();
-	} catch ( std::exception *ex ) {
-		KMessageBox::error(0, ex->what());
+	
+	if (app.isSessionRestored())
+	{
+		RESTORE(KMetronome);
 	}
+	else
+	{
+		// no session.. just start up normally
+		//KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+		mainWin = new KMetronome;
+		mainWin->show();
+		//args->clear();
+	}
+	return app.exec();
 }
-

@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,63 +18,29 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#ifndef SEQUENCERTHREAD_H
-#define SEQUENCERTHREAD_H
+#ifndef SEQUENCERADAPTER_H
+#define SEQUENCERADAPTER_H
 
-#include <qthread.h>
-#include <qevent.h>
-#include <klocale.h>
-#include <alsa/asoundlib.h>
+#include <client.h>
+#include <event.h>
 
-#define METRONOME_EVENT_TYPE (QEvent::User + 1)
-#define TRANSPORT_EVENT_TYPE (QEvent::User + 2)
-#define NOTATION_EVENT_TYPE  (QEvent::User + 3)
+using namespace ALSA::Sequencer;
 
-class MetronomeEvent : public QCustomEvent
+class SequencerAdapter : public QObject
 {
-public:
-     MetronomeEvent( int bar, int beat )
-	: QCustomEvent( METRONOME_EVENT_TYPE ), m_bar(bar), m_beat(beat) {}
-     int bar() const { return m_bar; }
-     int beat() const { return m_beat; }
-private:
-     int m_bar;
-     int m_beat;
-};
+    Q_OBJECT
 
-class TransportEvent : public QCustomEvent
-{
 public:
-    TransportEvent(int action)
-	: QCustomEvent ( TRANSPORT_EVENT_TYPE ), m_action(action) {}
-    int getAction() const { return m_action; }
-private:
-    int m_action;
-};
-
-class NotationEvent : public QCustomEvent
-{
-public:
-     NotationEvent( int numerator, int denominator )
-    : QCustomEvent( NOTATION_EVENT_TYPE ), m_numerator(numerator), m_denominator(denominator) {}
-     int getNumerator() const { return m_numerator; }
-     int getDenominator() const { return m_denominator; }
-private:
-     int m_numerator;
-     int m_denominator;
-};
-
-class SequencerThread : public QThread
-{
-public:
-    SequencerThread(QWidget *parent);
-
-    ~SequencerThread();
+    SequencerAdapter(QObject *parent);
+    ~SequencerAdapter();
 
     void setWeakNote(int newValue) { m_weak_note = newValue; }
     void setStrongNote(int newValue) { m_strong_note = newValue; }
-    void setVelocity(int newValue) { m_velocity = newValue; }
+    void setWeakVelocity(int newValue) { m_weak_velocity = newValue; }
+    void setStrongVelocity(int newValue) { m_strong_velocity = newValue; }
     void setProgram(int newValue) { m_program = newValue; }
+    void setVolume(int newValue) { m_volume = newValue; }
+    void setBalance(int newValue) { m_balance = newValue; }
     void setChannel(int newValue) { m_channel = newValue; }
     void setResolution(int newValue) { m_resolution = newValue; }
     void setBpm(int newValue) { m_bpm = newValue; }
@@ -88,8 +53,11 @@ public:
     void setSendNoteOff(bool newValue) { m_useNoteOff = newValue; }
     int getWeakNote() { return m_weak_note; }
     int getStrongNote() { return m_strong_note; }
-    int getVelocity() { return m_velocity; }
+    int getWeakVelocity() { return m_weak_velocity; }
+    int getStrongVelocity() { return m_strong_velocity; }
     int getProgram() { return m_program; }
+    int getVolume() { return m_volume; }
+    int getBalance() { return m_balance; }
     int getChannel() { return m_channel; }
     int getResolution() { return m_resolution; }
     int getBpm() { return m_bpm; }
@@ -101,49 +69,54 @@ public:
     QString getInputConn() { return m_inputConn; }
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
-    void sendControlChange(int cc, int value);
+    void sendControlChange( int cc, int value );
     
-    virtual void run();    
     void metronome_start();
     void metronome_stop();
     void metronome_continue();
     void metronome_set_program();
     void metronome_set_tempo();
     void metronome_set_rhythm();
+    void metronome_set_controls();
     void connect_output();
     void disconnect_output();
     void connect_input();
     void disconnect_input();
     QStringList inputConnections();
     QStringList outputConnections();
+
+public Q_SLOTS:    
+    void sequencerEvent(SequencerEvent *ev);
     
 private:
-    int checkAlsaError(int rc, const char *message);
     void updateView();
     void midi_play();
     void midi_stop();
     void midi_cont();
     void midi_notation(int numerator, int denominator);
-    void parse_sysex(snd_seq_event_t *ev);
-    void metronome_note(unsigned char note, unsigned int tick);
-    void metronome_echo(unsigned int tick, int ev_type);
-    void metronome_pattern(unsigned int tick);
-    QStringList list_ports(unsigned int mask);
+    void parse_sysex(SequencerEvent *ev);
+    void metronome_note(int note, int vel, int tick);
+    void metronome_echo(int tick, int ev_type);
+    void metronome_pattern(int tick);
 
-    QWidget *m_widget;
-    snd_seq_t *m_handle;
-    int m_client;
-    int m_input;
-    int m_output;
-    int m_queue;
+    MidiClient* m_Client;
+    MidiPort* m_Port;
+    MidiQueue* m_Queue;
+    int m_clientId;
+    int m_inputPortId;
+    int m_outputPortId;
+    int m_queueId;
 
     int m_bar;
     int m_beat;
     int m_weak_note;
     int m_strong_note;
-    int m_velocity;
+    int m_weak_velocity;
+    int m_strong_velocity;
     int m_program;
     int m_channel;
+    int m_volume;
+    int m_balance;
     int m_resolution;
     int m_bpm;
     int m_ts_num; /* time signature: numerator */
@@ -153,6 +126,7 @@ private:
     bool m_autoconnect;
     bool m_playing;
     bool m_useNoteOff;
+   
     QString m_outputConn;
     QString m_inputConn;
     QString NO_CONNECTION;

@@ -16,5 +16,4 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-SET(DOC_DIRS en)
-ADD_DOCS(kmetronome ${DOC_DIRS})
+kde4_create_handbook(index.docbook INSTALL_DESTINATION ${HTML_INSTALL_DIR}/en)

@@ -1,7 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas                        *
- *   <plcl@users.sourceforge.net>                                          *
+ *   Copyright (C) 2005-2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -22,69 +21,47 @@
 #ifndef _KMETRONOME_H_
 #define _KMETRONOME_H_
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <qevent.h>
-#include <kmainwindow.h>
+#include <kaction.h>
+#include <kxmlguiwindow.h>
 #include "kmetronomeview.h"
-#include "sequencerthread.h"
-#include "kmetroiface.h"
+#include "sequenceradapter.h"
 
-/**
- * @short Application Main Window
- * @author Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
- * @version 0.1
- */
-class KMetronome : public KMainWindow, virtual public KMetroIface
+class KMetronome : public KXmlGuiWindow
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
 public:
-    /**
-     * Default Constructor
-     */
-    KMetronome();
-
-    /**
-     * Default Destructor
-     */
-    virtual ~KMetronome();
-    
+    KMetronome(QWidget* parent=0);
+    virtual ~KMetronome() {}
     bool queryExit();
-    
-    /**
-     * DCOP interface (KMetroIface)
-     */
-    int  setTempo(int newTempo);
-    int  setTimeSignature(int numerator, int denominator);
-    
-public slots:
+    void updateDisplay(int, int);
+
+public Q_SLOTS: 
     void play();
     void stop();
     void cont();
+    void setTempo(int newTempo);
+    void setTimeSignature(int numerator, int denominator);
+    
+protected Q_SLOTS:
     void optionsPreferences();
     void tempoChanged(int);
     void beatsBarChanged(int);
     void rhythmFigureChanged(int);
+    void weakVeloChanged(int);
+    void strongVeloChanged(int);
     void volumeChanged(int);
     void balanceChanged(int);
 
-protected:
-    void customEvent( QCustomEvent * e );
-	
 private:
     void setupAccel();
     void setupActions();
     void saveConfiguration();
     void readConfiguration();
-    void processMetronomeEvent( QCustomEvent * e );
-    void processTransportEvent( QCustomEvent * e );
-    void processNotationEvent( QCustomEvent * e );
     
     KmetronomeView *m_view;
-    SequencerThread *m_thread;
     KAction *m_prefs;
+    SequencerAdapter *m_seq;
 };
 
 #endif // _KMETRONOME_H_

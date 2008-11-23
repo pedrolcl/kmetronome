@@ -94,7 +94,7 @@ MESSAGE(STATUS "kmetronome ${VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 ADD_SUBDIRECTORY(aseqmm build/aseqmm)
 ADD_SUBDIRECTORY(src build)
 ADD_SUBDIRECTORY(po build/po)
-ADD_SUBDIRECTORY(doc/en build/doc/en)
+ADD_SUBDIRECTORY(doc build/doc)
 
 INCLUDE(DBusMacros)
 dbus_add_activation_service(net.sourceforge.kmetronome.service.in)
@@ -137,7 +137,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND cp -r doc kmetronome-${VERSION}
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
-    COMMAND cp -r aseqmm kmetronome-${VERSION}
+    COMMAND cp -rH aseqmm kmetronome-${VERSION}
     COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
     COMMAND tar -cj --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
     COMMAND tar -cz --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}

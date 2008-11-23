@@ -56,7 +56,7 @@ MACRO(ADD_TRANSLATIONS _baseName)
 	    COMMAND ${MSGFMT_EXECUTABLE} -o ${_out} ${_in}
 	    DEPENDS ${_in} )
 	INSTALL(FILES ${_out}
-	    DESTINATION ${KDE3L18NDIR}/${_file_we}/LC_MESSAGES/
+	    DESTINATION ${LOCALE_INSTALL_DIR}/${_file_we}/LC_MESSAGES/
 	    RENAME ${_baseName}.mo )
 	SET(_outputs ${_outputs} ${_out})
     ENDFOREACH(_file)

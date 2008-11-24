@@ -1,20 +1,21 @@
-%define name    kmetronome
-%define version @VERSION@
-%define release 1 
+#
+# spec file for package kmetronome (Version @VERSION@)
+#
+# norootforbuild
 
-Name:           %{name}
-Version:        %{version}
-Release:        %mkrel %{release}
-License:        GPL
+Name:           kmetronome
+Version:        @VERSION@
+Release:        0
+License:        GPL v2 or later
 Summary:        KDE MIDI Metronome using ALSA Sequencer
-Group:          Sound
+Group:          Productivity/Multimedia/Sound/Midi
 URL:            http://kmetronome.sourceforge.net
-Packager:       Pedro Lopez-Cabanillas
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
-Source:         %{name}-%{version}.tar.bz2
-BuildRequires:	cmake
-BuildRequires:	libalsa2-devel
-BuildRequires:	kdelibs-devel
+Source:         %name-%version.tar.bz2
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+BuildRequires:  cmake
+BuildRequires:  alsa-devel
+BuildRequires:	libkde4-devel
+%kde4_runtime_requires
 
 %description
 KMetronome is a MIDI metronome with KDE interface, based on the ALSA 
@@ -23,44 +24,46 @@ solid, real metronomes it is a tool to keep the rhythm while playing musical
 instruments. It uses MIDI for sound generation instead of digital audio, 
 allowing low CPU usage, and very accurate timing thanks to the ALSA sequencer.
 
+
+
+Authors:
+--------
+    Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+
+%debug_package
 %prep
-%setup -q a 1
+%setup -q
 
 %build
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
-%make
+%cmake_kde4
+%make_jobs
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%make DESTDIR=$RPM_BUILD_ROOT install
-
-install -d $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{name}" \
-icon="%{name}.png" needs="X11" section="Multimedia/Sound" \
-title="KMetronome" longtitle="ALSA MIDI Metronome"
-EOF
+%makeinstall
+%suse_update_desktop_file -G "MIDI Metronome" %name AudioVideo Music
+%find_lang %name
+%kde_post_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-%{update_menus}
-
-%postun
-%{clean_menus}
-
-%files
-%defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
-%doc %{_docdir}/HTML/en/%{name}/*
-%{_bindir}/*
-%{_datadir}/icons/*
-%{_datadir}/applications/*
-%{_datadir}/locale/*
-%{_menudir}/*
+%files -f %name.lang
+%defattr(-,root,root)
+%doc INSTALL README ChangeLog AUTHORS TODO
+%{_bindir}/%name
+%{_datadir}/appl*/*/%name.desktop
+%{_datadir}/dbus-1/*/*
+%{_datadir}/icons/hicolor/*/*/*
 
 %changelog
+* Sun Nov 23 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.9.0
+- New version
+* Sun Apr 27 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.3svn-0
+- New version
+* Sun Apr 6 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.2-0
+- openSuse build service
+* Mon Mar 24 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.2
+- Release 0.8.2
 * Thu Dec 28 2006 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8
 - CMake build system
 * Fri Sep 23 2005 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.6

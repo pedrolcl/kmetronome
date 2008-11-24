@@ -30,6 +30,7 @@
 #include "knob.h"
 #include "classicstyle.h"
 #include "kmetronomeview.h"
+#include "kmetronome.h"
 #include "defs.h"
 
 KmetronomeView::KmetronomeView(QWidget *parent)
@@ -49,14 +50,26 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_dial2->setStyle(m_dialStyle);
     m_dial3->setStyle(m_dialStyle);
     m_dial4->setStyle(m_dialStyle);
-    m_dial1->setRange(0, 127);
-    m_dial2->setRange(0, 127);
-    m_dial3->setRange(0, 127);
-    m_dial4->setRange(0, 127);
     m_dial1->setDialMode(Knob::LinearMode);
     m_dial2->setDialMode(Knob::LinearMode);
     m_dial3->setDialMode(Knob::LinearMode);
     m_dial4->setDialMode(Knob::LinearMode);
+
+    /** 
+     * Reference:
+     * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html
+     */
+    m_air->addItem("Larghissimo",20);
+    m_air->addItem("Largo",40); 
+    m_air->addItem("Larghetto",60);
+    m_air->addItem("Adagio",70);
+    m_air->addItem("Andante",90);
+    m_air->addItem("Moderato",110);
+    m_air->addItem("Allegro",120);
+    m_air->addItem("Vivace",160);
+    m_air->addItem("Presto",170);
+    m_air->addItem("Prestissimo",200);
+    m_air->setCurrentIndex(4);
     
     connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
@@ -71,6 +84,8 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     connect( m_dial2, SIGNAL(valueChanged(int)), parent, SLOT(strongVeloChanged(int)) );
     connect( m_dial3, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
     connect( m_dial4, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
+    
+    connect ( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
 }
 
 void KmetronomeView::display(int bar, int beat) 
@@ -112,4 +127,10 @@ void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
     if (ok) {
     	m_tempo->setValue(newTempo);
     }
+}
+
+void KmetronomeView::tempoComboChanged(int v)
+{
+    int newTempo = m_air->itemData(v).toInt();
+    m_tempo->setValue(newTempo);
 }

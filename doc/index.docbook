@@ -40,8 +40,8 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2008-03-24</date>
-<releaseinfo>0&#46;8&#46;2</releaseinfo>
+<date>2008-11-24</date>
+<releaseinfo>0&#46;9&#46;0</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -279,24 +279,24 @@ Very low values can cause muted clicks on some synthesizers.</para>
 <chapter id="external-control">
 <title>External Control</title>
 <para>
-&kmetronome; can be controlled using its DCOP interface,
+&kmetronome; can be controlled using its D-Bus interface,
 System Realtime and System Exclusive MIDI messages.</para>
 
-<sect1 id="kmetronome-dcop">
-<title>DCOP Interface</title>
+<sect1 id="kmetronome-dbus">
+<title>D-Bus Interface</title>
 <para>
-&kmetronome; provides some functions through its DCOP interface. You
-can use a DCOP-enabled program to control &kmetronome; like
-kdcop or the commandline utility dcop.
+&kmetronome; provides some functions through its D-Bus interface. You
+can use a D-Bus enabled program to control &kmetronome; like
+kdbus or the commandline utility qdbus.
 </para>
 <para>
 For instance, these commands can be used from a shell prompt:
 <screen>
-$ dcop kmetronome transport play
-$ dcop kmetronome transport stop
-$ dcop kmetronome transport cont
-$ dcop kmetronome transport setTempo 150
-$ dcop kmetronome transport setTimeSignature 3 8
+$ qdbus org.kde.kmetronome-23324 / net.sourceforge.kmetronome.play
+$ qdbus org.kde.kmetronome-23324 / net.sourceforge.kmetronome.stop
+$ qdbus org.kde.kmetronome-23324 / net.sourceforge.kmetronome.cont
+$ qdbus org.kde.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 150
+$ qdbus org.kde.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8
 </screen>
 </para>
 </sect1>

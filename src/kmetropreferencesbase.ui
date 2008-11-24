@@ -25,7 +25,7 @@ MA 02110-1301, USA
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
+    <width>329</width>
     <height>262</height>
    </rect>
   </property>
@@ -144,6 +144,9 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_channel" >
+       <property name="maximum" >
+        <number>15</number>
+       </property>
        <property name="maxValue" stdset="0" >
         <number>15</number>
        </property>
@@ -187,6 +190,9 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_weak_note" >
+       <property name="maximum" >
+        <number>127</number>
+       </property>
        <property name="maxValue" stdset="0" >
         <number>127</number>
        </property>
@@ -220,6 +226,9 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_program" >
+       <property name="maximum" >
+        <number>127</number>
+       </property>
        <property name="maxValue" stdset="0" >
         <number>127</number>
        </property>
@@ -263,6 +272,9 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_strong_note" >
+       <property name="maximum" >
+        <number>127</number>
+       </property>
        <property name="maxValue" stdset="0" >
         <number>127</number>
        </property>
@@ -290,11 +302,17 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_resolution" >
-       <property name="maxValue" stdset="0" >
+       <property name="minimum" >
+        <number>48</number>
+       </property>
+       <property name="maximum" >
         <number>480</number>
        </property>
-       <property name="minValue" stdset="0" >
+       <property name="maxValue" stdset="0" >
         <number>48</number>
+       </property>
+       <property name="minValue" stdset="0" >
+        <number>960</number>
        </property>
       </widget>
      </item>
@@ -336,6 +354,12 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KIntSpinBox" name="m_duration" >
+       <property name="minimum" >
+        <number>1</number>
+       </property>
+       <property name="maximum" >
+        <number>960</number>
+       </property>
        <property name="value" >
         <number>10</number>
        </property>

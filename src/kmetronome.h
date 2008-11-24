@@ -52,7 +52,7 @@ protected Q_SLOTS:
     void strongVeloChanged(int);
     void volumeChanged(int);
     void balanceChanged(int);
-
+    
 private:
     void setupAccel();
     void setupActions();

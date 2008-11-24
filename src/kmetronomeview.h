@@ -52,6 +52,7 @@ public Q_SLOTS:
     void displayStrongVelocity(int v) { m_dial2->setValue(v); }
     void displayVolume(int v) { m_dial3->setValue(v); }
     void displayBalance(int v) { m_dial4->setValue(v); }
+    void tempoComboChanged(int);
     
 private:
     QStyle* m_dialStyle;

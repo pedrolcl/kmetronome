@@ -56,18 +56,18 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_dial4->setDialMode(Knob::LinearMode);
 
     /** 
-     * Reference:
+     * Tempo reference:
      * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html
      */
-    m_air->addItem("Larghissimo",20);
-    m_air->addItem("Largo",40); 
-    m_air->addItem("Larghetto",60);
-    m_air->addItem("Adagio",70);
-    m_air->addItem("Andante",90);
-    m_air->addItem("Moderato",110);
-    m_air->addItem("Allegro",120);
-    m_air->addItem("Vivace",160);
-    m_air->addItem("Presto",170);
+    m_air->addItem("Larghissimo", 20);
+    m_air->addItem("Largo",       40); 
+    m_air->addItem("Larghetto",   60);
+    m_air->addItem("Adagio",      70);
+    m_air->addItem("Andante",     90);
+    m_air->addItem("Moderato",   110);
+    m_air->addItem("Allegro",    120);
+    m_air->addItem("Vivace",     160);
+    m_air->addItem("Presto",     170);
     m_air->addItem("Prestissimo",200);
     m_air->setCurrentIndex(4);
     
@@ -90,8 +90,8 @@ KmetronomeView::KmetronomeView(QWidget *parent)
 
 void KmetronomeView::display(int bar, int beat) 
 {
-    m_measureLCD->display(bar);
-    m_beatLCD->display(beat);
+    m_measureLCD->display(QString("%1:%2").arg(bar,  6, 10, QChar(' '))
+                                          .arg(beat, 2, 10, QChar('0'))); 
 }
 
 void KmetronomeView::setFigure(int newValue)
@@ -105,7 +105,13 @@ void KmetronomeView::setFigure(int newValue)
 
 void KmetronomeView::m_tempo_valueChanged(int newTempo)
 {
+    int i, j = 0;
     m_tempoLCD->display(newTempo);
+    for(i = 0; i < m_air->count(); ++i) {
+        if (m_air->itemData(i).toInt() > newTempo) break;
+        j = i;
+    }
+    m_air->setCurrentIndex(j);
 }
 
 void KmetronomeView::enableControls(bool e)
@@ -131,6 +137,5 @@ void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
 
 void KmetronomeView::tempoComboChanged(int v)
 {
-    int newTempo = m_air->itemData(v).toInt();
-    m_tempo->setValue(newTempo);
+    m_tempo->setValue(m_air->itemData(v).toInt());
 }

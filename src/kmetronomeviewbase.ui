@@ -176,7 +176,7 @@ MA 02110-1301, USA
         <string>Number of measures (bars) and beats played from beginning</string>
        </property>
        <property name="numDigits" >
-        <number>9</number>
+        <number>8</number>
        </property>
        <property name="mode" >
         <enum>QLCDNumber::Dec</enum>

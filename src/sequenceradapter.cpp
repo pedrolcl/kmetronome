@@ -174,7 +174,7 @@ void SequencerAdapter::metronome_note(int note, int vel, int tick)
     ev->scheduleTick(m_queueId, tick, false);
     ev->setSource(m_outputPortId);
     ev->setSubscribers();
-	m_Client->output(ev);
+	m_Client->outputDirect(ev);
 	delete ev;
 }
 
@@ -184,7 +184,7 @@ void SequencerAdapter::metronome_echo(int tick, int ev_type)
     ev.setSource(m_outputPortId);
     ev.setDestination(m_clientId, m_inputPortId);
     ev.scheduleTick(m_queueId, tick, false);
-    m_Client->output(&ev);
+    m_Client->outputDirect(&ev);
 }
 
 void SequencerAdapter::metronome_pattern(int tick) 
@@ -199,7 +199,7 @@ void SequencerAdapter::metronome_pattern(int tick)
 		t += duration;
 	}
 	metronome_echo(t, SND_SEQ_EVENT_USR0);
-	m_Client->drainOutput();
+	//m_Client->drainOutput();
 }
 
 void SequencerAdapter::metronome_set_program() 
@@ -217,6 +217,7 @@ void SequencerAdapter::metronome_set_tempo()
     t.setPPQ(m_resolution);
     t.setTempo((int)(6e7 / m_bpm));
 	m_Queue->setTempo(t);
+	m_Client->drainOutput();
 }
 
 void SequencerAdapter::metronome_set_controls()
@@ -258,7 +259,10 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 {
 	int num, den;
 	SysExEvent* syx = dynamic_cast<SysExEvent*>(ev);
-	if (syx == NULL) return;
+	if (syx == NULL) {
+	    return;
+	}
+    qDebug() << "SysExEvent length = " << syx->getLength() << endl;
 	unsigned char *ptr =(unsigned char *) syx->getData();
 	if (syx->getLength() < 6) return;
 	if (*ptr++ != 0xf0) return;
@@ -317,6 +321,7 @@ void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
         midi_stop();
         break;
     case SND_SEQ_EVENT_SYSEX:
+        qDebug() << "SND_SEQ_EVENT_SYSEX received" << endl; 
         parse_sysex(ev);
         break;
     }

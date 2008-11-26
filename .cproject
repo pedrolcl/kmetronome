@@ -69,6 +69,7 @@
 <pathentry kind="out" path=""/>
 <pathentry kind="con" path="org.eclipse.cdt.make.core.DISCOVERED_SCANNER_INFO"/>
 </storageModule>
+
 <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 <buildTargets>
 <target name="distclean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
@@ -89,8 +90,8 @@
 </target>
 <target name="cmake" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>cmake</buildCommand>
-<buildArguments/>
-<buildTarget>. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr</buildTarget>
+<buildArguments>VERBOSE=1</buildArguments>
+<buildTarget>. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS_DEBUG="-O0 -g"</buildTarget>
 <stopOnError>false</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>

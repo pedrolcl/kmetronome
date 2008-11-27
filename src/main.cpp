@@ -40,9 +40,11 @@ int main(int argc, char **argv) {
 	KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, 
 	                 ki18n(description), KAboutData::License_GPL,
 	                 ki18n("(C) 2005-2008 Pedro Lopez-Cabanillas"), 
-	                 KLocalizedString(), 0, "plcl@users.sourceforge.net");
+	                 KLocalizedString(),
+	                 "http://kmetronome.sourceforge.net",
+	                 "plcl@users.sourceforge.net");
     about.addAuthor( ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(), 
-                     "plcl@users.sourceforge.net" );
+                     "plcl@users.sourceforge.net");
 	KCmdLineArgs::init(argc, argv, &about);
     //KCmdLineOptions options;
     //options.add("+[URL]", ki18n( "Document to open" ));

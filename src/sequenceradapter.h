@@ -98,6 +98,9 @@ private:
     void metronome_note(int note, int vel, int tick);
     void metronome_echo(int tick, int ev_type);
     void metronome_pattern(int tick);
+    void metronome_event_output(SequencerEvent* ev);
+    void metronome_note_output(SequencerEvent* ev);
+    void metronome_schedule_event(SequencerEvent* ev, int tick);
 
     MidiClient* m_Client;
     MidiPort* m_Port;

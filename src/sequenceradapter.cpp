@@ -155,13 +155,39 @@ void SequencerAdapter::disconnect_input()
 	m_Port->unsubscribeFrom(m_inputConn);
 }
 
+void SequencerAdapter::metronome_event_output(SequencerEvent* ev)
+{
+    ev->setSource(m_outputPortId);
+    ev->setSubscribers();
+    ev->setDirect();
+    m_Client->outputDirect(ev);
+}
+
 void SequencerAdapter::sendControlChange(int cc, int value)
 {
     ControllerEvent ev(m_channel, cc, value);
-    ev.setSource(m_outputPortId);
-    ev.setSubscribers();
-    ev.setDirect();
-    m_Client->outputDirect(&ev);
+    metronome_event_output(&ev);
+}
+
+void SequencerAdapter::metronome_set_program() 
+{
+    ProgramChangeEvent ev(m_channel, m_program);
+    metronome_event_output(&ev);
+}
+
+void SequencerAdapter::metronome_note_output(SequencerEvent* ev)
+{
+    NoteOnEvent* note = static_cast<NoteOnEvent*>(ev);
+    note->setVelocity(m_beat ? m_weak_velocity : m_strong_velocity);
+    metronome_event_output(note);
+}
+
+void SequencerAdapter::metronome_schedule_event(SequencerEvent* ev, int tick)
+{
+    ev->setSource(m_outputPortId);
+    ev->setDestination(m_clientId, m_inputPortId);
+    ev->scheduleTick(m_queueId, tick, false);
+    m_Client->outputDirect(ev);
 }
 
 void SequencerAdapter::metronome_note(int note, int vel, int tick) 
@@ -171,20 +197,14 @@ void SequencerAdapter::metronome_note(int note, int vel, int tick)
         ev = new NoteEvent(m_channel, note, vel, m_noteDuration);
     else
         ev = new NoteOnEvent(m_channel, note, vel);
-    ev->scheduleTick(m_queueId, tick, false);
-    ev->setSource(m_outputPortId);
-    ev->setSubscribers();
-	m_Client->outputDirect(ev);
+    metronome_schedule_event(ev, tick);
 	delete ev;
 }
 
 void SequencerAdapter::metronome_echo(int tick, int ev_type) 
 {
     SystemEvent ev(ev_type);
-    ev.setSource(m_outputPortId);
-    ev.setDestination(m_clientId, m_inputPortId);
-    ev.scheduleTick(m_queueId, tick, false);
-    m_Client->outputDirect(&ev);
+    metronome_schedule_event(&ev, tick);
 }
 
 void SequencerAdapter::metronome_pattern(int tick) 
@@ -193,29 +213,18 @@ void SequencerAdapter::metronome_pattern(int tick)
 	t = tick;
 	duration = m_resolution * 4 / m_ts_div;
 	for (j = 0; j < m_ts_num; j++) {
-		metronome_note(j ? m_weak_note : m_strong_note, 
-		               j ? m_weak_velocity : m_strong_velocity, t);
+	    metronome_note(j ? m_weak_note : m_strong_note, METRONOME_VELOCITY, t);
 		metronome_echo(t, SND_SEQ_EVENT_USR1);
 		t += duration;
 	}
 	metronome_echo(t, SND_SEQ_EVENT_USR0);
-	//m_Client->drainOutput();
-}
-
-void SequencerAdapter::metronome_set_program() 
-{
-    ProgramChangeEvent ev(m_channel, m_program);
-    ev.setSource(m_outputPortId);
-    ev.setSubscribers();
-    ev.setDirect();
-    m_Client->outputDirect(&ev);
 }
 
 void SequencerAdapter::metronome_set_tempo() 
 {
     QueueTempo t = m_Queue->getTempo();
     t.setPPQ(m_resolution);
-    t.setTempo((int)(6e7 / m_bpm));
+    t.setNominalBPM(m_bpm);
 	m_Queue->setTempo(t);
 	m_Client->drainOutput();
 }
@@ -321,8 +330,13 @@ void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
         midi_stop();
         break;
     case SND_SEQ_EVENT_SYSEX:
-        qDebug() << "SND_SEQ_EVENT_SYSEX received" << endl; 
         parse_sysex(ev);
+        break;
+    case SND_SEQ_EVENT_NOTEON:
+        metronome_note_output(ev);
+        break;
+    case SND_SEQ_EVENT_NOTEOFF:
+        metronome_event_output(ev);
         break;
     }
     delete ev;

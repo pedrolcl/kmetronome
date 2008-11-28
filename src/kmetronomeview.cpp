@@ -121,8 +121,6 @@ void KmetronomeView::enableControls(bool e)
     m_configbtn->setEnabled(e);
     m_beatsBar->setEnabled(e);
     m_figure->setEnabled(e);
-    m_dial1->setEnabled(e);
-    m_dial2->setEnabled(e);
 }
 
 void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)

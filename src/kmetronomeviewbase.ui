@@ -634,22 +634,5 @@ Values are 25 to 250 quarters per minute (&lt;i>Maelzel Metronome units&lt;/i>).
  <resources>
   <include location="kmetronome.qrc" />
  </resources>
- <connections>
-  <connection>
-   <sender>m_tempo</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>KmetronomeViewBase</receiver>
-   <slot>m_tempo_valueChanged(int)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>30</x>
-     <y>309</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

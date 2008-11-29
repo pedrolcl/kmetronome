@@ -47,7 +47,7 @@ protected:
     virtual void mouseDoubleClickEvent ( QMouseEvent * e );
         
 public Q_SLOTS:
-    virtual void m_tempo_valueChanged(int);
+    void displayTempo(int);
     void displayWeakVelocity(int v) { m_dial1->setValue(v); }
     void displayStrongVelocity(int v) { m_dial2->setValue(v); }
     void displayVolume(int v) { m_dial3->setValue(v); }

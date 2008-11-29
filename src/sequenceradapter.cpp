@@ -56,22 +56,12 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
 	m_Port = new MidiPort(this);
     m_Client->setOpenMode(SND_SEQ_OPEN_DUPLEX);
     m_Client->setBlockMode(false);
-    try {
-        m_Client->open();
-    } catch (SequencerError& ex) {
-		QString errorstr = i18n("Fatal error opening the ALSA sequencer. Function: snd_seq_open().\n"
-		                   "This usually happens when the kernel doesn't have ALSA support, "
-		                   "or the device node (/dev/snd/seq) doesn't exists, "
-				           "or the kernel module (snd_seq) is not loaded.\n"
-				           "Please check your ALSA/MIDI configuration. Returned error was: %1").arg(ex.qstrError());
-		KMessageBox::error(static_cast<QWidget*>(parent), errorstr, i18n("Error"));
-		KApplication::exit(-1);
-	}
+    m_Client->open();
     m_Client->setClientName("KMetronome");
 	m_clientId = m_Client->getClientId();
 
     connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
-            SLOT(sequencerEvent(SequencerEvent*))); //, Qt::DirectConnection);
+            SLOT(sequencerEvent(SequencerEvent*)), Qt::DirectConnection);
 
 	m_Port->setMidiClient(m_Client);
 	m_Port->setPortName("KMetronome");
@@ -90,10 +80,6 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_queueId = m_Queue->getId();
 
     m_Client->startSequencerInput();
-    
-	metronome_set_program();
-	metronome_set_tempo();
-	metronome_set_controls();
 }
 
 SequencerAdapter::~SequencerAdapter() 
@@ -167,6 +153,13 @@ void SequencerAdapter::sendControlChange(int cc, int value)
 {
     ControllerEvent ev(m_channel, cc, value);
     metronome_event_output(&ev);
+}
+
+void SequencerAdapter::sendInitialControls()
+{
+    metronome_set_program();
+    metronome_set_controls();
+    metronome_set_tempo();
 }
 
 void SequencerAdapter::metronome_set_program() 
@@ -271,7 +264,6 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 	if (syx == NULL) {
 	    return;
 	}
-    qDebug() << "SysExEvent length = " << syx->getLength() << endl;
 	unsigned char *ptr =(unsigned char *) syx->getData();
 	if (syx->getLength() < 6) return;
 	if (*ptr++ != 0xf0) return;

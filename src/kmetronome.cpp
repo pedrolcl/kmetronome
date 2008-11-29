@@ -130,6 +130,7 @@ void KMetronome::readConfiguration()
 		m_seq->connect_output();
 		m_seq->connect_input();
 	}
+	m_seq->sendInitialControls();
 }
 
 void KMetronome::optionsPreferences()
@@ -204,11 +205,13 @@ void KMetronome::strongVeloChanged(int vel)
 
 void KMetronome::volumeChanged(int vol)
 {
+    m_seq->setVolume(vol);
 	m_seq->sendControlChange(VOLUME_CC, vol);
 }
 
 void KMetronome::balanceChanged(int bal)
 {
+    m_seq->setBalance(bal);
 	m_seq->sendControlChange(BALANCE_CC, bal);
 }
 

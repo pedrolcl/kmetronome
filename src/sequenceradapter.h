@@ -70,6 +70,7 @@ public:
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
     void sendControlChange( int cc, int value );
+    void sendInitialControls();
     
     void metronome_start();
     void metronome_stop();

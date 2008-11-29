@@ -86,6 +86,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     connect( m_dial4, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
     
     connect ( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
+    connect ( m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
 }
 
 void KmetronomeView::display(int bar, int beat) 
@@ -103,7 +104,7 @@ void KmetronomeView::setFigure(int newValue)
     m_figure->setCurrentIndex(ts_dd);
 }
 
-void KmetronomeView::m_tempo_valueChanged(int newTempo)
+void KmetronomeView::displayTempo(int newTempo)
 {
     int i, j = 0;
     m_tempoLCD->display(newTempo);

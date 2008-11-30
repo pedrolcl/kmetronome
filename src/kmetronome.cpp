@@ -18,8 +18,7 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include "kmetronome.h"
-
+#include <cmath>
 #include <QLabel>
 #include <QEvent>
 #include <QDBusConnection>
@@ -33,6 +32,7 @@
 #include <kconfig.h>
 #include <kglobal.h>
 
+#include "kmetronome.h"
 #include "kmetropreferences.h"
 #include "sequenceradapter.h"
 #include "kmetronomeadaptor.h"

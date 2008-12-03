@@ -89,12 +89,14 @@ public:
 public Q_SLOTS:    
     void sequencerEvent(SequencerEvent *ev);
     
+signals:
+    void signalUpdate(int,int);
+    void signalPlay();
+    void signalStop();
+    void signalCont();
+    void signalNotation(int,int);
+    
 private:
-    void updateView();
-    void midi_play();
-    void midi_stop();
-    void midi_cont();
-    void midi_notation(int numerator, int denominator);
     void parse_sysex(SequencerEvent *ev);
     void metronome_note(int note, int vel, int tick);
     void metronome_echo(int tick, int ev_type);

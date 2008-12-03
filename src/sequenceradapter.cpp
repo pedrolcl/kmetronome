@@ -26,7 +26,6 @@
 #include <queue.h>
 #include <event.h>
 
-#include "kmetronome.h"
 #include "sequenceradapter.h"
 #include "defs.h"
 
@@ -228,35 +227,6 @@ void SequencerAdapter::metronome_set_controls()
     sendControlChange(BALANCE_CC, m_balance);
 }
 
-void SequencerAdapter::updateView() 
-{
-    KMetronome* m = qobject_cast<KMetronome*>(parent());
-    m->updateDisplay(m_bar, m_beat);
-}
-
-void SequencerAdapter::midi_play() 
-{
-    KMetronome* m = qobject_cast<KMetronome*>(parent());
-    m->play();
-}
-
-void SequencerAdapter::midi_stop() 
-{
-    KMetronome* m = qobject_cast<KMetronome*>(parent());
-    m->stop();
-}
-
-void SequencerAdapter::midi_cont() 
-{
-    KMetronome* m = qobject_cast<KMetronome*>(parent());
-    m->cont();
-}
-
-void SequencerAdapter::midi_notation(int numerator, int denominator) {
-    KMetronome* m = qobject_cast<KMetronome*>(parent());
-    m->setTimeSignature(numerator, denominator);
-}
-
 void SequencerAdapter::parse_sysex(SequencerEvent *ev) 
 {
 	int num, den;
@@ -282,18 +252,18 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 			*ptr++;
 			num = *ptr++;
 			den = *ptr++;
-			midi_notation(num, den);
+			emit signalNotation(num, den);
 			break;
 		}
 		break;
 	case 0x06: // MMC
 		switch (subId2) {
 		case 0x01: // Stop
-			midi_stop();
+			emit signalStop();
 			break;
 		case 0x02: // Play
 		case 0x03: // Deferred Play
-			midi_play();
+			emit signalPlay();
 			break;
 		}
 		break;
@@ -310,16 +280,16 @@ void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
         break;
     case SND_SEQ_EVENT_USR1:
         m_beat++;
-        updateView();
+        emit signalUpdate(m_bar, m_beat);
         break;
     case SND_SEQ_EVENT_START:
-        midi_play();
+        emit signalPlay();
         break;
     case SND_SEQ_EVENT_CONTINUE:
-        midi_cont();
+    	emit signalCont();
         break;
     case SND_SEQ_EVENT_STOP:
-        midi_stop();
+    	emit signalStop();
         break;
     case SND_SEQ_EVENT_SYSEX:
         parse_sysex(ev);
@@ -342,7 +312,6 @@ void SequencerAdapter::metronome_start()
 	metronome_pattern(m_patternDuration);
 	m_bar = 1;
 	m_beat = 0;
-	updateView();
 	m_playing = true;
 }
 

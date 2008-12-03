@@ -46,6 +46,13 @@ KMetronome::KMetronome(QWidget *parent) : KXmlGuiWindow(parent)
     
     m_view = new KmetronomeView(this);
     m_seq = new SequencerAdapter(this);
+    
+    connect(m_seq, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
+    connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
+    connect(m_seq, SIGNAL(signalStop()), SLOT(stop()), Qt::QueuedConnection);
+    connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
+    connect(m_seq, SIGNAL(signalNotation(int,int)), SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
+    
     setCentralWidget(m_view);
     setupActions();
     setAutoSaveSettings();
@@ -224,6 +231,7 @@ void KMetronome::play()
     m_view->enableControls(false);
     m_prefs->setEnabled(false);
     m_seq->metronome_start();
+    updateDisplay(1, 0);
 }
 
 void KMetronome::stop()

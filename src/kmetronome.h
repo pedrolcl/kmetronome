@@ -30,11 +30,11 @@ class KMetronome : public KXmlGuiWindow
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
+
 public:
     KMetronome(QWidget* parent=0);
     virtual ~KMetronome() {}
     bool queryExit();
-    void updateDisplay(int, int);
 
 public Q_SLOTS: 
     void play();
@@ -42,7 +42,8 @@ public Q_SLOTS:
     void cont();
     void setTempo(int newTempo);
     void setTimeSignature(int numerator, int denominator);
-    
+    void updateDisplay(int, int);
+
 protected Q_SLOTS:
     void optionsPreferences();
     void tempoChanged(int);

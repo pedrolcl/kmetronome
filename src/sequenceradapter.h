@@ -26,13 +26,13 @@
 
 using namespace ALSA::Sequencer;
 
-class SequencerAdapter : public QObject
+class SequencerAdapter : public QObject, public SequencerEventHandler
 {
     Q_OBJECT
 
 public:
     SequencerAdapter(QObject *parent);
-    ~SequencerAdapter();
+    virtual ~SequencerAdapter();
 
     void setWeakNote(int newValue) { m_weak_note = newValue; }
     void setStrongNote(int newValue) { m_strong_note = newValue; }
@@ -86,9 +86,12 @@ public:
     QStringList inputConnections();
     QStringList outputConnections();
 
-public Q_SLOTS:    
-    void sequencerEvent(SequencerEvent *ev);
-    
+//public Q_SLOTS:    
+//    void sequencerEvent(SequencerEvent *ev);
+
+// SequencerEventHandler method
+    void handleSequencerEvent(SequencerEvent *ev);
+
 signals:
     void signalUpdate(int,int);
     void signalPlay();

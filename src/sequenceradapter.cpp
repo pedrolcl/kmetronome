@@ -30,7 +30,7 @@
 #include "defs.h"
 
 SequencerAdapter::SequencerAdapter(QObject *parent) :
-	QObject(parent), 
+	QObject(parent),
 	m_weak_note(METRONOME_WEAK_NOTE),
 	m_strong_note(METRONOME_STRONG_NOTE),
 	m_weak_velocity(METRONOME_VELOCITY), 
@@ -59,8 +59,9 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_Client->setClientName("KMetronome");
 	m_clientId = m_Client->getClientId();
 
-    connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
-            SLOT(sequencerEvent(SequencerEvent*)), Qt::DirectConnection);
+    //connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
+    //        SLOT(sequencerEvent(SequencerEvent*)), Qt::DirectConnection);
+	m_Client->setHandler(this);
 
 	m_Port->setMidiClient(m_Client);
 	m_Port->setPortName("KMetronome");
@@ -270,7 +271,8 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 	}
 }
 
-void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
+//void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
+void SequencerAdapter::handleSequencerEvent(SequencerEvent *ev)
 {
     switch (ev->getSequencerType()) {
     case SND_SEQ_EVENT_USR0:

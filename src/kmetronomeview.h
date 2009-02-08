@@ -41,11 +41,12 @@ public:
     void setTempo(int newValue) { m_tempo->setValue(newValue); }
     void setBeatsBar(int newValue) { m_beatsBar->setValue(newValue); }
     void setFigure(int newValue);
-    void enableControls(bool);
+    void enableControls(bool e);
+    void updateKnobs(bool styled);
 
 protected:
     virtual void mouseDoubleClickEvent ( QMouseEvent * e );
-        
+
 public Q_SLOTS:
     void displayTempo(int);
     void displayWeakVelocity(int v) { m_dial1->setValue(v); }
@@ -53,7 +54,7 @@ public Q_SLOTS:
     void displayVolume(int v) { m_dial3->setValue(v); }
     void displayBalance(int v) { m_dial4->setValue(v); }
     void tempoComboChanged(int);
-    
+
 private:
     QStyle* m_dialStyle;
 };

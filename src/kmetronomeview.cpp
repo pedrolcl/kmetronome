@@ -37,7 +37,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
      : QWidget(parent), Ui::KmetronomeViewBase()
 {
     setupUi(this);
-    
+
     m_exitbtn->setIcon(KIcon("application-exit"));
     m_configbtn->setIcon(KIcon("configure"));
     m_playbtn->setIcon(KIcon("media-playback-start"));
@@ -45,22 +45,18 @@ KmetronomeView::KmetronomeView(QWidget *parent)
 
     m_dialStyle = new ClassicStyle();
     m_dialStyle->setParent(this);
-    
-    m_dial1->setStyle(m_dialStyle);
-    m_dial2->setStyle(m_dialStyle);
-    m_dial3->setStyle(m_dialStyle);
-    m_dial4->setStyle(m_dialStyle);
+
     m_dial1->setDialMode(Knob::LinearMode);
     m_dial2->setDialMode(Knob::LinearMode);
     m_dial3->setDialMode(Knob::LinearMode);
     m_dial4->setDialMode(Knob::LinearMode);
 
-    /** 
+    /**
      * Tempo reference:
      * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html
      */
     m_air->addItem("Larghissimo", 20);
-    m_air->addItem("Largo",       40); 
+    m_air->addItem("Largo",       40);
     m_air->addItem("Larghetto",   60);
     m_air->addItem("Adagio",      70);
     m_air->addItem("Andante",     90);
@@ -70,7 +66,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_air->addItem("Presto",     170);
     m_air->addItem("Prestissimo",200);
     m_air->setCurrentIndex(4);
-    
+
     connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
              parent, SLOT(optionsPreferences()) );
@@ -84,15 +80,15 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     connect( m_dial2, SIGNAL(valueChanged(int)), parent, SLOT(strongVeloChanged(int)) );
     connect( m_dial3, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
     connect( m_dial4, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
-    
+
     connect ( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
     connect ( m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
 }
 
-void KmetronomeView::display(int bar, int beat) 
+void KmetronomeView::display(int bar, int beat)
 {
     m_measureLCD->display(QString("%1:%2").arg(bar,  6, 10, QChar(' '))
-                                          .arg(beat, 2, 10, QChar('0'))); 
+                                          .arg(beat, 2, 10, QChar('0')));
 }
 
 void KmetronomeView::setFigure(int newValue)
@@ -127,7 +123,7 @@ void KmetronomeView::enableControls(bool e)
 void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
 {
     bool ok = false;
-    int newTempo = KInputDialog::getInteger( 
+    int newTempo = KInputDialog::getInteger(
     					i18n("Tempo"), i18n("Enter new Tempo:"),
     					m_tempo->value(), TEMPO_MIN, TEMPO_MAX, 1, 10,
 					    &ok, this );
@@ -139,4 +135,12 @@ void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
 void KmetronomeView::tempoComboChanged(int v)
 {
     m_tempo->setValue(m_air->itemData(v).toInt());
+}
+
+void KmetronomeView::updateKnobs(bool styled)
+{
+    QList<Knob *> allKnobs = findChildren<Knob *> ();
+    foreach(Knob* knob, allKnobs) {
+        knob->setStyle(styled ? m_dialStyle : NULL);
+    }
 }

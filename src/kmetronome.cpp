@@ -43,16 +43,16 @@ KMetronome::KMetronome(QWidget *parent) : KXmlGuiWindow(parent)
     new KmetronomeAdaptor(this);
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/", this);
-    
+
     m_view = new KmetronomeView(this);
     m_seq = new SequencerAdapter(this);
-    
+
     connect(m_seq, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
     connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
     connect(m_seq, SIGNAL(signalStop()), SLOT(stop()), Qt::QueuedConnection);
     connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
     connect(m_seq, SIGNAL(signalNotation(int,int)), SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
-    
+
     setCentralWidget(m_view);
     setupActions();
     setAutoSaveSettings();
@@ -62,7 +62,7 @@ KMetronome::KMetronome(QWidget *parent) : KXmlGuiWindow(parent)
 void KMetronome::setupActions()
 {
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-    m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()), 
+    m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
                                            actionCollection());
     createGUI();
 }
@@ -93,6 +93,7 @@ void KMetronome::saveConfiguration()
     config.writeEntry("autoconnect", m_seq->getAutoConnect());
     config.writeEntry("outputConn", m_seq->getOutputConn());
     config.writeEntry("inputConn", m_seq->getInputConn());
+    config.writeEntry("styledKnobs", m_styledKnobs);
     config.sync();
 }
 
@@ -137,7 +138,9 @@ void KMetronome::readConfiguration()
 		m_seq->connect_output();
 		m_seq->connect_input();
 	}
+	m_styledKnobs = config.readEntry("styledKnobs", true);
 	m_seq->sendInitialControls();
+	m_view->updateKnobs(m_styledKnobs);
 }
 
 void KMetronome::optionsPreferences()
@@ -159,6 +162,7 @@ void KMetronome::optionsPreferences()
 	dlg.setStrongNote(m_seq->getStrongNote());
 	dlg.setSendNoteOff(m_seq->getSendNoteOff());
 	dlg.setDuration(m_seq->getNoteDuration());
+	dlg.setStyledKnobs(m_styledKnobs);
 	if (dlg.exec())
 	{
 		m_seq->disconnect_output();
@@ -176,7 +180,11 @@ void KMetronome::optionsPreferences()
 		m_seq->connect_output();
 		m_seq->connect_input();
 		m_seq->metronome_set_tempo();
-	} 
+		if (m_styledKnobs != dlg.getStyledKnobs()) {
+		    m_styledKnobs = dlg.getStyledKnobs();
+		    m_view->updateKnobs(m_styledKnobs);
+		}
+	}
 }
 
 void KMetronome::updateDisplay(int bar, int beat)
@@ -244,7 +252,7 @@ void KMetronome::stop()
 void KMetronome::cont()
 {
     m_view->enableControls(false);
-    m_prefs->setEnabled(false); 
+    m_prefs->setEnabled(false);
     m_seq->metronome_continue();
 }
 
@@ -252,7 +260,7 @@ void KMetronome::setTempo(int newTempo)
 {
     if (newTempo < TEMPO_MIN || newTempo > TEMPO_MAX)
         return;
-    m_view->setTempo(newTempo);    
+    m_view->setTempo(newTempo);
 }
 
 void KMetronome::setTimeSignature(int numerator, int denominator)
@@ -267,7 +275,7 @@ void KMetronome::setTimeSignature(int numerator, int denominator)
     }
     if (m_seq->isPlaying() ||  numerator < 1 || numerator > 32 || invalid)
         return;
-    
+
     m_view->setBeatsBar(numerator);
     m_view->setFigure(denominator);
     m_seq->setRhythmDenominator(denominator);

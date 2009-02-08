@@ -36,7 +36,7 @@ public:
     virtual ~KMetronome() {}
     bool queryExit();
 
-public Q_SLOTS: 
+public Q_SLOTS:
     void play();
     void stop();
     void cont();
@@ -53,16 +53,17 @@ protected Q_SLOTS:
     void strongVeloChanged(int);
     void volumeChanged(int);
     void balanceChanged(int);
-    
+
 private:
     void setupAccel();
     void setupActions();
     void saveConfiguration();
     void readConfiguration();
-    
+
     KmetronomeView *m_view;
     KAction *m_prefs;
     SequencerAdapter *m_seq;
+    bool m_styledKnobs;
 };
 
 #endif // _KMETRONOME_H_

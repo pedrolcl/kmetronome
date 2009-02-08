@@ -31,17 +31,17 @@ class KMetroPreferences : public QDialog, Ui::KMetroPreferencesBase
     Q_OBJECT
 
 public:
-    KMetroPreferences(QWidget *parent = 0) 
-        : QDialog(parent), 
-          Ui::KMetroPreferencesBase() 
-    { 
-        setupUi(this); 
+    KMetroPreferences(QWidget *parent = 0)
+        : QDialog(parent),
+          Ui::KMetroPreferencesBase()
+    {
+        setupUi(this);
     }
-    
+
     virtual ~KMetroPreferences() {}
     void fillInputConnections(QStringList lst) { m_in_connection->insertItems(0, lst); }
     void fillOutputConnections(QStringList lst) { m_out_connection->insertItems(0, lst); }
-    
+
     bool getAutoConnect() { return m_autoconn->isChecked(); }
     QString getOutputConnection() { return m_out_connection->currentText(); }
     QString getInputConnection() { return m_in_connection->currentText(); }
@@ -51,8 +51,9 @@ public:
     int getWeakNote() { return m_weak_note->value(); }
     int getStrongNote() { return m_strong_note->value(); }
     int getDuration() { return m_duration->value(); }
-    bool getSendNoteOff() { return m_use_noteoff->isChecked(); } 
-    
+    bool getSendNoteOff() { return m_use_noteoff->isChecked(); }
+    bool getStyledKnobs() { return m_styledknobs->isChecked(); }
+
     void setAutoConnect(bool newValue) { m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
     void setInputConnection(QString newValue);
@@ -63,6 +64,7 @@ public:
     void setStrongNote(int newValue) { m_strong_note->setValue(newValue); }
     void setDuration(int newValue) { m_duration->setValue(newValue); }
     void setSendNoteOff(bool newValue) { m_use_noteoff->setChecked(newValue); }
+    void setStyledKnobs(bool newValue) { m_styledknobs->setChecked(newValue); }
 };
 
 #endif // _KMETROPREF_H_

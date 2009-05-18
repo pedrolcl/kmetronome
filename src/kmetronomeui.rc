@@ -5,7 +5,4 @@
    <Action name="play_stop" />
   </Menu>
  </MenuBar>
- <ActionProperties>
-  <Action shortcut="Space" name="play_stop" />
- </ActionProperties>
 </kpartgui>

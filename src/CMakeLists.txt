@@ -82,3 +82,6 @@ INSTALL( FILES icons/hi32-app-kmetronome.png
 
 INSTALL( FILES net.sourceforge.kmetronome.xml 
          DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
+
+INSTALL( FILES kmidimonui.rc 
+         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )

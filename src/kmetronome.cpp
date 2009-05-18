@@ -27,10 +27,12 @@
 #include <kmainwindow.h>
 #include <klocale.h>
 #include <kaction.h>
+#include <ktoggleaction.h>
 #include <kstandardaction.h>
 #include <kactioncollection.h>
 #include <kconfig.h>
 #include <kglobal.h>
+#include <kxmlguifactory.h>
 
 #include "kmetronome.h"
 #include "kmetropreferences.h"
@@ -64,6 +66,12 @@ void KMetronome::setupActions()
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
     m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
                                            actionCollection());
+    KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
+                                 actionCollection());
+    m_playStop = new KToggleAction(KIcon("media-playback-start"),
+                                   i18n("&Play/Stop"), this);
+    actionCollection()->addAction("play_stop", m_playStop);
+    connect(m_playStop, SIGNAL(triggered(bool)), this, SLOT(toggle(bool)));
     createGUI();
 }
 
@@ -230,6 +238,12 @@ void KMetronome::balanceChanged(int bal)
 	m_seq->sendControlChange(BALANCE_CC, bal);
 }
 
+void KMetronome::toggle(bool checked)
+{
+    if (checked) play();
+    else stop();
+}
+
 /**
  * Public D-Bus Interface Slots
  */
@@ -238,6 +252,7 @@ void KMetronome::play()
 {
     m_view->enableControls(false);
     m_prefs->setEnabled(false);
+    m_playStop->setChecked(true);
     m_seq->metronome_start();
     updateDisplay(1, 0);
 }
@@ -247,6 +262,7 @@ void KMetronome::stop()
     m_seq->metronome_stop();
     m_view->enableControls(true);
     m_prefs->setEnabled(true);
+    m_playStop->setChecked(false);
 }
 
 void KMetronome::cont()

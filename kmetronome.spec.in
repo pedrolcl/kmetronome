@@ -50,10 +50,12 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %name.lang
 %defattr(-,root,root)
 %doc INSTALL README ChangeLog AUTHORS TODO
+%dir %{_datadir}/kde4/apps/%name
 %{_bindir}/%name
 %{_datadir}/appl*/*/%name.desktop
 %{_datadir}/dbus-1/*/*
 %{_datadir}/icons/hicolor/*/*/*
+%{_datadir}/kde4/apps/*/*
 
 %changelog
 * Sun Nov 23 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.9.0

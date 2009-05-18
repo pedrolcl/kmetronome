@@ -22,6 +22,7 @@
 #define _KMETRONOME_H_
 
 #include <kaction.h>
+#include <ktoggleaction.h>
 #include <kxmlguiwindow.h>
 #include "kmetronomeview.h"
 #include "sequenceradapter.h"
@@ -53,6 +54,7 @@ protected Q_SLOTS:
     void strongVeloChanged(int);
     void volumeChanged(int);
     void balanceChanged(int);
+    void toggle(bool checked);
 
 private:
     void setupAccel();
@@ -62,6 +64,7 @@ private:
 
     KmetronomeView *m_view;
     KAction *m_prefs;
+    KToggleAction* m_playStop;
     SequencerAdapter *m_seq;
     bool m_styledKnobs;
 };

@@ -1,0 +1,11 @@
+<!DOCTYPE kpartgui SYSTEM 'kpartgui.dtd'>
+<kpartgui version="2" name="kmetronome" >
+ <MenuBar>
+  <Menu name="file" >
+   <Action name="play_stop" />
+  </Menu>
+ </MenuBar>
+ <ActionProperties>
+  <Action shortcut="Space" name="play_stop" />
+ </ActionProperties>
+</kpartgui>

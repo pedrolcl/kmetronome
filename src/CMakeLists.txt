@@ -24,8 +24,14 @@ IF(USE_PCH)
     ADD_PRECOMPILED_HEADER(precompiled_headers qt_kde.h)
 ENDIF(USE_PCH)
 
+INCLUDE_DIRECTORIES(
+    ${ALSA_INC_DIR}
+    ${ASEQMM_INC_DIR}
+)
+
 LINK_DIRECTORIES(
     ${ALSA_LIB_DIR}
+    ${ASEQMM_LIB_DIR}
 )
 
 SET(kmetronome_SRCS 
@@ -64,7 +70,7 @@ ENDIF(USE_PCH)
 TARGET_LINK_LIBRARIES(kmetronome
     ${KDE4_KDEUI_LIBS}
     ${ALSA_LIBS}
-    aseqmm
+    ${ASEQMM_LIBS}
 )
 
 # Install targets

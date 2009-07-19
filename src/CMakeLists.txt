@@ -77,15 +77,6 @@ TARGET_LINK_LIBRARIES(kmetronome
 INSTALL( TARGETS kmetronome
          RUNTIME DESTINATION ${BIN_INSTALL_DIR})
 
-# Icons
-INSTALL( FILES icons/hi16-app-kmetronome.png
-         DESTINATION  ${ICON_INSTALL_DIR}/hicolor/16x16/apps
-         RENAME kmetronome.png )
-
-INSTALL( FILES icons/hi32-app-kmetronome.png
-         DESTINATION  ${ICON_INSTALL_DIR}/hicolor/32x32/apps
-         RENAME kmetronome.png )
-
 INSTALL( FILES net.sourceforge.kmetronome.xml 
          DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 

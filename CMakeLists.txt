@@ -112,6 +112,7 @@ MESSAGE(STATUS "kmetronome ${VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 ADD_SUBDIRECTORY(aseqmm build/aseqmm)
 ADD_SUBDIRECTORY(src build)
+ADD_SUBDIRECTORY(icons build/icons)
 ADD_SUBDIRECTORY(po build/po)
 ADD_SUBDIRECTORY(doc build/doc)
 
@@ -154,6 +155,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND mkdir -p kmetronome-${VERSION}
     COMMAND cp -r cmake_admin kmetronome-${VERSION}
     COMMAND cp -r doc kmetronome-${VERSION}
+    COMMAND cp -r icons kmetronome-${VERSION}
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
     COMMAND cp -rHL aseqmm kmetronome-${VERSION}

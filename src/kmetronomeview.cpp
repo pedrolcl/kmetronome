@@ -39,6 +39,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     setupUi(this);
 
     m_exitbtn->setIcon(KIcon("application-exit"));
+    m_exitbtn->setFocusPolicy(Qt::NoFocus);
     m_configbtn->setIcon(KIcon("configure"));
     m_playbtn->setIcon(KIcon("media-playback-start"));
     m_stopbtn->setIcon(KIcon("media-playback-stop"));
@@ -72,6 +73,8 @@ KmetronomeView::KmetronomeView(QWidget *parent)
              parent, SLOT(optionsPreferences()) );
     connect( m_playbtn, SIGNAL(clicked()), parent, SLOT(play()) );
     connect( m_stopbtn, SIGNAL(clicked()), parent, SLOT(stop()) );
+    connect( m_playbtn, SIGNAL(clicked()), SLOT(play()) );
+    connect( m_stopbtn, SIGNAL(clicked()), SLOT(stop()) );
     connect( m_beatsBar, SIGNAL(valueChanged(int)), parent, SLOT(beatsBarChanged(int)) );
     connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rhythmFigureChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
@@ -143,4 +146,14 @@ void KmetronomeView::updateKnobs(bool styled)
     foreach(Knob* knob, allKnobs) {
         knob->setStyle(styled ? m_dialStyle : NULL);
     }
+}
+
+void KmetronomeView::play()
+{
+    m_stopbtn->setFocus();
+}
+
+void KmetronomeView::stop()
+{
+    m_playbtn->setFocus();
 }

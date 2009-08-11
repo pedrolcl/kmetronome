@@ -21,10 +21,10 @@
 #ifndef SEQUENCERADAPTER_H
 #define SEQUENCERADAPTER_H
 
-#include <client.h>
-#include <event.h>
+#include <alsaclient.h>
+#include <alsaevent.h>
 
-using namespace ALSA::Sequencer;
+USE_ALSASEQ_NAMESPACE
 
 class SequencerAdapter : public QObject, public SequencerEventHandler
 {

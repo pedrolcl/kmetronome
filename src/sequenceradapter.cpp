@@ -23,8 +23,8 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
-#include <queue.h>
-#include <event.h>
+#include <alsaqueue.h>
+#include <alsaevent.h>
 
 #include "sequenceradapter.h"
 #include "defs.h"

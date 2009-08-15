@@ -24,7 +24,7 @@
 #include <alsaclient.h>
 #include <alsaevent.h>
 
-USE_ALSASEQ_NAMESPACE
+using namespace aseqmm;
 
 class SequencerAdapter : public QObject, public SequencerEventHandler
 {

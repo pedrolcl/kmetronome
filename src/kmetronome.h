@@ -62,11 +62,12 @@ private:
     void saveConfiguration();
     void readConfiguration();
 
+    bool m_styledKnobs;
     KmetronomeView *m_view;
+    SequencerAdapter *m_seq;
+
     KAction *m_prefs;
     KToggleAction* m_playStop;
-    SequencerAdapter *m_seq;
-    bool m_styledKnobs;
 };
 
 #endif // _KMETRONOME_H_

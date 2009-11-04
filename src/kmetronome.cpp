@@ -18,6 +18,12 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
+#include "kmetronome.h"
+#include "kmetropreferences.h"
+#include "sequenceradapter.h"
+#include "kmetronomeadaptor.h"
+#include "defs.h"
+
 #include <cmath>
 #include <QLabel>
 #include <QEvent>
@@ -33,32 +39,39 @@
 #include <kconfig.h>
 #include <kglobal.h>
 #include <kxmlguifactory.h>
+#include <kmessagebox.h>
 
-#include "kmetronome.h"
-#include "kmetropreferences.h"
-#include "sequenceradapter.h"
-#include "kmetronomeadaptor.h"
-#include "defs.h"
-
-KMetronome::KMetronome(QWidget *parent) : KXmlGuiWindow(parent)
+KMetronome::KMetronome(QWidget *parent) :
+    KXmlGuiWindow(parent),
+    m_styledKnobs(true),
+    m_view(0),
+    m_seq(0)
 {
     new KmetronomeAdaptor(this);
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/", this);
-
     m_view = new KmetronomeView(this);
-    m_seq = new SequencerAdapter(this);
-
-    connect(m_seq, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
-    connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
-    connect(m_seq, SIGNAL(signalStop()), SLOT(stop()), Qt::QueuedConnection);
-    connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
-    connect(m_seq, SIGNAL(signalNotation(int,int)), SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
-
-    setCentralWidget(m_view);
-    setupActions();
-    setAutoSaveSettings();
-    readConfiguration();
+    try {
+        m_seq = new SequencerAdapter(this);
+        connect(m_seq, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalStop()), SLOT(stop()), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalNotation(int,int)), SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
+        setCentralWidget(m_view);
+        setupActions();
+        setAutoSaveSettings();
+        readConfiguration();
+    } catch (SequencerError& ex) {
+        QString errorstr = i18n("Fatal error from the ALSA sequencer. "
+            "This usually happens when the kernel doesn't have ALSA support, "
+            "or the device node (/dev/snd/seq) doesn't exists, "
+            "or the kernel module (snd_seq) is not loaded. "
+            "Please check your ALSA/MIDI configuration. Returned error was: %1")
+            .arg(ex.qstrError());
+        KMessageBox::error(0, errorstr, i18n("Error"));
+        close();
+    }
 }
 
 void KMetronome::setupActions()
@@ -84,6 +97,7 @@ bool KMetronome::queryExit()
 void KMetronome::saveConfiguration()
 {
     KConfigGroup config = KGlobal::config()->group("Settings");
+    if (m_seq == NULL) return;
     config.writeEntry("channel", m_seq->getChannel());
     config.writeEntry("program", m_seq->getProgram());
     config.writeEntry("weakNote", m_seq->getWeakNote());

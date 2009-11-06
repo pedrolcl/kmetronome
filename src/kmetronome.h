@@ -18,8 +18,8 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#ifndef _KMETRONOME_H_
-#define _KMETRONOME_H_
+#ifndef KMETRONOME_H
+#define KMETRONOME_H
 
 #include <kaction.h>
 #include <ktoggleaction.h>
@@ -70,4 +70,4 @@ private:
     KToggleAction* m_playStop;
 };
 
-#endif // _KMETRONOME_H_
+#endif // KMETRONOME_H

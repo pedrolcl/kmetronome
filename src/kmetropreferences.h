@@ -18,12 +18,10 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#ifndef _KMETROPREF_H_
-#define _KMETROPREF_H_
+#ifndef KMETROPREFERENCES_H
+#define KMETROPREFERENCES_H
 
-#include <kdialog.h>
-#include <kcombobox.h>
-#include <knuminput.h>
+#include <QDialog>
 #include "ui_kmetropreferencesbase.h"
 
 class KMetroPreferences : public QDialog, Ui::KMetroPreferencesBase
@@ -67,4 +65,4 @@ public:
     void setStyledKnobs(bool newValue) { m_styledknobs->setChecked(newValue); }
 };
 
-#endif // _KMETROPREF_H_
+#endif // KMETROPREFERENCES_H

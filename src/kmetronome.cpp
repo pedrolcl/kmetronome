@@ -67,8 +67,8 @@ KMetronome::KMetronome(QWidget *parent) :
             "This usually happens when the kernel doesn't have ALSA support, "
             "or the device node (/dev/snd/seq) doesn't exists, "
             "or the kernel module (snd_seq) is not loaded. "
-            "Please check your ALSA/MIDI configuration. Returned error was: %1")
-            .arg(ex.qstrError());
+            "Please check your ALSA/MIDI configuration. Returned error was: %1",
+            ex.qstrError());
         KMessageBox::error(0, errorstr, i18n("Error"));
         close();
     }
@@ -167,46 +167,49 @@ void KMetronome::readConfiguration()
 
 void KMetronome::optionsPreferences()
 {
-	KMetroPreferences dlg;
-	dlg.fillOutputConnections(m_seq->outputConnections());
-	dlg.fillInputConnections(m_seq->inputConnections());
-	dlg.setAutoConnect(m_seq->getAutoConnect());
+	QPointer<KMetroPreferences> dlg = new KMetroPreferences(this);
+	dlg->fillOutputConnections(m_seq->outputConnections());
+	dlg->fillInputConnections(m_seq->inputConnections());
+	dlg->setAutoConnect(m_seq->getAutoConnect());
 	QString conn = m_seq->getOutputConn();
 	if (conn != NULL && !conn.isEmpty())
-		dlg.setOutputConnection(conn);
+		dlg->setOutputConnection(conn);
 	conn = m_seq->getInputConn();
 	if (conn != NULL && !conn.isEmpty())
-		dlg.setInputConnection(conn);
-	dlg.setChannel(m_seq->getChannel());
-	dlg.setProgram(m_seq->getProgram());
-	dlg.setResolution(m_seq->getResolution());
-	dlg.setWeakNote(m_seq->getWeakNote());
-	dlg.setStrongNote(m_seq->getStrongNote());
-	dlg.setSendNoteOff(m_seq->getSendNoteOff());
-	dlg.setDuration(m_seq->getNoteDuration());
-	dlg.setStyledKnobs(m_styledKnobs);
-	if (dlg.exec())
+		dlg->setInputConnection(conn);
+	dlg->setChannel(m_seq->getChannel());
+	dlg->setProgram(m_seq->getProgram());
+	dlg->setResolution(m_seq->getResolution());
+	dlg->setWeakNote(m_seq->getWeakNote());
+	dlg->setStrongNote(m_seq->getStrongNote());
+	dlg->setSendNoteOff(m_seq->getSendNoteOff());
+	dlg->setDuration(m_seq->getNoteDuration());
+	dlg->setStyledKnobs(m_styledKnobs);
+	if (dlg->exec() == QDialog::Accepted)
 	{
 		m_seq->disconnect_output();
 		m_seq->disconnect_input();
-		m_seq->setAutoConnect(dlg.getAutoConnect());
-		m_seq->setOutputConn(dlg.getOutputConnection());
-		m_seq->setInputConn(dlg.getInputConnection());
-		m_seq->setChannel(dlg.getChannel());
-		m_seq->setProgram(dlg.getProgram());
-		m_seq->setResolution(dlg.getResolution());
-		m_seq->setWeakNote(dlg.getWeakNote());
-		m_seq->setStrongNote(dlg.getStrongNote());
-		m_seq->setSendNoteOff(dlg.getSendNoteOff());
-		m_seq->setNoteDuration(dlg.getDuration());
-		m_seq->connect_output();
-		m_seq->connect_input();
-		m_seq->metronome_set_tempo();
-		if (m_styledKnobs != dlg.getStyledKnobs()) {
-		    m_styledKnobs = dlg.getStyledKnobs();
-		    m_view->updateKnobs(m_styledKnobs);
+		if (dlg != NULL) {
+            m_seq->setAutoConnect(dlg->getAutoConnect());
+            m_seq->setOutputConn(dlg->getOutputConnection());
+            m_seq->setInputConn(dlg->getInputConnection());
+            m_seq->setChannel(dlg->getChannel());
+            m_seq->setProgram(dlg->getProgram());
+            m_seq->setResolution(dlg->getResolution());
+            m_seq->setWeakNote(dlg->getWeakNote());
+            m_seq->setStrongNote(dlg->getStrongNote());
+            m_seq->setSendNoteOff(dlg->getSendNoteOff());
+            m_seq->setNoteDuration(dlg->getDuration());
+            m_seq->connect_output();
+            m_seq->connect_input();
+            m_seq->metronome_set_tempo();
+            if (m_styledKnobs != dlg->getStyledKnobs()) {
+                m_styledKnobs = dlg->getStyledKnobs();
+                m_view->updateKnobs(m_styledKnobs);
+            }
 		}
 	}
+	delete dlg;
 }
 
 void KMetronome::updateDisplay(int bar, int beat)

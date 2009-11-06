@@ -18,6 +18,12 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
+#include "kmetronomeview.h"
+#include "kmetronome.h"
+#include "classicstyle.h"
+#include "knob.h"
+#include "defs.h"
+
 #include <QLCDNumber>
 #include <QMouseEvent>
 
@@ -26,12 +32,6 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kinputdialog.h>
-
-#include "knob.h"
-#include "classicstyle.h"
-#include "kmetronomeview.h"
-#include "kmetronome.h"
-#include "defs.h"
 
 KmetronomeView::KmetronomeView(QWidget *parent)
      : QWidget(parent), Ui::KmetronomeViewBase()

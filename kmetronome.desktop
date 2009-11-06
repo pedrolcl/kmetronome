@@ -1,9 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=KMetronome
 Exec=kmetronome
 Icon=kmetronome
 Type=Application
 Comment=KDE MIDI Metronome Using ALSA Sequencer
 Comment[es]=Metrónomo MIDI de KDE utilizando el secuenciador ALSA
-Categories=AudioVideo;Music;Education
+Categories=AudioVideo;Audio;Midi;Education;Music;

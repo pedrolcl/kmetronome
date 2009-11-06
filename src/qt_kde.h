@@ -19,8 +19,8 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#ifndef QT_KDE_H_
-#define QT_KDE_H_
+#ifndef QT_KDE_H
+#define QT_KDE_H
 
 // ALSA library
 #include <alsa/asoundlib.h>
@@ -54,6 +54,7 @@
 #include <QtCore>
 #include <QtGui>
 #include <QtDBus>
+#include <QtSvg>
 
 // KDE4 headers
 
@@ -86,4 +87,4 @@
 #include <kxmlguifactory.h>
 #include <kxmlguiwindow.h>
 
-#endif /*QT_KDE_H_*/
+#endif /*QT_KDE_H*/

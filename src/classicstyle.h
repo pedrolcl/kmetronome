@@ -29,10 +29,10 @@
     with this program; If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CLASSICTYLE_H_
-#define CLASSICTYLE_H_
+#ifndef CLASSICSTYLE_H
+#define CLASSICSTYLE_H
 
-#include <QtGui>
+#include <QCommonStyle>
 
 class ClassicStyle : public QCommonStyle
 {
@@ -45,4 +45,4 @@ public:
 
 };
 
-#endif /*CLASSICTYLE_H_*/
+#endif /*CLASSICSTYLE_H*/

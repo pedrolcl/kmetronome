@@ -18,16 +18,16 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include <QStringList>
-#include <kapplication.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include "sequenceradapter.h"
+#include "defs.h"
 
 #include <alsaqueue.h>
 #include <alsaevent.h>
 
-#include "sequenceradapter.h"
-#include "defs.h"
+#include <QStringList>
+#include <kapplication.h>
+#include <klocale.h>
+#include <kmessagebox.h>
 
 SequencerAdapter::SequencerAdapter(QObject *parent) :
 	QObject(parent),

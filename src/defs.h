@@ -18,8 +18,8 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#ifndef DEFS_H_
-#define DEFS_H_
+#ifndef DEFS_H
+#define DEFS_H
 
 static const int TEMPO_MIN(25);
 static const int TEMPO_MAX(250);
@@ -45,4 +45,4 @@ static const int TRANSPORT_CONT(2);
 static const int VOLUME_CC(7);
 static const int BALANCE_CC(10);
 
-#endif /*DEFS_H_*/
+#endif /*DEFS_H*/

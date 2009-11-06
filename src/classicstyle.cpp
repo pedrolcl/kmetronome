@@ -29,10 +29,11 @@
     with this program; If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QtGui>
-#include <iostream>
-#include <cmath>
 #include "classicstyle.h"
+
+#include <cmath>
+#include <QPainter>
+#include <QStyleOptionSlider>
 
 #define DIAL_MIN (0.25 * M_PI)
 #define DIAL_MAX (1.75 * M_PI)
@@ -116,7 +117,6 @@ ClassicStyle::drawComplexControl(ComplexControl cc, const QStyleOptionComplex *o
     // Tick notches...
 
     if (dial->subControls & QStyle::SC_DialTickmarks) {
-    	//	std::cerr << "Notches visible" << std::endl;
     	pen.setColor(pal.dark().color());
     	pen.setWidth(scale);
     	p->setPen(pen);

@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?atid=731542&group_id=134956\n"
-"POT-Creation-Date: 2008-11-29 12:21+0100\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?"
+"atid=731542&group_id=134956\n"
+"POT-Creation-Date: 2009-12-11 13:00+0100\n"
 "PO-Revision-Date: 2008-11-29 12:28+0100\n"
 "Last-Translator: Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>\n"
 "Language-Team: Spanish\n"
@@ -16,11 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: src/kmetronomeview.cpp:131
+#: src/kmetronome.cpp:66
+msgid ""
+"Fatal error from the ALSA sequencer. This usually happens when the kernel "
+"doesn't have ALSA support, or the device node (/dev/snd/seq) doesn't exists, "
+"or the kernel module (snd_seq) is not loaded. Please check your ALSA/MIDI "
+"configuration. Returned error was: %1"
+msgstr ""
+"Error fatal del secuenciador ALSA. Esto ocurre normalmente cuando el núcleo "
+"no tiene soporte ALSA, o el nodo de dispositivo (/dev/snd/seq) no existe, o "
+"bien el módulo del núcleo (snd_seq) no ha sido cargado. Por favor, compruebe "
+"la configuración de ALSA y MIDI.El error devuelto ha sido: %1"
+
+#: src/kmetronome.cpp:72
+msgid "Error"
+msgstr ""
+
+#: src/kmetronome.cpp:85
+msgid "&Play/Stop"
+msgstr ""
+
+#: src/kmetronomeview.cpp:130
 msgid "Tempo"
 msgstr ""
 
-#: src/kmetronomeview.cpp:131
+#: src/kmetronomeview.cpp:130
 msgid "Enter new Tempo:"
 msgstr "Introducir nuevo tempo:"
 
@@ -40,107 +61,85 @@ msgstr ""
 msgid "Pedro Lopez-Cabanillas"
 msgstr ""
 
-#: src/main.cpp:70
-msgid ""
-"Fatal error from the ALSA sequencer. This usually happens when the kernel "
-"doesn't have ALSA support, or the device node (/dev/snd/seq) doesn't exists, "
-"or the kernel module (snd_seq) is not loaded. Please check your ALSA/MIDI "
-"configuration. Returned error was: %1"
-msgstr ""
-"Error fatal del secuenciador ALSA. Esto ocurre normalmente cuando el núcleo "
-"no tiene soporte ALSA, o el nodo de dispositivo (/dev/snd/seq) no existe, "
-"o bien el módulo del núcleo (snd_seq) no ha sido cargado. Por favor, compruebe "
-"la configuración de ALSA y MIDI.El error devuelto ha sido: %1"
-
-#: src/main.cpp:76
-msgid "Error"
-msgstr ""
-
-#: src/sequenceradapter.cpp:53
+#: src/sequenceradapter.cpp:52
 msgid "No connection"
 msgstr "Sin conexión"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 56
+#. i18n: file: src/kmetronomeviewbase.ui:57
+#. i18n: ectx: property (windowTitle), widget (QWidget, KmetronomeViewBase)
 #: po/rc.cpp:3
 msgid "MIDI Metronome"
 msgstr "Metrónomo MIDI"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 70
+#. i18n: file: src/kmetronomeviewbase.ui:71
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_playbtn)
 #: po/rc.cpp:6
 msgid "This button starts playing the rhythm pattern"
 msgstr "Este botón inicia la reproducción del patrón rítmico"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 73
+#. i18n: file: src/kmetronomeviewbase.ui:74
+#. i18n: ectx: property (text), widget (KPushButton, m_playbtn)
 #: po/rc.cpp:9
 msgid "Play"
 msgstr "Reproducir"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 89
+#. i18n: file: src/kmetronomeviewbase.ui:90
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_stopbtn)
 #: po/rc.cpp:12
 msgid "This button stops playing the rhythm pattern"
 msgstr "Este botón detiene la reproducción del patrón rítmico"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 92
+#. i18n: file: src/kmetronomeviewbase.ui:93
+#. i18n: ectx: property (text), widget (KPushButton, m_stopbtn)
 #: po/rc.cpp:15
 msgid "Stop"
 msgstr "Parar"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 105
+#. i18n: file: src/kmetronomeviewbase.ui:106
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_configbtn)
 #: po/rc.cpp:18
 msgid "This button opens the configuration window"
 msgstr "Este botón abre la ventana de configuración"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 108
+#. i18n: file: src/kmetronomeviewbase.ui:109
+#. i18n: ectx: property (text), widget (KPushButton, m_configbtn)
 #: po/rc.cpp:21
 msgid "Config"
 msgstr "Configuración"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 121
+#. i18n: file: src/kmetronomeviewbase.ui:122
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_exitbtn)
 #: po/rc.cpp:24
 msgid "This button exits the program"
 msgstr "Este botón termina el programa"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 124
+#. i18n: file: src/kmetronomeviewbase.ui:125
+#. i18n: ectx: property (text), widget (KPushButton, m_exitbtn)
 #: po/rc.cpp:27
 msgid "Exit"
 msgstr "Terminar"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 154
+#. i18n: file: src/kmetronomeviewbase.ui:161
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_measureLCD)
 #: po/rc.cpp:30
-msgid "Measure : Beat"
-msgstr "Compás : Parte"
-
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 176
-#: po/rc.cpp:33
 msgid "Number of measures (bars) and beats played from beginning"
 msgstr "Número de compases y partes ejecutadas desde el principio"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 196
-#: po/rc.cpp:36
+#. i18n: file: src/kmetronomeviewbase.ui:181
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: po/rc.cpp:33
 msgid "Beats/Bar"
 msgstr "Partes/Compás"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 212
-#: po/rc.cpp:39
+#. i18n: file: src/kmetronomeviewbase.ui:197
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: po/rc.cpp:36
 msgid "Rhythm figure"
 msgstr "Figura rítmica"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 236
-#: po/rc.cpp:42
+#. i18n: file: src/kmetronomeviewbase.ui:221
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_beatsBar)
+#: po/rc.cpp:39
 msgid ""
 "This is the number of parts for each measure.<br>\n"
 "Values are from 1 to 32.<br>\n"
@@ -150,9 +149,9 @@ msgstr ""
 "Valores admisibles entre 1 y 32<br>\n"
 "Este es el numerador de la especificación de ritmo."
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 254
-#: po/rc.cpp:47
+#. i18n: file: src/kmetronomeviewbase.ui:239
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_figure)
+#: po/rc.cpp:44
 msgid ""
 "This is the part figure for the rhythm.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
@@ -162,75 +161,75 @@ msgstr ""
 "Los valores significan 1, 2, 4, 8, 16, 32 y 64.<br>\n"
 "Es el denominador de la especificación de ritmo."
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 264
-#: po/rc.cpp:52
+#. i18n: file: src/kmetronomeviewbase.ui:249
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:49
 msgid "Whole"
 msgstr "Redonda "
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 273
-#: po/rc.cpp:55
+#. i18n: file: src/kmetronomeviewbase.ui:258
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:52
 msgid "Half"
 msgstr "Blanca"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 282
-#: po/rc.cpp:58
+#. i18n: file: src/kmetronomeviewbase.ui:267
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:55
 msgid "Quarter"
 msgstr "Negra"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 291
-#: po/rc.cpp:61
+#. i18n: file: src/kmetronomeviewbase.ui:276
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:58
 msgid "Eighth"
 msgstr "Corchea"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 300
-#: po/rc.cpp:64
+#. i18n: file: src/kmetronomeviewbase.ui:285
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:61
 msgid "Sixteenth"
 msgstr "Semicorchea"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 309
-#: po/rc.cpp:67
+#. i18n: file: src/kmetronomeviewbase.ui:294
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:64
 msgid "Thirty-Second"
 msgstr "Fusa"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 318
-#: po/rc.cpp:70
+#. i18n: file: src/kmetronomeviewbase.ui:303
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:67
 msgid "Sixty-Fourth"
 msgstr "Semifusa"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 334
-#: po/rc.cpp:73
+#. i18n: file: src/kmetronomeviewbase.ui:319
+#. i18n: ectx: property (text), widget (QLabel, label_1)
+#: po/rc.cpp:70
 msgid "Weak"
 msgstr "Débil"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 347
-#: po/rc.cpp:76
+#. i18n: file: src/kmetronomeviewbase.ui:332
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: po/rc.cpp:73
 msgid "Strong"
 msgstr "Fuerte"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 360
-#: po/rc.cpp:79
+#. i18n: file: src/kmetronomeviewbase.ui:345
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: po/rc.cpp:76
 msgid "Volume"
 msgstr "Volumen"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 373
-#: po/rc.cpp:82
+#. i18n: file: src/kmetronomeviewbase.ui:358
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: po/rc.cpp:79
 msgid "Pan"
 msgstr "Balance"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 392
-#: po/rc.cpp:85
+#. i18n: file: src/kmetronomeviewbase.ui:377
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial1)
+#: po/rc.cpp:82
 msgid ""
 "This is the velocity of the weak notes in the rhythm pattern (all of them, "
 "except the first one)"
@@ -238,27 +237,29 @@ msgstr ""
 "Esta es la velocidad de las notas débiles en el patrón rítmico (todas ellas "
 "excepto la primera)"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 417
-#: po/rc.cpp:88
-msgid "This is the velocity of the strong note in the rhythm pattern (the first one)"
-msgstr "Esta es la velocidad de las notas fuertes en el patrón rítmico (la primera)"
+#. i18n: file: src/kmetronomeviewbase.ui:402
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial2)
+#: po/rc.cpp:85
+msgid ""
+"This is the velocity of the strong note in the rhythm pattern (the first one)"
+msgstr ""
+"Esta es la velocidad de las notas fuertes en el patrón rítmico (la primera)"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 442
-#: po/rc.cpp:91
+#. i18n: file: src/kmetronomeviewbase.ui:427
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial3)
+#: po/rc.cpp:88
 msgid "This is the MIDI volume control (CC7)"
 msgstr "Este es el control de volumen (CC7)"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 467
-#: po/rc.cpp:94
+#. i18n: file: src/kmetronomeviewbase.ui:452
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial4)
+#: po/rc.cpp:91
 msgid "This is the MIDI pan control (CC10)"
 msgstr "Este es el control de balance (CC10)"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 494
-#: po/rc.cpp:97
+#. i18n: file: src/kmetronomeviewbase.ui:479
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_air)
+#: po/rc.cpp:94
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
 "REC-html40/strict.dtd\">\n"
@@ -280,25 +281,25 @@ msgstr ""
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Este es el control de<span style=\" "
-"font-style:italic;\">aire</span> para cambiar el tempo value usando "
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Este es el control de<span "
+"style=\" font-style:italic;\">aire</span> para cambiar el tempo value usando "
 "nombres musicales</p></body></html>"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 513
-#: po/rc.cpp:104
+#. i18n: file: src/kmetronomeviewbase.ui:498
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_tempoLCD)
+#: po/rc.cpp:101
 msgid "The current <i>tempo</i> value"
 msgstr "El valor actual del <i>tempo</i>"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 536
-#: po/rc.cpp:107
+#. i18n: file: src/kmetronomeviewbase.ui:521
+#. i18n: ectx: property (text), widget (QLabel, textLabel1_2)
+#: po/rc.cpp:104
 msgid "Tempo (in quarters per minute)"
 msgstr "Tempo (en negras por minuto)"
 
-#. i18n: tag string
-#. i18n: file src/kmetronomeviewbase.ui line 562
-#: po/rc.cpp:110
+#. i18n: file: src/kmetronomeviewbase.ui:547
+#. i18n: ectx: property (whatsThis), widget (QSlider, m_tempo)
+#: po/rc.cpp:107
 msgid ""
 "This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
 "Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
@@ -307,15 +308,15 @@ msgstr ""
 "Los valores van desde 25 hasta 250 negras por minuto. (<i>unidades del "
 "Metrónomo de Mälzel</i>)."
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 33
-#: po/rc.cpp:114
+#. i18n: file: src/kmetropreferencesbase.ui:33
+#. i18n: ectx: property (windowTitle), widget (QDialog, KMetroPreferencesBase)
+#: po/rc.cpp:111
 msgid "Preferences"
 msgstr "Preferencias"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 42
-#: po/rc.cpp:117
+#. i18n: file: src/kmetropreferencesbase.ui:42
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_autoconn)
+#: po/rc.cpp:114
 msgid ""
 "If this checkbox is activated, the the program will remember the connections "
 "for the input and output ports, and try to reconnect them at program startup."
@@ -324,74 +325,80 @@ msgstr ""
 "puertos de entrada y de salida, e intentará su reconexión al inicio del "
 "programa."
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 45
-#: po/rc.cpp:120
+#. i18n: file: src/kmetropreferencesbase.ui:45
+#. i18n: ectx: property (text), widget (QCheckBox, m_autoconn)
+#: po/rc.cpp:117
 msgid "Automatic ports connection on startup"
 msgstr "Conexión automática de los puertos al iniciar"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 66
-#: po/rc.cpp:123
+#. i18n: file: src/kmetropreferencesbase.ui:66
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: po/rc.cpp:120
 msgid "Output port connection:"
 msgstr "Conexión de la salida:"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 105
-#: po/rc.cpp:126
+#. i18n: file: src/kmetropreferencesbase.ui:105
+#. i18n: ectx: property (text), widget (QLabel, textLabel1_2)
+#: po/rc.cpp:123
 msgid "Optional Input port conn:"
 msgstr "Conexión opcional de la entrada:"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 144
-#: po/rc.cpp:129
+#. i18n: file: src/kmetropreferencesbase.ui:144
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: po/rc.cpp:126
 msgid "Channel"
 msgstr "Canal"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 193
-#: po/rc.cpp:132
+#. i18n: file: src/kmetropreferencesbase.ui:193
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: po/rc.cpp:129
 msgid "Weak note"
 msgstr "Nota débil"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 232
-#: po/rc.cpp:135
+#. i18n: file: src/kmetropreferencesbase.ui:232
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: po/rc.cpp:132
 msgid "Program"
 msgstr "Programa"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 281
-#: po/rc.cpp:138
+#. i18n: file: src/kmetropreferencesbase.ui:281
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: po/rc.cpp:135
 msgid "Strong note"
 msgstr "Note fuerte"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 314
-#: po/rc.cpp:141
+#. i18n: file: src/kmetropreferencesbase.ui:314
+#. i18n: ectx: property (text), widget (QLabel, textLabel7)
+#: po/rc.cpp:138
 msgid "Resolution"
 msgstr "Resolución"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 369
-#: po/rc.cpp:144
+#. i18n: file: src/kmetropreferencesbase.ui:369
+#. i18n: ectx: property (text), widget (QLabel, textLabel8)
+#: po/rc.cpp:141
 msgid "Note duration"
 msgstr "Duración"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 402
-#: po/rc.cpp:147
+#. i18n: file: src/kmetropreferencesbase.ui:402
+#. i18n: ectx: property (text), widget (QCheckBox, m_use_noteoff)
+#: po/rc.cpp:144
 msgid "Send NOTE OFF events"
 msgstr "Emitir eventos NOTE OFF"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 454
+#. i18n: file: src/kmetropreferencesbase.ui:428
+#. i18n: ectx: property (text), widget (QCheckBox, m_styledknobs)
+#: po/rc.cpp:147
+msgid "Styled Knobs"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:464
+#. i18n: ectx: property (text), widget (QPushButton, m_buttonOk)
 #: po/rc.cpp:150
 msgid "&OK"
 msgstr "&Aceptar"
 
-#. i18n: tag string
-#. i18n: file src/kmetropreferencesbase.ui line 470
+#. i18n: file: src/kmetropreferencesbase.ui:480
+#. i18n: ectx: property (text), widget (QPushButton, m_buttonCancel)
 #: po/rc.cpp:153
 msgid "&Cancel"
 msgstr "&Cancelar"
@@ -406,3 +413,5 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "plcl@users.sf.net"
 
+#~ msgid "Measure : Beat"
+#~ msgstr "Compás : Parte"

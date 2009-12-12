@@ -1,1 +1,6 @@
+Release 0.9.1 (2009-12-12)
+* new configuration option: Styled Knobs
+* enabled dialog: Configure Shortcuts 
+* feature Request #2792930 - new toggle action "play/stop"
+* fix for bug #2795019 - wrong button focused after "play/stop"
  

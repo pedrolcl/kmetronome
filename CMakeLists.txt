@@ -25,7 +25,7 @@ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 SET (VERSION_MAJOR "0")
 SET (VERSION_MINOR "9")
 SET (VERSION_PATCH "1")
-SET (VERSION_SUFFIX "cvs")
+SET (VERSION_SUFFIX "")
 SET (VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}${VERSION_SUFFIX})
 ADD_DEFINITIONS(-D'VERSION="${VERSION}"')
 
@@ -159,7 +159,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
     COMMAND cp -rHL aseqmm kmetronome-${VERSION}
-    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
+    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
     COMMAND tar -cj --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
     COMMAND tar -cz --exclude CVS --exclude .cvsignore -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
     COMMAND rm -rf kmetronome-${VERSION}

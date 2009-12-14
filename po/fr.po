@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?"
-"atid=731542&group_id=134956\n"
+"Report-Msgid-Bugs-To: http://sourceforge."
+"net/tracker/?atid=731542&group_id=134956\n"
 "POT-Creation-Date: 2009-12-14 10:53+0100\n"
-"PO-Revision-Date: 2009-12-13 21:46+0100\n"
+"PO-Revision-Date: 2009-12-14 11:27+0100\n"
 "Last-Translator: Julien Richard-Foy <julien.rf@no-log.org>\n"
 "Language-Team: fr <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,6 @@ msgstr "Nombre de mesures et de notes jouées depuis le début"
 #. i18n: file: src/kmetronomeviewbase.ui:196
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: po/rc.cpp:33
-#, fuzzy
 msgid "Beats/Bar:"
 msgstr "Notes par mesure :"
 
@@ -147,7 +146,6 @@ msgstr ""
 #. i18n: file: src/kmetronomeviewbase.ui:236
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: po/rc.cpp:41
-#, fuzzy
 msgid "Rhythm figure:"
 msgstr "Figure rythmique :"
 
@@ -337,42 +335,36 @@ msgstr "Connexion (optionnelle) du port d'entrée :"
 #. i18n: file: src/kmetropreferencesbase.ui:149
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: po/rc.cpp:126
-#, fuzzy
 msgid "Channel:"
 msgstr "Canal :"
 
 #. i18n: file: src/kmetropreferencesbase.ui:187
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: po/rc.cpp:129
-#, fuzzy
 msgid "Program:"
 msgstr "Programme :"
 
 #. i18n: file: src/kmetropreferencesbase.ui:219
 #. i18n: ectx: property (text), widget (QLabel, textLabel7)
 #: po/rc.cpp:132
-#, fuzzy
 msgid "Resolution:"
 msgstr "Résolution :"
 
 #. i18n: file: src/kmetropreferencesbase.ui:274
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: po/rc.cpp:135
-#, fuzzy
 msgid "Weak note:"
 msgstr "Note du temps faible :"
 
 #. i18n: file: src/kmetropreferencesbase.ui:306
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: po/rc.cpp:138
-#, fuzzy
 msgid "Strong note:"
 msgstr "Note du temps fort :"
 
 #. i18n: file: src/kmetropreferencesbase.ui:338
 #. i18n: ectx: property (text), widget (QLabel, textLabel8)
 #: po/rc.cpp:141
-#, fuzzy
 msgid "Note duration:"
 msgstr "Durée d'une note :"
 
@@ -409,3 +401,4 @@ msgstr "Julien Richard-Foy"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "julien.rf@no-log.org"
+

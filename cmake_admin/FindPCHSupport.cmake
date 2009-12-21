@@ -1,21 +1,26 @@
-# KMetronome - ALSA Sequencer MIDI metronome
 # Copyright (C) 2005-2009 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-# MA 02110-1301, USA
-
 # Try to find precompiled headers support for GCC 3.4 and 4.x
 # Once done this will define:
 #
@@ -25,17 +30,19 @@
 # Macro:
 #   ADD_PRECOMPILED_HEADER
 
+cmake_policy(SET CMP0007 OLD)
+
 IF(CMAKE_COMPILER_IS_GNUCXX)
     EXEC_PROGRAM(${CMAKE_CXX_COMPILER}
                  ARGS -dumpversion
                  OUTPUT_VARIABLE gcc_compiler_version)
-    IF(gcc_compiler_version MATCHES "4\\.[0-9]\\.[0-9]")
+    IF(gcc_compiler_version MATCHES "4\\.[0-9].*")
         SET(PCHSupport_FOUND TRUE)
-    ELSE(gcc_compiler_version MATCHES "4\\.[0-9]\\.[0-9]")
-        IF(gcc_compiler_version MATCHES "3\\.4\\.[0-9]")
+    ELSE(gcc_compiler_version MATCHES "4\\.[0-9].*")
+        IF(gcc_compiler_version MATCHES "3\\.4.*")
             SET(PCHSupport_FOUND TRUE)
-        ENDIF(gcc_compiler_version MATCHES "3\\.4\\.[0-9]")
-    ENDIF(gcc_compiler_version MATCHES "4\\.[0-9]\\.[0-9]")
+        ENDIF(gcc_compiler_version MATCHES "3\\.4.*")
+    ENDIF(gcc_compiler_version MATCHES "4\\.[0-9].*")
 ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 
 MACRO(ADD_PRECOMPILED_HEADER _targetName _input)
@@ -51,19 +58,31 @@ MACRO(ADD_PRECOMPILED_HEADER _targetName _input)
     STRING(TOUPPER "CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}" _flags_var_name)
     SET(_compiler_FLAGS ${CMAKE_CXX_FLAGS} ${${_flags_var_name}})
     SEPARATE_ARGUMENTS(_compiler_FLAGS)
+    GET_DIRECTORY_PROPERTY(_flags COMPILE_FLAGS)
+    SEPARATE_ARGUMENTS(_flags)
+    LIST(APPEND _compiler_FLAGS ${_flags})
     #MESSAGE("_compiler_FLAGS: ${_compiler_FLAGS}")
     GET_DIRECTORY_PROPERTY(_dir_FLAGS INCLUDE_DIRECTORIES)
     FOREACH(item ${_dir_FLAGS})
         LIST(APPEND _include_FLAGS "-I${item}")
-    ENDFOREACH(item)    
+    ENDFOREACH(item)
     #MESSAGE("_include_FLAGS: ${_include_FLAGS}")
     GET_DIRECTORY_PROPERTY(_definitions24 DEFINITIONS)
+    #MESSAGE("_definitions24: ${_definitions24}")
     GET_DIRECTORY_PROPERTY(_definitions26 COMPILE_DEFINITIONS)
+    #MESSAGE("_definitions26: ${_definitions26}")
     SET(_definitions ${_definitions24})
     SEPARATE_ARGUMENTS(_definitions)
     FOREACH(def ${_definitions26})
         LIST(APPEND _definitions "-D${def}")
     ENDFOREACH(def)
+    STRING(TOUPPER "COMPILE_DEFINITIONS_${CMAKE_BUILD_TYPE}" _defs_var_name)
+    GET_DIRECTORY_PROPERTY(_definitions_buildtype ${_defs_var_name})
+    #MESSAGE("_definitions_buildtype: ${_definitions_buildtype}")
+    FOREACH(def ${_definitions_buildtype})
+        LIST(APPEND _definitions "-D${def}")
+    ENDFOREACH(def)
+    LIST(REMOVE_DUPLICATES _definitions)    
     #MESSAGE("_definitions: ${_definitions}")
     ADD_CUSTOM_COMMAND(
         OUTPUT ${_output}
@@ -75,6 +94,5 @@ MACRO(ADD_PRECOMPILED_HEADER _targetName _input)
            -o ${_output} ${_source}
         DEPENDS ${_source} )
     ADD_CUSTOM_TARGET(${_targetName} DEPENDS ${_output})
-    #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include ${_name} -Winvalid-pch -H")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include ${_name} -Winvalid-pch")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -include ${CMAKE_CURRENT_BINARY_DIR}/${_name} -Winvalid-pch")
 ENDMACRO(ADD_PRECOMPILED_HEADER)

@@ -67,17 +67,16 @@
 
 
 
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+<storageModule moduleId="org.eclipse.cdt.core.pathentry">
+<pathentry kind="src" path="aseqmm"/>
+<pathentry kind="src" path="src"/>
+<pathentry kind="out" path="build"/>
+<pathentry kind="con" path="org.eclipse.cdt.make.core.DISCOVERED_SCANNER_INFO"/>
+</storageModule>
 <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 <buildTargets>
-<target name="distclean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>make</buildCommand>
-<buildArguments>VERBOSE=1</buildArguments>
-<buildTarget>distclean</buildTarget>
-<stopOnError>false</stopOnError>
-<useDefaultCommand>true</useDefaultCommand>
-<runAllBuilders>false</runAllBuilders>
-</target>
-<target name="all" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="all" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>make</buildCommand>
 <buildArguments>VERBOSE=1</buildArguments>
 <buildTarget>all</buildTarget>
@@ -85,21 +84,23 @@
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>
 </target>
-<target name="cmake" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="cmake" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>cmake</buildCommand>
 <buildArguments/>
-<buildTarget>. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_FLAGS_DEBUG="-g"</buildTarget>
+<buildTarget>.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr</buildTarget>
 <stopOnError>false</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>
 </target>
+<target name="distclean" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>make</buildCommand>
+<buildArguments>VERBOSE=1</buildArguments>
+<buildTarget>distclean</buildTarget>
+<stopOnError>false</stopOnError>
+<useDefaultCommand>true</useDefaultCommand>
+<runAllBuilders>false</runAllBuilders>
+</target>
 </buildTargets>
-</storageModule>
-<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
-<storageModule moduleId="org.eclipse.cdt.core.pathentry">
-<pathentry kind="src" path=""/>
-<pathentry kind="out" path=""/>
-<pathentry kind="con" path="org.eclipse.cdt.make.core.DISCOVERED_SCANNER_INFO"/>
 </storageModule>
 </cconfiguration>
 </storageModule>

@@ -8,15 +8,19 @@ You need the following software:
 * CMake
     Debian: "cmake"
     http://packages.debian.org/sid/cmake
-    
+
 * pkg-config
     Debian: "pkg-config"
     http://packages.debian.org/sid/pkg-config
-    
+
+* msgfmt
+    Debian: "gettext"    
+    http://packages.debian.org/sid/gettext    
+
 * Qt4 libraries
     Debian: "libqt4-dev"
     http://packages.debian.org/sid/libqt4-dev
-    
+
 * KDE4 SDK and libraries
     Debian: "kdesdk", "kdelibs5-dev"
     http://packages.debian.org/sid/kdesdk
@@ -64,7 +68,8 @@ It will become an independent shared library some future day.
 
 4. Configure and compile
 
-$ cmake . -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+$ cd build
+$ cmake .. -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
 $ make VERBOSE=1
 
 5. Hack and enjoy!

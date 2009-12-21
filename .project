@@ -10,39 +10,15 @@
 			<triggers>clean,full,incremental,</triggers>
 			<arguments>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
-					<value>clean</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.enableCleanBuild</key>
-					<value>true</value>
+					<key>org.eclipse.cdt.core.errorOutputParser</key>
+					<value>org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.append_environment</key>
 					<value>true</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.stopOnError</key>
-					<value>false</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.buildCommand</key>
-					<value>make</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.enabledIncrementalBuild</key>
-					<value>true</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.build.command</key>
-					<value>make</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.build.target.inc</key>
-					<value>all</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.incrementalBuildTarget</key>
+					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
 					<value>all</value>
 				</dictionary>
 				<dictionary>
@@ -50,28 +26,12 @@
 					<value>VERBOSE=1</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.build.target.full</key>
-					<value>clean all</value>
+					<key>org.eclipse.cdt.make.core.build.command</key>
+					<value>make</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value></value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.environment</key>
-					<value></value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
-					<value>false</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.enableFullBuild</key>
-					<value>true</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.enableAutoBuild</key>
-					<value>false</value>
+					<key>org.eclipse.cdt.make.core.build.location</key>
+					<value>${workspace_loc:/kmetronome}/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.target.auto</key>
@@ -82,20 +42,60 @@
 					<value>clean</value>
 				</dictionary>
 				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.target.full</key>
+					<value>clean all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.target.inc</key>
+					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.buildCommand</key>
+					<value>make</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.buildLocation</key>
+					<value></value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
+					<value>clean</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableAutoBuild</key>
+					<value>false</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableCleanBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableFullBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enabledIncrementalBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.environment</key>
+					<value></value>
+				</dictionary>
+				<dictionary>
 					<key>org.eclipse.cdt.make.core.fullBuildTarget</key>
 					<value>clean all</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.build.location</key>
-					<value>/kmetronome/build</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.core.errorOutputParser</key>
-					<value>org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
+					<key>org.eclipse.cdt.make.core.incrementalBuildTarget</key>
 					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.stopOnError</key>
+					<value>false</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
+					<value>false</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>
@@ -103,15 +103,11 @@
 			<name>org.eclipse.cdt.make.core.ScannerConfigBuilder</name>
 			<arguments>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.siProblemGenerationEnabled</key>
+					<key>org.eclipse.cdt.make.core.ScannerConfigDiscoveryEnabled</key>
 					<value>true</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.makeBuilderParserEnabled</key>
-					<value>true</value>
-				</dictionary>
-				<dictionary>
-					<key>org.eclipse.cdt.make.core.useDefaultESIProviderCmd</key>
+					<key>org.eclipse.cdt.make.core.esiProviderCommandEnabled</key>
 					<value>true</value>
 				</dictionary>
 				<dictionary>
@@ -119,15 +115,19 @@
 					<value>org.eclipse.cdt.make.core.GCCSpecsConsoleParser</value>
 				</dictionary>
 				<dictionary>
+					<key>org.eclipse.cdt.make.core.makeBuilderParserEnabled</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
 					<key>org.eclipse.cdt.make.core.makeBuilderParserId</key>
 					<value>org.eclipse.cdt.make.core.GCCScannerInfoConsoleParser</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.ScannerConfigDiscoveryEnabled</key>
+					<key>org.eclipse.cdt.make.core.siProblemGenerationEnabled</key>
 					<value>true</value>
 				</dictionary>
 				<dictionary>
-					<key>org.eclipse.cdt.make.core.esiProviderCommandEnabled</key>
+					<key>org.eclipse.cdt.make.core.useDefaultESIProviderCmd</key>
 					<value>true</value>
 				</dictionary>
 			</arguments>

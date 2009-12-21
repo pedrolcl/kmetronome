@@ -38,7 +38,7 @@ ELSE(MSGFMT_EXECUTABLE)
     ELSE(MSGFMT_EXECUTABLE)
 	IF(NOT MSGFMT_FIND_QUIETLY)
 	    IF(MSGFMT_FIND_REQUIRED)
-                MESSAGE(FATAL_ERROR "msgfmt program couldn't be found")
+            MESSAGE(FATAL_ERROR "msgfmt program couldn't be found")
 	    ENDIF(MSGFMT_FIND_REQUIRED)
 	ENDIF(NOT MSGFMT_FIND_QUIETLY)
     ENDIF(MSGFMT_EXECUTABLE)
@@ -53,7 +53,7 @@ MACRO(ADD_TRANSLATIONS _baseName)
 	SET(_in  "${CMAKE_CURRENT_SOURCE_DIR}/${_file_we}.po")
 	ADD_CUSTOM_COMMAND(
 	    OUTPUT ${_out}
-	    COMMAND ${MSGFMT_EXECUTABLE} -o ${_out} ${_in}
+	    COMMAND ${MSGFMT_EXECUTABLE} --statistics -o ${_out} ${_in}
 	    DEPENDS ${_in} )
 	INSTALL(FILES ${_out}
 	    DESTINATION ${LOCALE_INSTALL_DIR}/${_file_we}/LC_MESSAGES/

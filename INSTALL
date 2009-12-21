@@ -2,13 +2,13 @@ You will need CMake 2.6.0 or newer.  If your Linux distribution
 doesn't provide CMake, or if it provides an older version, you can get
 it here:
 
-    http://www.cmake.org/HTML/Download.html
+    http://www.cmake.org/cmake/resources/software.html
 
 There are ready to use binary packages available for Linux from
 that page.  If you must build it from source, please read the instructions
 supplied here:
 
-    http://www.cmake.org/HTML/install.html
+    http://www.cmake.org/cmake/help/install.html
     
 Building with CMake
 -------------------
@@ -48,26 +48,27 @@ $ make install DESTDIR=~/rpmroot
 Some variables you may want to set:
 
     * CMAKE_INSTALL_PREFIX:
-      cmake . -DCMAKE_INSTALL_PREFIX=/opt/kde is the equivalent to
-      ./configure --prefix=/opt/kde for programs that use autotools
+      cmake . -DCMAKE_INSTALL_PREFIX=/opt/kde4 is the equivalent to
+      ./configure --prefix=/opt/kde4 for programs that use autotools
 
-    * WANT_XXXX: there are some options available:  
-    WANT_STATIC  Statically linked aseqmm (default ON)
-    WANT_PCH     Use precompiled headers (default OFF)
+    * there are some extra options available:  
+    STATIC_ASEQMM  Statically linked aseqmm (default ON)
+    ENABLE_PCH     Use precompiled headers (default OFF)
 
 The above options can take any of the following values: 0, 1, OFF, ON,
 TRUE, FALSE, YES, NO (case insensitive). For example:
 
-$ cmake . -DWANT_PCH=YES -DCMAKE_INSTALL_PREFIX=/usr
+$ cmake . -DENABLE_PCH=YES -DCMAKE_INSTALL_PREFIX=/usr
 
-If you would prefer to avoid all this typing, you can use ccmake to
-view and change these options using a friendly curses-based interface:
+Look to the configure.release and configure.debug for more examples. 
+If you prefer to avoid all this typing, you can use ccmake to view and change 
+these options using a friendly curses-based interface:
 
 $ ccmake .
 
-or a GUI equivalent:
+There is a GUI equivalent:
 
-$ cmake-gui
+$ cmake-gui .
 
 Dealing with Configuration Problems
 -----------------------------------
@@ -78,7 +79,7 @@ First, look for an answer in CMake FAQ:
 
 You may want to read the documentation at:
 
-    http://www.cmake.org/HTML/CMake-2.4.html
+    http://www.cmake.org/cmake/help/cmake2.6docs.html
 
 If you can't solve your problem, open a request for support at the project site:
 

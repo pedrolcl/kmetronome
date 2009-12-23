@@ -1,3 +1,8 @@
+2009-12-23 00:00 plcl
+
+    * Fixed dynamic linking issues with aseqmm
+    * assorted fixes 
+
 2009-12-21 00:00 plcl
 
     * Build system improvements

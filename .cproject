@@ -87,18 +87,10 @@
 <target name="cmake" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>cmake</buildCommand>
 <buildArguments/>
-<buildTarget>.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr</buildTarget>
+<buildTarget>.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSTATIC_ASEQMM=0</buildTarget>
 <stopOnError>false</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>
-</target>
-<target name="distclean" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>make</buildCommand>
-<buildArguments>VERBOSE=1</buildArguments>
-<buildTarget>distclean</buildTarget>
-<stopOnError>false</stopOnError>
-<useDefaultCommand>true</useDefaultCommand>
-<runAllBuilders>false</runAllBuilders>
 </target>
 </buildTargets>
 </storageModule>

@@ -228,10 +228,9 @@ void SequencerAdapter::metronome_set_controls()
 void SequencerAdapter::parse_sysex(SequencerEvent *ev) 
 {
 	int num, den;
-	SysExEvent* syx = dynamic_cast<SysExEvent*>(ev);
-	if (syx == NULL) {
+	SysExEvent* syx = static_cast<SysExEvent*>(ev);
+	if (syx == NULL)
 	    return;
-	}
 	unsigned char *ptr =(unsigned char *) syx->getData();
 	if (syx->getLength() < 6) return;
 	if (*ptr++ != 0xf0) return;

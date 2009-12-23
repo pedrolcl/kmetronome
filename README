@@ -30,10 +30,6 @@ You need the following software:
     Debian package: "libasound2-dev"
     http://packages.debian.org/sid/libasound2-dev
 
-* DBus-1 library
-    Debian package: "libdbus-1-dev"
-    http://packages.debian.org/sid/libdbus-1-dev
-
 Getting the development sources
 ===============================
 

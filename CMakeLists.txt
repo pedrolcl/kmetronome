@@ -17,8 +17,8 @@
 # MA 02110-1301, USA
 
 PROJECT(KMETRONOME)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 SET(CMAKE_USE_RELATIVE_PATHS OFF)
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 
@@ -48,13 +48,6 @@ ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 MESSAGE(STATUS "Build configuration: ${CMAKE_BUILD_TYPE}")
 
-# ASEQMM LIBRARY BUILD TYPE
-IF(STATIC_ASEQMM)
-    SET(BUILD_SHARED_LIBS OFF)
-ELSE(STATIC_ASEQMM)
-    SET(BUILD_SHARED_LIBS ON)
-ENDIF(STATIC_ASEQMM)
-
 FIND_PACKAGE(MSGFMT REQUIRED)
 IF(MSGFMT_FOUND)
     MESSAGE(STATUS "Program msgfmt found (${MSGFMT_EXECUTABLE})")
@@ -66,13 +59,8 @@ FIND_PACKAGE(PkgConfig REQUIRED)
 IF(PKG_CONFIG_FOUND)
     MESSAGE(STATUS "Program pkg-config found (${PKG_CONFIG_EXECUTABLE})")
 ELSE(PKG_CONFIG_FOUND)
-    MESSAGE(FATAL_ERROR "Please install pkg-config. Aborting")
+    MESSAGE(FATAL_ERROR "Please install pkg-config")
 ENDIF(PKG_CONFIG_FOUND)
-
-PKG_CHECK_MODULES(DBUS1 REQUIRED dbus-1>=1.0)
-IF(NOT DBUS1_FOUND)
-    MESSAGE(FATAL_ERROR "Please install dbus-1 library and headers (libdbus-1)")
-ENDIF(NOT DBUS1_FOUND)
 
 SET(HAVE_ALSA FALSE)
 PKG_CHECK_MODULES(ALSA REQUIRED alsa>=1.0)
@@ -89,19 +77,23 @@ ELSE(ALSA_FOUND)
     MESSAGE(FATAL_ERROR "Please install ALSA library and headers (libasound2)")
 ENDIF(ALSA_FOUND)
 
+# ASEQMM LIBRARY BUILD TYPE
 IF(STATIC_ASEQMM)
+    SET(BUILD_SHARED_LIBS OFF)
     SET(ASEQMM_LIBS aseqmm)
     SET(ASEQMM_LIB_DIR ${KMETRONOME_BINARY_DIR})
     SET(ASEQMM_INC_DIR ${KMETRONOME_SOURCE_DIR}/aseqmm/include)
+    ADD_SUBDIRECTORY(aseqmm)
 ELSE(STATIC_ASEQMM)
+    SET(BUILD_SHARED_LIBS ON)
     PKG_CHECK_MODULES(ASEQMM REQUIRED aseqmm>=0.2)
     IF(ASEQMM_FOUND)
        SET(ASEQMM_LIBS ${ASEQMM_LIBRARIES})
-       MESSAGE("ASEQMM_LIBS: ${ASEQMM_LIBS}")
+       #MESSAGE(STATUS "ASEQMM_LIBS: ${ASEQMM_LIBS}")
        LIST(APPEND ASEQMM_LIB_DIR ${ASEQMM_LIBRARY_DIRS} ${ASEQMM_LIBDIR} )
-       MESSAGE("ASEQMM_LIB_DIR: ${ASEQMM_LIB_DIR}")
+       #MESSAGE(STATUS "ASEQMM_LIB_DIR: ${ASEQMM_LIB_DIR}")
        LIST(APPEND ASEQMM_INC_DIR ${ASEQMM_INCLUDE_DIRS} ${ASEQMM_INCLUDEDIR})
-       MESSAGE("ASEQMM_INC_DIR: ${ASEQMM_INC_DIR}")
+       #MESSAGE(STATUS "ASEQMM_INC_DIR: ${ASEQMM_INC_DIR}")
     ELSE(ASEQMM_FOUND)
        MESSAGE(FATAL_ERROR "Please install aseqmm library and headers (libaseqmm0)")
     ENDIF(ASEQMM_FOUND)
@@ -118,7 +110,6 @@ ENDIF(ENABLE_PCH)
 
 MESSAGE(STATUS "kmetronome ${VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 
-ADD_SUBDIRECTORY(aseqmm)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(icons)
 ADD_SUBDIRECTORY(po)
@@ -138,26 +129,6 @@ CONFIGURE_FILE(
     IMMEDIATE @ONLY)
 ADD_CUSTOM_TARGET(uninstall
     "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
-
-ADD_CUSTOM_TARGET ( distclean
-    COMMAND rm -f  {,src/,po/,doc/}CMakeCache.txt
-    COMMAND rm -f  {,src/,po/,doc/}CTestTestfile.cmake
-    COMMAND rm -f  {,src/,po/,doc/}cmake_install.cmake
-    COMMAND rm -f  {,src/,po/,doc/}cmake_uninstall.cmake
-    COMMAND rm -f  {,src/,po/,doc/}CPackConfig.cmake
-    COMMAND rm -f  {,src/,po/,doc/}CPackSourceConfig.cmake
-    COMMAND rm -f  {,src/,po/,doc/}install_manifest.txt
-    COMMAND rm -f  {,src/,po/,doc/}progress.make
-    COMMAND rm -f  {,src/,po/,doc/}kmetronome.spec
-    COMMAND rm -f  {,src/,po/,doc/}net.sourceforge.kmetronome.service
-    COMMAND rm -f  {,src/,po/,doc/}Makefile
-    COMMAND rm -rf {,src/,po/,doc/}CMakeFiles
-    COMMAND rm -rf {,src/,po/,doc/}CMakeTmp
-    COMMAND rm -rf {,src/,po/,doc/}_CPack_Packages
-    COMMAND rm -rf build/*
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
-ADD_DEPENDENCIES(distclean clean)
 
 ADD_CUSTOM_TARGET ( tarball
     COMMAND mkdir -p kmetronome-${VERSION}

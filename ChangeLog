@@ -1,5 +1,6 @@
 2009-12-23 00:00 plcl
 
+    * Release 0.9.2
     * Fixed dynamic linking issues with aseqmm
     * assorted fixes 
 

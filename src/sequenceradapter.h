@@ -24,7 +24,7 @@
 #include <alsaclient.h>
 #include <alsaevent.h>
 
-using namespace aseqmm;
+using namespace drumstick;
 
 class SequencerAdapter : public QObject, public SequencerEventHandler
 {

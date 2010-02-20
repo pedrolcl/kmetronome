@@ -86,8 +86,8 @@
 </target>
 <target name="cmake" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>cmake</buildCommand>
-<buildArguments/>
-<buildTarget>.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSTATIC_ASEQMM=0</buildTarget>
+<buildArguments>-DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSTATIC_DRUMSTICK=1</buildArguments>
+<buildTarget>..</buildTarget>
 <stopOnError>false</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>

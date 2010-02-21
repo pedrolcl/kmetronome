@@ -1,5 +1,5 @@
 # KMetronome - ALSA Sequencer based MIDI metronome
-# Copyright (C) 2005-2009 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+# Copyright (C) 2005-2010 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,22 +29,20 @@ SET (VERSION_SUFFIX "svn")
 SET (VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}${VERSION_SUFFIX})
 ADD_DEFINITIONS(-D'VERSION="${VERSION}"')
 
-OPTION(ENABLE_PCH    "Enable precompiled headers" OFF)
+OPTION(ENABLE_PCH "Enable precompiled headers" OFF)
 OPTION(STATIC_DRUMSTICK "Build drumstick static library" ON)
 
-FIND_PACKAGE(Qt4 REQUIRED)
 FIND_PACKAGE(KDE4 REQUIRED)
 INCLUDE(KDE4Defaults)
 INCLUDE_DIRECTORIES(${QT_INCLUDES} ${KDE4_INCLUDES})
 STRING(REPLACE "-fno-exceptions" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 SET(LIB "lib${LIB_SUFFIX}")
-SET(LIBRARY_OUTPUT_PATH "")
-SET(EXECUTABLE_OUTPUT_PATH "")
 SEPARATE_ARGUMENTS(KDE4_DEFINITIONS)
 SEPARATE_ARGUMENTS(QT_DEFINITIONS)
 ADD_DEFINITIONS(${KDE4_DEFINITIONS})
 ADD_DEFINITIONS(${QT_DEFINITIONS})
+ADD_DEFINITIONS(-DQT_STRICT_ITERATORS)
 
 MESSAGE(STATUS "Build configuration: ${CMAKE_BUILD_TYPE}")
 
@@ -95,7 +93,7 @@ ELSE(STATIC_DRUMSTICK)
        LIST(APPEND DRUMSTICK_INC_DIR ${DRUMSTICK_INCLUDE_DIRS} ${DRUMSTICK_INCLUDEDIR})
        #MESSAGE(STATUS "DRUMSTICK_INC_DIR: ${DRUMSTICK_INC_DIR}")
     ELSE(DRUMSTICK_FOUND)
-       MESSAGE(FATAL_ERROR "Please install drumstick libraries and headers (libdrumstick-alsa0)")
+       MESSAGE(FATAL_ERROR "Please install drumstick libraries and headers (libdrumstick-alsa)")
     ENDIF(DRUMSTICK_FOUND)
 ENDIF(STATIC_DRUMSTICK)
 

@@ -5,7 +5,7 @@ cd build
 cmake .. -DCMAKE_CXX_FLAGS="-W -Wall" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DWANT_STATIC=YES \
     -DKDE4_ENABLE_FINAL=YES \
-    -DWANT_PCH=NO $*
+    -DSTATIC_DRUMSTICK=YES \
+    -DENABLE_PCH=NO $*
 echo "You can run 'make' now"

@@ -29,34 +29,6 @@ INCLUDE_DIRECTORIES(
     \${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# drumstick-file library
-
-SET(drumstick-file_QTOBJ_SRCS
-    include/qsmf.h
-)
-
-SET(drumstick-file_HEADERS
-    include/qsmf.h
-)
-
-SET(drumstick-file_SRCS
-    src/qsmf.cpp
-)
-
-QT4_WRAP_CPP(drumstick-file_MOC_SRCS \${drumstick-file_QTOBJ_SRCS})
-
-ADD_LIBRARY(drumstick-file
-    \${drumstick-file_MOC_SRCS}
-    \${drumstick-file_SRCS} 
-    \${drumstick-file_HEADERS} 
-)
-
-SET_TARGET_PROPERTIES(drumstick-file PROPERTIES COMPILE_FLAGS -fPIC)
-
-TARGET_LINK_LIBRARIES(drumstick-file
-    \${QT_LIBRARIES}
-)
-
 # drumstick-alsa library
 
 SET(drumstick-alsa_QTOBJ_SRCS

@@ -39,7 +39,7 @@ static const char version[] = VERSION;
 int main(int argc, char **argv) {
 	KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, 
 	                 ki18n(description), KAboutData::License_GPL,
-	                 ki18n("(C) 2005-2008 Pedro Lopez-Cabanillas"), 
+	                 ki18n("(C) 2005-2010 Pedro Lopez-Cabanillas"),
 	                 KLocalizedString(),
 	                 "http://kmetronome.sourceforge.net",
 	                 "plcl@users.sourceforge.net");

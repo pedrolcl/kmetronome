@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://sourceforge."
-"net/tracker/?atid=731542&group_id=134956\n"
-"POT-Creation-Date: 2009-12-14 10:53+0100\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?"
+"atid=731542&group_id=134956\n"
+"POT-Creation-Date: 2010-04-19 20:01+0200\n"
 "PO-Revision-Date: 2009-12-14 11:27+0100\n"
 "Last-Translator: Julien Richard-Foy <julien.rf@no-log.org>\n"
 "Language-Team: fr <kde-francophone@kde.org>\n"
@@ -54,7 +54,8 @@ msgid "KMetronome"
 msgstr "KMetronome"
 
 #: src/main.cpp:42
-msgid "(C) 2005-2008 Pedro Lopez-Cabanillas"
+#, fuzzy
+msgid "(C) 2005-2010 Pedro Lopez-Cabanillas"
 msgstr "(C) 2005-2008 Pedro Lopez-Cabanillas"
 
 #: src/main.cpp:46
@@ -401,4 +402,3 @@ msgstr "Julien Richard-Foy"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "julien.rf@no-log.org"
-

@@ -86,7 +86,7 @@
 </target>
 <target name="cmake" path="build" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>cmake</buildCommand>
-<buildArguments>-DCMAKE_CXX_FLAGS="-W -Wall" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSTATIC_DRUMSTICK=1</buildArguments>
+<buildArguments>-DCMAKE_CXX_FLAGS="-W -Wall" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSTATIC_DRUMSTICK=0</buildArguments>
 <buildTarget>..</buildTarget>
 <stopOnError>false</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>

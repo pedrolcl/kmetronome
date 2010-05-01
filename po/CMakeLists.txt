@@ -16,5 +16,5 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-SET(PO_FILES cs.po es.po fr.po)
+SET(PO_FILES cs.po es.po fr.po de.po)
 ADD_TRANSLATIONS(kmetronome ${PO_FILES})

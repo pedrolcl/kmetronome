@@ -23,15 +23,17 @@
 #include <KDE/KDebug>
 
 KMetroPreferences::KMetroPreferences(QWidget *parent)
-    : QDialog(parent),
-      Ui::KMetroPreferencesBase()
+    : KDialog(parent)
 {
-    setupUi(this);
-    connect( m_instrument, SIGNAL(currentIndexChanged(int)),
+    QWidget* widget = new QWidget(this);
+    m_ui.setupUi(widget);
+    setMainWidget(widget);
+    setCaption(i18n("Preferences"));
+    connect( m_ui.m_instrument, SIGNAL(currentIndexChanged(int)),
              SLOT(slotInstrumentChanged(int)));
-    connect( m_bank, SIGNAL(currentIndexChanged(int)),
+    connect( m_ui.m_bank, SIGNAL(currentIndexChanged(int)),
              SLOT(slotBankChanged(int)));
-    connect( m_program, SIGNAL(currentIndexChanged(int)),
+    connect( m_ui.m_program, SIGNAL(currentIndexChanged(int)),
              SLOT(slotProgramChanged(int)));
 }
 
@@ -40,17 +42,17 @@ KMetroPreferences::~KMetroPreferences()
 
 void KMetroPreferences::setOutputConnection(QString newValue) 
 {
-    int index = m_out_connection->findText(newValue);
+    int index = m_ui.m_out_connection->findText(newValue);
     if (index >= 0) {
-        m_out_connection->setCurrentIndex(index);
+        m_ui.m_out_connection->setCurrentIndex(index);
     }
 }
 
 void KMetroPreferences::setInputConnection(QString newValue) 
 { 
-    int index = m_in_connection->findText(newValue);
+    int index = m_ui.m_in_connection->findText(newValue);
     if (index >= 0) {
-        m_in_connection->setCurrentIndex(index);
+        m_ui.m_in_connection->setCurrentIndex(index);
     }
 }
 
@@ -59,11 +61,11 @@ void KMetroPreferences::fillInstruments()
     InstrumentList::ConstIterator it;
     QString drums =  KStandardDirs::locate("appdata", "drums.ins");
     if (!drums.isEmpty()) {
-        m_instrument->clear();
+        m_ui.m_instrument->clear();
         m_insList.load(drums);
         for(it = m_insList.begin(); it != m_insList.end(); ++it) {
             //kDebug() << it.key();
-            m_instrument->addItem(it.key());
+            m_ui.m_instrument->addItem(it.key());
         }
     }
 }
@@ -71,38 +73,38 @@ void KMetroPreferences::fillInstruments()
 void KMetroPreferences::setInstrument(int newValue)
 {
     QString test(newValue);
-    int idx = m_instrument->findData(test);
-    m_instrument->setCurrentIndex(idx);
+    int idx = m_ui.m_instrument->findData(test);
+    m_ui.m_instrument->setCurrentIndex(idx);
 }
 
 void KMetroPreferences::slotInstrumentChanged(int /*idx*/)
 {
-    QString name = m_instrument->currentText();
+    QString name = m_ui.m_instrument->currentText();
     m_ins = m_insList.value(name);
     InstrumentPatches patches = m_ins.patches();
     InstrumentPatches::ConstIterator j;
-    m_bank->clear();
-    m_program->clear();
-    m_weak_note->clear();
-    m_strong_note->clear();
+    m_ui.m_bank->clear();
+    m_ui.m_program->clear();
+    m_ui.m_weak_note->clear();
+    m_ui.m_strong_note->clear();
     for( j = patches.constBegin(); j != patches.constEnd(); ++j ) {
         InstrumentData patch = j.value();
-        m_bank->addItem(patch.name(), j.key());
+        m_ui.m_bank->addItem(patch.name(), j.key());
     }
 }
 
 void KMetroPreferences::slotBankChanged(int idx)
 {
-    m_program->clear();
-    m_weak_note->clear();
-    m_strong_note->clear();
+    m_ui.m_program->clear();
+    m_ui.m_weak_note->clear();
+    m_ui.m_strong_note->clear();
     if (idx < 0)
         return;
-    int bank = m_bank->itemData(idx).toInt();
+    int bank = m_ui.m_bank->itemData(idx).toInt();
     const InstrumentData& patch = m_ins.patch(bank);
     InstrumentData::ConstIterator k;
     for( k = patch.constBegin(); k != patch.constEnd(); ++k ) {
-        m_program->addItem(k.value(), k.key());
+        m_ui.m_program->addItem(k.value(), k.key());
     }
 }
 
@@ -111,97 +113,97 @@ void KMetroPreferences::slotProgramChanged(int idx)
     QStringList noteNames;
     if (idx < 0)
         return;
-    int bank = m_bank->itemData(m_bank->currentIndex()).toInt();
-    int patch = m_program->itemData(idx).toInt();
-    m_weak_note->clear();
-    m_strong_note->clear();
+    int bank = m_ui.m_bank->itemData(m_ui.m_bank->currentIndex()).toInt();
+    int patch = m_ui.m_program->itemData(idx).toInt();
+    m_ui.m_weak_note->clear();
+    m_ui.m_strong_note->clear();
     const InstrumentData& notes = m_ins.notes(bank, patch);
     InstrumentData::ConstIterator k;
     for( k = notes.constBegin(); k != notes.constEnd(); ++k ) {
-        m_weak_note->addItem(k.value(), k.key());
-        m_strong_note->addItem(k.value(), k.key());
+        m_ui.m_weak_note->addItem(k.value(), k.key());
+        m_ui.m_strong_note->addItem(k.value(), k.key());
     }
 }
 
 int KMetroPreferences::getInstrument()
 {
-    return m_instrument->itemData( m_instrument->currentIndex() ).toInt();
+    return m_ui.m_instrument->itemData( m_ui.m_instrument->currentIndex() ).toInt();
 }
 
 int KMetroPreferences::getProgram()
 {
-    return m_program->itemData( m_program->currentIndex() ).toInt();
+    return m_ui.m_program->itemData( m_ui.m_program->currentIndex() ).toInt();
 }
 
 int KMetroPreferences::getBank()
 {
-    return m_bank->itemData( m_bank->currentIndex() ).toInt();
+    return m_ui.m_bank->itemData( m_ui.m_bank->currentIndex() ).toInt();
 }
 
 int KMetroPreferences::getWeakNote()
 {
-    return m_weak_note->itemData( m_weak_note->currentIndex() ).toInt();
+    return m_ui.m_weak_note->itemData( m_ui.m_weak_note->currentIndex() ).toInt();
 }
 
 int KMetroPreferences::getStrongNote()
 {
-    return m_strong_note->itemData( m_strong_note->currentIndex() ).toInt();
+    return m_ui.m_strong_note->itemData( m_ui.m_strong_note->currentIndex() ).toInt();
 }
 
 void KMetroPreferences::setProgram(int newValue)
 {
     QString test = QString::number(newValue);
-    int idx = m_program->findData(test);
-    m_program->setCurrentIndex(idx);
+    int idx = m_ui.m_program->findData(test);
+    m_ui.m_program->setCurrentIndex(idx);
 }
 
 void KMetroPreferences::setBank(int newValue)
 {
     QString test = QString::number(newValue);
-    int idx = m_bank->findData(test);
-    m_bank->setCurrentIndex(idx);
+    int idx = m_ui.m_bank->findData(test);
+    m_ui.m_bank->setCurrentIndex(idx);
 }
 
 void KMetroPreferences::setWeakNote(int newValue)
 {
     QString test = QString::number(newValue);
-    int idx = m_weak_note->findData(test);
-    m_weak_note->setCurrentIndex(idx);
+    int idx = m_ui.m_weak_note->findData(test);
+    m_ui.m_weak_note->setCurrentIndex(idx);
 }
 
 void KMetroPreferences::setStrongNote(int newValue)
 {
     QString test = QString::number(newValue);
-    int idx = m_strong_note->findData(test);
-    m_strong_note->setCurrentIndex(idx);
+    int idx = m_ui.m_strong_note->findData(test);
+    m_ui.m_strong_note->setCurrentIndex(idx);
 }
 
 QString KMetroPreferences::getInstrumentName()
 {
-    return m_instrument->currentText();
+    return m_ui.m_instrument->currentText();
 }
 
 QString KMetroPreferences::getProgramName()
 {
-    return m_program->currentText();
+    return m_ui.m_program->currentText();
 }
 
 QString KMetroPreferences::getBankName()
 {
-    return m_bank->currentText();
+    return m_ui.m_bank->currentText();
 }
 
 void KMetroPreferences::setInstrumentName(QString name)
 {
-    m_instrument->setCurrentItem(name, false);
+    m_ui.m_instrument->setCurrentItem(name, false);
 }
 
 void KMetroPreferences::setProgramName(QString name)
 {
-    m_program->setCurrentItem(name, false);
+    m_ui.m_program->setCurrentItem(name, false);
 }
 
 void KMetroPreferences::setBankName(QString name)
 {
-    m_bank->setCurrentItem(name, false);
+    m_ui.m_bank->setCurrentItem(name, false);
 }

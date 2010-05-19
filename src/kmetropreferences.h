@@ -23,26 +23,26 @@
 
 #include "ui_kmetropreferencesbase.h"
 #include "instrument.h"
-#include <QDialog>
+#include <KDE/KDialog>
 
-class KMetroPreferences : public QDialog, Ui::KMetroPreferencesBase
+class KMetroPreferences : public KDialog
 {
     Q_OBJECT
 
 public:
     KMetroPreferences(QWidget *parent = 0);
     virtual ~KMetroPreferences();
-    void fillInputConnections(QStringList lst) { m_in_connection->insertItems(0, lst); }
-    void fillOutputConnections(QStringList lst) { m_out_connection->insertItems(0, lst); }
+    void fillInputConnections(QStringList lst) { m_ui.m_in_connection->insertItems(0, lst); }
+    void fillOutputConnections(QStringList lst) { m_ui.m_out_connection->insertItems(0, lst); }
     void fillInstruments();
-    bool getAutoConnect() { return m_autoconn->isChecked(); }
-    QString getOutputConnection() { return m_out_connection->currentText(); }
-    QString getInputConnection() { return m_in_connection->currentText(); }
-    int getChannel() { return m_channel->value(); }
-    int getResolution() { return m_resolution->value(); }
-    int getDuration() { return m_duration->value(); }
-    bool getSendNoteOff() { return m_use_noteoff->isChecked(); }
-    bool getStyledKnobs() { return m_styledknobs->isChecked(); }
+    bool getAutoConnect() { return m_ui.m_autoconn->isChecked(); }
+    QString getOutputConnection() { return m_ui.m_out_connection->currentText(); }
+    QString getInputConnection() { return m_ui.m_in_connection->currentText(); }
+    int getChannel() { return m_ui.m_channel->value(); }
+    int getResolution() { return m_ui.m_resolution->value(); }
+    int getDuration() { return m_ui.m_duration->value(); }
+    bool getSendNoteOff() { return m_ui.m_use_noteoff->isChecked(); }
+    bool getStyledKnobs() { return m_ui.m_styledknobs->isChecked(); }
     QString getInstrumentName();
     QString  getProgramName();
     QString  getBankName();
@@ -52,14 +52,14 @@ public:
     int getWeakNote();
     int getStrongNote();
 
-    void setAutoConnect(bool newValue) { m_autoconn->setChecked(newValue); }
+    void setAutoConnect(bool newValue) { m_ui.m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
     void setInputConnection(QString newValue);
-    void setChannel(int newValue) { m_channel->setValue(newValue); }
-    void setResolution(int newValue) { m_resolution->setValue(newValue); }
-    void setDuration(int newValue) { m_duration->setValue(newValue); }
-    void setSendNoteOff(bool newValue) { m_use_noteoff->setChecked(newValue); }
-    void setStyledKnobs(bool newValue) { m_styledknobs->setChecked(newValue); }
+    void setChannel(int newValue) { m_ui.m_channel->setValue(newValue); }
+    void setResolution(int newValue) { m_ui.m_resolution->setValue(newValue); }
+    void setDuration(int newValue) { m_ui.m_duration->setValue(newValue); }
+    void setSendNoteOff(bool newValue) { m_ui.m_use_noteoff->setChecked(newValue); }
+    void setStyledKnobs(bool newValue) { m_ui.m_styledknobs->setChecked(newValue); }
     void setInstrument(int newValue);
     void setProgram(int newValue);
     void setBank(int newValue);
@@ -75,6 +75,7 @@ public slots:
     void slotProgramChanged(int idx);
 
 private:
+    Ui::KMetroPreferencesBase m_ui;
     InstrumentList m_insList;
     Instrument m_ins;
 };

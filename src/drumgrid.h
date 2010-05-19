@@ -20,11 +20,11 @@
 #ifndef DRUMGRID_H
 #define DRUMGRID_H
 
-#include <QtGui/QDialog>
+#include "defs.h"
+#include <KDE/KDialog>
 #include <QtGui/QShortcut>
 #include <QtGui/QCloseEvent>
 #include <QtCore/QSignalMapper>
-#include "defs.h"
 
 const QString QSTR_PATTERN("Pattern");
 
@@ -46,7 +46,7 @@ class DrumGridModel;
 
 using namespace drumstick;
 
-class DrumGrid : public QDialog
+class DrumGrid : public KDialog
 {
     Q_OBJECT
 

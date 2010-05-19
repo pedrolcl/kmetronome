@@ -34,18 +34,21 @@
 #include <drumstick.h>
 
 DrumGrid::DrumGrid(QWidget *parent)
-    : QDialog(parent),
+    : KDialog(parent),
     m_ui(new Ui::DrumGrid),
     m_seq(NULL),
     m_model(NULL),
     m_figure(16)
 {
-    m_ui->setupUi(this);
+    QWidget *widget = new QWidget(this);
+    m_ui->setupUi(widget);
+    setMainWidget( widget );
+    setCaption( i18n("Pattern Editor") );
+    //setFixedWidth( 700 );
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
-    //connect( m_ui->actionQuit, SIGNAL(triggered()), SLOT(close()));
     connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
     connect( m_ui->stopButton, SIGNAL(clicked()), SLOT(stop()));
     connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(tempoChange(int)));

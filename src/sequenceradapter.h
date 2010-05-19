@@ -24,6 +24,8 @@
 #include <alsaclient.h>
 #include <alsaevent.h>
 
+class DrumGridModel;
+
 using namespace drumstick;
 
 class SequencerAdapter : public QObject, public SequencerEventHandler
@@ -34,11 +36,13 @@ public:
     SequencerAdapter(QObject *parent);
     virtual ~SequencerAdapter();
 
+    void setInstrument(int newValue) { m_instrument = newValue; }
+    void setBank(int newValue) { m_bank = newValue; }
+    void setProgram(int newValue) { m_program = newValue; }
     void setWeakNote(int newValue) { m_weak_note = newValue; }
     void setStrongNote(int newValue) { m_strong_note = newValue; }
     void setWeakVelocity(int newValue) { m_weak_velocity = newValue; }
     void setStrongVelocity(int newValue) { m_strong_velocity = newValue; }
-    void setProgram(int newValue) { m_program = newValue; }
     void setVolume(int newValue) { m_volume = newValue; }
     void setBalance(int newValue) { m_balance = newValue; }
     void setChannel(int newValue) { m_channel = newValue; }
@@ -51,11 +55,15 @@ public:
     void setInputConn(QString newValue) { m_inputConn = newValue; }
     void setNoteDuration(int newValue) { m_noteDuration = newValue; }
     void setSendNoteOff(bool newValue) { m_useNoteOff = newValue; }
+    void setPatternMode(bool newValue) { m_patternMode = newValue; }
+    void setModel(DrumGridModel* model) { m_model = model; }
+    int getInstrument() { return m_instrument; }
+    int getBank() { return m_bank; }
+    int getProgram() { return m_program; }
     int getWeakNote() { return m_weak_note; }
     int getStrongNote() { return m_strong_note; }
     int getWeakVelocity() { return m_weak_velocity; }
     int getStrongVelocity() { return m_strong_velocity; }
-    int getProgram() { return m_program; }
     int getVolume() { return m_volume; }
     int getBalance() { return m_balance; }
     int getChannel() { return m_channel; }
@@ -69,6 +77,8 @@ public:
     QString getInputConn() { return m_inputConn; }
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
+    bool getPatternMode() { return m_patternMode; }
+
     void sendControlChange( int cc, int value );
     void sendInitialControls();
     
@@ -85,6 +95,16 @@ public:
     void disconnect_input();
     QStringList inputConnections();
     QStringList outputConnections();
+    int decodeVelocity(const QString drumVel);
+
+    void parse_sysex(SequencerEvent *ev);
+    void metronome_note(int note, int vel, int tick);
+    void metronome_echo(int tick, int ev_type);
+    void metronome_simple_pattern(int tick);
+    void metronome_grid_pattern(int tick);
+    void metronome_event_output(SequencerEvent* ev);
+    void metronome_note_output(SequencerEvent* ev);
+    void metronome_schedule_event(SequencerEvent* ev, int tick);
 
 //public Q_SLOTS:    
 //    void sequencerEvent(SequencerEvent *ev);
@@ -100,29 +120,23 @@ signals:
     void signalNotation(int,int);
     
 private:
-    void parse_sysex(SequencerEvent *ev);
-    void metronome_note(int note, int vel, int tick);
-    void metronome_echo(int tick, int ev_type);
-    void metronome_pattern(int tick);
-    void metronome_event_output(SequencerEvent* ev);
-    void metronome_note_output(SequencerEvent* ev);
-    void metronome_schedule_event(SequencerEvent* ev, int tick);
-
     MidiClient* m_Client;
     MidiPort* m_Port;
     MidiQueue* m_Queue;
+    DrumGridModel* m_model;
     int m_clientId;
     int m_inputPortId;
     int m_outputPortId;
     int m_queueId;
-
     int m_bar;
     int m_beat;
+    int m_instrument;
+    int m_bank;
+    int m_program;
     int m_weak_note;
     int m_strong_note;
     int m_weak_velocity;
     int m_strong_velocity;
-    int m_program;
     int m_channel;
     int m_volume;
     int m_balance;
@@ -135,7 +149,7 @@ private:
     bool m_autoconnect;
     bool m_playing;
     bool m_useNoteOff;
-   
+    bool m_patternMode;
     QString m_outputConn;
     QString m_inputConn;
     QString NO_CONNECTION;

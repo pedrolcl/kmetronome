@@ -42,7 +42,7 @@ SEPARATE_ARGUMENTS(KDE4_DEFINITIONS)
 SEPARATE_ARGUMENTS(QT_DEFINITIONS)
 ADD_DEFINITIONS(${KDE4_DEFINITIONS})
 ADD_DEFINITIONS(${QT_DEFINITIONS})
-ADD_DEFINITIONS(-DQT_STRICT_ITERATORS)
+#ADD_DEFINITIONS(-DQT_STRICT_ITERATORS)
 
 MESSAGE(STATUS "Build configuration: ${CMAKE_BUILD_TYPE}")
 
@@ -136,7 +136,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
     COMMAND cp -rHL drumstick kmetronome-${VERSION}
-    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
+    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* COPYING drums.ins INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
     COMMAND tar -cj --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
     COMMAND tar -cz --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
     COMMAND rm -rf kmetronome-${VERSION}
@@ -145,3 +145,7 @@ ADD_CUSTOM_TARGET ( tarball
 
 INSTALL( FILES kmetronome.desktop
          DESTINATION ${XDG_APPS_INSTALL_DIR} )
+
+INSTALL( FILES drums.ins 
+         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )
+         

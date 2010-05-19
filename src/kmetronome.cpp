@@ -19,27 +19,31 @@
  ***************************************************************************/
 
 #include "kmetronome.h"
+#include "kmetronomeview.h"
 #include "kmetropreferences.h"
 #include "sequenceradapter.h"
 #include "kmetronomeadaptor.h"
 #include "defs.h"
+#include "drumgrid.h"
 
 #include <cmath>
-#include <QLabel>
-#include <QEvent>
-#include <QDBusConnection>
+#include <QtCore/QEvent>
+#include <QtGui/QLabel>
+#include <QtDBus/QDBusConnection>
 
-#include <kapplication.h>
-#include <kmainwindow.h>
-#include <klocale.h>
-#include <kaction.h>
-#include <ktoggleaction.h>
-#include <kstandardaction.h>
-#include <kactioncollection.h>
-#include <kconfig.h>
-#include <kglobal.h>
-#include <kxmlguifactory.h>
-#include <kmessagebox.h>
+#include <KDE/KApplication>
+#include <KDE/KMainWindow>
+#include <KDE/KLocale>
+#include <KDE/KAction>
+#include <KDE/KToggleAction>
+#include <KDE/KStandardAction>
+#include <KDE/KActionCollection>
+#include <KDE/KConfig>
+#include <KDE/KGlobal>
+#include <KDE/KXmlGuiWindow>
+#include <KDE/KXMLGUIFactory>
+#include <KDE/KMessageBox>
+#include <KDE/KDebug>
 
 KMetronome::KMetronome(QWidget *parent) :
     KXmlGuiWindow(parent),
@@ -53,11 +57,13 @@ KMetronome::KMetronome(QWidget *parent) :
     m_view = new KmetronomeView(this);
     try {
         m_seq = new SequencerAdapter(this);
-        connect(m_seq, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalUpdate(int,int)),
+                SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
         connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
         connect(m_seq, SIGNAL(signalStop()), SLOT(stop()), Qt::QueuedConnection);
         connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
-        connect(m_seq, SIGNAL(signalNotation(int,int)), SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
+        connect(m_seq, SIGNAL(signalNotation(int,int)),
+                SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
         setCentralWidget(m_view);
         setupActions();
         setAutoSaveSettings();
@@ -97,11 +103,14 @@ bool KMetronome::queryExit()
 void KMetronome::saveConfiguration()
 {
     KConfigGroup config = KGlobal::config()->group("Settings");
-    if (m_seq == NULL) return;
-    config.writeEntry("channel", m_seq->getChannel());
-    config.writeEntry("program", m_seq->getProgram());
+    if (m_seq == NULL)
+        return;
+    config.writeEntry("instrument", m_instrument);
+    config.writeEntry("bank", m_bank);
+    config.writeEntry("program", m_program);
     config.writeEntry("weakNote", m_seq->getWeakNote());
     config.writeEntry("strongNote", m_seq->getStrongNote());
+    config.writeEntry("channel", m_seq->getChannel());
     config.writeEntry("weakVelocity", m_seq->getWeakVelocity());
     config.writeEntry("strongVelocity", m_seq->getStrongVelocity());
     config.writeEntry("volume", m_seq->getVolume());
@@ -121,83 +130,95 @@ void KMetronome::saveConfiguration()
 
 void KMetronome::readConfiguration()
 {
-	KConfigGroup config = KGlobal::config()->group("Settings");
-	m_seq->setChannel(config.readEntry("channel", METRONOME_CHANNEL));
-	m_seq->setProgram(config.readEntry("program", METRONOME_PROGRAM));
-	m_seq->setWeakNote(config.readEntry("weakNote", METRONOME_WEAK_NOTE));
-	m_seq->setStrongNote(config.readEntry("strongNote", METRONOME_STRONG_NOTE));
-	m_seq->setResolution(config.readEntry("resolution", METRONOME_RESOLUTION));
-	int volume = config.readEntry("volume", METRONOME_VOLUME);
-	int balance = config.readEntry("balance", METRONOME_BALANCE);
+    KConfigGroup config = KGlobal::config()->group("Settings");
+    m_seq->setInstrument(METRONOME_INSTRUMENT);
+    m_seq->setBank(METRONOME_BANK);
+    m_seq->setProgram(METRONOME_PROGRAM);
+    m_instrument = config.readEntry("instrument", QString());
+    m_bank = config.readEntry("bank", QString());
+    m_program = config.readEntry("program", QString());
+    m_seq->setChannel(config.readEntry("channel", METRONOME_CHANNEL));
+    m_seq->setWeakNote(config.readEntry("weakNote", METRONOME_WEAK_NOTE));
+    m_seq->setStrongNote(config.readEntry("strongNote", METRONOME_STRONG_NOTE));
+    m_seq->setResolution(config.readEntry("resolution", METRONOME_RESOLUTION));
+    int volume = config.readEntry("volume", METRONOME_VOLUME);
+    int balance = config.readEntry("balance", METRONOME_PAN);
     int weakVel = config.readEntry("weakVelocity", METRONOME_VELOCITY);
     int strongVel = config.readEntry("strongVelocity", METRONOME_VELOCITY);
-	int tempo = config.readEntry("tempo", 100);
-	int ts_num = config.readEntry("rhythmNumerator", 4);
-	int ts_div = config.readEntry("rhythmDenominator", 4);
-	m_seq->setVolume(volume);
+    int tempo = config.readEntry("tempo", 100);
+    int ts_num = config.readEntry("rhythmNumerator", 4);
+    int ts_div = config.readEntry("rhythmDenominator", 4);
+    m_seq->setVolume(volume);
     m_seq->setBalance(balance);
-	m_seq->setWeakVelocity(weakVel);
+    m_seq->setWeakVelocity(weakVel);
     m_seq->setStrongVelocity(strongVel);
-	m_seq->setBpm(tempo);
-	m_seq->setRhythmNumerator(ts_num);
-	m_seq->setRhythmDenominator(ts_div);
-	m_view->setBeatsBar(ts_num);
-	m_view->setFigure(ts_div);
-	m_view->setTempo(tempo);
-	m_view->displayWeakVelocity(weakVel);
-	m_view->displayStrongVelocity(strongVel);
-	m_view->displayVolume(volume);
-	m_view->displayBalance(balance);
-	int duration = config.readEntry("duration", NOTE_DURATION);
-	m_seq->setNoteDuration(duration);
-	bool sendNoteOff = config.readEntry("sendNoteOff", true);
-	m_seq->setSendNoteOff(sendNoteOff);
-	bool autoconn = config.readEntry("autoconnect", false);
-	m_seq->setAutoConnect(autoconn);
-	if(autoconn) {
-		m_seq->setOutputConn(config.readEntry("outputConn", "20:0"));
-		m_seq->setInputConn(config.readEntry("inputConn", "20:0"));
-		m_seq->connect_output();
-		m_seq->connect_input();
-	}
-	m_styledKnobs = config.readEntry("styledKnobs", true);
-	m_seq->sendInitialControls();
-	m_view->updateKnobs(m_styledKnobs);
+    m_seq->setBpm(tempo);
+    m_seq->setRhythmNumerator(ts_num);
+    m_seq->setRhythmDenominator(ts_div);
+    m_view->setBeatsBar(ts_num);
+    m_view->setFigure(ts_div);
+    m_view->setTempo(tempo);
+    m_view->displayWeakVelocity(weakVel);
+    m_view->displayStrongVelocity(strongVel);
+    m_view->displayVolume(volume);
+    m_view->displayBalance(balance);
+    int duration = config.readEntry("duration", NOTE_DURATION);
+    m_seq->setNoteDuration(duration);
+    bool sendNoteOff = config.readEntry("sendNoteOff", true);
+    m_seq->setSendNoteOff(sendNoteOff);
+    bool autoconn = config.readEntry("autoconnect", false);
+    m_seq->setAutoConnect(autoconn);
+    if(autoconn) {
+        m_seq->setOutputConn(config.readEntry("outputConn", "20:0"));
+        m_seq->setInputConn(config.readEntry("inputConn", "20:0"));
+        m_seq->connect_output();
+        m_seq->connect_input();
+    }
+    m_styledKnobs = config.readEntry("styledKnobs", true);
+    m_seq->sendInitialControls();
+    m_view->updateKnobs(m_styledKnobs);
 }
 
 void KMetronome::optionsPreferences()
 {
-	QPointer<KMetroPreferences> dlg = new KMetroPreferences(this);
-	dlg->fillOutputConnections(m_seq->outputConnections());
-	dlg->fillInputConnections(m_seq->inputConnections());
-	dlg->setAutoConnect(m_seq->getAutoConnect());
-	QString conn = m_seq->getOutputConn();
-	if (conn != NULL && !conn.isEmpty())
-		dlg->setOutputConnection(conn);
-	conn = m_seq->getInputConn();
-	if (conn != NULL && !conn.isEmpty())
-		dlg->setInputConnection(conn);
-	dlg->setChannel(m_seq->getChannel());
-	dlg->setProgram(m_seq->getProgram());
-	dlg->setResolution(m_seq->getResolution());
-	dlg->setWeakNote(m_seq->getWeakNote());
-	dlg->setStrongNote(m_seq->getStrongNote());
-	dlg->setSendNoteOff(m_seq->getSendNoteOff());
-	dlg->setDuration(m_seq->getNoteDuration());
-	dlg->setStyledKnobs(m_styledKnobs);
-	if (dlg->exec() == QDialog::Accepted)
-	{
-		m_seq->disconnect_output();
-		m_seq->disconnect_input();
-		if (dlg != NULL) {
+    QPointer<KMetroPreferences> dlg = new KMetroPreferences(this);
+    dlg->fillOutputConnections(m_seq->outputConnections());
+    dlg->fillInputConnections(m_seq->inputConnections());
+    dlg->fillInstruments();
+    dlg->setAutoConnect(m_seq->getAutoConnect());
+    QString conn = m_seq->getOutputConn();
+    if (conn != NULL && !conn.isEmpty())
+        dlg->setOutputConnection(conn);
+    conn = m_seq->getInputConn();
+    if (conn != NULL && !conn.isEmpty())
+        dlg->setInputConnection(conn);
+    dlg->setInstrumentName(m_instrument);
+    dlg->setBankName(m_bank);
+    dlg->setProgramName(m_program);
+    dlg->setWeakNote(m_seq->getWeakNote());
+    dlg->setStrongNote(m_seq->getStrongNote());
+    dlg->setChannel(m_seq->getChannel());
+    dlg->setResolution(m_seq->getResolution());
+    dlg->setSendNoteOff(m_seq->getSendNoteOff());
+    dlg->setDuration(m_seq->getNoteDuration());
+    dlg->setStyledKnobs(m_styledKnobs);
+    if (dlg->exec() == QDialog::Accepted) {
+        m_seq->disconnect_output();
+        m_seq->disconnect_input();
+        if (dlg != NULL) {
             m_seq->setAutoConnect(dlg->getAutoConnect());
             m_seq->setOutputConn(dlg->getOutputConnection());
             m_seq->setInputConn(dlg->getInputConnection());
-            m_seq->setChannel(dlg->getChannel());
+            m_instrument = dlg->getInstrumentName();
+            m_seq->setInstrument(dlg->getInstrument());
+            m_bank = dlg->getBankName();
+            m_seq->setBank(dlg->getBank());
+            m_program = dlg->getProgramName();
             m_seq->setProgram(dlg->getProgram());
-            m_seq->setResolution(dlg->getResolution());
             m_seq->setWeakNote(dlg->getWeakNote());
             m_seq->setStrongNote(dlg->getStrongNote());
+            m_seq->setResolution(dlg->getResolution());
+            m_seq->setChannel(dlg->getChannel());
             m_seq->setSendNoteOff(dlg->getSendNoteOff());
             m_seq->setNoteDuration(dlg->getDuration());
             m_seq->connect_output();
@@ -207,9 +228,9 @@ void KMetronome::optionsPreferences()
                 m_styledKnobs = dlg->getStyledKnobs();
                 m_view->updateKnobs(m_styledKnobs);
             }
-		}
-	}
-	delete dlg;
+        }
+    }
+    delete dlg;
 }
 
 void KMetronome::updateDisplay(int bar, int beat)
@@ -252,7 +273,7 @@ void KMetronome::volumeChanged(int vol)
 void KMetronome::balanceChanged(int bal)
 {
     m_seq->setBalance(bal);
-	m_seq->sendControlChange(BALANCE_CC, bal);
+	m_seq->sendControlChange(PAN_CC, bal);
 }
 
 void KMetronome::toggle(bool checked)
@@ -314,3 +335,17 @@ void KMetronome::setTimeSignature(int numerator, int denominator)
     m_seq->setRhythmDenominator(denominator);
 }
 
+void KMetronome::editPatterns()
+{
+    if (m_drumgrid == NULL) {
+        m_drumgrid = new DrumGrid(this);
+        m_drumgrid->setSequencer(m_seq);
+    }
+    m_drumgrid->exec();
+    m_seq->setPatternMode(false);
+}
+
+void KMetronome::patternChanged(int idx)
+{
+
+}

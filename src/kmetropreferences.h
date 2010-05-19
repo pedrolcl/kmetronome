@@ -21,48 +21,62 @@
 #ifndef KMETROPREFERENCES_H
 #define KMETROPREFERENCES_H
 
-#include <QDialog>
 #include "ui_kmetropreferencesbase.h"
+#include "instrument.h"
+#include <QDialog>
 
 class KMetroPreferences : public QDialog, Ui::KMetroPreferencesBase
 {
     Q_OBJECT
 
 public:
-    KMetroPreferences(QWidget *parent = 0)
-        : QDialog(parent),
-          Ui::KMetroPreferencesBase()
-    {
-        setupUi(this);
-    }
-
-    virtual ~KMetroPreferences() {}
+    KMetroPreferences(QWidget *parent = 0);
+    virtual ~KMetroPreferences();
     void fillInputConnections(QStringList lst) { m_in_connection->insertItems(0, lst); }
     void fillOutputConnections(QStringList lst) { m_out_connection->insertItems(0, lst); }
-
+    void fillInstruments();
     bool getAutoConnect() { return m_autoconn->isChecked(); }
     QString getOutputConnection() { return m_out_connection->currentText(); }
     QString getInputConnection() { return m_in_connection->currentText(); }
     int getChannel() { return m_channel->value(); }
-    int getProgram() { return m_program->value(); }
     int getResolution() { return m_resolution->value(); }
-    int getWeakNote() { return m_weak_note->value(); }
-    int getStrongNote() { return m_strong_note->value(); }
     int getDuration() { return m_duration->value(); }
     bool getSendNoteOff() { return m_use_noteoff->isChecked(); }
     bool getStyledKnobs() { return m_styledknobs->isChecked(); }
+    QString getInstrumentName();
+    QString  getProgramName();
+    QString  getBankName();
+    int getInstrument();
+    int getProgram();
+    int getBank();
+    int getWeakNote();
+    int getStrongNote();
 
     void setAutoConnect(bool newValue) { m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
     void setInputConnection(QString newValue);
     void setChannel(int newValue) { m_channel->setValue(newValue); }
-    void setProgram(int newValue) { m_program->setValue(newValue); }
     void setResolution(int newValue) { m_resolution->setValue(newValue); }
-    void setWeakNote(int newValue) { m_weak_note->setValue(newValue); }
-    void setStrongNote(int newValue) { m_strong_note->setValue(newValue); }
     void setDuration(int newValue) { m_duration->setValue(newValue); }
     void setSendNoteOff(bool newValue) { m_use_noteoff->setChecked(newValue); }
     void setStyledKnobs(bool newValue) { m_styledknobs->setChecked(newValue); }
+    void setInstrument(int newValue);
+    void setProgram(int newValue);
+    void setBank(int newValue);
+    void setWeakNote(int newValue);
+    void setStrongNote(int newValue);
+    void setInstrumentName(QString name);
+    void setProgramName(QString name);
+    void setBankName(QString name);
+
+public slots:
+    void slotInstrumentChanged(int idx);
+    void slotBankChanged(int idx);
+    void slotProgramChanged(int idx);
+
+private:
+    InstrumentList m_insList;
+    Instrument m_ins;
 };
 
 #endif // KMETROPREFERENCES_H

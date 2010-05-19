@@ -21,11 +21,14 @@
 #ifndef KMETRONOME_H
 #define KMETRONOME_H
 
-#include <kaction.h>
-#include <ktoggleaction.h>
-#include <kxmlguiwindow.h>
-#include "kmetronomeview.h"
-#include "sequenceradapter.h"
+#include <KDE/KXmlGuiWindow>
+#include <QtCore/QPointer>
+
+class KAction;
+class KToggleAction;
+class KmetronomeView;
+class SequencerAdapter;
+class DrumGrid;
 
 class KMetronome : public KXmlGuiWindow
 {
@@ -44,6 +47,8 @@ public Q_SLOTS:
     void setTempo(int newTempo);
     void setTimeSignature(int numerator, int denominator);
     void updateDisplay(int, int);
+    void editPatterns();
+    void patternChanged(int);
 
 protected Q_SLOTS:
     void optionsPreferences();
@@ -65,9 +70,13 @@ private:
     bool m_styledKnobs;
     KmetronomeView *m_view;
     SequencerAdapter *m_seq;
+    QPointer<DrumGrid> m_drumgrid;
 
     KAction *m_prefs;
     KToggleAction* m_playStop;
+    QString m_instrument;
+    QString m_bank;
+    QString m_program;
 };
 
 #endif // KMETRONOME_H

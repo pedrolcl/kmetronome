@@ -43,6 +43,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_configbtn->setIcon(KIcon("configure"));
     m_playbtn->setIcon(KIcon("media-playback-start"));
     m_stopbtn->setIcon(KIcon("media-playback-stop"));
+    m_patternbtn->setIcon(KIcon("document-edit"));
 
     m_dialStyle = new ClassicStyle();
     m_dialStyle->setParent(this);
@@ -71,21 +72,30 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
              parent, SLOT(optionsPreferences()) );
+    connect( m_patternbtn, SIGNAL(clicked()),
+             parent, SLOT(editPatterns()) );
     connect( m_playbtn, SIGNAL(clicked()), parent, SLOT(play()) );
     connect( m_stopbtn, SIGNAL(clicked()), parent, SLOT(stop()) );
     connect( m_playbtn, SIGNAL(clicked()), SLOT(play()) );
     connect( m_stopbtn, SIGNAL(clicked()), SLOT(stop()) );
-    connect( m_beatsBar, SIGNAL(valueChanged(int)), parent, SLOT(beatsBarChanged(int)) );
-    connect( m_figure, SIGNAL(activated(int)), parent, SLOT(rhythmFigureChanged(int)) );
-    connect( m_tempo, SIGNAL(valueChanged(int)), parent, SLOT(tempoChanged(int)) );
-
-    connect( m_dial1, SIGNAL(valueChanged(int)), parent, SLOT(weakVeloChanged(int)) );
-    connect( m_dial2, SIGNAL(valueChanged(int)), parent, SLOT(strongVeloChanged(int)) );
-    connect( m_dial3, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)) );
-    connect( m_dial4, SIGNAL(valueChanged(int)), parent, SLOT(balanceChanged(int)) );
-
-    connect ( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
-    connect ( m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
+    connect( m_beatsBar, SIGNAL(valueChanged(int)),
+             parent, SLOT(beatsBarChanged(int)) );
+    connect( m_figure, SIGNAL(activated(int)),
+             parent, SLOT(rhythmFigureChanged(int)) );
+    connect( m_tempo, SIGNAL(valueChanged(int)),
+            parent, SLOT(tempoChanged(int)) );
+    connect( m_dial1, SIGNAL(valueChanged(int)),
+             parent, SLOT(weakVeloChanged(int)) );
+    connect( m_dial2, SIGNAL(valueChanged(int)),
+             parent, SLOT(strongVeloChanged(int)) );
+    connect( m_dial3, SIGNAL(valueChanged(int)),
+             parent, SLOT(volumeChanged(int)) );
+    connect( m_dial4, SIGNAL(valueChanged(int)),
+             parent, SLOT(balanceChanged(int)) );
+    connect( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
+    connect( m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
+    connect( m_pattern, SIGNAL(activated(int)),
+             parent, SLOT(patternChanged(int)) );
 }
 
 void KmetronomeView::display(int bar, int beat)
@@ -119,8 +129,10 @@ void KmetronomeView::enableControls(bool e)
     m_playbtn->setEnabled(e);
     m_stopbtn->setEnabled(!e);
     m_configbtn->setEnabled(e);
+    m_patternbtn->setEnabled(e);
     m_beatsBar->setEnabled(e);
     m_figure->setEnabled(e);
+    m_pattern->setEnabled(e);
 }
 
 void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)

@@ -20,57 +20,69 @@
 
 #include "sequenceradapter.h"
 #include "defs.h"
-
+#include "drumgridmodel.h"
 #include <alsaqueue.h>
 #include <alsaevent.h>
-
 #include <QStringList>
 #include <kapplication.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
 SequencerAdapter::SequencerAdapter(QObject *parent) :
-	QObject(parent),
-	m_weak_note(METRONOME_WEAK_NOTE),
-	m_strong_note(METRONOME_STRONG_NOTE),
-	m_weak_velocity(METRONOME_VELOCITY), 
-	m_strong_velocity(METRONOME_VELOCITY),
-	m_program(METRONOME_PROGRAM),
-	m_channel(METRONOME_CHANNEL),
-	m_volume(METRONOME_VOLUME),
-	m_balance(METRONOME_BALANCE),
-	m_resolution(METRONOME_RESOLUTION),
-	m_bpm(TEMPO_DEFAULT), 
-	m_ts_num(RHYTHM_TS_NUM),
-	m_ts_div(RHYTHM_TS_DEN), 
-	m_noteDuration(NOTE_DURATION),
-	m_autoconnect(false), 
-	m_playing(false), 
-	m_useNoteOff(true),
-	m_outputConn(""), 
-	m_inputConn(""),
-	NO_CONNECTION(i18n("No connection")) 
+    QObject(parent),
+    m_Client(0),
+    m_Port(0),
+    m_Queue(0),
+    m_model(0),
+    m_clientId(-1),
+    m_inputPortId(-1),
+    m_outputPortId(-1),
+    m_queueId(-1),
+    m_bar(0),
+    m_beat(0),
+    m_instrument(METRONOME_INSTRUMENT),
+    m_bank(METRONOME_BANK),
+    m_program(METRONOME_PROGRAM),
+    m_weak_note(METRONOME_WEAK_NOTE),
+    m_strong_note(METRONOME_STRONG_NOTE),
+    m_weak_velocity(METRONOME_VELOCITY),
+    m_strong_velocity(METRONOME_VELOCITY),
+    m_channel(METRONOME_CHANNEL),
+    m_volume(METRONOME_VOLUME),
+    m_balance(METRONOME_PAN),
+    m_resolution(METRONOME_RESOLUTION),
+    m_bpm(TEMPO_DEFAULT),
+    m_ts_num(RHYTHM_TS_NUM),
+    m_ts_div(RHYTHM_TS_DEN),
+    m_noteDuration(NOTE_DURATION),
+    m_autoconnect(false),
+    m_playing(false),
+    m_useNoteOff(true),
+    m_patternMode(false),
+    m_outputConn(""),
+    m_inputConn(""),
+    NO_CONNECTION(i18n("No connection"))
 {
-	m_Client = new MidiClient(this);
+    m_Client = new MidiClient(this);
     m_Client->open();
     m_Client->setClientName("KMetronome");
-	m_clientId = m_Client->getClientId();
+    m_clientId = m_Client->getClientId();
 
     //connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
     //        SLOT(sequencerEvent(SequencerEvent*)), Qt::DirectConnection);
-	m_Client->setHandler(this);
+    m_Client->setHandler(this);
 
     m_Port = new MidiPort(this);
-	m_Port->attach( m_Client );
-	m_Port->setPortName("KMetronome");
-	m_Port->setCapability(SND_SEQ_PORT_CAP_WRITE |
-	                      SND_SEQ_PORT_CAP_SUBS_WRITE | 
-	                      SND_SEQ_PORT_CAP_READ |
-	                      SND_SEQ_PORT_CAP_SUBS_READ);
-	m_Port->setPortType(SND_SEQ_PORT_TYPE_MIDI_GENERIC |
-	                    SND_SEQ_PORT_TYPE_APPLICATION);
-	
-	m_inputPortId = m_outputPortId = m_Port->getPortId();
+    m_Port->attach( m_Client );
+    m_Port->setPortName("KMetronome");
+    m_Port->setCapability(SND_SEQ_PORT_CAP_WRITE |
+                          SND_SEQ_PORT_CAP_SUBS_WRITE |
+                          SND_SEQ_PORT_CAP_READ |
+                          SND_SEQ_PORT_CAP_SUBS_READ);
+    m_Port->setPortType(SND_SEQ_PORT_TYPE_MIDI_GENERIC |
+                        SND_SEQ_PORT_TYPE_APPLICATION);
+
+    m_inputPortId = m_outputPortId = m_Port->getPortId();
     m_Port->subscribeFromAnnounce();
 
     m_Queue = m_Client->createQueue();
@@ -197,7 +209,7 @@ void SequencerAdapter::metronome_echo(int tick, int ev_type)
     metronome_schedule_event(&ev, tick);
 }
 
-void SequencerAdapter::metronome_pattern(int tick) 
+void SequencerAdapter::metronome_simple_pattern(int tick) 
 {
 	int j, t, duration;
 	t = tick;
@@ -208,6 +220,43 @@ void SequencerAdapter::metronome_pattern(int tick)
 		t += duration;
 	}
 	metronome_echo(t, SND_SEQ_EVENT_USR0);
+}
+
+int SequencerAdapter::decodeVelocity(const QString drumVel)
+{
+    const qreal f = 127.0 / 9.0;
+    int num = 0;
+    bool isNum = false;
+    if (drumVel.isEmpty())
+        return 0;
+    if (drumVel == "f")
+        return m_strong_velocity;
+    else if (drumVel == "p")
+        return m_weak_velocity;
+    num = drumVel.toInt(&isNum);
+    if (isNum)
+        return qRound(f * num);
+    return 0;
+}
+
+void SequencerAdapter::metronome_grid_pattern(int tick)
+{
+    int i, j, t, duration, key, vel;
+    t = tick;
+    duration = m_resolution / 4;
+    for(i=0; i<m_model->columnCount(); ++i) {
+        for(j=0; j<m_model->rowCount(); ++j) {
+            QString n = m_model->patternHit(j, i);
+            if (!n.isEmpty()) {
+                key = m_model->patternKey(j).toInt();
+                vel = decodeVelocity(n);
+                metronome_note(key, vel, t);
+            }
+        }
+        metronome_echo(t, SND_SEQ_EVENT_USR1);
+        t += duration;
+    }
+    metronome_echo(t, SND_SEQ_EVENT_USR0);
 }
 
 void SequencerAdapter::metronome_set_tempo() 
@@ -222,7 +271,7 @@ void SequencerAdapter::metronome_set_tempo()
 void SequencerAdapter::metronome_set_controls()
 {
     sendControlChange(VOLUME_CC, m_volume);
-    sendControlChange(BALANCE_CC, m_balance);
+    sendControlChange(PAN_CC, m_balance);
 }
 
 void SequencerAdapter::parse_sysex(SequencerEvent *ev) 
@@ -270,9 +319,14 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 //void SequencerAdapter::sequencerEvent(SequencerEvent *ev)
 void SequencerAdapter::handleSequencerEvent(SequencerEvent *ev)
 {
+    int when = 0;
     switch (ev->getSequencerType()) {
     case SND_SEQ_EVENT_USR0:
-        metronome_pattern(ev->getTick() + m_patternDuration);
+        when = ev->getTick() + m_patternDuration;
+        if (m_patternMode)
+            metronome_grid_pattern(when);
+        else
+            metronome_simple_pattern(when);
         m_bar++;
         m_beat = 0;
         break;
@@ -305,9 +359,15 @@ void SequencerAdapter::handleSequencerEvent(SequencerEvent *ev)
 void SequencerAdapter::metronome_start() 
 {
     m_Queue->start();
-	m_patternDuration = m_resolution * 4 / m_ts_div * m_ts_num;
-	metronome_pattern(0);
-	metronome_pattern(m_patternDuration);
+	if (m_patternMode) {
+        m_patternDuration = m_resolution * m_model->columnCount() / 4;
+        metronome_grid_pattern(0);
+        metronome_grid_pattern(m_patternDuration);
+	} else {
+        m_patternDuration = m_resolution * 4 / m_ts_div * m_ts_num;
+        metronome_simple_pattern(0);
+        metronome_simple_pattern(m_patternDuration);
+	}
 	m_bar = 1;
 	m_beat = 0;
 	m_playing = true;

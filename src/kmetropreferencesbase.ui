@@ -26,8 +26,8 @@ MA 02110-1301, USA
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>343</width>
-    <height>257</height>
+    <width>378</width>
+    <height>345</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,45 @@ MA 02110-1301, USA
    <item>
     <layout class="QFormLayout" name="formLayout_3">
      <item row="0" column="0">
-      <widget class="QLabel" name="textLabel1">
+      <widget class="QLabel" name="lblInputPort">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>160</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Optional input port conn:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_in_connection</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="KComboBox" name="m_in_connection">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblOutputPort">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -77,7 +115,7 @@ MA 02110-1301, USA
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="1" column="1">
       <widget class="KComboBox" name="m_out_connection">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -87,36 +125,18 @@ MA 02110-1301, USA
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="textLabel1_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>160</width>
-         <height>22</height>
-        </size>
-       </property>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblInstrument">
        <property name="text">
-        <string>Optional Input port conn:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
+        <string>Output instrument:</string>
        </property>
        <property name="buddy">
-        <cstring>m_in_connection</cstring>
+        <cstring>m_instrument</cstring>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="KComboBox" name="m_in_connection">
+     <item row="2" column="1">
+      <widget class="KComboBox" name="m_instrument">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -128,243 +148,238 @@ MA 02110-1301, USA
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="textLabel2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Channel:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_channel</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="KIntSpinBox" name="m_channel">
-         <property name="maximum">
-          <number>15</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>15</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="textLabel3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Program:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_program</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="KIntSpinBox" name="m_program">
-         <property name="maximum">
-          <number>127</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>127</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="textLabel7">
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Resolution:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_resolution</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="KIntSpinBox" name="m_resolution">
-         <property name="minimum">
-          <number>48</number>
-         </property>
-         <property name="maximum">
-          <number>480</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>48</number>
-         </property>
-         <property name="minValue" stdset="0">
-          <number>960</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="2">
+      <widget class="QLabel" name="lblBank">
+       <property name="text">
+        <string>Bank:</string>
        </property>
-       <property name="sizeHint" stdset="0">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>m_bank</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="KComboBox" name="m_bank"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="textLabel2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>75</width>
+         <height>17</height>
         </size>
        </property>
-      </spacer>
+       <property name="text">
+        <string>Channel:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_channel</cstring>
+       </property>
+      </widget>
      </item>
-     <item>
-      <layout class="QFormLayout" name="formLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="textLabel4">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Weak note:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_weak_note</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="KIntSpinBox" name="m_weak_note">
-         <property name="maximum">
-          <number>127</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>127</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="textLabel5">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Strong note:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_strong_note</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="KIntSpinBox" name="m_strong_note">
-         <property name="maximum">
-          <number>127</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>127</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="textLabel8">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Note duration:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_duration</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="KIntSpinBox" name="m_duration">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>960</number>
-         </property>
-         <property name="value">
-          <number>10</number>
-         </property>
-         <property name="minValue" stdset="0">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
+     <item row="1" column="1">
+      <widget class="KIntSpinBox" name="m_channel">
+       <property name="maximum">
+        <number>15</number>
+       </property>
+       <property name="maxValue" stdset="0">
+        <number>15</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="textLabel3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>17</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Program:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_program</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="KComboBox" name="m_program">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="textLabel7">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>17</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Resolution:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_resolution</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="KIntSpinBox" name="m_resolution">
+       <property name="minimum">
+        <number>48</number>
+       </property>
+       <property name="maximum">
+        <number>480</number>
+       </property>
+       <property name="maxValue" stdset="0">
+        <number>48</number>
+       </property>
+       <property name="minValue" stdset="0">
+        <number>960</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="textLabel4">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>17</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Weak note:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_weak_note</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="KComboBox" name="m_weak_note">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="textLabel8">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>17</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Note duration:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_duration</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="KIntSpinBox" name="m_duration">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>960</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+       <property name="minValue" stdset="0">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="textLabel5">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>17</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Strong note:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_strong_note</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="KComboBox" name="m_strong_note">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -469,16 +484,33 @@ MA 02110-1301, USA
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>m_autoconn</tabstop>
+  <tabstop>m_in_connection</tabstop>
+  <tabstop>m_out_connection</tabstop>
+  <tabstop>m_instrument</tabstop>
+  <tabstop>m_bank</tabstop>
+  <tabstop>m_channel</tabstop>
+  <tabstop>m_program</tabstop>
+  <tabstop>m_resolution</tabstop>
+  <tabstop>m_weak_note</tabstop>
+  <tabstop>m_duration</tabstop>
+  <tabstop>m_strong_note</tabstop>
+  <tabstop>m_use_noteoff</tabstop>
+  <tabstop>m_styledknobs</tabstop>
+  <tabstop>m_buttonOk</tabstop>
+  <tabstop>m_buttonCancel</tabstop>
+ </tabstops>
  <includes>
   <include location="local">kcombobox.h</include>
   <include location="local">knuminput.h</include>
@@ -492,8 +524,8 @@ MA 02110-1301, USA
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>175</x>
-     <y>245</y>
+     <x>273</x>
+     <y>337</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -508,8 +540,8 @@ MA 02110-1301, USA
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>260</x>
-     <y>245</y>
+     <x>359</x>
+     <y>337</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -524,12 +556,12 @@ MA 02110-1301, USA
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>115</x>
-     <y>206</y>
+     <x>129</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
-     <x>289</x>
-     <y>180</y>
+     <x>158</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>

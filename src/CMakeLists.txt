@@ -37,6 +37,13 @@ LINK_DIRECTORIES(
 SET(kmetronome_SRCS 
     classicstyle.h
     classicstyle.cpp
+    defs.h
+    drumgrid.h
+    drumgrid.cpp
+    drumgridmodel.h
+    drumgridmodel.cpp
+    instrument.h
+    instrument.cpp
     knob.h
     knob.cpp
     kmetronome.h
@@ -47,12 +54,12 @@ SET(kmetronome_SRCS
     kmetropreferences.cpp
     main.cpp
     qt_kde.h
-    defs.h
     sequenceradapter.h
     sequenceradapter.cpp 
 )
 
 SET(kmetronome_UI 
+    drumgrid.ui
     kmetronomeviewbase.ui
     kmetropreferencesbase.ui )
 	

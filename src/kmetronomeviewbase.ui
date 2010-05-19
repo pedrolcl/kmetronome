@@ -25,8 +25,8 @@ MA 02110-1301, USA
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>307</height>
+    <width>464</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -111,6 +111,13 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item>
+      <widget class="KPushButton" name="m_patternbtn">
+       <property name="text">
+        <string>Patterns</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="KPushButton" name="m_exitbtn">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -142,189 +149,185 @@ MA 02110-1301, USA
     </layout>
    </item>
    <item row="0" column="1" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QLCDNumber" name="m_measureLCD">
+    <widget class="QLCDNumber" name="m_measureLCD">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="whatsThis">
+      <string>Number of measures (bars) and beats played from beginning</string>
+     </property>
+     <property name="numDigits">
+      <number>8</number>
+     </property>
+     <property name="mode">
+      <enum>QLCDNumber::Dec</enum>
+     </property>
+     <property name="segmentStyle">
+      <enum>QLCDNumber::Flat</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="lblPattern">
+       <property name="text">
+        <string>Pattern:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="KComboBox" name="m_pattern">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblBeats">
+       <property name="text">
+        <string>Beats/Bar:</string>
        </property>
-       <property name="whatsThis">
-        <string>Number of measures (bars) and beats played from beginning</string>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
-       <property name="numDigits">
-        <number>8</number>
-       </property>
-       <property name="mode">
-        <enum>QLCDNumber::Dec</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
+       <property name="buddy">
+        <cstring>m_beatsBar</cstring>
        </property>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item row="1" column="1" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+     <item row="1" column="1">
+      <widget class="KIntSpinBox" name="m_beatsBar">
+       <property name="maximumSize">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>60</width>
+         <height>16777215</height>
         </size>
        </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="textLabel3">
-         <property name="text">
-          <string>Beats/Bar:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_beatsBar</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="KIntSpinBox" name="m_beatsBar">
-         <property name="maximumSize">
-          <size>
-           <width>60</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="whatsThis">
-          <string>This is the number of parts for each measure.&lt;br&gt;
+       <property name="whatsThis">
+        <string>This is the number of parts for each measure.&lt;br&gt;
 Values are from 1 to 32.&lt;br&gt;
 It is the numerator of the time signature specification.</string>
-         </property>
-         <property name="value">
-          <number>4</number>
-         </property>
-         <property name="maxValue" stdset="0">
-          <number>32</number>
-         </property>
-         <property name="minValue" stdset="0">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="textLabel4">
-         <property name="text">
-          <string>Rhythm figure:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="buddy">
-          <cstring>m_figure</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="KComboBox" name="m_figure">
-         <property name="whatsThis">
-          <string>This is the part figure for the rhythm.&lt;br&gt;
+       </property>
+       <property name="value">
+        <number>4</number>
+       </property>
+       <property name="maxValue" stdset="0">
+        <number>32</number>
+       </property>
+       <property name="minValue" stdset="0">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblFigure">
+       <property name="text">
+        <string>Rhythm figure:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring>m_figure</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="KComboBox" name="m_figure">
+       <property name="whatsThis">
+        <string>This is the part figure for the rhythm.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
 It is the denominator in the time signature specification.</string>
-         </property>
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <property name="currentItem" stdset="0">
-          <number>0</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>Whole</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/1.png</normaloff>:/icons/1.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Half</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/2.png</normaloff>:/icons/2.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Quarter</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/4.png</normaloff>:/icons/4.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Eighth</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/8.png</normaloff>:/icons/8.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Sixteenth</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/16.png</normaloff>:/icons/16.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Thirty-Second</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/32.png</normaloff>:/icons/32.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Sixty-Fourth</string>
-          </property>
-          <property name="icon">
-           <iconset resource="kmetronome.qrc">
-            <normaloff>:/icons/64.png</normaloff>:/icons/64.png</iconset>
-          </property>
-         </item>
-        </widget>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="currentItem" stdset="0">
+        <number>0</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Whole</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/1.png</normaloff>:/icons/1.png</iconset>
+        </property>
        </item>
-      </layout>
+       <item>
+        <property name="text">
+         <string>Half</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/2.png</normaloff>:/icons/2.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quarter</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/4.png</normaloff>:/icons/4.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Eighth</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/8.png</normaloff>:/icons/8.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sixteenth</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/16.png</normaloff>:/icons/16.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Thirty-Second</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/32.png</normaloff>:/icons/32.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sixty-Fourth</string>
+        </property>
+        <property name="icon">
+         <iconset resource="kmetronome.qrc">
+          <normaloff>:/icons/64.png</normaloff>:/icons/64.png</iconset>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </item>
@@ -590,6 +593,11 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
    <class>KIntSpinBox</class>
    <extends>QSpinBox</extends>
    <header>knuminput.h</header>
@@ -598,11 +606,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    <class>KPushButton</class>
    <extends>QPushButton</extends>
    <header>kpushbutton.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>Knob</class>

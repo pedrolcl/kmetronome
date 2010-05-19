@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DrumGrid</class>
+ <widget class="QDialog" name="DrumGrid">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>870</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pattern Editor</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="KEditListBox" name="keditlistbox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>220</width>
+       <height>16777215</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QFrame" name="frame_4">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>155</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="KPushButton" name="kpushbutton">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KPushButton" name="kpushbutton_2">
+        <property name="text">
+         <string>Remove</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KPushButton" name="kpushbutton_3">
+        <property name="text">
+         <string>Up</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KPushButton" name="kpushbutton_4">
+        <property name="text">
+         <string>Down</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QSpinBox" name="gridColumns">
+        <property name="minimum">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <number>64</number>
+        </property>
+        <property name="value">
+         <number>16</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KComboBox" name="m_figure">
+        <property name="whatsThis">
+         <string>This is the part figure for the rhythm.&lt;br&gt;
+Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
+It is the denominator in the time signature specification.</string>
+        </property>
+        <property name="currentIndex">
+         <number>4</number>
+        </property>
+        <property name="currentItem" stdset="0">
+         <number>0</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>Whole</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/1.png</normaloff>:/icons/1.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Half</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/2.png</normaloff>:/icons/2.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Quarter</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/4.png</normaloff>:/icons/4.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Eighth</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/8.png</normaloff>:/icons/8.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sixteenth</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/16.png</normaloff>:/icons/16.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Thirty-Second</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/32.png</normaloff>:/icons/32.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sixty-Fourth</string>
+         </property>
+         <property name="icon">
+          <iconset resource="kmetronome.qrc">
+           <normaloff>:/icons/64.png</normaloff>:/icons/64.png</iconset>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="startButton">
+        <property name="text">
+         <string>start</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="stopButton">
+        <property name="text">
+         <string>stop</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="tempoLabel">
+        <property name="text">
+         <string>100</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="tempoSlider">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>250</number>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksAbove</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KEditListBox</class>
+   <extends>QGroupBox</extends>
+   <header>keditlistbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tableView</tabstop>
+  <tabstop>gridColumns</tabstop>
+  <tabstop>startButton</tabstop>
+  <tabstop>stopButton</tabstop>
+  <tabstop>tempoSlider</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources>
+  <include location="kmetronome.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>tempoSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>tempoLabel</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DrumGrid</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>203</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DrumGrid</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>203</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

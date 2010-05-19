@@ -29,20 +29,23 @@ static const int NOTE_DURATION(10);
 static const int RHYTHM_TS_NUM(4);
 static const int RHYTHM_TS_DEN(4);
 
-static const int METRONOME_CHANNEL(9);
+static const int METRONOME_INSTRUMENT(0);
+static const int METRONOME_BANK(0);
+static const int METRONOME_PROGRAM(0);
 static const int METRONOME_STRONG_NOTE(34);
 static const int METRONOME_WEAK_NOTE(33);
+
+static const int METRONOME_CHANNEL(9);
 static const int METRONOME_VELOCITY(100);
-static const int METRONOME_PROGRAM(0);
 static const int METRONOME_RESOLUTION(120);
 static const int METRONOME_VOLUME(100);
-static const int METRONOME_BALANCE(64);
+static const int METRONOME_PAN(64);
 
 static const int TRANSPORT_PLAY(0);
 static const int TRANSPORT_STOP(1);
 static const int TRANSPORT_CONT(2);
 
 static const int VOLUME_CC(7);
-static const int BALANCE_CC(10);
+static const int PAN_CC(10);
 
 #endif /*DEFS_H*/

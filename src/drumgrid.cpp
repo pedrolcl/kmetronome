@@ -248,7 +248,9 @@ void DrumGrid::done(int r)
 
 void DrumGrid::updateDisplay(int /*bar*/, int beat)
 {
-    m_ui->tableView->selectColumn(beat-1);
+    if (m_ui->chkselbeat->isChecked())
+        m_ui->tableView->selectColumn(beat-1);
+    m_ui->beatNumber->display(beat);
 }
 
 void DrumGrid::setSequencer(SequencerAdapter* seq)

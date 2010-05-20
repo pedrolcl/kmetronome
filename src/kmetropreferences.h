@@ -51,6 +51,7 @@ public:
     int getBank();
     int getWeakNote();
     int getStrongNote();
+    Instrument* currentInstrument() { return &m_ins; }
 
     void setAutoConnect(bool newValue) { m_ui.m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);

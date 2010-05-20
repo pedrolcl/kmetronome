@@ -96,7 +96,7 @@
       <item>
        <widget class="QCheckBox" name="chkselbeat">
         <property name="whatsThis">
-         <string>Display the beat position in the beat grid selecting columns while playing</string>
+         <string>Display the beat position at the beat grid selecting columns while playing</string>
         </property>
         <property name="text">
          <string>Grid Beat

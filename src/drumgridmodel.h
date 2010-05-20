@@ -24,6 +24,9 @@
 #include <QtCore/QAbstractTableModel>
 #include <QtCore/QStringList>
 
+const int PATTERN_FIGURE(16);
+const int PATTERN_COLUMNS(16);
+
 class DrumGridModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -37,7 +40,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
-    void loadKeyNames();
+    void loadKeyNames(const QString& ins, int bank, int patch);
     void fillSampleData();
 
     void clearPattern();
@@ -47,10 +50,11 @@ public:
     QString patternKey(int row);
     QString patternHit(int row, int col);
     void updatePatternColumns(int columns);
-
-    QString getInstrumentName() const { return m_instrumentName; }
-    void setInstrumentName(const QString name);
-    QStringList getInstruments() const;
+    void setPatternFigure(int figure) { m_figure = figure; }
+    int patternFigure() { return m_figure; }
+    void insertPatternRow(const QString& name);
+    void removePatternRow(int row);
+    QStringList keyNames();
 
 public slots:
     void changeCell(const QModelIndex &index);
@@ -58,6 +62,7 @@ public slots:
 
 private:
     int m_columns;
+    int m_figure;
     QString m_lastValue;
     QMap<int,QString> m_keyNames;
     QList<QStringList> m_modelData;
@@ -65,7 +70,6 @@ private:
     QList<int> m_keys;
     QList<int> m_tempKeys;
     InstrumentList m_insList;
-    QString m_instrumentName;
     Instrument* m_ins;
 };
 

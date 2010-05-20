@@ -359,6 +359,7 @@ void KMetronome::editPatterns()
     if (m_drumgrid == NULL) {
         m_drumgrid = new DrumGrid(this);
         m_drumgrid->setSequencer(m_seq);
+        m_drumgrid->setInstrument(m_instrument);
     }
     if (m_view->patternMode())
         m_drumgrid->readPattern(m_view->getSelectedPattern());
@@ -376,6 +377,7 @@ void KMetronome::patternChanged(int /*idx*/)
         if (m_drumgrid == NULL) {
             m_drumgrid = new DrumGrid(this);
             m_drumgrid->setSequencer(m_seq);
+            m_drumgrid->setInstrument(m_instrument);
         }
         m_drumgrid->readPattern(m_view->getSelectedPattern());
     }

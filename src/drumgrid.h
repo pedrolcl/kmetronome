@@ -27,6 +27,8 @@
 #include <QtCore/QSignalMapper>
 
 const QString QSTR_PATTERN("Pattern_");
+const QString QSTR_FIGURE("Figure");
+const QString QSTR_COLS("Columns");
 
 namespace Ui
 {
@@ -67,18 +69,24 @@ public:
     void done(int r);
     QStringList patterns();
     QString currentPattern() { return m_currentPattern; }
+    void setFigure(int figure);
+    void setInstrument(const QString& instrument);
+    void enableWidgets(bool enable);
 
 public slots:
     void updateView();
     void play();
     void stop();
-    void tempoChange(int newTempo);
-    void gridColumns(int columns);
+    void slotTempoChanged(int newTempo);
+    void slotColumnsChanged(int columns);
+    void slotFigureChanged(int idx);
     void shortcutPressed(const QString& value);
     void updateDisplay(int bar, int beat);
     void patternChanged(int idx);
     void savePattern();
     void removePattern();
+    void addRow();
+    void removeRow();
 
 signals:
     void signalUpdate(int bar, int beat);
@@ -88,6 +96,7 @@ private:
     SequencerAdapter *m_seq;
     DrumGridModel* m_model;
     int m_figure;
+    int m_columns;
     unsigned long m_tick;
     QSignalMapper* m_mapper;
     QVector<QShortcut*> m_shortcuts;

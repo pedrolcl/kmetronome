@@ -26,26 +26,25 @@ const QString DEFVAL("f");
 
 DrumGridModel::DrumGridModel(QObject *parent)
     : QAbstractTableModel(parent),
-    m_columns(16),
+    m_columns(PATTERN_COLUMNS),
+    m_figure(PATTERN_FIGURE),
     m_lastValue(DEFVAL)
 {
     m_modelData.clear();
     m_keys.clear();
-    loadKeyNames();
-}
-
-void DrumGridModel::loadKeyNames()
-{
-    m_keyNames.clear();
-    m_keyNames[46] = QLatin1String("Open HH");
-    m_keyNames[42] = QLatin1String("Closed HH");
-    m_keyNames[39] = QLatin1String("Hand Claps");
-    m_keyNames[38] = QLatin1String("Snare Drum");
-    m_keyNames[36] = QLatin1String("Bass Drum");
-
     QString drums =  KStandardDirs::locate("appdata", "drums.ins");
     if (!drums.isEmpty())
         m_insList.load(drums);
+}
+
+void DrumGridModel::loadKeyNames(const QString& instrument, int bank, int patch)
+{
+    Instrument ins = m_insList.value(instrument);
+    const InstrumentData& notes = ins.notes(bank, patch);
+    InstrumentData::ConstIterator k;
+    m_keyNames.clear();
+    for( k = notes.constBegin(); k != notes.constEnd(); ++k )
+        m_keyNames[k.key()] = k.value();
 }
 
 void DrumGridModel::fillSampleData()
@@ -62,11 +61,13 @@ void DrumGridModel::fillSampleData()
     m_keys.insert(3, 38);
     m_keys.insert(4, 36);
     endInsertRows();
+    setPatternFigure(PATTERN_FIGURE);
+    updatePatternColumns(PATTERN_COLUMNS);
 }
 
 int DrumGridModel::rowCount(const QModelIndex & /* parent */) const
 {
-    return m_modelData.size();
+    return m_modelData.count();
 }
 
 int DrumGridModel::columnCount(const QModelIndex & /* parent */) const
@@ -76,7 +77,9 @@ int DrumGridModel::columnCount(const QModelIndex & /* parent */) const
 
 QVariant DrumGridModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || role != Qt::DisplayRole)
+    if (!index.isValid() || role != Qt::DisplayRole ||
+         index.row() > m_modelData.count() ||
+         index.column() > m_columns )
         return QVariant();
     return m_modelData[index.row()][index.column()].trimmed();
 }
@@ -130,12 +133,11 @@ QString DrumGridModel::patternKey(int row)
 
 void DrumGridModel::clearPattern()
 {
-    beginRemoveRows(QModelIndex(), 0, rowCount());
     m_modelData.clear();
     m_keys.clear();
     m_tempData.clear();
     m_tempKeys.clear();
-    endRemoveRows();
+    reset();
 }
 
 void DrumGridModel::addPatternData(int key, const QStringList& row)
@@ -146,7 +148,7 @@ void DrumGridModel::addPatternData(int key, const QStringList& row)
 
 void DrumGridModel::endOfPattern()
 {
-    beginInsertRows(QModelIndex(), 0, m_tempData.size());
+    beginInsertRows(QModelIndex(), 0, m_tempData.count()-1);
     m_keys = m_tempKeys;
     m_modelData = m_tempData;
     endInsertRows();
@@ -182,23 +184,32 @@ QString DrumGridModel::patternHit(int row, int col)
     return QString();
 }
 
-QStringList
-DrumGridModel::getInstruments() const
+void DrumGridModel::insertPatternRow(const QString& name)
 {
-    QStringList lst;
-    InstrumentList::ConstIterator it;
-    for(it = m_insList.begin(); it != m_insList.end(); ++it) {
-        lst += it.key();
-    }
-    return lst;
+    int i = 0, j = 0, key = m_keyNames.key(name);
+    QStringList data;
+    for (i = 0; i < m_columns; ++i)
+        data.append(QString());
+    while (j < m_keys.count() && m_keys[j] > key)
+        j++;
+    beginInsertRows(QModelIndex(), j, j);
+    m_keys.insert(j, key);
+    m_modelData.insert(j, data);
+    endInsertRows();
 }
 
-void
-DrumGridModel::setInstrumentName(const QString name)
+void DrumGridModel::removePatternRow(int row)
 {
-    m_instrumentName = name;
-    if (m_insList.contains(name))
-        m_ins = &m_insList[name];
-    else
-        m_ins = NULL;
+    beginRemoveRows(QModelIndex(), row, row);
+    m_modelData.removeAt(row);
+    m_keys.removeAt(row);
+    endRemoveRows();
+}
+
+QStringList DrumGridModel::keyNames()
+{
+    QStringList tmp = m_keyNames.values();
+    foreach(int key, m_keys)
+        tmp.removeOne(m_keyNames[key]);
+    return tmp;
 }

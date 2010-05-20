@@ -30,6 +30,8 @@
 #include <QtCore/QSettings>
 #include <KDE/KConfigGroup>
 #include <KDE/KIcon>
+#include <KDE/KMessageBox>
+#include <KDE/KInputDialog>
 #include <KDE/KDebug>
 #include <drumstick.h>
 
@@ -38,7 +40,8 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui(new Ui::DrumGrid),
     m_seq(NULL),
     m_model(NULL),
-    m_figure(16)
+    m_figure(PATTERN_FIGURE),
+    m_columns(PATTERN_COLUMNS)
 {
     QWidget *widget = new QWidget(this);
     m_ui->setupUi(widget);
@@ -56,14 +59,16 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
     connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
     connect( m_ui->stopButton, SIGNAL(clicked()), SLOT(stop()));
-    connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(tempoChange(int)));
-    connect( m_ui->gridColumns, SIGNAL(valueChanged(int)), SLOT(gridColumns(int)));
+    connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(slotTempoChanged(int)));
+    connect( m_ui->gridColumns, SIGNAL(valueChanged(int)), SLOT(slotColumnsChanged(int)));
+    connect( m_ui->figureCombo, SIGNAL(activated(int)), SLOT(slotFigureChanged(int)));
     connect( m_ui->patternCombo, SIGNAL(activated(int)), SLOT(patternChanged(int)));
     connect( m_ui->saveButton, SIGNAL(clicked()), SLOT(savePattern()));
     connect( m_ui->deleteButton, SIGNAL(clicked()), SLOT(removePattern()));
+    connect( m_ui->addButton, SIGNAL(clicked()), SLOT(addRow()));
+    connect( m_ui->removeButton, SIGNAL(clicked()), SLOT(removeRow()));
 
     m_model = new DrumGridModel(this);
-    m_model->fillSampleData();
     m_ui->tableView->setModel(m_model);
     connect ( this, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)) );
 
@@ -99,8 +104,20 @@ void DrumGrid::updateView()
     m_ui->tableView->resizeRowsToContents();
 }
 
+void DrumGrid::enableWidgets(bool enable)
+{
+    m_ui->gridColumns->setEnabled(enable);
+    m_ui->figureCombo->setEnabled(enable);
+    m_ui->addButton->setEnabled(enable);
+    m_ui->removeButton->setEnabled(enable);
+    m_ui->saveButton->setEnabled(enable);
+    m_ui->deleteButton->setEnabled(enable);
+    m_ui->patternCombo->setEnabled(enable);
+}
+
 void DrumGrid::play()
 {
+    enableWidgets(false);
     m_seq->metronome_set_tempo();
     m_seq->metronome_start();
 }
@@ -108,9 +125,10 @@ void DrumGrid::play()
 void DrumGrid::stop()
 {
     m_seq->metronome_stop();
+    enableWidgets(true);
 }
 
-void DrumGrid::tempoChange(int newTempo)
+void DrumGrid::slotTempoChanged(int newTempo)
 {
     m_seq->setBpm(newTempo);
     m_seq->metronome_set_tempo();
@@ -125,8 +143,25 @@ void DrumGrid::updateTempo(int newTempo)
     QToolTip::showText(QCursor::pos(), tip, this);
 }
 
-void DrumGrid::gridColumns(int columns)
+void DrumGrid::slotFigureChanged(int idx)
 {
+    m_figure = (int)pow(2, idx);
+    m_model->setPatternFigure(m_figure);
+}
+
+void DrumGrid::setFigure(int newValue)
+{
+    int ts_dd;
+    int x = m_figure = newValue;
+    for (ts_dd = 0; x > 1; x /= 2)
+        ++ts_dd;
+    m_ui->figureCombo->setCurrentIndex(ts_dd);
+    m_model->setPatternFigure(newValue);
+}
+
+void DrumGrid::slotColumnsChanged(int columns)
+{
+    m_columns = columns;
     m_model->updatePatternColumns(columns);
     updateView();
 }
@@ -149,14 +184,22 @@ void DrumGrid::readPattern()
 {
     KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN+m_currentPattern);
     QStringList keys = config.keyList();
-    //kDebug() << m_currentPattern << keys;
     if (!keys.empty()) {
+        setFigure(config.readEntry(QSTR_FIGURE, PATTERN_FIGURE));
+        int cols = config.readEntry(QSTR_COLS, PATTERN_COLUMNS);
+        m_ui->gridColumns->setValue(cols);
+        slotColumnsChanged(cols);
+        keys.removeOne(QSTR_FIGURE);
+        keys.removeOne(QSTR_COLS);
         keys.sort();
         m_model->clearPattern();
         foreach(const QString& key, keys) {
-            QStringList row = config.readEntry(key, QStringList());
-            //kDebug() << key << row;
-            m_model->addPatternData(key.toInt(), row);
+            bool isNumber;
+            int k = key.toInt(&isNumber);
+            if (isNumber) {
+                QStringList row = config.readEntry(key, QStringList());
+                m_model->addPatternData(k, row);
+            }
         }
         m_model->endOfPattern();
     }
@@ -171,6 +214,9 @@ void DrumGrid::readPattern(const QString& name)
 void DrumGrid::writePattern()
 {
     KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN+m_currentPattern);
+    config.deleteGroup();
+    config.writeEntry( QSTR_FIGURE, m_figure );
+    config.writeEntry( QSTR_COLS, m_columns );
     for(int r = 0; r < m_model->rowCount(); ++r) {
         config.writeEntry( m_model->patternKey(r),
                            m_model->patternData(r) );
@@ -231,7 +277,14 @@ void DrumGrid::showEvent(QShowEvent* /*event*/)
     m_ui->patternCombo->clear();
     m_ui->patternCombo->addItems(patterns());
     if (m_currentPattern.isEmpty())
-        m_currentPattern = m_ui->patternCombo->currentText();
+        if (m_ui->patternCombo->count() == 0) {
+            m_currentPattern = i18n("Sample");
+            m_model->fillSampleData();
+            m_ui->patternCombo->setCurrentItem(m_currentPattern, true);
+        } else {
+            m_currentPattern = m_ui->patternCombo->currentText();
+            readPattern();
+        }
     else
         m_ui->patternCombo->setCurrentItem(m_currentPattern);
     updateView();
@@ -259,4 +312,43 @@ void DrumGrid::setSequencer(SequencerAdapter* seq)
     connect( m_seq, SIGNAL(signalUpdate(int,int)),
              SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
     m_seq->setModel(m_model);
+}
+
+void DrumGrid::setInstrument(const QString& instrument)
+{
+    int bank = m_seq->getBank();
+    int patch = m_seq->getProgram();
+    m_model->loadKeyNames(instrument, bank, patch);
+}
+
+void DrumGrid::addRow()
+{
+    QStringList keys = m_model->keyNames();
+    QString name = KInputDialog::getItem(i18n("Insert Pattern Row"),
+                      i18n("Drum Key:"), keys,  0, false, 0, this);
+    if (!name.isEmpty())
+        m_model->insertPatternRow(name);
+}
+
+void DrumGrid::removeRow()
+{
+    int row = -1;
+    const QModelIndexList indexlist = m_ui->tableView->selectionModel()->selection().indexes(); //selectedIndexes();
+    if (indexlist.count() != m_columns)
+        return;
+    foreach (const QModelIndex& idx, indexlist) {
+        if (row < 0)
+            row = idx.row();
+        else if (row != idx.row())
+                return;
+    }
+    if (row < 0)
+        return;
+    if ( KMessageBox::questionYesNo (this,
+            i18n("Do you want to remove the selected pattern row?"),
+            i18n("Remove Row"),
+            KStandardGuiItem::yes(),
+            KStandardGuiItem::no(),
+            ":removepatternrow") == KMessageBox::Yes)
+        m_model->removePatternRow(row);
 }

@@ -243,7 +243,7 @@ void SequencerAdapter::metronome_grid_pattern(int tick)
 {
     int i, j, t, duration, key, vel;
     t = tick;
-    duration = m_resolution / 4;
+    duration = m_resolution * 4 / m_model->patternFigure();
     for(i=0; i<m_model->columnCount(); ++i) {
         for(j=0; j<m_model->rowCount(); ++j) {
             QString n = m_model->patternHit(j, i);
@@ -360,7 +360,7 @@ void SequencerAdapter::metronome_start()
 {
     m_Queue->start();
 	if (m_patternMode) {
-        m_patternDuration = m_resolution * m_model->columnCount() / 4;
+        m_patternDuration = m_resolution * 4 / m_model->patternFigure() * m_model->columnCount();
         metronome_grid_pattern(0);
         metronome_grid_pattern(m_patternDuration);
 	} else {

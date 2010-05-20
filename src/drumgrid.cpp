@@ -223,11 +223,6 @@ void DrumGrid::removePattern()
         m_ui->patternCombo->setCurrentItem(0);
 }
 
-void DrumGrid::selectPattern(const QString& name)
-{
-    m_currentPattern = name;
-}
-
 void DrumGrid::showEvent(QShowEvent* /*event*/)
 {
     m_ui->tempoSlider->setValue(m_seq->getBpm());
@@ -235,14 +230,15 @@ void DrumGrid::showEvent(QShowEvent* /*event*/)
     m_seq->setPatternMode(true);
     m_ui->patternCombo->clear();
     m_ui->patternCombo->addItems(patterns());
-    if (!m_currentPattern.isEmpty())
+    if (m_currentPattern.isEmpty())
+        m_currentPattern = m_ui->patternCombo->currentText();
+    else
         m_ui->patternCombo->setCurrentItem(m_currentPattern);
     updateView();
 }
 
 void DrumGrid::done(int r)
 {
-    kDebug() << r;
     stop();
     m_seq->setPatternMode(false);
     if (r == QDialog::Accepted && !m_currentPattern.isEmpty())

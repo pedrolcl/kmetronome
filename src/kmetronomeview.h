@@ -46,6 +46,7 @@ public:
     void setPatterns(const QStringList& patterns);
     bool patternMode() { return m_patternMode; }
     QString getSelectedPattern();
+    void setSelectedPattern(const QString& pattern);
 
 protected:
     virtual void mouseDoubleClickEvent ( QMouseEvent * e );

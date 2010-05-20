@@ -21,9 +21,8 @@
 #define DRUMGRIDMODEL_H
 
 #include "instrument.h"
-
-#include <QAbstractTableModel>
-#include <QStringList>
+#include <QtCore/QAbstractTableModel>
+#include <QtCore/QStringList>
 
 class DrumGridModel : public QAbstractTableModel
 {

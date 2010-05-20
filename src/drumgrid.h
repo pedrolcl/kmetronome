@@ -65,8 +65,8 @@ public:
     void updateTempo(int newTempo);
     void showEvent(QShowEvent* event);
     void done(int r);
-    void selectPattern(const QString& name);
     QStringList patterns();
+    QString currentPattern() { return m_currentPattern; }
 
 public slots:
     void updateView();

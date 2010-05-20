@@ -354,15 +354,20 @@ void KMetronome::updatePatterns()
 
 void KMetronome::editPatterns()
 {
+    int res;
+    QString tmpPattern;
     if (m_drumgrid == NULL) {
         m_drumgrid = new DrumGrid(this);
         m_drumgrid->setSequencer(m_seq);
     }
     if (m_view->patternMode())
         m_drumgrid->readPattern(m_view->getSelectedPattern());
-    m_drumgrid->exec();
+    res = m_drumgrid->exec();
     updatePatterns();
-    m_seq->setPatternMode(false);
+    if (res == QDialog::Accepted)
+        tmpPattern = m_drumgrid->currentPattern();
+    m_view->setSelectedPattern(tmpPattern);
+    m_seq->setPatternMode(m_view->patternMode());
 }
 
 void KMetronome::patternChanged(int /*idx*/)

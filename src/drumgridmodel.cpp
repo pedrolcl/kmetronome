@@ -18,7 +18,6 @@
 */
 
 #include "drumgridmodel.h"
-#include <QtGui>
 #include <drumstick.h>
 #include <KDE/KStandardDirs>
 #include <KDE/KDebug>

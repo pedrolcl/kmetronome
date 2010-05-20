@@ -173,7 +173,6 @@ void KmetronomeView::stop()
 
 void KmetronomeView::setPatterns(const QStringList& patterns)
 {
-    kDebug() << patterns;
     m_pattern->clear();
     m_pattern->addItem(i18n("Automatic"));
     m_pattern->addItems(patterns);
@@ -189,4 +188,14 @@ void KmetronomeView::patternChanged(int idx)
 QString KmetronomeView::getSelectedPattern()
 {
     return m_pattern->currentText();
+}
+
+void KmetronomeView::setSelectedPattern(const QString& pattern)
+{
+    if (pattern.isEmpty()) {
+        patternChanged(0);
+    } else {
+        m_pattern->setCurrentItem(pattern);
+        patternChanged(m_pattern->currentIndex());
+    }
 }

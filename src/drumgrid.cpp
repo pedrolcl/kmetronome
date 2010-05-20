@@ -44,15 +44,23 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->setupUi(widget);
     setMainWidget( widget );
     setCaption( i18n("Pattern Editor") );
-    //setFixedWidth( 700 );
+    setFixedWidth( 700 );
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
+    m_ui->saveButton->setIcon(KIcon("document-save"));
+    m_ui->deleteButton->setIcon(KIcon("edit-delete"));
+    m_ui->addButton->setIcon(KIcon("list-add"));
+    m_ui->removeButton->setIcon(KIcon("list-remove"));
+
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
     connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
     connect( m_ui->stopButton, SIGNAL(clicked()), SLOT(stop()));
     connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(tempoChange(int)));
     connect( m_ui->gridColumns, SIGNAL(valueChanged(int)), SLOT(gridColumns(int)));
+    connect( m_ui->patternCombo, SIGNAL(activated(int)), SLOT(patternChanged(int)));
+    connect( m_ui->saveButton, SIGNAL(clicked()), SLOT(savePattern()));
+    connect( m_ui->deleteButton, SIGNAL(clicked()), SLOT(removePattern()));
 
     m_model = new DrumGridModel(this);
     m_model->fillSampleData();
@@ -76,9 +84,6 @@ DrumGrid::DrumGrid(QWidget *parent)
     connect( m_mapper, SIGNAL(mapped(QString)), SLOT(shortcutPressed(QString)));
     connect ( m_ui->tableView, SIGNAL(doubleClicked(const QModelIndex&)),
               m_model, SLOT(changeCell(const QModelIndex &)) );
-
-    //readSettings();
-    updateView();
 }
 
 DrumGrid::~DrumGrid()
@@ -140,24 +145,32 @@ void DrumGrid::addShortcut(const QKeySequence& key, const QString& value)
     m_shortcuts.append(shortcut);
 }
 
-void DrumGrid::readSettings()
+void DrumGrid::readPattern()
 {
-    KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN);
+    KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN+m_currentPattern);
     QStringList keys = config.keyList();
+    //kDebug() << m_currentPattern << keys;
     if (!keys.empty()) {
         keys.sort();
         m_model->clearPattern();
         foreach(const QString& key, keys) {
-            QStringList row = config.readEntry(key, QVariant()).toStringList();
+            QStringList row = config.readEntry(key, QStringList());
+            //kDebug() << key << row;
             m_model->addPatternData(key.toInt(), row);
         }
         m_model->endOfPattern();
     }
 }
 
-void DrumGrid::writeSettings()
+void DrumGrid::readPattern(const QString& name)
 {
-    KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN);
+    m_currentPattern = name;
+    readPattern();
+}
+
+void DrumGrid::writePattern()
+{
+    KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN+m_currentPattern);
     for(int r = 0; r < m_model->rowCount(); ++r) {
         config.writeEntry( m_model->patternKey(r),
                            m_model->patternData(r) );
@@ -165,12 +178,66 @@ void DrumGrid::writeSettings()
     config.sync();
 }
 
-void DrumGrid:: showEvent ( QShowEvent* /*event*/ )
+void DrumGrid::writePattern(const QString& name)
 {
-    kDebug() << m_seq->getBpm();
+    m_currentPattern = name;
+    writePattern();
+}
+
+void DrumGrid::removePattern(const QString& name)
+{
+    KGlobal::config()->deleteGroup(QSTR_PATTERN+name);
+    KGlobal::config()->sync();
+}
+
+QStringList DrumGrid::patterns()
+{
+    QStringList lst;
+    int n = QSTR_PATTERN.size();
+    foreach(const QString& name, KGlobal::config()->groupList()) {
+        if (name.startsWith(QSTR_PATTERN))
+            lst += name.mid(n);
+    }
+    return lst;
+}
+
+void DrumGrid::patternChanged(int /*idx*/)
+{
+    readPattern(m_ui->patternCombo->currentText());
+}
+
+void DrumGrid::savePattern()
+{
+    writePattern(m_ui->patternCombo->currentText());
+}
+
+void DrumGrid::removePattern()
+{
+    int idx = m_ui->patternCombo->currentIndex();
+    QString tmpPattern = m_ui->patternCombo->currentText();
+    m_ui->patternCombo->removeItem(idx);
+    removePattern(tmpPattern);
+    m_currentPattern.clear();
+    m_model->clearPattern();
+    if (m_ui->patternCombo->count() > 0)
+        m_ui->patternCombo->setCurrentItem(0);
+}
+
+void DrumGrid::selectPattern(const QString& name)
+{
+    m_currentPattern = name;
+}
+
+void DrumGrid::showEvent(QShowEvent* /*event*/)
+{
     m_ui->tempoSlider->setValue(m_seq->getBpm());
     updateTempo(m_seq->getBpm());
     m_seq->setPatternMode(true);
+    m_ui->patternCombo->clear();
+    m_ui->patternCombo->addItems(patterns());
+    if (!m_currentPattern.isEmpty())
+        m_ui->patternCombo->setCurrentItem(m_currentPattern);
+    updateView();
 }
 
 void DrumGrid::done(int r)
@@ -178,7 +245,8 @@ void DrumGrid::done(int r)
     kDebug() << r;
     stop();
     m_seq->setPatternMode(false);
-    writeSettings();
+    if (r == QDialog::Accepted && !m_currentPattern.isEmpty())
+        writePattern();
     QDialog::done(r);
 }
 

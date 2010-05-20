@@ -26,15 +26,14 @@
 
 #include <QLCDNumber>
 #include <QMouseEvent>
-
-#include <kapplication.h>
-#include <kpushbutton.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kinputdialog.h>
+#include <KDE/KApplication>
+#include <KDE/KInputDialog>
+#include <KDE/KDebug>
 
 KmetronomeView::KmetronomeView(QWidget *parent)
-     : QWidget(parent), Ui::KmetronomeViewBase()
+     : QWidget(parent), Ui::KmetronomeViewBase(),
+       m_dialStyle(0),
+       m_patternMode(false)
 {
     setupUi(this);
 
@@ -95,6 +94,8 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     connect( m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
     connect( m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
     connect( m_pattern, SIGNAL(activated(int)),
+             SLOT(patternChanged(int)) );
+    connect( m_pattern, SIGNAL(activated(int)),
              parent, SLOT(patternChanged(int)) );
 }
 
@@ -130,8 +131,8 @@ void KmetronomeView::enableControls(bool e)
     m_stopbtn->setEnabled(!e);
     m_configbtn->setEnabled(e);
     m_patternbtn->setEnabled(e);
-    m_beatsBar->setEnabled(e);
-    m_figure->setEnabled(e);
+    m_beatsBar->setEnabled(e & !m_patternMode);
+    m_figure->setEnabled(e & !m_patternMode);
     m_pattern->setEnabled(e);
 }
 
@@ -168,4 +169,24 @@ void KmetronomeView::play()
 void KmetronomeView::stop()
 {
     m_playbtn->setFocus();
+}
+
+void KmetronomeView::setPatterns(const QStringList& patterns)
+{
+    kDebug() << patterns;
+    m_pattern->clear();
+    m_pattern->addItem(i18n("Automatic"));
+    m_pattern->addItems(patterns);
+}
+
+void KmetronomeView::patternChanged(int idx)
+{
+    m_patternMode = (idx > 0);
+    m_beatsBar->setEnabled(!m_patternMode);
+    m_figure->setEnabled(!m_patternMode);
+}
+
+QString KmetronomeView::getSelectedPattern()
+{
+    return m_pattern->currentText();
 }

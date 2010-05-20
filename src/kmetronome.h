@@ -49,6 +49,7 @@ public Q_SLOTS:
     void updateDisplay(int, int);
     void editPatterns();
     void patternChanged(int);
+    void updatePatterns();
 
 protected Q_SLOTS:
     void optionsPreferences();

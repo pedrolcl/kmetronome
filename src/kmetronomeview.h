@@ -43,6 +43,9 @@ public:
     void setFigure(int newValue);
     void enableControls(bool e);
     void updateKnobs(bool styled);
+    void setPatterns(const QStringList& patterns);
+    bool patternMode() { return m_patternMode; }
+    QString getSelectedPattern();
 
 protected:
     virtual void mouseDoubleClickEvent ( QMouseEvent * e );
@@ -54,11 +57,13 @@ public Q_SLOTS:
     void displayVolume(int v) { m_dial3->setValue(v); }
     void displayBalance(int v) { m_dial4->setValue(v); }
     void tempoComboChanged(int);
+    void patternChanged(int);
     void play();
     void stop();
 
 private:
     QStyle* m_dialStyle;
+    bool m_patternMode;
 };
 
 #endif

@@ -12,7 +12,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="topFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -28,7 +28,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KComboBox" name="kcombobox">
+       <widget class="KComboBox" name="patternCombo">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -58,7 +58,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QFrame" name="frame_4">
+    <widget class="QFrame" name="leftFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -77,20 +77,6 @@
        <widget class="KPushButton" name="removeButton">
         <property name="text">
          <string>Remove</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KPushButton" name="upButton">
-        <property name="text">
-         <string>Up</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KPushButton" name="downButton">
-        <property name="text">
-         <string>Down</string>
         </property>
        </widget>
       </item>
@@ -114,7 +100,7 @@
     <widget class="QTableView" name="tableView"/>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="QFrame" name="frame_2">
+    <widget class="QFrame" name="bottomFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -136,7 +122,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KComboBox" name="m_figure">
+       <widget class="KComboBox" name="figureCombo">
         <property name="whatsThis">
          <string>This is the part figure for the rhythm.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
@@ -218,12 +204,27 @@ It is the denominator in the time signature specification.</string>
         <property name="text">
          <string>Start</string>
         </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="stopButton">
         <property name="text">
          <string>Stop</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

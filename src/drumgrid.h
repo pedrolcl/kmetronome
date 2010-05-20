@@ -26,7 +26,7 @@
 #include <QtGui/QCloseEvent>
 #include <QtCore/QSignalMapper>
 
-const QString QSTR_PATTERN("Pattern");
+const QString QSTR_PATTERN("Pattern_");
 
 namespace Ui
 {
@@ -57,11 +57,16 @@ public:
 
     void subscribe(const QString& portName);
     void addShortcut(const QKeySequence& key, const QString& value);
-    void readSettings();
-    void writeSettings();
+    void readPattern();
+    void readPattern(const QString& name);
+    void writePattern();
+    void writePattern(const QString& name);
+    void removePattern(const QString& name);
     void updateTempo(int newTempo);
     void showEvent(QShowEvent* event);
     void done(int r);
+    void selectPattern(const QString& name);
+    QStringList patterns();
 
 public slots:
     void updateView();
@@ -71,6 +76,9 @@ public slots:
     void gridColumns(int columns);
     void shortcutPressed(const QString& value);
     void updateDisplay(int bar, int beat);
+    void patternChanged(int idx);
+    void savePattern();
+    void removePattern();
 
 signals:
     void signalUpdate(int bar, int beat);
@@ -83,6 +91,7 @@ private:
     unsigned long m_tick;
     QSignalMapper* m_mapper;
     QVector<QShortcut*> m_shortcuts;
+    QString m_currentPattern;
 };
 
 #endif // DRUMGRID_H

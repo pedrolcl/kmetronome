@@ -177,6 +177,7 @@ void KMetronome::readConfiguration()
     m_styledKnobs = config.readEntry("styledKnobs", true);
     m_seq->sendInitialControls();
     m_view->updateKnobs(m_styledKnobs);
+    updatePatterns();
 }
 
 void KMetronome::optionsPreferences()
@@ -335,17 +336,43 @@ void KMetronome::setTimeSignature(int numerator, int denominator)
     m_seq->setRhythmDenominator(denominator);
 }
 
+/**
+ * Patterns stuff
+ */
+
+void KMetronome::updatePatterns()
+{
+    QStringList lst;
+    int n = QSTR_PATTERN.size();
+    KGlobal::config()->reparseConfiguration();
+    foreach(const QString& name, KGlobal::config()->groupList()) {
+        if (name.startsWith(QSTR_PATTERN))
+            lst += name.mid(n);
+    }
+    m_view->setPatterns(lst);
+}
+
 void KMetronome::editPatterns()
 {
     if (m_drumgrid == NULL) {
         m_drumgrid = new DrumGrid(this);
         m_drumgrid->setSequencer(m_seq);
     }
+    if (m_view->patternMode())
+        m_drumgrid->readPattern(m_view->getSelectedPattern());
     m_drumgrid->exec();
+    updatePatterns();
     m_seq->setPatternMode(false);
 }
 
-void KMetronome::patternChanged(int idx)
+void KMetronome::patternChanged(int /*idx*/)
 {
-
+    if (m_view->patternMode()) {
+        if (m_drumgrid == NULL) {
+            m_drumgrid = new DrumGrid(this);
+            m_drumgrid->setSequencer(m_seq);
+        }
+        m_drumgrid->readPattern(m_view->getSelectedPattern());
+    }
+    m_seq->setPatternMode(m_view->patternMode());
 }

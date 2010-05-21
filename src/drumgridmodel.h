@@ -69,6 +69,7 @@ private:
     QList<QStringList> m_tempData;
     QList<int> m_keys;
     QList<int> m_tempKeys;
+    //TODO: Convert to pointers, initialize in parent
     InstrumentList m_insList;
     Instrument* m_ins;
 };

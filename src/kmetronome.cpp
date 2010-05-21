@@ -45,6 +45,9 @@
 #include <KDE/KMessageBox>
 #include <KDE/KDebug>
 
+//TODO: create the InstrumentList here, and initialize
+// the Instrument pointer in readConfiguration()
+
 KMetronome::KMetronome(QWidget *parent) :
     KXmlGuiWindow(parent),
     m_styledKnobs(true),
@@ -137,6 +140,8 @@ void KMetronome::readConfiguration()
     m_instrument = config.readEntry("instrument", QString());
     m_bank = config.readEntry("bank", QString());
     m_program = config.readEntry("program", QString());
+    // TODO: transform the names into numbers using the InstrumentList object
+    // initialize the properties in m_seq
     m_seq->setChannel(config.readEntry("channel", METRONOME_CHANNEL));
     m_seq->setWeakNote(config.readEntry("weakNote", METRONOME_WEAK_NOTE));
     m_seq->setStrongNote(config.readEntry("strongNote", METRONOME_STRONG_NOTE));
@@ -356,6 +361,7 @@ void KMetronome::editPatterns()
 {
     int res;
     QString tmpPattern;
+    //TODO: unify in a singleton method
     if (m_drumgrid == NULL) {
         m_drumgrid = new DrumGrid(this);
         m_drumgrid->setSequencer(m_seq);
@@ -365,7 +371,7 @@ void KMetronome::editPatterns()
         m_drumgrid->readPattern(m_view->getSelectedPattern());
     res = m_drumgrid->exec();
     updatePatterns();
-    if (res == QDialog::Accepted)
+    if (res == QDialog::Accepted && m_drumgrid != NULL)
         tmpPattern = m_drumgrid->currentPattern();
     m_view->setSelectedPattern(tmpPattern);
     m_seq->setPatternMode(m_view->patternMode());
@@ -374,6 +380,7 @@ void KMetronome::editPatterns()
 void KMetronome::patternChanged(int /*idx*/)
 {
     if (m_view->patternMode()) {
+        //TODO: unify in a singleton method
         if (m_drumgrid == NULL) {
             m_drumgrid = new DrumGrid(this);
             m_drumgrid->setSequencer(m_seq);

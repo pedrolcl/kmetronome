@@ -56,6 +56,7 @@ void KMetroPreferences::setInputConnection(QString newValue)
     }
 }
 
+// TODO: initialization in parent
 void KMetroPreferences::fillInstruments()
 {
     InstrumentList::ConstIterator it;

@@ -77,6 +77,7 @@ public slots:
 
 private:
     Ui::KMetroPreferencesBase m_ui;
+    // TODO: convert to pointers, initialize in parent
     InstrumentList m_insList;
     Instrument m_ins;
 };

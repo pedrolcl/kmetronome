@@ -112,9 +112,6 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KPushButton" name="m_patternbtn">
-       <property name="toolTip">
-        <string>This button opens the pattern editor</string>
-       </property>
        <property name="whatsThis">
         <string>This button opens the pattern editor</string>
        </property>
@@ -130,9 +127,6 @@ MA 02110-1301, USA
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>This button exits the program</string>
        </property>
        <property name="whatsThis">
         <string>This button exits the program</string>
@@ -171,9 +165,6 @@ MA 02110-1301, USA
        <height>60</height>
       </size>
      </property>
-     <property name="toolTip">
-      <string>Number of measures (bars) and beats played from beginning</string>
-     </property>
      <property name="whatsThis">
       <string>Number of measures (bars) and beats played from beginning</string>
      </property>
@@ -211,9 +202,6 @@ MA 02110-1301, USA
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="toolTip">
-        <string>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</string>
-       </property>
        <property name="whatsThis">
         <string>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</string>
        </property>
@@ -239,11 +227,6 @@ MA 02110-1301, USA
          <width>60</width>
          <height>16777215</height>
         </size>
-       </property>
-       <property name="toolTip">
-        <string>This is the number of parts for each measure.&lt;br&gt;
-Values are from 1 to 32.&lt;br&gt;
-It is the numerator of the time signature specification.</string>
        </property>
        <property name="whatsThis">
         <string>This is the number of parts for each measure.&lt;br&gt;
@@ -279,11 +262,6 @@ It is the numerator of the time signature specification.</string>
      </item>
      <item row="2" column="1">
       <widget class="KComboBox" name="m_figure">
-       <property name="toolTip">
-        <string>This is the part figure for the rhythm.
-Values mean 1, 2, 4, 8, 16, 32 and 64.
-It is the denominator in the time signature specification.</string>
-       </property>
        <property name="whatsThis">
         <string>This is the part figure for the rhythm.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
@@ -425,7 +403,7 @@ It is the denominator in the time signature specification.</string>
         </size>
        </property>
        <property name="whatsThis">
-        <string>This is the velocity of the weak notes in the rhythm pattern (all of them, except the first one)</string>
+        <string>This is the velocity of the weak notes in the automatic rhythm pattern (all of them, except the first one)</string>
        </property>
        <property name="maximum">
         <number>127</number>
@@ -450,7 +428,7 @@ It is the denominator in the time signature specification.</string>
         </size>
        </property>
        <property name="whatsThis">
-        <string>This is the velocity of the strong note in the rhythm pattern (the first one)</string>
+        <string>This is the velocity of the strong note in the automatic rhythm pattern (the first one)</string>
        </property>
        <property name="maximum">
         <number>127</number>
@@ -522,9 +500,6 @@ It is the denominator in the time signature specification.</string>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="KComboBox" name="m_air">
-       <property name="toolTip">
-        <string>This is the aire control to change the tempo value using musical names</string>
-       </property>
        <property name="whatsThis">
         <string>This is the aire control to change the tempo value using musical names</string>
        </property>

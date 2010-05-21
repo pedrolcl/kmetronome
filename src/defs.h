@@ -47,5 +47,10 @@ static const int TRANSPORT_CONT(2);
 
 static const int VOLUME_CC(7);
 static const int PAN_CC(10);
+static const int MSB_CC(0);
+static const int LSB_CC(0x20);
+
+#define CALC_LSB(x) (x % 0x80)
+#define CALC_MSB(x) (x / 0x80)
 
 #endif /*DEFS_H*/

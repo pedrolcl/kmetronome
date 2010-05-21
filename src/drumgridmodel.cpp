@@ -18,7 +18,6 @@
 */
 
 #include "drumgridmodel.h"
-#include <drumstick.h>
 #include <KDE/KStandardDirs>
 #include <KDE/KDebug>
 
@@ -32,6 +31,7 @@ DrumGridModel::DrumGridModel(QObject *parent)
 {
     m_modelData.clear();
     m_keys.clear();
+    // TODO: initialization in parent
     QString drums =  KStandardDirs::locate("appdata", "drums.ins");
     if (!drums.isEmpty())
         m_insList.load(drums);

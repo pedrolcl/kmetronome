@@ -38,9 +38,6 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip">
-         <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
-        </property>
         <property name="whatsThis">
          <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
         </property>
@@ -51,9 +48,6 @@
       </item>
       <item>
        <widget class="KPushButton" name="saveButton">
-        <property name="toolTip">
-         <string>This button stores the current pattern definition with the name given</string>
-        </property>
         <property name="whatsThis">
          <string>This button stores the current pattern definition with the name given</string>
         </property>
@@ -64,9 +58,6 @@
       </item>
       <item>
        <widget class="KPushButton" name="deleteButton">
-        <property name="toolTip">
-         <string>This button deletes the current pattern definition</string>
-        </property>
         <property name="whatsThis">
          <string>This button deletes the current pattern definition</string>
         </property>
@@ -96,9 +87,6 @@
       </item>
       <item>
        <widget class="KPushButton" name="addButton">
-        <property name="toolTip">
-         <string>Use this button to add new rows (sounds) to the current pattern definition</string>
-        </property>
         <property name="whatsThis">
          <string>Use this button to add new rows (sounds) to the current pattern definition</string>
         </property>
@@ -109,9 +97,6 @@
       </item>
       <item>
        <widget class="KPushButton" name="removeButton">
-        <property name="toolTip">
-         <string>Use this button to remove the selected row (sound) from the pattern definition</string>
-        </property>
         <property name="whatsThis">
          <string>Use this button to remove the selected row (sound) from the pattern definition</string>
         </property>
@@ -142,9 +127,6 @@
       </item>
       <item>
        <widget class="QCheckBox" name="chkselbeat">
-        <property name="toolTip">
-         <string>Highligh the grid columns while playing</string>
-        </property>
         <property name="whatsThis">
          <string>Highligh the grid columns while playing</string>
         </property>
@@ -162,6 +144,9 @@ Columns</string>
           <height>80</height>
          </size>
         </property>
+        <property name="whatsThis">
+         <string>This is the current beat number</string>
+        </property>
         <property name="numDigits">
          <number>2</number>
         </property>
@@ -174,7 +159,11 @@ Columns</string>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QTableView" name="tableView">
+     <property name="whatsThis">
+      <string>This is the pattern table, beats as columns and sounds as rows</string>
+     </property>
+    </widget>
    </item>
    <item row="3" column="0" colspan="2">
     <widget class="QFrame" name="bottomFrame">
@@ -187,9 +176,6 @@ Columns</string>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="KIntSpinBox" name="gridColumns">
-        <property name="toolTip">
-         <string>Number of rhythm figures per measure</string>
-        </property>
         <property name="whatsThis">
          <string>Number of rhythm figures per measure</string>
         </property>
@@ -206,9 +192,6 @@ Columns</string>
       </item>
       <item>
        <widget class="KComboBox" name="figureCombo">
-        <property name="toolTip">
-         <string>This is the part figure for the pattern column.</string>
-        </property>
         <property name="whatsThis">
          <string>This is the part figure for the pattern column.</string>
         </property>
@@ -285,9 +268,6 @@ Columns</string>
       </item>
       <item>
        <widget class="QPushButton" name="startButton">
-        <property name="toolTip">
-         <string>This button starts playing the current pattern</string>
-        </property>
         <property name="whatsThis">
          <string>This button starts playing the current pattern</string>
         </property>
@@ -323,6 +303,9 @@ Columns</string>
       </item>
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="whatsThis">
+         <string>QPM: quarters per minute</string>
+        </property>
         <property name="text">
          <string comment="Quarters per Minute">QPM:</string>
         </property>
@@ -333,6 +316,9 @@ Columns</string>
       </item>
       <item>
        <widget class="QLabel" name="tempoLabel">
+        <property name="whatsThis">
+         <string>This is the current tempo in quarters per minute</string>
+        </property>
         <property name="text">
          <string>100</string>
         </property>
@@ -340,9 +326,6 @@ Columns</string>
       </item>
       <item>
        <widget class="QSlider" name="tempoSlider">
-        <property name="toolTip">
-         <string>Drag the slider handle to change the tempo, in quarters per minute</string>
-        </property>
         <property name="whatsThis">
          <string>Drag the slider handle to change the tempo, in quarters per minute</string>
         </property>

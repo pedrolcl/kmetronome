@@ -55,6 +55,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_ts_num(RHYTHM_TS_NUM),
     m_ts_div(RHYTHM_TS_DEN),
     m_noteDuration(NOTE_DURATION),
+    m_bankSelMode(3),
     m_autoconnect(false),
     m_playing(false),
     m_useNoteOff(true),
@@ -169,6 +170,29 @@ void SequencerAdapter::sendInitialControls()
     metronome_set_program();
     metronome_set_controls();
     metronome_set_tempo();
+}
+
+void SequencerAdapter::metronome_set_bank()
+{
+    //TODO: this needs to be get somewhere...
+    //int method = (m_ins != NULL) ? m_ins->bankSelMethod() : 0;
+    int lsb, msb;
+    switch (m_bankSelMode) {
+    case 0:
+        lsb = CALC_LSB(m_bank);
+        msb = CALC_MSB(m_bank);
+        sendControlChange(MSB_CC, msb);
+        sendControlChange(LSB_CC, lsb);
+        break;
+    case 1:
+        sendControlChange(MSB_CC, m_bank);
+        break;
+    case 2:
+        sendControlChange(LSB_CC, m_bank);
+        break;
+    default: /* if method is 3 or above, do nothing */
+        break;
+    }
 }
 
 void SequencerAdapter::metronome_set_program() 

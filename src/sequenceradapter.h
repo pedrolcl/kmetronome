@@ -65,6 +65,7 @@ public:
     void setNoteDuration(int newValue) { m_noteDuration = newValue; }
     void setSendNoteOff(bool newValue) { m_useNoteOff = newValue; }
     void setPatternMode(bool newValue) { m_patternMode = newValue; }
+    void setBankSelMode(int newValue) { m_bankSelMode = newValue; }
     void setModel(DrumGridModel* model) { m_model = model; }
     int getInstrument() { return m_instrument; }
     int getBank() { return m_bank; }
@@ -87,6 +88,7 @@ public:
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
     bool getPatternMode() { return m_patternMode; }
+    int getBankSelMode() { return m_bankSelMode; }
 
     void sendControlChange( int cc, int value );
     void sendInitialControls();
@@ -94,6 +96,7 @@ public:
     void metronome_start();
     void metronome_stop();
     void metronome_continue();
+    void metronome_set_bank();
     void metronome_set_program();
     void metronome_set_tempo();
     void metronome_set_rhythm();
@@ -155,6 +158,7 @@ private:
     int m_ts_num; /* time signature: numerator */
     int m_ts_div; /* time signature: denominator */
     int m_noteDuration;
+    int m_bankSelMode;
     int m_patternDuration;
     bool m_autoconnect;
     bool m_playing;

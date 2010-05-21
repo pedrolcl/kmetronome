@@ -232,8 +232,15 @@ void DrumGrid::writePattern(const QString& name)
 
 void DrumGrid::removePattern(const QString& name)
 {
-    KGlobal::config()->deleteGroup(QSTR_PATTERN+name);
-    KGlobal::config()->sync();
+    if ( KMessageBox::questionYesNo (this,
+            i18n("Do you want to remove the current pattern?"),
+            i18n("Remove Pattern"),
+            KStandardGuiItem::yes(),
+            KStandardGuiItem::no(),
+            "removepattern") == KMessageBox::Yes) {
+        KGlobal::config()->deleteGroup(QSTR_PATTERN+name);
+        KGlobal::config()->sync();
+    }
 }
 
 QStringList DrumGrid::patterns()
@@ -254,7 +261,9 @@ void DrumGrid::patternChanged(int /*idx*/)
 
 void DrumGrid::savePattern()
 {
-    writePattern(m_ui->patternCombo->currentText());
+    QString newName = m_ui->patternCombo->currentText();
+    writePattern(newName);
+    m_ui->patternCombo->addItem(newName);
 }
 
 void DrumGrid::removePattern()

@@ -2,7 +2,7 @@
 
     * Using an instrument definition file in .INS format
     * Custom patterns
-    * Pattern editor
+    * Pattern editor (RFE #2517833)
 
 2010-05-01 00:00 plcl
 

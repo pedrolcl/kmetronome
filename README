@@ -30,6 +30,9 @@ You need the following software:
     Debian package: "libasound2-dev"
     http://packages.debian.org/sid/libasound2-dev
 
+* Drumstick libraries
+    http://drumstick.sourceforge.net
+
 Getting the development sources
 ===============================
 
@@ -59,14 +62,17 @@ $ svn co https://kmetronome.svn.sourceforge.net/svnroot/kmetronome/trunk kmetron
 $ cd kmetronome
 $ ./link-drumstick
 
-The module 'drumstick' is also used by other projects in a similar way. 
-It will become an independent shared library some future day.
+The module 'drumstick' is also used by other projects in a similar way. It may 
+also be used as an independent shared dynamic library.
 
 4. Configure and compile
 
 $ mkdir build
 $ cd build
-$ cmake .. -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+$ cmake .. -DCMAKE_BUILD_TYPE=debug \
+           -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` \
+           -DSTATIC_DRUMSTICK=YES
+
 $ make VERBOSE=1
 
 5. Hack and enjoy!

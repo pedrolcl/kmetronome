@@ -1,4 +1,4 @@
-Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+Copyright (C) 2005-2010 Pedro Lopez-Cabanillas  <plcl@users.sourceforge.net>
 
 Translations
 
@@ -13,3 +13,20 @@ Translations
     
     French: Julien Richard-Foy <julien.rf@no-log.org>
     file: po/fr.po
+
+
+Instrument definitions (.INS files) support:
+    Copyright (C) 2005-2009, rncbc aka Rui Nuno Capela
+    Files:
+        src/Instrument.h
+        src/Instrument.cpp
+
+
+Knob widget:
+    Rui Nuno Capela, Chris Cannam, Pedro Lopez-Cabanillas, 
+    Queen Mary University of London
+    Files:
+        src/knob.h
+        src/knob.cpp
+        src/classicstyle.h
+        src/classicstyle.cpp

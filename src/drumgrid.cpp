@@ -47,7 +47,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->setupUi(widget);
     setMainWidget( widget );
     setCaption( i18n("Pattern Editor") );
-    setFixedWidth( 700 );
+    setInitialSize( QSize(700,400) );
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
     m_ui->saveButton->setIcon(KIcon("document-save"));
@@ -334,22 +334,24 @@ void DrumGrid::addRow()
 void DrumGrid::removeRow()
 {
     int row = -1;
-    const QModelIndexList indexlist = m_ui->tableView->selectionModel()->selection().indexes(); //selectedIndexes();
-    if (indexlist.count() != m_columns)
-        return;
-    foreach (const QModelIndex& idx, indexlist) {
-        if (row < 0)
-            row = idx.row();
-        else if (row != idx.row())
-                return;
+    const QModelIndexList indexlist = m_ui->tableView->selectionModel()->selection().indexes();
+    if (indexlist.count() == m_columns) {
+        foreach (const QModelIndex& idx, indexlist) {
+            if (row < 0)
+                row = idx.row();
+            else if (row != idx.row()) {
+                row = -1;
+                break;
+            }
+        }
     }
     if (row < 0)
-        return;
-    if ( KMessageBox::questionYesNo (this,
-            i18n("Do you want to remove the selected pattern row?"),
-            i18n("Remove Row"),
-            KStandardGuiItem::yes(),
-            KStandardGuiItem::no(),
-            ":removepatternrow") == KMessageBox::Yes)
-        m_model->removePatternRow(row);
+        KMessageBox::sorry(this, i18n("Please select one, and only one row"));
+    else if ( KMessageBox::questionYesNo (this,
+                i18n("Do you want to remove the selected pattern row?"),
+                i18n("Remove Row"),
+                KStandardGuiItem::yes(),
+                KStandardGuiItem::no(),
+                "removepatternrow") == KMessageBox::Yes)
+            m_model->removePatternRow(row);
 }

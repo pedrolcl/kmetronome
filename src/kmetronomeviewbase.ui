@@ -112,6 +112,12 @@ MA 02110-1301, USA
      </item>
      <item>
       <widget class="KPushButton" name="m_patternbtn">
+       <property name="toolTip">
+        <string>This button opens the pattern editor</string>
+       </property>
+       <property name="whatsThis">
+        <string>This button opens the pattern editor</string>
+       </property>
        <property name="text">
         <string>Patterns</string>
        </property>
@@ -124,6 +130,9 @@ MA 02110-1301, USA
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>This button exits the program</string>
        </property>
        <property name="whatsThis">
         <string>This button exits the program</string>
@@ -162,6 +171,9 @@ MA 02110-1301, USA
        <height>60</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string>Number of measures (bars) and beats played from beginning</string>
+     </property>
      <property name="whatsThis">
       <string>Number of measures (bars) and beats played from beginning</string>
      </property>
@@ -186,6 +198,9 @@ MA 02110-1301, USA
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="buddy">
+        <cstring>m_pattern</cstring>
+       </property>
       </widget>
      </item>
      <item row="0" column="1">
@@ -195,6 +210,12 @@ MA 02110-1301, USA
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</string>
+       </property>
+       <property name="whatsThis">
+        <string>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</string>
        </property>
       </widget>
      </item>
@@ -218,6 +239,11 @@ MA 02110-1301, USA
          <width>60</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string>This is the number of parts for each measure.&lt;br&gt;
+Values are from 1 to 32.&lt;br&gt;
+It is the numerator of the time signature specification.</string>
        </property>
        <property name="whatsThis">
         <string>This is the number of parts for each measure.&lt;br&gt;
@@ -253,6 +279,11 @@ It is the numerator of the time signature specification.</string>
      </item>
      <item row="2" column="1">
       <widget class="KComboBox" name="m_figure">
+       <property name="toolTip">
+        <string>This is the part figure for the rhythm.
+Values mean 1, 2, 4, 8, 16, 32 and 64.
+It is the denominator in the time signature specification.</string>
+       </property>
        <property name="whatsThis">
         <string>This is the part figure for the rhythm.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
@@ -336,7 +367,7 @@ It is the denominator in the time signature specification.</string>
      <item row="0" column="0">
       <widget class="QLabel" name="label_1">
        <property name="text">
-        <string>Weak</string>
+        <string comment="weak notes MIDI velocity">Weak</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -349,7 +380,7 @@ It is the denominator in the time signature specification.</string>
      <item row="0" column="1">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Strong</string>
+        <string comment="strong notes MIDI velocity">Strong</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -362,7 +393,7 @@ It is the denominator in the time signature specification.</string>
      <item row="0" column="2">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Volume</string>
+        <string comment="audio volume level">Volume</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -375,7 +406,7 @@ It is the denominator in the time signature specification.</string>
      <item row="0" column="3">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Pan</string>
+        <string comment="audio panning">Pan</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -491,12 +522,11 @@ It is the denominator in the time signature specification.</string>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="KComboBox" name="m_air">
+       <property name="toolTip">
+        <string>This is the aire control to change the tempo value using musical names</string>
+       </property>
        <property name="whatsThis">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This is the &lt;span style=&quot; font-style:italic;&quot;&gt;aire&lt;/span&gt; control to change the tempo value using musical names&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>This is the aire control to change the tempo value using musical names</string>
        </property>
       </widget>
      </item>
@@ -617,7 +647,9 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   <tabstop>m_playbtn</tabstop>
   <tabstop>m_stopbtn</tabstop>
   <tabstop>m_configbtn</tabstop>
+  <tabstop>m_patternbtn</tabstop>
   <tabstop>m_exitbtn</tabstop>
+  <tabstop>m_pattern</tabstop>
   <tabstop>m_beatsBar</tabstop>
   <tabstop>m_figure</tabstop>
   <tabstop>m_air</tabstop>

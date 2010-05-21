@@ -10,6 +10,14 @@ supplied here:
 
     http://www.cmake.org/cmake/help/install.html
     
+This program needs the Drumstick libraries. You should install the development
+package before trying to compile KMetronome. You can alternatively build
+KMetronome statically linked to Drumstick, see the advanced build options.
+
+Drumstick is available here:
+
+    http://drumstick.sourceforge.net 
+    
 Building with CMake
 -------------------
 
@@ -18,9 +26,14 @@ source in ~/src/kmetronome, you need to change to that directory:
 
 $ cd ~/src/kmetronome
 
+Create a build directory, and change to it
+
+$ mkdir build
+$ cd build
+
 Now run CMake to generate the build files.
 
-$ cmake .
+$ cmake ..
 
 Finally, run make, and then (sudo) make install, and you're done.
 
@@ -48,27 +61,27 @@ $ make install DESTDIR=~/rpmroot
 Some variables you may want to set:
 
     * CMAKE_INSTALL_PREFIX:
-      cmake . -DCMAKE_INSTALL_PREFIX=/opt/kde4 is the equivalent to
-      ./configure --prefix=/opt/kde4 for programs that use autotools
+      cmake .. -DCMAKE_INSTALL_PREFIX=/opt/kde4 is the equivalent to
+      "configure --prefix=/opt/kde4" for programs using autotools
 
     * there are some extra options available:  
-    STATIC_ASEQMM  Statically linked aseqmm (default ON)
-    ENABLE_PCH     Use precompiled headers (default OFF)
+    STATIC_DRUMSTICK  Statically linked Drumstick (default OFF)
+    ENABLE_PCH        Use precompiled headers (default OFF)
 
 The above options can take any of the following values: 0, 1, OFF, ON,
 TRUE, FALSE, YES, NO (case insensitive). For example:
 
-$ cmake . -DENABLE_PCH=YES -DCMAKE_INSTALL_PREFIX=/usr
+$ cmake .. -DENABLE_PCH=YES -DCMAKE_INSTALL_PREFIX=/usr
 
 Look to the configure.release and configure.debug for more examples. 
 If you prefer to avoid all this typing, you can use ccmake to view and change 
 these options using a friendly curses-based interface:
 
-$ ccmake .
+$ ccmake ..
 
 There is a GUI equivalent:
 
-$ cmake-gui .
+$ cmake-gui ..
 
 Dealing with Configuration Problems
 -----------------------------------

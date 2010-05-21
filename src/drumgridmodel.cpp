@@ -50,11 +50,11 @@ void DrumGridModel::loadKeyNames(const QString& instrument, int bank, int patch)
 void DrumGridModel::fillSampleData()
 {
     beginInsertRows(QModelIndex(), 0, 4);
-    m_modelData.insert(0, QString(",p,,,,p,,,,p,,,,p,,").split(","));
-    m_modelData.insert(1, QString("f,,,p,f,,,p,f,,,p,f,,,p").split(","));
-    m_modelData.insert(2, QString(",,,,,,,,,,,,,4,4,").split(","));
-    m_modelData.insert(3, QString(",,,,f,,,,,,,,f,,,").split(","));
-    m_modelData.insert(4, QString("f,,,,p,,,,f,,,,p,,,").split(","));
+    m_modelData.insert(0, QString(",p,,,,p,,,,p,,,,p,,").split(','));
+    m_modelData.insert(1, QString("f,,,p,f,,,p,f,,,p,f,,,p").split(','));
+    m_modelData.insert(2, QString(",,,,,,,,,,,,,4,4,").split(','));
+    m_modelData.insert(3, QString(",,,,f,,,,,,,,f,,,").split(','));
+    m_modelData.insert(4, QString("f,,,,p,,,,f,,,,p,,,").split(','));
     m_keys.insert(0, 46);
     m_keys.insert(1, 42);
     m_keys.insert(2, 39);
@@ -111,7 +111,7 @@ void DrumGridModel::changeCell(const QModelIndex &index)
     if (before.isEmpty())
         after = m_lastValue;
     else
-        after = QString();
+        after.clear();
     changeCell(index, after);
 }
 

@@ -174,7 +174,7 @@ void KmetronomeView::stop()
 void KmetronomeView::setPatterns(const QStringList& patterns)
 {
     m_pattern->clear();
-    m_pattern->addItem(i18n("Automatic"));
+    m_pattern->addItem(i18nc("the pattern is created automatically", "Automatic"));
     m_pattern->addItems(patterns);
 }
 

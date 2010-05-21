@@ -25,6 +25,9 @@
         <property name="text">
          <string>Pattern:</string>
         </property>
+        <property name="buddy">
+         <cstring>patternCombo</cstring>
+        </property>
        </widget>
       </item>
       <item>
@@ -35,6 +38,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip">
+         <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
+        </property>
+        <property name="whatsThis">
+         <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
+        </property>
         <property name="editable">
          <bool>true</bool>
         </property>
@@ -42,6 +51,12 @@
       </item>
       <item>
        <widget class="KPushButton" name="saveButton">
+        <property name="toolTip">
+         <string>This button stores the current pattern definition with the name given</string>
+        </property>
+        <property name="whatsThis">
+         <string>This button stores the current pattern definition with the name given</string>
+        </property>
         <property name="text">
          <string>Save</string>
         </property>
@@ -49,6 +64,12 @@
       </item>
       <item>
        <widget class="KPushButton" name="deleteButton">
+        <property name="toolTip">
+         <string>This button deletes the current pattern definition</string>
+        </property>
+        <property name="whatsThis">
+         <string>This button deletes the current pattern definition</string>
+        </property>
         <property name="text">
          <string>Delete</string>
         </property>
@@ -67,7 +88,20 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Rows:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="KPushButton" name="addButton">
+        <property name="toolTip">
+         <string>Use this button to add new rows (sounds) to the current pattern definition</string>
+        </property>
+        <property name="whatsThis">
+         <string>Use this button to add new rows (sounds) to the current pattern definition</string>
+        </property>
         <property name="text">
          <string>Add</string>
         </property>
@@ -75,6 +109,12 @@
       </item>
       <item>
        <widget class="KPushButton" name="removeButton">
+        <property name="toolTip">
+         <string>Use this button to remove the selected row (sound) from the pattern definition</string>
+        </property>
+        <property name="whatsThis">
+         <string>Use this button to remove the selected row (sound) from the pattern definition</string>
+        </property>
         <property name="text">
          <string>Remove</string>
         </property>
@@ -94,13 +134,23 @@
        </spacer>
       </item>
       <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Beats:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="chkselbeat">
+        <property name="toolTip">
+         <string>Highligh the grid columns while playing</string>
+        </property>
         <property name="whatsThis">
-         <string>Display the beat position at the beat grid selecting columns while playing</string>
+         <string>Highligh the grid columns while playing</string>
         </property>
         <property name="text">
-         <string>Grid Beat
-Display</string>
+         <string>Highlight
+Columns</string>
         </property>
        </widget>
       </item>
@@ -137,11 +187,17 @@ Display</string>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="KIntSpinBox" name="gridColumns">
+        <property name="toolTip">
+         <string>Number of rhythm figures per measure</string>
+        </property>
+        <property name="whatsThis">
+         <string>Number of rhythm figures per measure</string>
+        </property>
         <property name="minimum">
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>64</number>
+         <number>99</number>
         </property>
         <property name="value">
          <number>16</number>
@@ -150,10 +206,11 @@ Display</string>
       </item>
       <item>
        <widget class="KComboBox" name="figureCombo">
+        <property name="toolTip">
+         <string>This is the part figure for the pattern column.</string>
+        </property>
         <property name="whatsThis">
-         <string>This is the part figure for the rhythm.&lt;br&gt;
-Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
-It is the denominator in the time signature specification.</string>
+         <string>This is the part figure for the pattern column.</string>
         </property>
         <property name="currentIndex">
          <number>4</number>
@@ -228,8 +285,14 @@ It is the denominator in the time signature specification.</string>
       </item>
       <item>
        <widget class="QPushButton" name="startButton">
+        <property name="toolTip">
+         <string>This button starts playing the current pattern</string>
+        </property>
+        <property name="whatsThis">
+         <string>This button starts playing the current pattern</string>
+        </property>
         <property name="text">
-         <string>Start</string>
+         <string>Play</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -241,6 +304,9 @@ It is the denominator in the time signature specification.</string>
       </item>
       <item>
        <widget class="QPushButton" name="stopButton">
+        <property name="whatsThis">
+         <string>This button stops the playback</string>
+        </property>
         <property name="text">
          <string>Stop</string>
         </property>
@@ -256,6 +322,16 @@ It is the denominator in the time signature specification.</string>
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string comment="Quarters per Minute">QPM:</string>
+        </property>
+        <property name="buddy">
+         <cstring>tempoSlider</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="tempoLabel">
         <property name="text">
          <string>100</string>
@@ -264,6 +340,12 @@ It is the denominator in the time signature specification.</string>
       </item>
       <item>
        <widget class="QSlider" name="tempoSlider">
+        <property name="toolTip">
+         <string>Drag the slider handle to change the tempo, in quarters per minute</string>
+        </property>
+        <property name="whatsThis">
+         <string>Drag the slider handle to change the tempo, in quarters per minute</string>
+        </property>
         <property name="minimum">
          <number>10</number>
         </property>
@@ -304,7 +386,15 @@ It is the denominator in the time signature specification.</string>
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>patternCombo</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>deleteButton</tabstop>
   <tabstop>tableView</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>removeButton</tabstop>
+  <tabstop>chkselbeat</tabstop>
+  <tabstop>gridColumns</tabstop>
+  <tabstop>figureCombo</tabstop>
   <tabstop>startButton</tabstop>
   <tabstop>stopButton</tabstop>
   <tabstop>tempoSlider</tabstop>

@@ -278,7 +278,8 @@ void DrumGrid::showEvent(QShowEvent* /*event*/)
     m_ui->patternCombo->addItems(patterns());
     if (m_currentPattern.isEmpty())
         if (m_ui->patternCombo->count() == 0) {
-            m_currentPattern = i18n("Sample");
+            m_currentPattern = i18nc("name of an automatically created pattern",
+                "Sample Pattern");
             m_model->fillSampleData();
             m_ui->patternCombo->setCurrentItem(m_currentPattern, true);
         } else {
@@ -294,9 +295,9 @@ void DrumGrid::done(int r)
 {
     stop();
     m_seq->setPatternMode(false);
-    if (r == QDialog::Accepted && !m_currentPattern.isEmpty())
+    if (r == KDialog::Accepted && !m_currentPattern.isEmpty())
         writePattern();
-    QDialog::done(r);
+    KDialog::done(r);
 }
 
 void DrumGrid::updateDisplay(int /*bar*/, int beat)

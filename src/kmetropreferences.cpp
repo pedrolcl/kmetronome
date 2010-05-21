@@ -63,7 +63,7 @@ void KMetroPreferences::fillInstruments()
     if (!drums.isEmpty()) {
         m_ui.m_instrument->clear();
         m_insList.load(drums);
-        for(it = m_insList.begin(); it != m_insList.end(); ++it) {
+        for(it = m_insList.constBegin(); it != m_insList.constEnd(); ++it) {
             //kDebug() << it.key();
             m_ui.m_instrument->addItem(it.key());
         }

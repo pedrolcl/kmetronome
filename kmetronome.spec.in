@@ -15,6 +15,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  cmake
 BuildRequires:  alsa-devel
 BuildRequires:	libkde4-devel
+BuildRequires:  libdrumstick-devel
 %kde4_runtime_requires
 
 %description

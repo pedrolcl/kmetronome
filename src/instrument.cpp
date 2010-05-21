@@ -173,10 +173,10 @@ bool InstrumentList::load ( const QString& sFilename )
 	QRegExp rxKey     ("^Key\\[([0-9]+|\\*),([0-9]+|\\*)\\]=(.+)$");
 	QRegExp rxDrum    ("^Drum\\[([0-9]+|\\*),([0-9]+|\\*)\\]=(0|1)$");
 
-	const QString s0_127    = "0..127";
-	const QString s1_128    = "1..128";
-	const QString s0_16383  = "0..16383";
-	const QString sAsterisk = "*";
+	const QString s0_127("0..127");
+	const QString s1_128("1..128");
+	const QString s0_16383("0..16383");
+	const QString sAsterisk('*');
 
 	// Read the file.
 	unsigned int iLine = 0;

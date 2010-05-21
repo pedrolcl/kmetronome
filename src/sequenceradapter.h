@@ -21,12 +21,21 @@
 #ifndef SEQUENCERADAPTER_H
 #define SEQUENCERADAPTER_H
 
+namespace drumstick {
+    class MidiPort;
+    class MidiQueue;
+    class SequencerEvent;
+};
+
 #include <alsaclient.h>
-#include <alsaevent.h>
 
 class DrumGridModel;
 
 using namespace drumstick;
+
+const int TAG_FIXED(0);
+const int TAG_WEAK(1);
+const int TAG_STRONG(2);
 
 class SequencerAdapter : public QObject, public SequencerEventHandler
 {
@@ -96,9 +105,10 @@ public:
     QStringList inputConnections();
     QStringList outputConnections();
     int decodeVelocity(const QString drumVel);
+    int decodeTag(const QString drumVel);
 
     void parse_sysex(SequencerEvent *ev);
-    void metronome_note(int note, int vel, int tick);
+    void metronome_note(int note, int vel, int tick, int tag);
     void metronome_echo(int tick, int ev_type);
     void metronome_simple_pattern(int tick);
     void metronome_grid_pattern(int tick);

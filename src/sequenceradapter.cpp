@@ -180,7 +180,10 @@ void SequencerAdapter::metronome_set_program()
 void SequencerAdapter::metronome_note_output(SequencerEvent* ev)
 {
     NoteOnEvent* note = static_cast<NoteOnEvent*>(ev);
-    note->setVelocity(m_beat ? m_weak_velocity : m_strong_velocity);
+    if (note->getTag() == TAG_WEAK)
+        note->setVelocity(m_weak_velocity);
+    else if (note->getTag() == TAG_STRONG)
+        note->setVelocity(m_strong_velocity);
     metronome_event_output(note);
 }
 
@@ -192,13 +195,14 @@ void SequencerAdapter::metronome_schedule_event(SequencerEvent* ev, int tick)
     m_Client->outputDirect(ev);
 }
 
-void SequencerAdapter::metronome_note(int note, int vel, int tick) 
+void SequencerAdapter::metronome_note(int note, int vel, int tick, int tag)
 {
     SequencerEvent* ev;
     if (m_useNoteOff) 
         ev = new NoteEvent(m_channel, note, vel, m_noteDuration);
     else
         ev = new NoteOnEvent(m_channel, note, vel);
+    ev->setTag(tag);
     metronome_schedule_event(ev, tick);
 	delete ev;
 }
@@ -211,11 +215,13 @@ void SequencerAdapter::metronome_echo(int tick, int ev_type)
 
 void SequencerAdapter::metronome_simple_pattern(int tick) 
 {
-	int j, t, duration;
+	int j, t, duration, tag, note;
 	t = tick;
 	duration = m_resolution * 4 / m_ts_div;
 	for (j = 0; j < m_ts_num; j++) {
-	    metronome_note(j ? m_weak_note : m_strong_note, METRONOME_VELOCITY, t);
+	    note= ( j ? m_weak_note : m_strong_note );
+	    tag = ( j ? TAG_WEAK : TAG_STRONG );
+	    metronome_note(note, METRONOME_VELOCITY, t, tag);
 		metronome_echo(t, SND_SEQ_EVENT_USR1);
 		t += duration;
 	}
@@ -239,9 +245,18 @@ int SequencerAdapter::decodeVelocity(const QString drumVel)
     return 0;
 }
 
+int SequencerAdapter::decodeTag(const QString drumVel)
+{
+    if (drumVel == "f")
+        return TAG_STRONG;
+    else if (drumVel == "p")
+        return TAG_WEAK;
+    return TAG_FIXED;
+}
+
 void SequencerAdapter::metronome_grid_pattern(int tick)
 {
-    int i, j, t, duration, key, vel;
+    int i, j, t, duration, key, vel, tag;
     t = tick;
     duration = m_resolution * 4 / m_model->patternFigure();
     for(i=0; i<m_model->columnCount(); ++i) {
@@ -250,7 +265,8 @@ void SequencerAdapter::metronome_grid_pattern(int tick)
             if (!n.isEmpty()) {
                 key = m_model->patternKey(j).toInt();
                 vel = decodeVelocity(n);
-                metronome_note(key, vel, t);
+                tag = decodeTag(n);
+                metronome_note(key, vel, t, tag);
             }
         }
         metronome_echo(t, SND_SEQ_EVENT_USR1);

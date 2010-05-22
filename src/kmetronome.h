@@ -73,8 +73,10 @@ private:
     SequencerAdapter *m_seq;
     QPointer<DrumGrid> m_drumgrid;
 
-    KAction *m_prefs;
+    KAction* m_prefs;
     KToggleAction* m_playStop;
+    KAction* m_editPatterns;
+    KToggleAction* m_fakeToolbar;
     QString m_instrument;
     QString m_bank;
     QString m_program;

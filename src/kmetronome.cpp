@@ -43,6 +43,7 @@
 #include <KDE/KXmlGuiWindow>
 #include <KDE/KXMLGUIFactory>
 #include <KDE/KMessageBox>
+#include <KDE/KEditToolBar>
 #include <KDE/KDebug>
 
 //TODO: create the InstrumentList here, and initialize
@@ -88,12 +89,27 @@ void KMetronome::setupActions()
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
     m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
                                            actionCollection());
+    KStandardAction::configureToolbars(this, SLOT(configureToolbars()),
+            actionCollection());
+
     KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
                                  actionCollection());
     m_playStop = new KToggleAction(KIcon("media-playback-start"),
-                                   i18n("&Play/Stop"), this);
+                                   i18n("Play/Stop"), this);
     actionCollection()->addAction("play_stop", m_playStop);
-    connect(m_playStop, SIGNAL(triggered(bool)), this, SLOT(toggle(bool)));
+    connect(m_playStop, SIGNAL(triggered(bool)), SLOT(toggle(bool)));
+
+    m_fakeToolbar = new KToggleAction(i18n("Show Action Buttons"), this);
+    m_fakeToolbar->setChecked(true);
+    actionCollection()->addAction("show_faketoolbar", m_fakeToolbar);
+    connect(m_fakeToolbar, SIGNAL(triggered(bool)), m_view,
+            SLOT(displayFakeToolbar(bool)));
+
+    m_editPatterns = new KAction(KIcon("document-edit"),
+                                 i18n("Patterns"), this);
+    actionCollection()->addAction("edit_patterns", m_editPatterns);
+    connect(m_editPatterns, SIGNAL(triggered()), SLOT(editPatterns()));
+    setStandardToolBarMenuEnabled(true);
     createGUI();
 }
 

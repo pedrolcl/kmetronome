@@ -4,5 +4,17 @@
   <Menu name="file" >
    <Action name="play_stop" />
   </Menu>
+  <Menu name="edit" >
+   <Action name="edit_patterns" />
+  </Menu>
+  <Menu name="settings" >
+   <Action name="show_faketoolbar" />
+  </Menu>
  </MenuBar>
+ <ToolBar name="mainToolBar" hidden="true" >
+  <Action name="play_stop" />
+  <Action name="edit_patterns" />
+  <Action name="options_configure" />
+  <Action name="file_quit" />
+ </ToolBar>
 </kpartgui>

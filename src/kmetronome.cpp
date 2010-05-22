@@ -144,6 +144,7 @@ void KMetronome::saveConfiguration()
     config.writeEntry("outputConn", m_seq->getOutputConn());
     config.writeEntry("inputConn", m_seq->getInputConn());
     config.writeEntry("styledKnobs", m_styledKnobs);
+    config.writeEntry("fakeToolbar", m_fakeToolbar->isChecked());
     config.sync();
 }
 
@@ -198,6 +199,9 @@ void KMetronome::readConfiguration()
     m_styledKnobs = config.readEntry("styledKnobs", true);
     m_seq->sendInitialControls();
     m_view->updateKnobs(m_styledKnobs);
+    bool fakeToolbar = config.readEntry("fakeToolbar", true);
+    m_fakeToolbar->setChecked(fakeToolbar);
+    m_view->displayFakeToolbar(fakeToolbar);
     updatePatterns();
 }
 

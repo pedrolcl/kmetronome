@@ -17,6 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "defs.h"
 #include "drumgrid.h"
 #include "drumgridmodel.h"
 #include "sequenceradapter.h"
@@ -203,11 +204,11 @@ void DrumGrid::readPattern()
     QStringList keys = config.keyList();
     if (!keys.empty()) {
         setFigure(config.readEntry(QSTR_FIGURE, PATTERN_FIGURE));
-        int cols = config.readEntry(QSTR_COLS, PATTERN_COLUMNS);
+        int cols = config.readEntry(QSTR_BEATS, PATTERN_COLUMNS);
         m_ui->gridColumns->setValue(cols);
         slotColumnsChanged(cols);
         keys.removeOne(QSTR_FIGURE);
-        keys.removeOne(QSTR_COLS);
+        keys.removeOne(QSTR_BEATS);
         keys.sort();
         m_model->clearPattern();
         foreach(const QString& key, keys) {
@@ -233,7 +234,7 @@ void DrumGrid::writePattern()
     KConfigGroup config = KGlobal::config()->group(QSTR_PATTERN+m_currentPattern);
     config.deleteGroup();
     config.writeEntry( QSTR_FIGURE, m_figure );
-    config.writeEntry( QSTR_COLS, m_columns );
+    config.writeEntry( QSTR_BEATS, m_columns );
     for(int r = 0; r < m_model->rowCount(); ++r) {
         config.writeEntry( m_model->patternKey(r),
                            m_model->patternData(r) );

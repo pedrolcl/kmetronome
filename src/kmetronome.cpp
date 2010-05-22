@@ -47,6 +47,8 @@
 #include <KDE/KMessageBox>
 #include <KDE/KEditToolBar>
 #include <KDE/KStandardDirs>
+#include <KDE/KFileDialog>
+#include <KDE/KUrl>
 #include <KDE/KDebug>
 
 KMetronome::KMetronome(QWidget *parent) :
@@ -121,6 +123,17 @@ void KMetronome::setupActions()
                                  i18n("Patterns"), this);
     actionCollection()->addAction("edit_patterns", m_editPatterns);
     connect(m_editPatterns, SIGNAL(triggered()), SLOT(editPatterns()));
+
+    KAction* imp = new KAction(KIcon("document-import"),
+                            i18n("Import Patterns"), this);
+    actionCollection()->addAction("import_patterns", imp);
+    connect(imp, SIGNAL(triggered()), SLOT(importPatterns()));
+
+    KAction* exp = new KAction( KIcon("document-export"),
+                            i18n("Export Patterns"), this);
+    actionCollection()->addAction("export_patterns", exp);
+    connect(exp, SIGNAL(triggered()), SLOT(exportPatterns()));
+
     setStandardToolBarMenuEnabled(true);
     createGUI();
 }
@@ -396,8 +409,8 @@ void KMetronome::setTimeSignature(int numerator, int denominator)
 
 void KMetronome::updatePatterns()
 {
+    const int n(QSTR_PATTERN.size());
     QStringList lst;
-    int n = QSTR_PATTERN.size();
     KGlobal::config()->reparseConfiguration();
     foreach(const QString& name, KGlobal::config()->groupList()) {
         if (name.startsWith(QSTR_PATTERN))
@@ -436,4 +449,61 @@ void KMetronome::patternChanged(int /*idx*/)
     if (m_view->patternMode())
         readDrumGridPattern();
     m_seq->setPatternMode(m_view->patternMode());
+}
+
+void KMetronome::importPatterns(const QString& path)
+{
+    KConfig cfg(path, KConfig::SimpleConfig);
+    foreach(const QString& name, cfg.groupList()) {
+        KConfigGroup input = cfg.group(name);
+        KConfigGroup output = KGlobal::config()->group(QSTR_PATTERN+name);
+        input.copyTo(&output);
+    }
+    updatePatterns();
+}
+
+void KMetronome::exportPatterns(const QString& path)
+{
+    const int n(QSTR_PATTERN.size());
+    QStringList lst;
+    KGlobal::config()->reparseConfiguration();
+    foreach(const QString& name, KGlobal::config()->groupList()) {
+        if (name.startsWith(QSTR_PATTERN))
+            lst += name.mid(n);
+    }
+    if (!lst.isEmpty()) {
+        KConfig cfg(path, KConfig::SimpleConfig);
+        foreach(const QString& name, lst) {
+            KConfigGroup input = KGlobal::config()->group(QSTR_PATTERN+name);
+            KConfigGroup output = cfg.group(name);
+            input.copyTo(&output);
+        }
+        cfg.sync();
+    }
+}
+
+void KMetronome::importPatterns()
+{
+    KUrl u = KFileDialog::getOpenUrl(
+                KUrl("kfiledialog:///KMetronome"),
+                i18n("*.pat|Pattern Files (*.pat)"), this,
+                i18n("Import Patterns"));
+    if (!u.isEmpty()) {
+        QString path = u.toLocalFile();
+        if (!path.isNull())
+            importPatterns(path);
+    }
+}
+
+void KMetronome::exportPatterns()
+{
+    KUrl u = KFileDialog::getSaveUrl(
+                KUrl("kfiledialog:///KMetronome"),
+                i18n("*.pat|Pattern Files (*.pat)"), this,
+                i18n("Export Patterns"));
+    if (!u.isEmpty()) {
+        QString path = u.toLocalFile();
+        if (!path.isNull())
+            exportPatterns(path);
+    }
 }

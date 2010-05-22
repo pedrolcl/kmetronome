@@ -2,6 +2,9 @@
 <kpartgui version="2" name="kmetronome" >
  <MenuBar>
   <Menu name="file" >
+   <Action name="import_patterns" />
+   <Action name="export_patterns" />
+   <Separator />
    <Action name="play_stop" />
   </Menu>
   <Menu name="edit" >

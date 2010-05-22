@@ -20,11 +20,9 @@
 #ifndef DRUMGRIDMODEL_H
 #define DRUMGRIDMODEL_H
 
+#include "defs.h"
 #include <QtCore/QAbstractTableModel>
 #include <QtCore/QStringList>
-
-const int PATTERN_FIGURE(16);
-const int PATTERN_COLUMNS(16);
 
 class InstrumentList;
 

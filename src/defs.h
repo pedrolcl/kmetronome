@@ -21,36 +21,45 @@
 #ifndef DEFS_H
 #define DEFS_H
 
-static const int TEMPO_MIN(25);
-static const int TEMPO_MAX(250);
-static const int TEMPO_DEFAULT(100);
-static const int NOTE_DURATION(10);
-
-static const int RHYTHM_TS_NUM(4);
-static const int RHYTHM_TS_DEN(4);
-
-static const int METRONOME_INSTRUMENT(0);
-static const int METRONOME_BANK(0);
-static const int METRONOME_PROGRAM(0);
-static const int METRONOME_STRONG_NOTE(34);
-static const int METRONOME_WEAK_NOTE(33);
-
-static const int METRONOME_CHANNEL(9);
-static const int METRONOME_VELOCITY(100);
-static const int METRONOME_RESOLUTION(120);
-static const int METRONOME_VOLUME(100);
-static const int METRONOME_PAN(64);
-
-static const int TRANSPORT_PLAY(0);
-static const int TRANSPORT_STOP(1);
-static const int TRANSPORT_CONT(2);
-
-static const int VOLUME_CC(7);
-static const int PAN_CC(10);
-static const int MSB_CC(0);
-static const int LSB_CC(0x20);
+#include <QtCore/QString>
 
 #define CALC_LSB(x) (x % 0x80)
 #define CALC_MSB(x) (x / 0x80)
+
+const int TEMPO_MIN(25);
+const int TEMPO_MAX(250);
+const int TEMPO_DEFAULT(100);
+const int NOTE_DURATION(10);
+
+const int RHYTHM_TS_NUM(4);
+const int RHYTHM_TS_DEN(4);
+
+const int METRONOME_INSTRUMENT(0);
+const int METRONOME_BANK(0);
+const int METRONOME_PROGRAM(0);
+const int METRONOME_STRONG_NOTE(34);
+const int METRONOME_WEAK_NOTE(33);
+
+const int METRONOME_CHANNEL(9);
+const int METRONOME_VELOCITY(100);
+const int METRONOME_RESOLUTION(120);
+const int METRONOME_VOLUME(100);
+const int METRONOME_PAN(64);
+
+const int TRANSPORT_PLAY(0);
+const int TRANSPORT_STOP(1);
+const int TRANSPORT_CONT(2);
+
+const int VOLUME_CC(7);
+const int PAN_CC(10);
+const int MSB_CC(0);
+const int LSB_CC(0x20);
+
+const int PATTERN_FIGURE(16);
+const int PATTERN_COLUMNS(16);
+
+const QString QSTR_PATTERN("Pattern_");
+const QString QSTR_FIGURE("Figure");
+const QString QSTR_BEATS("Beats");
 
 #endif /*DEFS_H*/

@@ -49,10 +49,6 @@ public Q_SLOTS:
     void cont();
     void setTempo(int newTempo);
     void setTimeSignature(int numerator, int denominator);
-    void updateDisplay(int, int);
-    void editPatterns();
-    void patternChanged(int);
-    void updatePatterns();
 
 protected Q_SLOTS:
     void optionsPreferences();
@@ -64,6 +60,12 @@ protected Q_SLOTS:
     void volumeChanged(int);
     void balanceChanged(int);
     void toggle(bool checked);
+    void updateDisplay(int, int);
+    void editPatterns();
+    void patternChanged(int);
+    void updatePatterns();
+    void exportPatterns();
+    void importPatterns();
 
 private:
     void setupAccel();
@@ -72,6 +74,8 @@ private:
     void readConfiguration();
     void readDrumGridPattern();
     void applyInstrumentSettings();
+    void exportPatterns(const QString& path);
+    void importPatterns(const QString& path);
 
     bool m_styledKnobs;
     KmetronomeView* m_view;

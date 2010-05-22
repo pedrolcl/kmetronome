@@ -26,10 +26,6 @@
 #include <QtGui/QCloseEvent>
 #include <QtCore/QSignalMapper>
 
-const QString QSTR_PATTERN("Pattern_");
-const QString QSTR_FIGURE("Figure");
-const QString QSTR_COLS("Columns");
-
 namespace Ui
 {
     class DrumGrid;

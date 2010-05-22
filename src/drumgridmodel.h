@@ -20,12 +20,13 @@
 #ifndef DRUMGRIDMODEL_H
 #define DRUMGRIDMODEL_H
 
-#include "instrument.h"
 #include <QtCore/QAbstractTableModel>
 #include <QtCore/QStringList>
 
 const int PATTERN_FIGURE(16);
 const int PATTERN_COLUMNS(16);
+
+class InstrumentList;
 
 class DrumGridModel : public QAbstractTableModel
 {
@@ -40,9 +41,9 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
+    void setInstrumentList(InstrumentList* instruments);
     void loadKeyNames(const QString& ins, int bank, int patch);
     void fillSampleData();
-
     void clearPattern();
     void addPatternData(int key, const QStringList& row);
     void endOfPattern();
@@ -64,14 +65,12 @@ private:
     int m_columns;
     int m_figure;
     QString m_lastValue;
+    InstrumentList* m_insList;
     QMap<int,QString> m_keyNames;
     QList<QStringList> m_modelData;
     QList<QStringList> m_tempData;
     QList<int> m_keys;
     QList<int> m_tempKeys;
-    //TODO: Convert to pointers, initialize in parent
-    InstrumentList m_insList;
-    Instrument* m_ins;
 };
 
 #endif /* DRUMGRIDMODEL_H */

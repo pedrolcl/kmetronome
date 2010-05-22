@@ -56,6 +56,7 @@ public:
     DrumGrid(QWidget *parent = 0);
     virtual ~DrumGrid();
     void setSequencer(SequencerAdapter* seq);
+    void setModel(DrumGridModel* model);
 
     void subscribe(const QString& portName);
     void addShortcut(const QKeySequence& key, const QString& value);

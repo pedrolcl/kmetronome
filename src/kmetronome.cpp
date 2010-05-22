@@ -25,6 +25,8 @@
 #include "kmetronomeadaptor.h"
 #include "defs.h"
 #include "drumgrid.h"
+#include "drumgridmodel.h"
+#include "instrument.h"
 
 #include <cmath>
 #include <QtCore/QEvent>
@@ -44,10 +46,8 @@
 #include <KDE/KXMLGUIFactory>
 #include <KDE/KMessageBox>
 #include <KDE/KEditToolBar>
+#include <KDE/KStandardDirs>
 #include <KDE/KDebug>
-
-//TODO: create the InstrumentList here, and initialize
-// the Instrument pointer in readConfiguration()
 
 KMetronome::KMetronome(QWidget *parent) :
     KXmlGuiWindow(parent),
@@ -59,8 +59,15 @@ KMetronome::KMetronome(QWidget *parent) :
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/", this);
     m_view = new KmetronomeView(this);
+    m_model = new DrumGridModel(this);
+    m_instrumentList = new InstrumentList;
+    m_model->setInstrumentList(m_instrumentList);
+    QString drums =  KStandardDirs::locate("appdata", "drums.ins");
+    if (!drums.isEmpty())
+        m_instrumentList->load(drums);
     try {
         m_seq = new SequencerAdapter(this);
+        m_seq->setModel(m_model);
         connect(m_seq, SIGNAL(signalUpdate(int,int)),
                 SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
         connect(m_seq, SIGNAL(signalPlay()), SLOT(play()), Qt::QueuedConnection);
@@ -82,6 +89,11 @@ KMetronome::KMetronome(QWidget *parent) :
         KMessageBox::error(0, errorstr, i18n("Error"));
         close();
     }
+}
+
+KMetronome::~KMetronome()
+{
+    delete m_instrumentList;
 }
 
 void KMetronome::setupActions()
@@ -148,17 +160,36 @@ void KMetronome::saveConfiguration()
     config.sync();
 }
 
+void KMetronome::applyInstrumentSettings()
+{
+    Instrument ins = m_instrumentList->value(m_instrument);
+    m_seq->setBankSelMethod(ins.bankSelMethod());
+    InstrumentPatches banks = ins.patches();
+    InstrumentPatches::ConstIterator j;
+    for( j = banks.constBegin(); j != banks.constEnd(); ++j ) {
+        InstrumentData bank = j.value();
+        if (bank.name() == m_bank) {
+            int ibank = j.key();
+            InstrumentData::ConstIterator k;
+            for( k = bank.constBegin(); k != bank.constEnd(); ++k ) {
+                if (k.value() == m_program) {
+                    int iprogram = k.key();
+                    m_seq->setBank(ibank);
+                    m_seq->setProgram(iprogram);
+                    return;
+                }
+            }
+        }
+    }
+}
+
 void KMetronome::readConfiguration()
 {
     KConfigGroup config = KGlobal::config()->group("Settings");
-    m_seq->setInstrument(METRONOME_INSTRUMENT);
-    m_seq->setBank(METRONOME_BANK);
-    m_seq->setProgram(METRONOME_PROGRAM);
     m_instrument = config.readEntry("instrument", QString());
     m_bank = config.readEntry("bank", QString());
     m_program = config.readEntry("program", QString());
-    // TODO: transform the names into numbers using the InstrumentList object
-    // initialize the properties in m_seq
+    applyInstrumentSettings();
     m_seq->setChannel(config.readEntry("channel", METRONOME_CHANNEL));
     m_seq->setWeakNote(config.readEntry("weakNote", METRONOME_WEAK_NOTE));
     m_seq->setStrongNote(config.readEntry("strongNote", METRONOME_STRONG_NOTE));
@@ -210,7 +241,7 @@ void KMetronome::optionsPreferences()
     QPointer<KMetroPreferences> dlg = new KMetroPreferences(this);
     dlg->fillOutputConnections(m_seq->outputConnections());
     dlg->fillInputConnections(m_seq->inputConnections());
-    dlg->fillInstruments();
+    dlg->fillInstruments(m_instrumentList);
     dlg->setAutoConnect(m_seq->getAutoConnect());
     QString conn = m_seq->getOutputConn();
     if (conn != NULL && !conn.isEmpty())
@@ -236,11 +267,9 @@ void KMetronome::optionsPreferences()
             m_seq->setOutputConn(dlg->getOutputConnection());
             m_seq->setInputConn(dlg->getInputConnection());
             m_instrument = dlg->getInstrumentName();
-            m_seq->setInstrument(dlg->getInstrument());
             m_bank = dlg->getBankName();
-            m_seq->setBank(dlg->getBank());
             m_program = dlg->getProgramName();
-            m_seq->setProgram(dlg->getProgram());
+            applyInstrumentSettings();
             m_seq->setWeakNote(dlg->getWeakNote());
             m_seq->setStrongNote(dlg->getStrongNote());
             m_seq->setResolution(dlg->getResolution());
@@ -249,7 +278,7 @@ void KMetronome::optionsPreferences()
             m_seq->setNoteDuration(dlg->getDuration());
             m_seq->connect_output();
             m_seq->connect_input();
-            m_seq->metronome_set_tempo();
+            m_seq->sendInitialControls();
             if (m_styledKnobs != dlg->getStyledKnobs()) {
                 m_styledKnobs = dlg->getStyledKnobs();
                 m_view->updateKnobs(m_styledKnobs);
@@ -377,18 +406,23 @@ void KMetronome::updatePatterns()
     m_view->setPatterns(lst);
 }
 
+void KMetronome::readDrumGridPattern()
+{
+    if (m_drumgrid == NULL) {
+        m_drumgrid = new DrumGrid(this);
+        m_drumgrid->setModel(m_model);
+        m_drumgrid->setSequencer(m_seq);
+    }
+    m_drumgrid->setInstrument(m_instrument);
+    if (m_view->patternMode())
+        m_drumgrid->readPattern(m_view->getSelectedPattern());
+}
+
 void KMetronome::editPatterns()
 {
     int res;
     QString tmpPattern;
-    //TODO: unify in a singleton method
-    if (m_drumgrid == NULL) {
-        m_drumgrid = new DrumGrid(this);
-        m_drumgrid->setSequencer(m_seq);
-        m_drumgrid->setInstrument(m_instrument);
-    }
-    if (m_view->patternMode())
-        m_drumgrid->readPattern(m_view->getSelectedPattern());
+    readDrumGridPattern();
     res = m_drumgrid->exec();
     updatePatterns();
     if (res == QDialog::Accepted && m_drumgrid != NULL)
@@ -399,14 +433,7 @@ void KMetronome::editPatterns()
 
 void KMetronome::patternChanged(int /*idx*/)
 {
-    if (m_view->patternMode()) {
-        //TODO: unify in a singleton method
-        if (m_drumgrid == NULL) {
-            m_drumgrid = new DrumGrid(this);
-            m_drumgrid->setSequencer(m_seq);
-            m_drumgrid->setInstrument(m_instrument);
-        }
-        m_drumgrid->readPattern(m_view->getSelectedPattern());
-    }
+    if (m_view->patternMode())
+        readDrumGridPattern();
     m_seq->setPatternMode(m_view->patternMode());
 }

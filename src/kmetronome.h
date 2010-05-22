@@ -29,6 +29,9 @@ class KToggleAction;
 class KmetronomeView;
 class SequencerAdapter;
 class DrumGrid;
+class DrumGridModel;
+class Instrument;
+class InstrumentList;
 
 class KMetronome : public KXmlGuiWindow
 {
@@ -37,7 +40,7 @@ class KMetronome : public KXmlGuiWindow
 
 public:
     KMetronome(QWidget* parent=0);
-    virtual ~KMetronome() {}
+    virtual ~KMetronome();
     bool queryExit();
 
 public Q_SLOTS:
@@ -67,12 +70,15 @@ private:
     void setupActions();
     void saveConfiguration();
     void readConfiguration();
+    void readDrumGridPattern();
+    void applyInstrumentSettings();
 
     bool m_styledKnobs;
-    KmetronomeView *m_view;
-    SequencerAdapter *m_seq;
+    KmetronomeView* m_view;
+    SequencerAdapter* m_seq;
     QPointer<DrumGrid> m_drumgrid;
-
+    InstrumentList* m_instrumentList;
+    DrumGridModel* m_model;
     KAction* m_prefs;
     KToggleAction* m_playStop;
     KAction* m_editPatterns;

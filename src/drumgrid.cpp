@@ -33,7 +33,6 @@
 #include <KDE/KMessageBox>
 #include <KDE/KInputDialog>
 #include <KDE/KDebug>
-#include <drumstick.h>
 
 DrumGrid::DrumGrid(QWidget *parent)
     : KDialog(parent),
@@ -48,29 +47,15 @@ DrumGrid::DrumGrid(QWidget *parent)
     setMainWidget( widget );
     setCaption( i18n("Pattern Editor") );
     setInitialSize( QSize(700,400) );
+
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
     m_ui->saveButton->setIcon(KIcon("document-save"));
     m_ui->deleteButton->setIcon(KIcon("edit-delete"));
     m_ui->addButton->setIcon(KIcon("list-add"));
     m_ui->removeButton->setIcon(KIcon("list-remove"));
-
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
-    connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
-    connect( m_ui->stopButton, SIGNAL(clicked()), SLOT(stop()));
-    connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(slotTempoChanged(int)));
-    connect( m_ui->gridColumns, SIGNAL(valueChanged(int)), SLOT(slotColumnsChanged(int)));
-    connect( m_ui->figureCombo, SIGNAL(activated(int)), SLOT(slotFigureChanged(int)));
-    connect( m_ui->patternCombo, SIGNAL(activated(int)), SLOT(patternChanged(int)));
-    connect( m_ui->saveButton, SIGNAL(clicked()), SLOT(savePattern()));
-    connect( m_ui->deleteButton, SIGNAL(clicked()), SLOT(removePattern()));
-    connect( m_ui->addButton, SIGNAL(clicked()), SLOT(addRow()));
-    connect( m_ui->removeButton, SIGNAL(clicked()), SLOT(removeRow()));
-
-    m_model = new DrumGridModel(this);
-    m_ui->tableView->setModel(m_model);
-    connect ( this, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)) );
 
     m_mapper = new QSignalMapper(this);
     addShortcut(QKeySequence("f"), "f");
@@ -86,9 +71,19 @@ DrumGrid::DrumGrid(QWidget *parent)
     addShortcut(QKeySequence("9"), "9");
     addShortcut(QKeySequence("0"), QString());
     addShortcut(QKeySequence::Delete, QString());
+
+    connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
+    connect( m_ui->stopButton, SIGNAL(clicked()), SLOT(stop()));
+    connect( m_ui->tempoSlider, SIGNAL(valueChanged(int)), SLOT(slotTempoChanged(int)));
+    connect( m_ui->gridColumns, SIGNAL(valueChanged(int)), SLOT(slotColumnsChanged(int)));
+    connect( m_ui->figureCombo, SIGNAL(activated(int)), SLOT(slotFigureChanged(int)));
+    connect( m_ui->patternCombo, SIGNAL(activated(int)), SLOT(patternChanged(int)));
+    connect( m_ui->saveButton, SIGNAL(clicked()), SLOT(savePattern()));
+    connect( m_ui->deleteButton, SIGNAL(clicked()), SLOT(removePattern()));
+    connect( m_ui->addButton, SIGNAL(clicked()), SLOT(addRow()));
+    connect( m_ui->removeButton, SIGNAL(clicked()), SLOT(removeRow()));
     connect( m_mapper, SIGNAL(mapped(QString)), SLOT(shortcutPressed(QString)));
-    connect ( m_ui->tableView, SIGNAL(doubleClicked(const QModelIndex&)),
-              m_model, SLOT(changeCell(const QModelIndex &)) );
+    connect( this, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)));
 }
 
 DrumGrid::~DrumGrid()
@@ -96,6 +91,28 @@ DrumGrid::~DrumGrid()
     foreach(QShortcut* s, m_shortcuts)
         delete s;
     delete m_ui;
+}
+
+void DrumGrid::setModel(DrumGridModel* model)
+{
+    m_model = model;
+    m_ui->tableView->setModel(m_model);
+    connect ( m_ui->tableView, SIGNAL(doubleClicked(const QModelIndex&)),
+              m_model, SLOT(changeCell(const QModelIndex &)) );
+}
+
+void DrumGrid::setSequencer(SequencerAdapter* seq)
+{
+    m_seq = seq;
+    connect( m_seq, SIGNAL(signalUpdate(int,int)),
+             SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
+}
+
+void DrumGrid::setInstrument(const QString& instrument)
+{
+    int bank = m_seq->getBank();
+    int patch = m_seq->getProgram();
+    m_model->loadKeyNames(instrument, bank, patch);
 }
 
 void DrumGrid::updateView()
@@ -314,21 +331,6 @@ void DrumGrid::updateDisplay(int /*bar*/, int beat)
     if (m_ui->chkselbeat->isChecked())
         m_ui->tableView->selectColumn(beat-1);
     m_ui->beatNumber->display(beat);
-}
-
-void DrumGrid::setSequencer(SequencerAdapter* seq)
-{
-    m_seq = seq;
-    connect( m_seq, SIGNAL(signalUpdate(int,int)),
-             SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
-    m_seq->setModel(m_model);
-}
-
-void DrumGrid::setInstrument(const QString& instrument)
-{
-    int bank = m_seq->getBank();
-    int patch = m_seq->getProgram();
-    m_model->loadKeyNames(instrument, bank, patch);
 }
 
 void DrumGrid::addRow()

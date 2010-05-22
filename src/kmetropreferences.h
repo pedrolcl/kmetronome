@@ -34,7 +34,7 @@ public:
     virtual ~KMetroPreferences();
     void fillInputConnections(QStringList lst) { m_ui.m_in_connection->insertItems(0, lst); }
     void fillOutputConnections(QStringList lst) { m_ui.m_out_connection->insertItems(0, lst); }
-    void fillInstruments();
+    void fillInstruments(InstrumentList* instruments);
     bool getAutoConnect() { return m_ui.m_autoconn->isChecked(); }
     QString getOutputConnection() { return m_ui.m_out_connection->currentText(); }
     QString getInputConnection() { return m_ui.m_in_connection->currentText(); }
@@ -46,12 +46,8 @@ public:
     QString getInstrumentName();
     QString  getProgramName();
     QString  getBankName();
-    int getInstrument();
-    int getProgram();
-    int getBank();
     int getWeakNote();
     int getStrongNote();
-    Instrument* currentInstrument() { return &m_ins; }
 
     void setAutoConnect(bool newValue) { m_ui.m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
@@ -61,9 +57,6 @@ public:
     void setDuration(int newValue) { m_ui.m_duration->setValue(newValue); }
     void setSendNoteOff(bool newValue) { m_ui.m_use_noteoff->setChecked(newValue); }
     void setStyledKnobs(bool newValue) { m_ui.m_styledknobs->setChecked(newValue); }
-    void setInstrument(int newValue);
-    void setProgram(int newValue);
-    void setBank(int newValue);
     void setWeakNote(int newValue);
     void setStrongNote(int newValue);
     void setInstrumentName(QString name);
@@ -77,8 +70,7 @@ public slots:
 
 private:
     Ui::KMetroPreferencesBase m_ui;
-    // TODO: convert to pointers, initialize in parent
-    InstrumentList m_insList;
+    InstrumentList* m_insList;
     Instrument m_ins;
 };
 

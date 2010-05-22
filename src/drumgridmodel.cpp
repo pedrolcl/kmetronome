@@ -18,7 +18,7 @@
 */
 
 #include "drumgridmodel.h"
-#include <KDE/KStandardDirs>
+#include "instrument.h"
 #include <KDE/KDebug>
 
 const QString DEFVAL("f");
@@ -27,24 +27,28 @@ DrumGridModel::DrumGridModel(QObject *parent)
     : QAbstractTableModel(parent),
     m_columns(PATTERN_COLUMNS),
     m_figure(PATTERN_FIGURE),
-    m_lastValue(DEFVAL)
+    m_lastValue(DEFVAL),
+    m_insList(NULL)
 {
     m_modelData.clear();
     m_keys.clear();
-    // TODO: initialization in parent
-    QString drums =  KStandardDirs::locate("appdata", "drums.ins");
-    if (!drums.isEmpty())
-        m_insList.load(drums);
+}
+
+void DrumGridModel::setInstrumentList(InstrumentList* instruments)
+{
+    m_insList = instruments;
 }
 
 void DrumGridModel::loadKeyNames(const QString& instrument, int bank, int patch)
 {
-    Instrument ins = m_insList.value(instrument);
-    const InstrumentData& notes = ins.notes(bank, patch);
-    InstrumentData::ConstIterator k;
-    m_keyNames.clear();
-    for( k = notes.constBegin(); k != notes.constEnd(); ++k )
-        m_keyNames[k.key()] = k.value();
+    if (m_insList != NULL) {
+        Instrument ins = m_insList->value(instrument);
+        const InstrumentData& notes = ins.notes(bank, patch);
+        InstrumentData::ConstIterator k;
+        m_keyNames.clear();
+        for( k = notes.constBegin(); k != notes.constEnd(); ++k )
+            m_keyNames[k.key()] = k.value();
+    }
 }
 
 void DrumGridModel::fillSampleData()

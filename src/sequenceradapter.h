@@ -45,7 +45,6 @@ public:
     SequencerAdapter(QObject *parent);
     virtual ~SequencerAdapter();
 
-    void setInstrument(int newValue) { m_instrument = newValue; }
     void setBank(int newValue) { m_bank = newValue; }
     void setProgram(int newValue) { m_program = newValue; }
     void setWeakNote(int newValue) { m_weak_note = newValue; }
@@ -65,9 +64,8 @@ public:
     void setNoteDuration(int newValue) { m_noteDuration = newValue; }
     void setSendNoteOff(bool newValue) { m_useNoteOff = newValue; }
     void setPatternMode(bool newValue) { m_patternMode = newValue; }
-    void setBankSelMode(int newValue) { m_bankSelMode = newValue; }
+    void setBankSelMethod(int newValue) { m_bankSelMethod = newValue; }
     void setModel(DrumGridModel* model) { m_model = model; }
-    int getInstrument() { return m_instrument; }
     int getBank() { return m_bank; }
     int getProgram() { return m_program; }
     int getWeakNote() { return m_weak_note; }
@@ -88,7 +86,7 @@ public:
     int getNoteDuration() { return m_noteDuration; }
     bool getSendNoteOff() { return m_useNoteOff; }
     bool getPatternMode() { return m_patternMode; }
-    int getBankSelMode() { return m_bankSelMode; }
+    int getBankSelMethod() { return m_bankSelMethod; }
 
     void sendControlChange( int cc, int value );
     void sendInitialControls();
@@ -158,7 +156,7 @@ private:
     int m_ts_num; /* time signature: numerator */
     int m_ts_div; /* time signature: denominator */
     int m_noteDuration;
-    int m_bankSelMode;
+    int m_bankSelMethod;
     int m_patternDuration;
     bool m_autoconnect;
     bool m_playing;

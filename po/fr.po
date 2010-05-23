@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://sourceforge."
 "net/tracker/?atid=731542&group_id=134956\n"
 "POT-Creation-Date: 2010-05-23 11:30+0200\n"
-"PO-Revision-Date: 2010-05-23 15:30+0200\n"
+"PO-Revision-Date: 2010-05-23 17:05+0200\n"
 "Last-Translator: Julien Richard-Foy <julien.rf@no-log.org>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -369,7 +369,7 @@ msgstr "Tempo en noires par minute"
 #. i18n: ectx: property (text), widget (QLabel, tempoLabel)
 #: po/rc.cpp:100
 msgid "100"
-msgstr "100"
+msgstr ""
 
 #. i18n: file: src/drumgrid.ui:350
 #. i18n: ectx: property (whatsThis), widget (QSlider, tempoSlider)
@@ -480,14 +480,14 @@ msgstr ""
 #: po/rc.cpp:185
 msgctxt "weak notes MIDI velocity"
 msgid "Weak"
-msgstr "Temps faible"
+msgstr "Faible"
 
 #. i18n: file: src/kmetronomeviewbase.ui:369
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: po/rc.cpp:188
 msgctxt "strong notes MIDI velocity"
 msgid "Strong"
-msgstr "Temps fort"
+msgstr "Fort"
 
 #. i18n: file: src/kmetronomeviewbase.ui:382
 #. i18n: ectx: property (text), widget (QLabel, label_3)

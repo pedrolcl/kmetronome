@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
+ <comment>
+KMetronome - ALSA Sequencer based MIDI metronome
+Copyright (C) 2005-2010 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+
+This program is free software; you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by 
+the Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA
+ </comment>
  <class>DrumGrid</class>
  <widget class="QWidget" name="DrumGrid">
   <property name="geometry">
@@ -160,6 +180,9 @@ Columns</string>
    </item>
    <item row="1" column="1">
     <widget class="QTableView" name="tableView">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
      <property name="whatsThis">
       <string>This is the pattern table, beats as columns and sounds as rows</string>
      </property>
@@ -177,7 +200,7 @@ Columns</string>
       <item>
        <widget class="KIntSpinBox" name="gridColumns">
         <property name="whatsThis">
-         <string>Number of rhythm figures per measure</string>
+         <string>Number of beats per measure (bar)</string>
         </property>
         <property name="minimum">
          <number>1</number>
@@ -193,7 +216,7 @@ Columns</string>
       <item>
        <widget class="KComboBox" name="figureCombo">
         <property name="whatsThis">
-         <string>This is the part figure for the pattern column.</string>
+         <string>This is the beat length for the pattern column.</string>
         </property>
         <property name="currentIndex">
          <number>4</number>

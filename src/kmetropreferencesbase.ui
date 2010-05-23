@@ -203,13 +203,17 @@ MA 02110-1301, USA
      <item row="1" column="1">
       <widget class="KIntSpinBox" name="m_channel">
        <property name="whatsThis">
-        <string>This is the MIDI channel</string>
+        <string>This is the MIDI channel, between 1 and 16. 
+General MIDI uses the channel 10 for percussion sounds.</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
        </property>
        <property name="maximum">
-        <number>15</number>
+        <number>16</number>
        </property>
-       <property name="maxValue" stdset="0">
-        <number>15</number>
+       <property name="value">
+        <number>10</number>
        </property>
       </widget>
      </item>
@@ -285,12 +289,6 @@ MA 02110-1301, USA
         <number>48</number>
        </property>
        <property name="maximum">
-        <number>480</number>
-       </property>
-       <property name="maxValue" stdset="0">
-        <number>48</number>
-       </property>
-       <property name="minValue" stdset="0">
         <number>960</number>
        </property>
       </widget>
@@ -365,9 +363,6 @@ MA 02110-1301, USA
        </property>
        <property name="value">
         <number>10</number>
-       </property>
-       <property name="minValue" stdset="0">
-        <number>1</number>
        </property>
       </widget>
      </item>

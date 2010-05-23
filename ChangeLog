@@ -1,3 +1,10 @@
+2010-05-23 00:00 plcl
+    
+    * Enable the standard toolbar
+    * Optionally hide the fake toolbar
+    * Import/export patterns 
+    * Updated translation template
+
 2010-05-20 00:00 plcl
 
     * Using an instrument definition file in .INS format

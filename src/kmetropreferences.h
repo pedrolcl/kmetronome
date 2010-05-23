@@ -38,7 +38,7 @@ public:
     bool getAutoConnect() { return m_ui.m_autoconn->isChecked(); }
     QString getOutputConnection() { return m_ui.m_out_connection->currentText(); }
     QString getInputConnection() { return m_ui.m_in_connection->currentText(); }
-    int getChannel() { return m_ui.m_channel->value(); }
+    int getChannel() { return (m_ui.m_channel->value()-1); }
     int getResolution() { return m_ui.m_resolution->value(); }
     int getDuration() { return m_ui.m_duration->value(); }
     bool getSendNoteOff() { return m_ui.m_use_noteoff->isChecked(); }
@@ -52,7 +52,7 @@ public:
     void setAutoConnect(bool newValue) { m_ui.m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
     void setInputConnection(QString newValue);
-    void setChannel(int newValue) { m_ui.m_channel->setValue(newValue); }
+    void setChannel(int newValue) { m_ui.m_channel->setValue(newValue+1); }
     void setResolution(int newValue) { m_ui.m_resolution->setValue(newValue); }
     void setDuration(int newValue) { m_ui.m_duration->setValue(newValue); }
     void setSendNoteOff(bool newValue) { m_ui.m_use_noteoff->setChecked(newValue); }

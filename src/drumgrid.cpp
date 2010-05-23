@@ -58,6 +58,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
 
+    m_popup = new QMenu(this);
     m_mapper = new QSignalMapper(this);
     addShortcut(QKeySequence("f"), "f");
     addShortcut(QKeySequence("p"), "p");
@@ -83,6 +84,8 @@ DrumGrid::DrumGrid(QWidget *parent)
     connect( m_ui->deleteButton, SIGNAL(clicked()), SLOT(removePattern()));
     connect( m_ui->addButton, SIGNAL(clicked()), SLOT(addRow()));
     connect( m_ui->removeButton, SIGNAL(clicked()), SLOT(removeRow()));
+    connect( m_ui->tableView, SIGNAL(customContextMenuRequested(const QPoint&)),
+             SLOT(gridContextMenu(const QPoint&)) );
     connect( m_mapper, SIGNAL(mapped(QString)), SLOT(shortcutPressed(QString)));
     connect( this, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)));
 }
@@ -155,10 +158,7 @@ void DrumGrid::slotTempoChanged(int newTempo)
 
 void DrumGrid::updateTempo(int newTempo)
 {
-    QString tip = QString::number(newTempo);
-    m_ui->tempoSlider->setToolTip(tip);
     m_ui->tempoLabel->setNum(newTempo);
-    QToolTip::showText(QCursor::pos(), tip, this);
 }
 
 void DrumGrid::slotFigureChanged(int idx)
@@ -196,6 +196,12 @@ void DrumGrid::addShortcut(const QKeySequence& key, const QString& value)
     connect (shortcut, SIGNAL(activated()), m_mapper, SLOT(map()));
     m_mapper->setMapping(shortcut, value);
     m_shortcuts.append(shortcut);
+    QAction* action;
+    if (value.isEmpty())
+        action = m_popup->addAction(key.toString(), m_mapper, SLOT(map()));
+    else
+        action = m_popup->addAction(value, m_mapper, SLOT(map()));
+    m_mapper->setMapping(action, value);
 }
 
 void DrumGrid::readPattern()
@@ -366,4 +372,10 @@ void DrumGrid::removeRow()
                 KStandardGuiItem::no(),
                 "removepatternrow") == KMessageBox::Yes)
             m_model->removePatternRow(row);
+}
+
+void DrumGrid::gridContextMenu(const QPoint&)
+{
+    if (m_popup != NULL)
+        m_popup->exec(QCursor::pos());
 }

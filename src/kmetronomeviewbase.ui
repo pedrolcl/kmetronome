@@ -12,7 +12,8 @@ the Free Software Foundation; either version 2 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
@@ -232,7 +233,7 @@ MA 02110-1301, USA
             </size>
            </property>
            <property name="whatsThis">
-            <string>This is the number of parts for each measure.&lt;br&gt;
+            <string>This is the number of beats for each measure (bar).&lt;br&gt;
 Values are from 1 to 32.&lt;br&gt;
 It is the numerator of the time signature specification.</string>
            </property>
@@ -250,7 +251,7 @@ It is the numerator of the time signature specification.</string>
          <item row="2" column="0">
           <widget class="QLabel" name="lblFigure">
            <property name="text">
-            <string>Rhythm figure:</string>
+            <string>Beat Length:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -266,7 +267,7 @@ It is the numerator of the time signature specification.</string>
          <item row="2" column="1">
           <widget class="KComboBox" name="m_figure">
            <property name="whatsThis">
-            <string>This is the part figure for the rhythm.&lt;br&gt;
+            <string>This is the beat length.&lt;br&gt;
 Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
 It is the denominator in the time signature specification.</string>
            </property>
@@ -508,7 +509,7 @@ It is the denominator in the time signature specification.</string>
      <item>
       <widget class="KComboBox" name="m_air">
        <property name="whatsThis">
-        <string>This is the aire control to change the tempo value using musical names</string>
+        <string>This is the musical name of the tempo value</string>
        </property>
       </widget>
      </item>

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: http://sourceforge."
-"net/tracker/?atid=731542&group_id=134956\n"
-"POT-Creation-Date: 2010-05-01 09:41+0200\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?"
+"atid=731542&group_id=134956\n"
+"POT-Creation-Date: 2010-05-23 11:30+0200\n"
 "PO-Revision-Date: 2010-05-01 15:29+0200\n"
 "Last-Translator: Pedro López-Cabanillas <plcl@users.sourceforge.net>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -21,7 +21,44 @@ msgstr ""
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: src/kmetronome.cpp:66
+#: src/drumgrid.cpp:49
+msgid "Pattern Editor"
+msgstr ""
+
+#: src/drumgrid.cpp:254
+msgid "Do you want to remove the current pattern?"
+msgstr ""
+
+#: src/drumgrid.cpp:255
+msgid "Remove Pattern"
+msgstr ""
+
+#: src/drumgrid.cpp:309
+msgctxt "name of an automatically created pattern"
+msgid "Sample Pattern"
+msgstr ""
+
+#: src/drumgrid.cpp:340
+msgid "Insert Pattern Row"
+msgstr ""
+
+#: src/drumgrid.cpp:341
+msgid "Drum Key:"
+msgstr ""
+
+#: src/drumgrid.cpp:361
+msgid "Please select one, and only one row"
+msgstr ""
+
+#: src/drumgrid.cpp:363
+msgid "Do you want to remove the selected pattern row?"
+msgstr ""
+
+#: src/drumgrid.cpp:364
+msgid "Remove Row"
+msgstr ""
+
+#: src/kmetronome.cpp:85
 msgid ""
 "Fatal error from the ALSA sequencer. This usually happens when the kernel "
 "doesn't have ALSA support, or the device node (/dev/snd/seq) doesn't exists, "
@@ -33,21 +70,53 @@ msgstr ""
 "není nahrán modul jádra (snd_seq). Ověřte, prosím, své nastavení ALSA/MIDI. "
 "Vrácenou chybou bylo: %1"
 
-#: src/kmetronome.cpp:72
+#: src/kmetronome.cpp:91
 msgid "Error"
 msgstr "Chyba"
 
-#: src/kmetronome.cpp:85
-msgid "&Play/Stop"
+#: src/kmetronome.cpp:112
+#, fuzzy
+msgid "Play/Stop"
 msgstr "&Přehrát/Zastavit"
 
-#: src/kmetronomeview.cpp:130
+#: src/kmetronome.cpp:116
+msgid "Show Action Buttons"
+msgstr ""
+
+#. i18n: file: src/kmetronomeviewbase.ui:126
+#. i18n: ectx: property (text), widget (KPushButton, m_patternbtn)
+#: src/kmetronome.cpp:123 po/rc.cpp:130
+msgid "Patterns"
+msgstr ""
+
+#: src/kmetronome.cpp:128 src/kmetronome.cpp:490
+msgid "Import Patterns"
+msgstr ""
+
+#: src/kmetronome.cpp:133 src/kmetronome.cpp:503
+msgid "Export Patterns"
+msgstr ""
+
+#: src/kmetronome.cpp:489 src/kmetronome.cpp:502
+msgid "*.pat|Pattern Files (*.pat)"
+msgstr ""
+
+#: src/kmetronomeview.cpp:143
 msgid "Tempo"
 msgstr "Tempo"
 
-#: src/kmetronomeview.cpp:130
+#: src/kmetronomeview.cpp:143
 msgid "Enter new Tempo:"
 msgstr "Zadat nové tempo:"
+
+#: src/kmetronomeview.cpp:177
+msgctxt "the pattern is created automatically"
+msgid "Automatic"
+msgstr ""
+
+#: src/kmetropreferences.cpp:29
+msgid "Preferences"
+msgstr "Nastavení"
 
 #: src/main.cpp:29
 msgid "KDE MIDI metronome using ALSA sequencer"
@@ -65,81 +134,323 @@ msgstr "(C) 2005-2010 Pedro Lopez-Cabanillas"
 msgid "Pedro Lopez-Cabanillas"
 msgstr "Pedro Lopez-Cabanillas"
 
-#: src/sequenceradapter.cpp:52
+#: src/sequenceradapter.cpp:65
 msgid "No connection"
 msgstr "Žádné spojení"
 
-#. i18n: file: src/kmetronomeviewbase.ui:57
-#. i18n: ectx: property (windowTitle), widget (QWidget, KmetronomeViewBase)
-#: po/rc.cpp:3
-msgid "MIDI Metronome"
-msgstr "MIDI metronom"
+#. i18n: file: src/drumgrid.ui:46
+#. i18n: ectx: property (text), widget (QLabel, patternLabel)
+#. i18n: file: src/kmetronomeviewbase.ui:191
+#. i18n: ectx: property (text), widget (QLabel, lblPattern)
+#: po/rc.cpp:3 po/rc.cpp:142
+msgid "Pattern:"
+msgstr ""
 
-#. i18n: file: src/kmetronomeviewbase.ui:71
-#. i18n: ectx: property (whatsThis), widget (KPushButton, m_playbtn)
+#. i18n: file: src/drumgrid.ui:62
+#. i18n: ectx: property (whatsThis), widget (KComboBox, patternCombo)
 #: po/rc.cpp:6
-msgid "This button starts playing the rhythm pattern"
+msgid ""
+"Type a new name and press the \"Save\" button to create a new pattern, or "
+"choose an existing pattern from the drop-down list."
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:72
+#. i18n: ectx: property (whatsThis), widget (KPushButton, saveButton)
+#: po/rc.cpp:9
+msgid "This button stores the current pattern definition with the name given"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:75
+#. i18n: ectx: property (text), widget (KPushButton, saveButton)
+#: po/rc.cpp:12
+msgid "Save"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:82
+#. i18n: ectx: property (whatsThis), widget (KPushButton, deleteButton)
+#: po/rc.cpp:15
+#, fuzzy
+msgid "This button deletes the current pattern definition"
+msgstr "Tímto tlačítkem se otevírá okno s nastavením"
+
+#. i18n: file: src/drumgrid.ui:85
+#. i18n: ectx: property (text), widget (KPushButton, deleteButton)
+#: po/rc.cpp:18
+msgid "Delete"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:104
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: po/rc.cpp:21
+msgid "Rows:"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:111
+#. i18n: ectx: property (whatsThis), widget (KPushButton, addButton)
+#: po/rc.cpp:24
+msgid ""
+"Use this button to add new rows (sounds) to the current pattern definition"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:114
+#. i18n: ectx: property (text), widget (KPushButton, addButton)
+#: po/rc.cpp:27
+msgid "Add"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:121
+#. i18n: ectx: property (whatsThis), widget (KPushButton, removeButton)
+#: po/rc.cpp:30
+msgid ""
+"Use this button to remove the selected row (sound) from the pattern "
+"definition"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:124
+#. i18n: ectx: property (text), widget (KPushButton, removeButton)
+#: po/rc.cpp:33
+msgid "Remove"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:144
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: po/rc.cpp:36
+#, fuzzy
+msgid "Beats:"
+msgstr "DobyTakty:"
+
+#. i18n: file: src/drumgrid.ui:151
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, chkselbeat)
+#: po/rc.cpp:39
+msgid "Highligh the grid columns while playing"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:155
+#. i18n: ectx: property (text), widget (QCheckBox, chkselbeat)
+#: po/rc.cpp:42
+msgid ""
+"Highlight\n"
+"Columns"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:168
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, beatNumber)
+#: po/rc.cpp:46
+msgid "This is the current beat number"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:184
+#. i18n: ectx: property (whatsThis), widget (QTableView, tableView)
+#: po/rc.cpp:49
+msgid "This is the pattern table, beats as columns and sounds as rows"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:200
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, gridColumns)
+#: po/rc.cpp:52
+msgid "Number of beats per measure (bar)"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:216
+#. i18n: ectx: property (whatsThis), widget (KComboBox, figureCombo)
+#: po/rc.cpp:55
+msgid "This is the beat length for the pattern column."
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:226
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:282
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:58 po/rc.cpp:164
+msgid "Whole"
+msgstr "Celá"
+
+#. i18n: file: src/drumgrid.ui:235
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:291
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:61 po/rc.cpp:167
+msgid "Half"
+msgstr "Půlová"
+
+#. i18n: file: src/drumgrid.ui:244
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:300
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:64 po/rc.cpp:170
+msgid "Quarter"
+msgstr "Čtvrtina"
+
+#. i18n: file: src/drumgrid.ui:253
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:309
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:67 po/rc.cpp:173
+msgid "Eighth"
+msgstr "Osmina"
+
+#. i18n: file: src/drumgrid.ui:262
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:318
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:70 po/rc.cpp:176
+msgid "Sixteenth"
+msgstr "Šestnáctina"
+
+#. i18n: file: src/drumgrid.ui:271
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:327
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:73 po/rc.cpp:179
+msgid "Thirty-Second"
+msgstr "Dvaatřicetina"
+
+#. i18n: file: src/drumgrid.ui:280
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:336
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:76 po/rc.cpp:182
+msgid "Sixty-Fourth"
+msgstr "Čtyřiašedesátina"
+
+#. i18n: file: src/drumgrid.ui:292
+#. i18n: ectx: property (whatsThis), widget (QPushButton, startButton)
+#: po/rc.cpp:79
+#, fuzzy
+msgid "This button starts playing the current pattern"
 msgstr "Tímto tlačítkem se spouští přehrávání rytmického vzoru"
 
-#. i18n: file: src/kmetronomeviewbase.ui:74
+#. i18n: file: src/drumgrid.ui:295
+#. i18n: ectx: property (text), widget (QPushButton, startButton)
+#. i18n: file: src/kmetronomeviewbase.ui:81
 #. i18n: ectx: property (text), widget (KPushButton, m_playbtn)
-#: po/rc.cpp:9
+#: po/rc.cpp:82 po/rc.cpp:112
 msgid "Play"
 msgstr "Přehrát"
 
-#. i18n: file: src/kmetronomeviewbase.ui:90
-#. i18n: ectx: property (whatsThis), widget (KPushButton, m_stopbtn)
-#: po/rc.cpp:12
-msgid "This button stops playing the rhythm pattern"
-msgstr "Tímto tlačítkem se zastavuje přehrávání rytmického vzoru"
+#. i18n: file: src/drumgrid.ui:308
+#. i18n: ectx: property (whatsThis), widget (QPushButton, stopButton)
+#: po/rc.cpp:85
+#, fuzzy
+msgid "This button stops the playback"
+msgstr "Tímto tlačítkem se program ukončuje"
 
-#. i18n: file: src/kmetronomeviewbase.ui:93
+#. i18n: file: src/drumgrid.ui:311
+#. i18n: ectx: property (text), widget (QPushButton, stopButton)
+#. i18n: file: src/kmetronomeviewbase.ui:100
 #. i18n: ectx: property (text), widget (KPushButton, m_stopbtn)
-#: po/rc.cpp:15
+#: po/rc.cpp:88 po/rc.cpp:118
 msgid "Stop"
 msgstr "Zastavit"
 
-#. i18n: file: src/kmetronomeviewbase.ui:106
+#. i18n: file: src/drumgrid.ui:327
+#. i18n: ectx: property (whatsThis), widget (QLabel, label_3)
+#: po/rc.cpp:91
+#, fuzzy
+msgid "QPM: quarters per minute"
+msgstr "Tempo (ve čtvrtinách za minutu)"
+
+#. i18n: file: src/drumgrid.ui:330
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: po/rc.cpp:94
+msgctxt "Quarters per Minute"
+msgid "QPM:"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:340
+#. i18n: ectx: property (whatsThis), widget (QLabel, tempoLabel)
+#: po/rc.cpp:97
+#, fuzzy
+msgid "This is the current tempo in quarters per minute"
+msgstr "Tempo (ve čtvrtinách za minutu)"
+
+#. i18n: file: src/drumgrid.ui:343
+#. i18n: ectx: property (text), widget (QLabel, tempoLabel)
+#: po/rc.cpp:100
+msgid "100"
+msgstr ""
+
+#. i18n: file: src/drumgrid.ui:350
+#. i18n: ectx: property (whatsThis), widget (QSlider, tempoSlider)
+#: po/rc.cpp:103
+msgid "Drag the slider handle to change the tempo, in quarters per minute"
+msgstr ""
+
+#. i18n: file: src/kmetronomeviewbase.ui:58
+#. i18n: ectx: property (windowTitle), widget (QWidget, KmetronomeViewBase)
+#: po/rc.cpp:106
+msgid "MIDI Metronome"
+msgstr "MIDI metronom"
+
+#. i18n: file: src/kmetronomeviewbase.ui:78
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_playbtn)
+#: po/rc.cpp:109
+msgid "This button starts playing the rhythm pattern"
+msgstr "Tímto tlačítkem se spouští přehrávání rytmického vzoru"
+
+#. i18n: file: src/kmetronomeviewbase.ui:97
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_stopbtn)
+#: po/rc.cpp:115
+msgid "This button stops playing the rhythm pattern"
+msgstr "Tímto tlačítkem se zastavuje přehrávání rytmického vzoru"
+
+#. i18n: file: src/kmetronomeviewbase.ui:113
 #. i18n: ectx: property (whatsThis), widget (KPushButton, m_configbtn)
-#: po/rc.cpp:18
+#: po/rc.cpp:121
 msgid "This button opens the configuration window"
 msgstr "Tímto tlačítkem se otevírá okno s nastavením"
 
-#. i18n: file: src/kmetronomeviewbase.ui:109
+#. i18n: file: src/kmetronomeviewbase.ui:116
 #. i18n: ectx: property (text), widget (KPushButton, m_configbtn)
-#: po/rc.cpp:21
-msgid "Config"
-msgstr "Nastavení"
+#: po/rc.cpp:124
+msgid "Settings"
+msgstr ""
 
-#. i18n: file: src/kmetronomeviewbase.ui:122
+#. i18n: file: src/kmetronomeviewbase.ui:123
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_patternbtn)
+#: po/rc.cpp:127
+#, fuzzy
+msgid "This button opens the pattern editor"
+msgstr "Tímto tlačítkem se otevírá okno s nastavením"
+
+#. i18n: file: src/kmetronomeviewbase.ui:139
 #. i18n: ectx: property (whatsThis), widget (KPushButton, m_exitbtn)
-#: po/rc.cpp:24
+#: po/rc.cpp:133
 msgid "This button exits the program"
 msgstr "Tímto tlačítkem se program ukončuje"
 
-#. i18n: file: src/kmetronomeviewbase.ui:125
+#. i18n: file: src/kmetronomeviewbase.ui:142
 #. i18n: ectx: property (text), widget (KPushButton, m_exitbtn)
-#: po/rc.cpp:27
-msgid "Exit"
-msgstr "Ukončit"
+#: po/rc.cpp:136
+msgid "Quit"
+msgstr ""
 
-#. i18n: file: src/kmetronomeviewbase.ui:161
+#. i18n: file: src/kmetronomeviewbase.ui:173
 #. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_measureLCD)
-#: po/rc.cpp:30
+#: po/rc.cpp:139
 msgid "Number of measures (bars) and beats played from beginning"
 msgstr "Počet taktů a dob přehrávaných od začátku"
 
-#. i18n: file: src/kmetronomeviewbase.ui:196
-#. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: po/rc.cpp:33
+#. i18n: file: src/kmetronomeviewbase.ui:210
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_pattern)
+#: po/rc.cpp:145
+msgid ""
+"This is the pattern definition to play, either \"Automatic\" or a custom "
+"defined one."
+msgstr ""
+
+#. i18n: file: src/kmetronomeviewbase.ui:217
+#. i18n: ectx: property (text), widget (QLabel, lblBeats)
+#: po/rc.cpp:148
 msgid "Beats/Bar:"
 msgstr "DobyTakty:"
 
-#. i18n: file: src/kmetronomeviewbase.ui:220
+#. i18n: file: src/kmetronomeviewbase.ui:238
 #. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_beatsBar)
-#: po/rc.cpp:36
+#: po/rc.cpp:151
+#, fuzzy
 msgid ""
-"This is the number of parts for each measure.<br>\n"
+"This is the number of beats for each measure (bar).<br>\n"
 "Values are from 1 to 32.<br>\n"
 "It is the numerator of the time signature specification."
 msgstr ""
@@ -147,17 +458,18 @@ msgstr ""
 "Hodnoty jsou od 1 do 32<br>\n"
 "Je to čitatel zadání taktového označení."
 
-#. i18n: file: src/kmetronomeviewbase.ui:236
-#. i18n: ectx: property (text), widget (QLabel, textLabel4)
-#: po/rc.cpp:41
-msgid "Rhythm figure:"
-msgstr "Rytmická figura:"
-
 #. i18n: file: src/kmetronomeviewbase.ui:254
+#. i18n: ectx: property (text), widget (QLabel, lblFigure)
+#: po/rc.cpp:156
+msgid "Beat Length:"
+msgstr ""
+
+#. i18n: file: src/kmetronomeviewbase.ui:272
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_figure)
-#: po/rc.cpp:44
+#: po/rc.cpp:159
+#, fuzzy
 msgid ""
-"This is the part figure for the rhythm.<br>\n"
+"This is the beat length.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
 "It is the denominator in the time signature specification."
 msgstr ""
@@ -165,142 +477,89 @@ msgstr ""
 "Hodnoty znamenají 1, 2, 4, 8, 16, 32 a 64.<br>\n"
 "Je to jmenovatel zadání taktového označení."
 
-#. i18n: file: src/kmetronomeviewbase.ui:264
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:49
-msgid "Whole"
-msgstr "Celá"
-
-#. i18n: file: src/kmetronomeviewbase.ui:273
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:52
-msgid "Half"
-msgstr "Půlová"
-
-#. i18n: file: src/kmetronomeviewbase.ui:282
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:55
-msgid "Quarter"
-msgstr "Čtvrtina"
-
-#. i18n: file: src/kmetronomeviewbase.ui:291
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:58
-msgid "Eighth"
-msgstr "Osmina"
-
-#. i18n: file: src/kmetronomeviewbase.ui:300
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:61
-msgid "Sixteenth"
-msgstr "Šestnáctina"
-
-#. i18n: file: src/kmetronomeviewbase.ui:309
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:64
-msgid "Thirty-Second"
-msgstr "Dvaatřicetina"
-
-#. i18n: file: src/kmetronomeviewbase.ui:318
-#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
-#: po/rc.cpp:67
-msgid "Sixty-Fourth"
-msgstr "Čtyřiašedesátina"
-
-#. i18n: file: src/kmetronomeviewbase.ui:336
+#. i18n: file: src/kmetronomeviewbase.ui:356
 #. i18n: ectx: property (text), widget (QLabel, label_1)
-#: po/rc.cpp:70
+#: po/rc.cpp:185
+#, fuzzy
+msgctxt "weak notes MIDI velocity"
 msgid "Weak"
 msgstr "Slabý"
 
-#. i18n: file: src/kmetronomeviewbase.ui:349
+#. i18n: file: src/kmetronomeviewbase.ui:369
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: po/rc.cpp:73
+#: po/rc.cpp:188
+#, fuzzy
+msgctxt "strong notes MIDI velocity"
 msgid "Strong"
 msgstr "Silný"
 
-#. i18n: file: src/kmetronomeviewbase.ui:362
+#. i18n: file: src/kmetronomeviewbase.ui:382
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: po/rc.cpp:76
+#: po/rc.cpp:191
+#, fuzzy
+msgctxt "audio volume level"
 msgid "Volume"
 msgstr "Hlasitost"
 
-#. i18n: file: src/kmetronomeviewbase.ui:375
+#. i18n: file: src/kmetronomeviewbase.ui:395
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: po/rc.cpp:79
+#: po/rc.cpp:194
+#, fuzzy
+msgctxt "audio panning"
 msgid "Pan"
 msgstr "Vyrovnání"
 
-#. i18n: file: src/kmetronomeviewbase.ui:394
+#. i18n: file: src/kmetronomeviewbase.ui:414
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial1)
-#: po/rc.cpp:82
+#: po/rc.cpp:197
+#, fuzzy
 msgid ""
-"This is the velocity of the weak notes in the rhythm pattern (all of them, "
-"except the first one)"
+"This is the velocity of the weak notes in the automatic rhythm pattern (all "
+"of them, except the first one)"
 msgstr "Toto je rychlost slabých not v rytmickém vzoru (všechny kromě první)"
 
-#. i18n: file: src/kmetronomeviewbase.ui:419
+#. i18n: file: src/kmetronomeviewbase.ui:439
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial2)
-#: po/rc.cpp:85
+#: po/rc.cpp:200
+#, fuzzy
 msgid ""
-"This is the velocity of the strong note in the rhythm pattern (the first one)"
+"This is the velocity of the strong note in the automatic rhythm pattern (the "
+"first one)"
 msgstr "Toto je rychlost silné noty v rytmickém vzoru (první)"
 
-#. i18n: file: src/kmetronomeviewbase.ui:444
+#. i18n: file: src/kmetronomeviewbase.ui:464
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial3)
-#: po/rc.cpp:88
+#: po/rc.cpp:203
 msgid "This is the MIDI volume control (CC7)"
 msgstr "Toto je ovládání hlasitosti MIDI (CC7)"
 
-#. i18n: file: src/kmetronomeviewbase.ui:469
+#. i18n: file: src/kmetronomeviewbase.ui:489
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial4)
-#: po/rc.cpp:91
+#: po/rc.cpp:206
 msgid "This is the MIDI pan control (CC10)"
 msgstr "Toto je ovládání vyrovnání MIDI (CC10)"
 
-#. i18n: file: src/kmetronomeviewbase.ui:496
+#. i18n: file: src/kmetronomeviewbase.ui:512
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_air)
-#: po/rc.cpp:94
-msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">This is the <span style=\" "
-"font-style:italic;\">aire</span> control to change the tempo value using "
-"musical names</p></body></html>"
+#: po/rc.cpp:209
+msgid "This is the musical name of the tempo value"
 msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Toto je ovládání<span "
-"style=\" font-style:italic;\">aire</span> pro změnu hodnoty tempa pomocí "
-"hudebních názvů</p></body></html>"
 
-#. i18n: file: src/kmetronomeviewbase.ui:515
+#. i18n: file: src/kmetronomeviewbase.ui:531
 #. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_tempoLCD)
-#: po/rc.cpp:101
+#: po/rc.cpp:212
 msgid "The current <i>tempo</i> value"
 msgstr "Nynější hodnota pro <i>tempo</i>"
 
-#. i18n: file: src/kmetronomeviewbase.ui:538
+#. i18n: file: src/kmetronomeviewbase.ui:554
 #. i18n: ectx: property (text), widget (QLabel, textLabel1_2)
-#: po/rc.cpp:104
+#: po/rc.cpp:215
 msgid "Tempo (in quarters per minute)"
 msgstr "Tempo (ve čtvrtinách za minutu)"
 
-#. i18n: file: src/kmetronomeviewbase.ui:564
+#. i18n: file: src/kmetronomeviewbase.ui:580
 #. i18n: ectx: property (whatsThis), widget (QSlider, m_tempo)
-#: po/rc.cpp:107
+#: po/rc.cpp:218
 msgid ""
 "This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
 "Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
@@ -308,15 +567,9 @@ msgstr ""
 "Posuvníkem se mění <i>tempo</i>, nebo rychlost rytmu.<br>\n"
 "Hodnoty jsou 25 až 250 čtvrtin za minutu. (<i>jednotky metronomu Mälzel</i>)."
 
-#. i18n: file: src/kmetropreferencesbase.ui:34
-#. i18n: ectx: property (windowTitle), widget (QDialog, KMetroPreferencesBase)
-#: po/rc.cpp:111
-msgid "Preferences"
-msgstr "Nastavení"
-
-#. i18n: file: src/kmetropreferencesbase.ui:43
+#. i18n: file: src/kmetropreferencesbase.ui:37
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, m_autoconn)
-#: po/rc.cpp:114
+#: po/rc.cpp:222
 msgid ""
 "If this checkbox is activated, the the program will remember the connections "
 "for the input and output ports, and try to reconnect them at program startup."
@@ -325,93 +578,212 @@ msgstr ""
 "vstupních a výstupních přípojek a pokusí se je při spuštění programu znovu "
 "spojit."
 
-#. i18n: file: src/kmetropreferencesbase.ui:46
+#. i18n: file: src/kmetropreferencesbase.ui:40
 #. i18n: ectx: property (text), widget (QCheckBox, m_autoconn)
-#: po/rc.cpp:117
+#: po/rc.cpp:225
 msgid "Automatic ports connection on startup"
 msgstr "Automatické spojení přípojek při spuštění"
 
-#. i18n: file: src/kmetropreferencesbase.ui:67
-#. i18n: ectx: property (text), widget (QLabel, textLabel1)
-#: po/rc.cpp:120
+#. i18n: file: src/kmetropreferencesbase.ui:61
+#. i18n: ectx: property (text), widget (QLabel, lblInputPort)
+#: po/rc.cpp:228
+#, fuzzy
+msgid "Optional input port conn:"
+msgstr "Volitelné spojení vstupní přípojky:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:83
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_in_connection)
+#: po/rc.cpp:231
+msgid "This is the optional connection for the MIDI IN port."
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:102
+#. i18n: ectx: property (text), widget (QLabel, lblOutputPort)
+#: po/rc.cpp:234
 msgid "Output port connection:"
 msgstr "Spojení výstupní přípojky:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:105
-#. i18n: ectx: property (text), widget (QLabel, textLabel1_2)
-#: po/rc.cpp:123
-msgid "Optional Input port conn:"
-msgstr "Volitelné spojení vstupní přípojky:"
+#. i18n: file: src/kmetropreferencesbase.ui:124
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_out_connection)
+#: po/rc.cpp:237
+msgid "This is the mandatory connection for the MIDI OUT port"
+msgstr ""
 
-#. i18n: file: src/kmetropreferencesbase.ui:149
+#. i18n: file: src/kmetropreferencesbase.ui:131
+#. i18n: ectx: property (text), widget (QLabel, lblInstrument)
+#: po/rc.cpp:240
+msgid "Output instrument:"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:147
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_instrument)
+#: po/rc.cpp:243
+msgid "This is the definition of the instrument connected to the MIDI OUT port"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:158
+#. i18n: ectx: property (text), widget (QLabel, lblBank)
+#: po/rc.cpp:246
+msgid "Bank:"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:171
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_bank)
+#: po/rc.cpp:249
+msgid "This is the Bank of the selected MIDI program"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:190
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: po/rc.cpp:126
+#: po/rc.cpp:252
 msgid "Channel:"
 msgstr "Kanál:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:187
+#. i18n: file: src/kmetropreferencesbase.ui:207
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_channel)
+#: po/rc.cpp:255
+msgid ""
+"This is the MIDI channel, between 1 and 16. \n"
+"General MIDI uses the channel 10 for percussion sounds."
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:235
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: po/rc.cpp:129
+#: po/rc.cpp:259
 msgid "Program:"
 msgstr "Program:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:219
+#. i18n: file: src/kmetropreferencesbase.ui:257
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_program)
+#: po/rc.cpp:262
+#, fuzzy
+msgid "This is the MIDI program"
+msgstr "Tímto tlačítkem se program ukončuje"
+
+#. i18n: file: src/kmetropreferencesbase.ui:270
 #. i18n: ectx: property (text), widget (QLabel, textLabel7)
-#: po/rc.cpp:132
+#: po/rc.cpp:265
 msgid "Resolution:"
 msgstr "Rozlišení:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:274
+#. i18n: file: src/kmetropreferencesbase.ui:286
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_resolution)
+#: po/rc.cpp:268
+msgid "This is the MIDI time resolution (number of ticks in a quarter note)"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:305
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
-#: po/rc.cpp:135
+#: po/rc.cpp:271
 msgid "Weak note:"
 msgstr "Slabá nota:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:306
-#. i18n: ectx: property (text), widget (QLabel, textLabel5)
-#: po/rc.cpp:138
-msgid "Strong note:"
-msgstr "Silná nota:"
+#. i18n: file: src/kmetropreferencesbase.ui:327
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_weak_note)
+#: po/rc.cpp:274
+#, fuzzy
+msgid "This is the sound of the weak notes for the automatic patterns"
+msgstr "Toto je rychlost silné noty v rytmickém vzoru (první)"
 
-#. i18n: file: src/kmetropreferencesbase.ui:338
+#. i18n: file: src/kmetropreferencesbase.ui:340
 #. i18n: ectx: property (text), widget (QLabel, textLabel8)
-#: po/rc.cpp:141
+#: po/rc.cpp:277
 msgid "Note duration:"
 msgstr "Doba trvání noty:"
 
-#. i18n: file: src/kmetropreferencesbase.ui:376
+#. i18n: file: src/kmetropreferencesbase.ui:356
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_duration)
+#: po/rc.cpp:280
+msgid "This is the note duration in ticks, when using NOTE OFF events"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:378
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: po/rc.cpp:283
+msgid "Strong note:"
+msgstr "Silná nota:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:400
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_strong_note)
+#: po/rc.cpp:286
+#, fuzzy
+msgid "This is the sound of the strong notes for the automatic patterns"
+msgstr "Toto je rychlost silné noty v rytmickém vzoru (první)"
+
+#. i18n: file: src/kmetropreferencesbase.ui:411
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_use_noteoff)
+#: po/rc.cpp:289
+#, fuzzy
+msgid "Optional setting to send NOTE OFF events"
+msgstr "Poslat události NOTA VYPNUTA"
+
+#. i18n: file: src/kmetropreferencesbase.ui:414
 #. i18n: ectx: property (text), widget (QCheckBox, m_use_noteoff)
-#: po/rc.cpp:144
+#: po/rc.cpp:292
 msgid "Send NOTE OFF events"
 msgstr "Poslat události NOTA VYPNUTA"
 
-#. i18n: file: src/kmetropreferencesbase.ui:402
+#. i18n: file: src/kmetropreferencesbase.ui:440
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_styledknobs)
+#: po/rc.cpp:295
+msgid "If this option is activated, the knobs are drawn using a custom style"
+msgstr ""
+
+#. i18n: file: src/kmetropreferencesbase.ui:443
 #. i18n: ectx: property (text), widget (QCheckBox, m_styledknobs)
-#: po/rc.cpp:147
+#: po/rc.cpp:298
 msgid "Styled Knobs"
 msgstr "Stylizované knoflíky"
 
-#. i18n: file: src/kmetropreferencesbase.ui:438
-#. i18n: ectx: property (text), widget (QPushButton, m_buttonOk)
-#: po/rc.cpp:150
-msgid "&OK"
-msgstr "&OK"
-
-#. i18n: file: src/kmetropreferencesbase.ui:454
-#. i18n: ectx: property (text), widget (QPushButton, m_buttonCancel)
-#: po/rc.cpp:153
-msgid "&Cancel"
-msgstr "&Zrušit"
-
-#: po/rc.cpp:154
+#: po/rc.cpp:299
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Pavel Fric"
 
-#: po/rc.cpp:155
+#: po/rc.cpp:300
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fripohled.blogspot.com"
+
+#~ msgid "Config"
+#~ msgstr "Nastavení"
+
+#~ msgid "Exit"
+#~ msgstr "Ukončit"
+
+#~ msgid "Rhythm figure:"
+#~ msgstr "Rytmická figura:"
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\">This is the <span style="
+#~ "\" font-style:italic;\">aire</span> control to change the tempo value "
+#~ "using musical names</p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\">Toto je ovládání<span "
+#~ "style=\" font-style:italic;\">aire</span> pro změnu hodnoty tempa pomocí "
+#~ "hudebních názvů</p></body></html>"
+
+#~ msgid "&OK"
+#~ msgstr "&OK"
+
+#~ msgid "&Cancel"
+#~ msgstr "&Zrušit"
 
 #~ msgid "Measure : Beat"
 #~ msgstr "Compás : Parte"

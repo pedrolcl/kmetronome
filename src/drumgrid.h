@@ -22,6 +22,7 @@
 
 #include "defs.h"
 #include <KDE/KDialog>
+#include <QtGui/QMenu>
 #include <QtGui/QShortcut>
 #include <QtGui/QCloseEvent>
 #include <QtCore/QSignalMapper>
@@ -84,6 +85,7 @@ public slots:
     void removePattern();
     void addRow();
     void removeRow();
+    void gridContextMenu( const QPoint& );
 
 signals:
     void signalUpdate(int bar, int beat);
@@ -98,6 +100,7 @@ private:
     QSignalMapper* m_mapper;
     QVector<QShortcut*> m_shortcuts;
     QString m_currentPattern;
+    QMenu* m_popup;
 };
 
 #endif // DRUMGRID_H

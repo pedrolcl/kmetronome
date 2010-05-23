@@ -440,6 +440,7 @@ void KMetronome::editPatterns()
     updatePatterns();
     if (res == QDialog::Accepted && m_drumgrid != NULL)
         tmpPattern = m_drumgrid->currentPattern();
+    tempoChanged(m_view->getTempo());
     m_view->setSelectedPattern(tmpPattern);
     m_seq->setPatternMode(m_view->patternMode());
 }

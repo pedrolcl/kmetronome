@@ -343,7 +343,7 @@ Columns</string>
          <string>This is the current tempo in quarters per minute</string>
         </property>
         <property name="text">
-         <string>100</string>
+         <string notr="true">100</string>
         </property>
        </widget>
       </item>

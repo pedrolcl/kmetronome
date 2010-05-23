@@ -23,7 +23,7 @@
 </authorgroup>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 <copyright>
-<year>2005-2008</year>
+<year>2005-2010</year>
 <holder>Pedro Lopez&#45;Cabanillas</holder>
 </copyright>
 
@@ -40,8 +40,8 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2008-11-30</date>
-<releaseinfo>0&#46;9&#46;0</releaseinfo>
+<date>2010-05-23</date>
+<releaseinfo>0&#46;10&#46;0</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -89,7 +89,7 @@ site</ulink></para>
 <screeninfo>Here's a screenshot of &kmetronome;</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="screenshot1.png" format="PNG"/>
+	    <imagedata fileref="kmetronome_1.png" format="PNG"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -102,22 +102,29 @@ site</ulink></para>
 <title>Features</title>
 
 <para>You only need to adjust some controls, like the tempo slider, the
-beats/bar spin box and the rhythm figure selector. Press the play button
+beats/bar spin box and the beat length selector. Press the play button
 to start. Use the stop button at your convenience.</para>
 
-<para>Tempo can be set from 25 to 250 qpm using the slider. The units are
-quarters by minute (Mälzel Metronome units). You can also double click with
-the mouse over the main window to open a dialog box where you can enter a new
+<para>Tempo can be set from 25 to 250 QPM using the slider. The units are
+quarters per minute (Mälzel Metronome units). You can also double click over 
+the main window to open a dialog box where you can enter a new
 tempo directly with the keyboard. There is also a combo box to choose and 
-display the tempo using symbolic italian names.</para>
+display the tempo using Italian musical names.</para>
 
 <para>Beats/Bar can be set from 1 to 32 beats. These are the number of beats on
 each measure or bar, and it is the numerator on the time signature as it would
 be notated.</para>
 
-<para>The rhythm figure is the denominator on the time signature specification,
-and represents how long is each beat. Changing this figure doesn't change the
+<para>The beat length is the denominator on the time signature specification,
+and represents the duration of each beat. Changing this value doesn't change the
 meaning of the tempo units. </para>
+
+<para>Pattern is a drop-down list to choose a pattern definition. The default 
+"Automatic" value means that the program generates patterns using the notes 
+set in the configuration dialog (Strong/Weak) and the rhythm definition provided 
+by "Beats/Bar" and "Beat length". It also contains the names of user-defined 
+patterns.</para>
+
 </sect1>
 
 <sect1 id="getting-started">
@@ -145,27 +152,13 @@ If you don't have an external MIDI synthesizer, you can still use
 the program with a MIDI software synthesizer supporting ALSA
 sequencer connections, like <ulink url="http://qsynth.sourceforge.net/">QSynth</ulink>.
 Start your software synthesizer before &kmetronome;, and then make the
-connection between the two programs, either on &kmetronome;'s “Config”
-dialog or using an external connection manager like <ulink url="http://qjackctl.sourceforge.net/">QJackCtl</ulink>.
-Here you can see an image of the three programs working together.
+connection between the two programs, either on &kmetronome;'s configuration
+dialog or using an external connection manager like 
+<ulink url="http://qjackctl.sourceforge.net/">QJackCtl</ulink>.
 </para>
 
 <para>
 Don't forget to install a good <ulink url="http://en.wikipedia.org/wiki/SoundFont">Sound Font</ulink> into QSynth's "Setup..." dialog.
-</para>
-
-<para>
-<screenshot>
-<screeninfo>Here's a screenshot of &kmetronome; running along with QSynth and QJackCtl</screeninfo>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="screenshot3.png" format="PNG"/>
-      </imageobject>
-      <textobject>
-        <phrase>Screenshot</phrase>
-      </textobject>
-    </mediaobject>
-</screenshot>
 </para>
 
 </sect1>
@@ -179,7 +172,7 @@ Don't forget to install a good <ulink url="http://en.wikipedia.org/wiki/SoundFon
 dialog</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="screenshot2.png" format="PNG"/>
+	    <imagedata fileref="kmetronome_2.png" format="PNG"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -194,40 +187,77 @@ connection for the ALSA output port, and one connection for its input port.
 Connections are stored when the program exits and remembered at startup. You
 don't need this feature if you prefer to make such connections by hand, using
 aconnect or any other equivalent utility, or if you use an external session
-manager like the patchbay included with the program <ulink
+manager like the patchbay included in the program <ulink
 url="http://qjackctl.sourceforge.net">QJackCtl</ulink>.</para>
 
-<para>
-Channel is usually 9, meaning the percussion channel of a MIDI synthesizer. It
-must be a number beween 0 and 15.</para>
+<para>&kmetronome; uses an instrument definition file in .INS format, the same 
+format as Qtractor, TSE3, Cakewalk and Sonar. The Output instrument drop-down 
+list allows to choose one among the standard General MIDI, Roland GS and 
+Yamaha XG drum maps. You can add more definitions creating a file named 
+drums.ins at $HOME/.kde4/share/apps/kmetronome. The contents of Bank, Program, 
+Weak and Strong note drop-down lists also depend on this definition.</para>
 
-<para>
-Program can be any value between 0 and 127. Most synthesizers don't understand
-program changes for the percussion channel, or require unsupported bank
-changes too.</para>
+<para>Channel is usually 10, meaning the percussion channel of a MIDI 
+synthesizer. It must be a number beween 1 and 16.</para>
 
-<para>
-Resolution is the number of ticks (time units) for each quarter note. Values are
-from 48 to 480.</para>
+<para>Resolution is the number of ticks (time units) for each quarter note. 
+Value range from 48 to 960.</para>
 
-<para>
-Strong note is played as the first beat in every measure, while any other beat
-in the same measure is played using the weak note. Values are from 0 to 127, and
-the defaults 33 and 34 are the General MIDI sounds for metronome
+<para>Note duration is the length (in number of ticks) of the time span between 
+a NOTE ON and its corresponding NOTE OFF event. This control is enabled only 
+when Send NOTE OFF events is also enabled. Very low values can cause muted 
+clicks on some synthesizers.</para>
+
+<para> Percussion sounds usually don't need NOTE OFF events to be sent after 
+every NOTE ON. Select the Send NOTE OFF events checkbox only if your 
+synthesizer or instrument supports or requires this setting.</para>
+
+<para>Bank and Program is used to change the drum set for instruments 
+supporting several settings. Many synthesizers don't understand program changes 
+for the percussion channel.</para>
+
+<para>In Automatic pattern mode, Strong note is played as the first beat in 
+every measure, while any other beat in the same measure is played using the 
+Weak note. The numeric values 33 and 34 are the GM2 and XG sounds for metronome 
 click and metronome bell.</para>
 
-<para>
-Send NOTE OFF events checkbox. Percussion sounds usually don't need Note Off 
-events to be sent after every Note On. Un-check it only if your synthesizer 
-or instrument supports or requires this setting.</para>
+</sect1>
+
+<sect1 id="kmetronome-pattern-editor">
+<title>Pattern Editor</title>
 
 <para>
-Note duration is the length (in number of ticks) of the time span between a 
-Note On and its corresponding Note Off event. This control is enabled only when
-Send NOT OFF events is also enabled. Very low values can cause muted clicks 
-on some synthesizers.</para>
+<screenshot>
+<screeninfo>Pattern Editor</screeninfo>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="kmetronome_3.png" format="PNG"/>
+      </imageobject>
+      <textobject>
+        <phrase>Screenshot</phrase>
+      </textobject>
+    </mediaobject>
+</screenshot>
+</para>
+
+<para>
+Using this dialog box you may edit, test and select patterns. To create new 
+patterns, you simply save the current definition under a new name. Patterns are 
+represented by a table. The rows in the table correspond to the percussion 
+sounds. You can remove and add rows from a list of sounds defined by the 
+instrument settings in the configuration dialog. The number of columns in the 
+table determine the length of the pattern, between 1 and 99 elements of any 
+beat length.</para>
+
+<para>Each table cell accepts values between N=1 and 9, corresponding to the 
+MIDI velocity (N*127/9) of the notes, or 0 to cancel the sound. Valid values are 
+also f (=forte) and p (=piano) corresponding to variable velocities defined by 
+the rotary knobs (Strong/Weak) in the main window. The cell values can be 
+selected and modified using either the keyboard or the mouse. There is no need 
+to stop the playback before modifying the cells.</para>
 
 </sect1>
+
 </chapter>
 
 <chapter id="commands">
@@ -237,7 +267,44 @@ on some synthesizers.</para>
 <title>The main &kmetronome; window</title>
 
 <sect2>
-<title>The File Menu</title>
+<title>The <guimenu>File</guimenu> Menu</title>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Import Patterns</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Imports</action> pattern definitions into &kmetronome;</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Export Patterns</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Exports</action> pattern definitions from &kmetronome;</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Play/Stop</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Controls</action> pattern playback</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
 <para>
 <variablelist>
 <varlistentry>
@@ -252,22 +319,39 @@ on some synthesizers.</para>
 </varlistentry>
 </variablelist>
 </para>
+
 </sect2>
 
 <sect2>
-<title>The Settings Menu</title>
+<title>The <guimenu>Edit</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Edit</guimenu>
+<guimenuitem>Patterns</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Opens</action> the pattern editor</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+
+<sect2>
+<title>The <guimenu>Settings</guimenu> Menu</title>
 <para>
 <variablelist>
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure KMetronome...</guimenuitem>
+<guimenuitem>Configure &kmetronome;...</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Configures</action> &kmetronome;</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
 </sect2>
+
 <sect2>
 <title>The <guimenu>Help</guimenu> Menu</title>
 &help.menu.documentation;
@@ -345,11 +429,11 @@ using a session management software like QJackCtl.</para>
 &kmetronome;
 </para>
 <para>
-Program copyright 2005-2008 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Program copyright 2005-2010 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <para>
-Documentation copyright 2005-2008 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Documentation copyright 2005-2010 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -378,9 +462,11 @@ url="http://sourceforge.net/projects/kmetronome">Project home page</ulink>
 <title>Requirements</title>
 
 <para>
-In order to successfully use &kmetronome;, you need &kde; 4.X. and ALSA
-drivers and library.
+In order to successfully compile and use &kmetronome;, you need &kde; 4.2 or 
+later, Drumstick, ALSA drivers and ALSA library.
 </para>
+
+<para>You also need a MIDI synthesizer to produce sound.</para>
 
 <para>
 The build system requires <ulink url="http://www.cmake.org">CMake</ulink> 
@@ -390,6 +476,12 @@ The build system requires <ulink url="http://www.cmake.org">CMake</ulink>
 <para>
 ALSA library, drivers and utilities can be found at
 <ulink url="http://www.alsa-project.org">ALSA home page</ulink>.
+</para>
+
+<para>
+Drumstick is a C++ wrapper around the ALSA sequencer interface using Qt4
+objects, idioms and style. You can find it at the 
+<ulink url="http://drumstick.sourceforge.net">Drumstick home page</ulink>.
 </para>
 
 <para>

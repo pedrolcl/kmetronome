@@ -70,6 +70,7 @@ protected Q_SLOTS:
 private:
     void setupAccel();
     void setupActions();
+    void setupPlaces();
     void saveConfiguration();
     void readConfiguration();
     void readDrumGridPattern();

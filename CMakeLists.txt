@@ -112,6 +112,7 @@ ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(icons)
 ADD_SUBDIRECTORY(po)
 ADD_SUBDIRECTORY(doc)
+ADD_SUBDIRECTORY(data)
 
 INCLUDE(DBusMacros)
 dbus_add_activation_service(net.sourceforge.kmetronome.service.in)
@@ -131,6 +132,7 @@ ADD_CUSTOM_TARGET(uninstall
 ADD_CUSTOM_TARGET ( tarball
     COMMAND mkdir -p kmetronome-${VERSION}
     COMMAND cp -r cmake_admin kmetronome-${VERSION}
+    COMMAND cp -r data kmetronome-${VERSION}
     COMMAND cp -r doc kmetronome-${VERSION}
     COMMAND cp -r icons kmetronome-${VERSION}
     COMMAND cp -r po kmetronome-${VERSION}
@@ -145,7 +147,3 @@ ADD_CUSTOM_TARGET ( tarball
 
 INSTALL( FILES kmetronome.desktop
          DESTINATION ${XDG_APPS_INSTALL_DIR} )
-
-INSTALL( FILES drums.ins 
-         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )
-         

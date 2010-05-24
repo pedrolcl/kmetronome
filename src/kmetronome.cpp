@@ -49,6 +49,7 @@
 #include <KDE/KStandardDirs>
 #include <KDE/KFileDialog>
 #include <KDE/KUrl>
+#include <KDE/KFilePlacesModel>
 #include <KDE/KDebug>
 
 KMetronome::KMetronome(QWidget *parent) :
@@ -80,6 +81,7 @@ KMetronome::KMetronome(QWidget *parent) :
         setCentralWidget(m_view);
         setupActions();
         setAutoSaveSettings();
+        setupPlaces();
         readConfiguration();
     } catch (SequencerError& ex) {
         QString errorstr = i18n("Fatal error from the ALSA sequencer. "
@@ -507,4 +509,19 @@ void KMetronome::exportPatterns()
         if (!path.isNull())
             exportPatterns(path);
     }
+}
+
+void KMetronome::setupPlaces()
+{
+    KFilePlacesModel *placesModel = new KFilePlacesModel;
+    QString drums =  KStandardDirs::locate("appdata", "drums.ins");
+    if (!drums.isEmpty()) {
+        QFileInfo info(drums);
+        KUrl samples(info.absolutePath());
+        if (placesModel->url(placesModel->closestItem(samples)) != samples) {
+            placesModel->addPlace(i18n("Patterns"), samples,
+                KApplication::applicationName(), KApplication::applicationName());
+        }
+    }
+    delete placesModel;
 }

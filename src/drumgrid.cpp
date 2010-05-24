@@ -287,7 +287,7 @@ void DrumGrid::savePattern()
 {
     QString newName = m_ui->patternCombo->currentText();
     writePattern(newName);
-    m_ui->patternCombo->addItem(newName);
+    m_ui->patternCombo->setCurrentItem(newName, true);
 }
 
 void DrumGrid::removePattern()

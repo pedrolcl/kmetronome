@@ -1,0 +1,7 @@
+FILE( GLOB SAMPLES *.pat )
+
+INSTALL( FILES ${SAMPLES} 
+         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )
+
+INSTALL( FILES drums.ins 
+         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )

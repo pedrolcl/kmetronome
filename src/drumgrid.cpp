@@ -27,12 +27,14 @@
 #include <QtGui/QInputDialog>
 #include <QtGui/QShortcut>
 #include <QtGui/QToolTip>
+#include <QtGui/QClipboard>
 #include <QtCore/QSignalMapper>
 #include <QtCore/QSettings>
 #include <KDE/KConfigGroup>
 #include <KDE/KIcon>
 #include <KDE/KMessageBox>
 #include <KDE/KInputDialog>
+#include <KDE/KApplication>
 #include <KDE/KDebug>
 
 DrumGrid::DrumGrid(QWidget *parent)
@@ -48,6 +50,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     setMainWidget( widget );
     setCaption( i18n("Pattern Editor") );
     setInitialSize( QSize(700,400) );
+    m_ui->tableView->setSelectionMode(QTableView::ContiguousSelection);
 
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
@@ -59,6 +62,11 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
 
     m_popup = new QMenu(this);
+    addEditAction(i18n("Cut"), SLOT(slotCut()), QKeySequence::Cut);
+    addEditAction(i18n("Copy"), SLOT(slotCopy()), QKeySequence::Copy);
+    addEditAction(i18n("Paste"), SLOT(slotPaste()), QKeySequence::Paste);
+    m_popup->addSeparator();
+
     m_mapper = new QSignalMapper(this);
     addShortcut(QKeySequence("f"), "f");
     addShortcut(QKeySequence("p"), "p");
@@ -202,6 +210,14 @@ void DrumGrid::addShortcut(const QKeySequence& key, const QString& value)
     else
         action = m_popup->addAction(value, m_mapper, SLOT(map()));
     m_mapper->setMapping(action, value);
+}
+
+void DrumGrid::addEditAction(const QString& name, const char* slot, const QKeySequence& key)
+{
+    QShortcut* shortcut = new QShortcut(key, m_ui->tableView);
+    connect (shortcut, SIGNAL(activated()), this, slot);
+    m_shortcuts.append(shortcut);
+    m_popup->addAction(name, this, slot, key);
 }
 
 void DrumGrid::readPattern()
@@ -352,7 +368,8 @@ void DrumGrid::addRow()
 void DrumGrid::removeRow()
 {
     int row = -1;
-    const QModelIndexList indexlist = m_ui->tableView->selectionModel()->selection().indexes();
+    const QModelIndexList indexlist =
+            m_ui->tableView->selectionModel()->selectedIndexes();
     if (indexlist.count() == m_columns) {
         foreach (const QModelIndex& idx, indexlist) {
             if (row < 0)
@@ -378,4 +395,59 @@ void DrumGrid::gridContextMenu(const QPoint&)
 {
     if (m_popup != NULL)
         m_popup->exec(QCursor::pos());
+}
+
+void DrumGrid::slotCut()
+{
+    QStringList list;
+    QItemSelectionModel* selModel = m_ui->tableView->selectionModel();
+    QItemSelectionRange range = selModel->selection().first();
+    QModelIndexList indexes = selModel->selectedIndexes();
+    for (int row=range.top(); row<=range.bottom(); ++row) {
+        QStringList rowList;
+        foreach ( const QModelIndex& idx, indexes ) {
+            if (idx.row() == row) {
+                rowList << idx.data().toString();
+                m_model->changeCell(idx, QString());
+            }
+        }
+        list << rowList.join(QString(','));
+    }
+    kapp->clipboard()->setText( list.join(QString('\n')) ) ;
+}
+
+void DrumGrid::slotCopy()
+{
+    QStringList list;
+    QItemSelectionModel* selModel = m_ui->tableView->selectionModel();
+    QItemSelectionRange range = selModel->selection().first();
+    QModelIndexList indexes = selModel->selectedIndexes();
+    for (int row=range.top(); row<=range.bottom(); ++row) {
+        QStringList rowList;
+        foreach ( const QModelIndex& idx, indexes ) {
+            if (idx.row() == row)
+                rowList << idx.data().toString();
+        }
+        list << rowList.join(QString(','));
+    }
+    kapp->clipboard()->setText( list.join(QString('\n')) ) ;
+}
+
+void DrumGrid::slotPaste()
+{
+    QString clbrdText = kapp->clipboard()->text();
+    if (!clbrdText.isEmpty()) {
+        int x, y=0;
+        QItemSelectionModel* selModel = m_ui->tableView->selectionModel();
+        QItemSelectionRange range = selModel->selection().first();
+        QStringList rows = clbrdText.split('\n');
+        foreach( const QString& r, rows ) {
+            QStringList list = r.split(',');
+            for(x=0; x<list.size(); ++x) {
+                QModelIndex idx = m_model->index(range.top()+y, range.left()+x);
+                m_model->changeCell(idx, list.at(x));
+            }
+            y++;
+        }
+    }
 }

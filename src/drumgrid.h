@@ -57,6 +57,7 @@ public:
 
     void subscribe(const QString& portName);
     void addShortcut(const QKeySequence& key, const QString& value);
+    void addEditAction(const QString& name, const char* slot, const QKeySequence& key);
     void readPattern();
     void readPattern(const QString& name);
     void writePattern();
@@ -86,6 +87,9 @@ public slots:
     void addRow();
     void removeRow();
     void gridContextMenu( const QPoint& );
+    void slotCut();
+    void slotCopy();
+    void slotPaste();
 
 signals:
     void signalUpdate(int bar, int beat);

@@ -452,6 +452,10 @@ void KMetronome::patternChanged(int /*idx*/)
     if (m_view->patternMode())
         readDrumGridPattern();
     m_seq->setPatternMode(m_view->patternMode());
+    if (m_view->patternMode()) {
+        m_view->setBeatsBar(m_model->columnCount());
+        m_view->setFigure(m_model->patternFigure());
+    }
 }
 
 void KMetronome::importPatterns(const QString& path)

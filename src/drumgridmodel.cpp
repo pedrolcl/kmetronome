@@ -121,9 +121,15 @@ void DrumGridModel::changeCell(const QModelIndex &index)
 
 void DrumGridModel::changeCell(const QModelIndex &index, const QString& newValue)
 {
+    const QString validation("fp123456789");
     if (index.isValid() && !m_modelData.isEmpty()) {
-        m_lastValue = m_modelData[index.row()][index.column()] = newValue;
-        emit dataChanged(index, index);
+        QString cell = newValue;
+        if (cell.length() > 1)
+            cell = cell.left(1);
+        if (cell.isNull() || validation.contains(cell)) {
+            m_lastValue = m_modelData[index.row()][index.column()] = cell;
+            emit dataChanged(index, index);
+        }
     }
 }
 

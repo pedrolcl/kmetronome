@@ -23,9 +23,6 @@
 
 #include <QtCore/QString>
 
-#define CALC_LSB(x) (x % 0x80)
-#define CALC_MSB(x) (x / 0x80)
-
 const int TEMPO_MIN(25);
 const int TEMPO_MAX(250);
 const int TEMPO_DEFAULT(100);

@@ -116,6 +116,8 @@ public:
     void metronome_event_output(SequencerEvent* ev);
     void metronome_note_output(SequencerEvent* ev);
     void metronome_schedule_event(SequencerEvent* ev, int tick);
+    int calc_lsb(int x);
+    int calc_msb(int x);
 
 //public Q_SLOTS:    
 //    void sequencerEvent(SequencerEvent *ev);

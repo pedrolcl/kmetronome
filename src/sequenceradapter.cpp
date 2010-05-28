@@ -86,7 +86,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_inputPortId = m_outputPortId = m_Port->getPortId();
     m_Port->subscribeFromAnnounce();
 
-    m_Queue = m_Client->createQueue();
+    m_Queue = m_Client->createQueue("KMetronome");
     m_queueId = m_Queue->getId();
 
     m_Client->startSequencerInput();
@@ -173,13 +173,21 @@ void SequencerAdapter::sendInitialControls()
     metronome_set_tempo();
 }
 
+inline int SequencerAdapter::calc_lsb(int x) {
+    return (x % 0x80);
+}
+
+inline int SequencerAdapter::calc_msb(int x) {
+    return (x / 0x80);
+}
+
 void SequencerAdapter::metronome_set_bank()
 {
     int lsb, msb;
     switch (m_bankSelMethod) {
     case 0:
-        lsb = CALC_LSB(m_bank);
-        msb = CALC_MSB(m_bank);
+        lsb = calc_lsb(m_bank);
+        msb = calc_msb(m_bank);
         sendControlChange(MSB_CC, msb);
         sendControlChange(LSB_CC, lsb);
         break;

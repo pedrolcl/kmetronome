@@ -464,6 +464,7 @@ void KMetronome::importPatterns(const QString& path)
     foreach(const QString& name, cfg.groupList()) {
         KConfigGroup input = cfg.group(name);
         KConfigGroup output = KGlobal::config()->group(QSTR_PATTERN+name);
+        output.deleteGroup();
         input.copyTo(&output);
     }
     updatePatterns();

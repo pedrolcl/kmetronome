@@ -5,54 +5,54 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kmetronome\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?"
-"atid=731542&group_id=134956\n"
+"Report-Msgid-Bugs-To: http://sourceforge."
+"net/tracker/?atid=731542&group_id=134956\n"
 "POT-Creation-Date: 2010-05-23 11:30+0200\n"
-"PO-Revision-Date: 2010-04-30 21:09+0200\n"
+"PO-Revision-Date: 2010-06-03 19:13+0200\n"
 "Last-Translator: Rene Landert <rene.landert@bluewin.ch>\n"
-"Language-Team: German <kde-i18n-de@lists.kde.org>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: src/drumgrid.cpp:49
 msgid "Pattern Editor"
-msgstr ""
+msgstr "Editor für Rhythmusschema"
 
 #: src/drumgrid.cpp:254
 msgid "Do you want to remove the current pattern?"
-msgstr ""
+msgstr "Möchten Sie das aktuelle Rhythmusschema entfernen?"
 
 #: src/drumgrid.cpp:255
 msgid "Remove Pattern"
-msgstr ""
+msgstr "Rhythmusschema entfernen"
 
 #: src/drumgrid.cpp:309
 msgctxt "name of an automatically created pattern"
 msgid "Sample Pattern"
-msgstr ""
+msgstr "Muster für Rhythmusschema"
 
 #: src/drumgrid.cpp:340
 msgid "Insert Pattern Row"
-msgstr ""
+msgstr "Zeile in Rhythmusschema einfügen"
 
 #: src/drumgrid.cpp:341
 msgid "Drum Key:"
-msgstr ""
+msgstr "Schlagzeug Taste:"
 
 #: src/drumgrid.cpp:361
 msgid "Please select one, and only one row"
-msgstr ""
+msgstr "Bitte wählen Sie eine, und nur eine Zeile aus"
 
 #: src/drumgrid.cpp:363
 msgid "Do you want to remove the selected pattern row?"
-msgstr ""
+msgstr "Möchten Sie die ausgewählte Zeile des Rhythmusschemas entfernen?"
 
 #: src/drumgrid.cpp:364
 msgid "Remove Row"
-msgstr ""
+msgstr "Zeile entfernen"
 
 #: src/kmetronome.cpp:85
 msgid ""
@@ -71,31 +71,30 @@ msgid "Error"
 msgstr "Fehler"
 
 #: src/kmetronome.cpp:112
-#, fuzzy
 msgid "Play/Stop"
-msgstr "&Wiedergabe/Stopp"
+msgstr "Wiedergabe/Stopp"
 
 #: src/kmetronome.cpp:116
 msgid "Show Action Buttons"
-msgstr ""
+msgstr "Aktionsknopf anzeigen"
 
 #. i18n: file: src/kmetronomeviewbase.ui:126
 #. i18n: ectx: property (text), widget (KPushButton, m_patternbtn)
 #: src/kmetronome.cpp:123 po/rc.cpp:130
 msgid "Patterns"
-msgstr ""
+msgstr "Rhythmusschema"
 
 #: src/kmetronome.cpp:128 src/kmetronome.cpp:490
 msgid "Import Patterns"
-msgstr ""
+msgstr "Rhythmusschema importieren"
 
 #: src/kmetronome.cpp:133 src/kmetronome.cpp:503
 msgid "Export Patterns"
-msgstr ""
+msgstr "Rhythmusschema exportieren"
 
 #: src/kmetronome.cpp:489 src/kmetronome.cpp:502
 msgid "*.pat|Pattern Files (*.pat)"
-msgstr ""
+msgstr "*.pat|Rhythmusschema Dateien (*.pat)"
 
 #: src/kmetronomeview.cpp:143
 msgid "Tempo"
@@ -108,7 +107,7 @@ msgstr "Neues Tempo eingeben:"
 #: src/kmetronomeview.cpp:177
 msgctxt "the pattern is created automatically"
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: src/kmetropreferences.cpp:29
 msgid "Preferences"
@@ -140,7 +139,7 @@ msgstr "Keine Verbindung"
 #. i18n: ectx: property (text), widget (QLabel, lblPattern)
 #: po/rc.cpp:3 po/rc.cpp:142
 msgid "Pattern:"
-msgstr ""
+msgstr "Rhythmusschema:"
 
 #. i18n: file: src/drumgrid.ui:62
 #. i18n: ectx: property (whatsThis), widget (KComboBox, patternCombo)
@@ -149,37 +148,41 @@ msgid ""
 "Type a new name and press the \"Save\" button to create a new pattern, or "
 "choose an existing pattern from the drop-down list."
 msgstr ""
+"Geben Sie einen neuen Namen ein und drücken Sie den Knopf \"Speichern\", um "
+"ein neues Rhythmusschemas zu erstellen, oder  wählen Sie ein vorhandenes "
+"Schema aus der Aufklappliste."
 
 #. i18n: file: src/drumgrid.ui:72
 #. i18n: ectx: property (whatsThis), widget (KPushButton, saveButton)
 #: po/rc.cpp:9
 msgid "This button stores the current pattern definition with the name given"
 msgstr ""
+"Dieser Knopf speichert die aktuelle Definition des Rhythmusschemas mit dem "
+"gegebenen Namen"
 
 #. i18n: file: src/drumgrid.ui:75
 #. i18n: ectx: property (text), widget (KPushButton, saveButton)
 #: po/rc.cpp:12
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #. i18n: file: src/drumgrid.ui:82
 #. i18n: ectx: property (whatsThis), widget (KPushButton, deleteButton)
 #: po/rc.cpp:15
-#, fuzzy
 msgid "This button deletes the current pattern definition"
-msgstr "Dieser Knopf öffnet den Einrichtungsdialog"
+msgstr "Dieser Knopf entfernt die aktuelle Definition des Rhythmusschemas"
 
 #. i18n: file: src/drumgrid.ui:85
 #. i18n: ectx: property (text), widget (KPushButton, deleteButton)
 #: po/rc.cpp:18
 msgid "Delete"
-msgstr ""
+msgstr "Entfernen"
 
 #. i18n: file: src/drumgrid.ui:104
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: po/rc.cpp:21
 msgid "Rows:"
-msgstr ""
+msgstr "Zeilen:"
 
 #. i18n: file: src/drumgrid.ui:111
 #. i18n: ectx: property (whatsThis), widget (KPushButton, addButton)
@@ -187,12 +190,14 @@ msgstr ""
 msgid ""
 "Use this button to add new rows (sounds) to the current pattern definition"
 msgstr ""
+"Dieser Knopf fügt der aktuellen Definition des Rhythmusschemas neue Zeilen "
+"(Töne) hinzu"
 
 #. i18n: file: src/drumgrid.ui:114
 #. i18n: ectx: property (text), widget (KPushButton, addButton)
 #: po/rc.cpp:27
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #. i18n: file: src/drumgrid.ui:121
 #. i18n: ectx: property (whatsThis), widget (KPushButton, removeButton)
@@ -201,17 +206,18 @@ msgid ""
 "Use this button to remove the selected row (sound) from the pattern "
 "definition"
 msgstr ""
+"Dieser Knopf  entfernt die ausgewählte Zeile (Töne) aus der Definition des "
+"Rhythmusschemas"
 
 #. i18n: file: src/drumgrid.ui:124
 #. i18n: ectx: property (text), widget (KPushButton, removeButton)
 #: po/rc.cpp:33
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #. i18n: file: src/drumgrid.ui:144
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: po/rc.cpp:36
-#, fuzzy
 msgid "Beats:"
 msgstr "Taktzahl:"
 
@@ -219,7 +225,7 @@ msgstr "Taktzahl:"
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkselbeat)
 #: po/rc.cpp:39
 msgid "Highligh the grid columns while playing"
-msgstr ""
+msgstr "Markiere die Gitterspalten während der Wiedergabe"
 
 #. i18n: file: src/drumgrid.ui:155
 #. i18n: ectx: property (text), widget (QCheckBox, chkselbeat)
@@ -228,30 +234,35 @@ msgid ""
 "Highlight\n"
 "Columns"
 msgstr ""
+"Markiere\n"
+"Spalten"
 
 #. i18n: file: src/drumgrid.ui:168
 #. i18n: ectx: property (whatsThis), widget (QLCDNumber, beatNumber)
 #: po/rc.cpp:46
 msgid "This is the current beat number"
-msgstr ""
+msgstr "Dies ist die aktuelle Anzahl Grundschläge"
 
 #. i18n: file: src/drumgrid.ui:184
 #. i18n: ectx: property (whatsThis), widget (QTableView, tableView)
 #: po/rc.cpp:49
 msgid "This is the pattern table, beats as columns and sounds as rows"
 msgstr ""
+"Dies ist die Tabelle des Rhythmusschemas, Grundschläge als Spalten und Töne "
+"als Zeilen"
 
 #. i18n: file: src/drumgrid.ui:200
 #. i18n: ectx: property (whatsThis), widget (KIntSpinBox, gridColumns)
 #: po/rc.cpp:52
 msgid "Number of beats per measure (bar)"
-msgstr ""
+msgstr "Anzahl Grundschläge pro Takt"
 
 #. i18n: file: src/drumgrid.ui:216
 #. i18n: ectx: property (whatsThis), widget (KComboBox, figureCombo)
 #: po/rc.cpp:55
 msgid "This is the beat length for the pattern column."
 msgstr ""
+"Dies ist die Dauer des Grundschlags für die Spalte des Rhythmusschemas."
 
 #. i18n: file: src/drumgrid.ui:226
 #. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
@@ -312,7 +323,6 @@ msgstr "Vierundsechzigstel"
 #. i18n: file: src/drumgrid.ui:292
 #. i18n: ectx: property (whatsThis), widget (QPushButton, startButton)
 #: po/rc.cpp:79
-#, fuzzy
 msgid "This button starts playing the current pattern"
 msgstr "Dieser Knopf startet die Wiedergabe des Rhythmusschemas"
 
@@ -327,9 +337,8 @@ msgstr "Wiedergabe"
 #. i18n: file: src/drumgrid.ui:308
 #. i18n: ectx: property (whatsThis), widget (QPushButton, stopButton)
 #: po/rc.cpp:85
-#, fuzzy
 msgid "This button stops the playback"
-msgstr "Dieser Knopf beendet das Programm"
+msgstr "Dieser Knopf beendet die Wiedergabe"
 
 #. i18n: file: src/drumgrid.ui:311
 #. i18n: ectx: property (text), widget (QPushButton, stopButton)
@@ -342,35 +351,34 @@ msgstr "Stopp"
 #. i18n: file: src/drumgrid.ui:327
 #. i18n: ectx: property (whatsThis), widget (QLabel, label_3)
 #: po/rc.cpp:91
-#, fuzzy
 msgid "QPM: quarters per minute"
-msgstr "Tempo (in Viertel pro Minute)"
+msgstr "QPM: Tempo (in Viertel pro Minute)"
 
 #. i18n: file: src/drumgrid.ui:330
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: po/rc.cpp:94
 msgctxt "Quarters per Minute"
 msgid "QPM:"
-msgstr ""
+msgstr "QPM:"
 
 #. i18n: file: src/drumgrid.ui:340
 #. i18n: ectx: property (whatsThis), widget (QLabel, tempoLabel)
 #: po/rc.cpp:97
-#, fuzzy
 msgid "This is the current tempo in quarters per minute"
-msgstr "Tempo (in Viertel pro Minute)"
+msgstr "Dies ist das aktuelle Tempo in Viertel pro Minute"
 
 #. i18n: file: src/drumgrid.ui:343
 #. i18n: ectx: property (text), widget (QLabel, tempoLabel)
 #: po/rc.cpp:100
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #. i18n: file: src/drumgrid.ui:350
 #. i18n: ectx: property (whatsThis), widget (QSlider, tempoSlider)
 #: po/rc.cpp:103
 msgid "Drag the slider handle to change the tempo, in quarters per minute"
 msgstr ""
+"Ziehen Sie den Schieberegler um das Tempo zu ändern, in Viertel pro Minute"
 
 #. i18n: file: src/kmetronomeviewbase.ui:58
 #. i18n: ectx: property (windowTitle), widget (QWidget, KmetronomeViewBase)
@@ -400,14 +408,13 @@ msgstr "Dieser Knopf öffnet den Einrichtungsdialog"
 #. i18n: ectx: property (text), widget (KPushButton, m_configbtn)
 #: po/rc.cpp:124
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #. i18n: file: src/kmetronomeviewbase.ui:123
 #. i18n: ectx: property (whatsThis), widget (KPushButton, m_patternbtn)
 #: po/rc.cpp:127
-#, fuzzy
 msgid "This button opens the pattern editor"
-msgstr "Dieser Knopf öffnet den Einrichtungsdialog"
+msgstr "Dieser Knopf öffnet den Editor für das Rhythmusschema"
 
 #. i18n: file: src/kmetronomeviewbase.ui:139
 #. i18n: ectx: property (whatsThis), widget (KPushButton, m_exitbtn)
@@ -419,7 +426,7 @@ msgstr "Dieser Knopf beendet das Programm"
 #. i18n: ectx: property (text), widget (KPushButton, m_exitbtn)
 #: po/rc.cpp:136
 msgid "Quit"
-msgstr ""
+msgstr "Beenden"
 
 #. i18n: file: src/kmetronomeviewbase.ui:173
 #. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_measureLCD)
@@ -434,6 +441,8 @@ msgid ""
 "This is the pattern definition to play, either \"Automatic\" or a custom "
 "defined one."
 msgstr ""
+"Dies ist die Definition des Rhythmusschemas für die Wiedergabe, entweder "
+"\"Automatisch\" oder Benutzerdefiniert."
 
 #. i18n: file: src/kmetronomeviewbase.ui:217
 #. i18n: ectx: property (text), widget (QLabel, lblBeats)
@@ -444,7 +453,6 @@ msgstr "Taktzahl:"
 #. i18n: file: src/kmetronomeviewbase.ui:238
 #. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_beatsBar)
 #: po/rc.cpp:151
-#, fuzzy
 msgid ""
 "This is the number of beats for each measure (bar).<br>\n"
 "Values are from 1 to 32.<br>\n"
@@ -458,25 +466,23 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, lblFigure)
 #: po/rc.cpp:156
 msgid "Beat Length:"
-msgstr ""
+msgstr "Länge Grundschlag."
 
 #. i18n: file: src/kmetronomeviewbase.ui:272
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_figure)
 #: po/rc.cpp:159
-#, fuzzy
 msgid ""
 "This is the beat length.<br>\n"
 "Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
 "It is the denominator in the time signature specification."
 msgstr ""
-"Dies ist die Taktzeit für den Rhythmus.<br>\n"
+"Dies ist die Dauer des Grundschlags.<br>\n"
 "Die Werte sind 1, 2, 4, 8, 16, 32 und 64.<br>\n"
 "Es ist der Nenner der Taktart-Spezifikation."
 
 #. i18n: file: src/kmetronomeviewbase.ui:356
 #. i18n: ectx: property (text), widget (QLabel, label_1)
 #: po/rc.cpp:185
-#, fuzzy
 msgctxt "weak notes MIDI velocity"
 msgid "Weak"
 msgstr "Schwach"
@@ -484,15 +490,13 @@ msgstr "Schwach"
 #. i18n: file: src/kmetronomeviewbase.ui:369
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: po/rc.cpp:188
-#, fuzzy
 msgctxt "strong notes MIDI velocity"
 msgid "Strong"
-msgstr "Stark"
+msgstr " Stark"
 
 #. i18n: file: src/kmetronomeviewbase.ui:382
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: po/rc.cpp:191
-#, fuzzy
 msgctxt "audio volume level"
 msgid "Volume"
 msgstr "Volumen"
@@ -500,7 +504,6 @@ msgstr "Volumen"
 #. i18n: file: src/kmetronomeviewbase.ui:395
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: po/rc.cpp:194
-#, fuzzy
 msgctxt "audio panning"
 msgid "Pan"
 msgstr "Balance"
@@ -508,7 +511,6 @@ msgstr "Balance"
 #. i18n: file: src/kmetronomeviewbase.ui:414
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial1)
 #: po/rc.cpp:197
-#, fuzzy
 msgid ""
 "This is the velocity of the weak notes in the automatic rhythm pattern (all "
 "of them, except the first one)"
@@ -519,7 +521,6 @@ msgstr ""
 #. i18n: file: src/kmetronomeviewbase.ui:439
 #. i18n: ectx: property (whatsThis), widget (Knob, m_dial2)
 #: po/rc.cpp:200
-#, fuzzy
 msgid ""
 "This is the velocity of the strong note in the automatic rhythm pattern (the "
 "first one)"
@@ -541,7 +542,7 @@ msgstr "Dies ist die MIDI Balance Steuerung (CC10)"
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_air)
 #: po/rc.cpp:209
 msgid "This is the musical name of the tempo value"
-msgstr ""
+msgstr "Dies ist der musikalische Name des Tempos"
 
 #. i18n: file: src/kmetronomeviewbase.ui:531
 #. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_tempoLCD)
@@ -587,7 +588,6 @@ msgstr "Automatische Verbindung der Ports beim Start"
 #. i18n: file: src/kmetropreferencesbase.ui:61
 #. i18n: ectx: property (text), widget (QLabel, lblInputPort)
 #: po/rc.cpp:228
-#, fuzzy
 msgid "Optional input port conn:"
 msgstr "Opt.Verbindung Eingangs-Port:"
 
@@ -595,43 +595,45 @@ msgstr "Opt.Verbindung Eingangs-Port:"
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_in_connection)
 #: po/rc.cpp:231
 msgid "This is the optional connection for the MIDI IN port."
-msgstr ""
+msgstr "Dies ist die optionale Verbindung für den MIDI Eingangs-Port"
 
 #. i18n: file: src/kmetropreferencesbase.ui:102
 #. i18n: ectx: property (text), widget (QLabel, lblOutputPort)
 #: po/rc.cpp:234
 msgid "Output port connection:"
-msgstr "Verbindung für Ausgabe-Port"
+msgstr "Verbindung für Ausgabe-Port:"
 
 #. i18n: file: src/kmetropreferencesbase.ui:124
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_out_connection)
 #: po/rc.cpp:237
 msgid "This is the mandatory connection for the MIDI OUT port"
-msgstr ""
+msgstr "Dies ist die notwendige Verbindung für den MIDI Ausgabe-Port"
 
 #. i18n: file: src/kmetropreferencesbase.ui:131
 #. i18n: ectx: property (text), widget (QLabel, lblInstrument)
 #: po/rc.cpp:240
 msgid "Output instrument:"
-msgstr ""
+msgstr "Ausgabe Instrument:"
 
 #. i18n: file: src/kmetropreferencesbase.ui:147
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_instrument)
 #: po/rc.cpp:243
 msgid "This is the definition of the instrument connected to the MIDI OUT port"
 msgstr ""
+"Dies ist die Definition des Instrumentes das mit dem MIDI Ausgabe-Port "
+"verbunden ist"
 
 #. i18n: file: src/kmetropreferencesbase.ui:158
 #. i18n: ectx: property (text), widget (QLabel, lblBank)
 #: po/rc.cpp:246
 msgid "Bank:"
-msgstr ""
+msgstr "Bank:"
 
 #. i18n: file: src/kmetropreferencesbase.ui:171
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_bank)
 #: po/rc.cpp:249
 msgid "This is the Bank of the selected MIDI program"
-msgstr ""
+msgstr "Dies ist die Bank des ausgewählten MIDI Programms"
 
 #. i18n: file: src/kmetropreferencesbase.ui:190
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
@@ -646,6 +648,8 @@ msgid ""
 "This is the MIDI channel, between 1 and 16. \n"
 "General MIDI uses the channel 10 for percussion sounds."
 msgstr ""
+"Dies ist der MIDI Kanal, zwischen 1 und 16. \n"
+"Allgemeines MIDI braucht den Kanal 10 für das Schlagzeug."
 
 #. i18n: file: src/kmetropreferencesbase.ui:235
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
@@ -656,9 +660,8 @@ msgstr "Programm:"
 #. i18n: file: src/kmetropreferencesbase.ui:257
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_program)
 #: po/rc.cpp:262
-#, fuzzy
 msgid "This is the MIDI program"
-msgstr "Dieser Knopf beendet das Programm"
+msgstr "Dies ist das MIDI Programm"
 
 #. i18n: file: src/kmetropreferencesbase.ui:270
 #. i18n: ectx: property (text), widget (QLabel, textLabel7)
@@ -670,7 +673,7 @@ msgstr "Auflösung:"
 #. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_resolution)
 #: po/rc.cpp:268
 msgid "This is the MIDI time resolution (number of ticks in a quarter note)"
-msgstr ""
+msgstr "Dies ist die MIDI Zeitauflösung (Anzahl Ticks in einer Viertel Note)"
 
 #. i18n: file: src/kmetropreferencesbase.ui:305
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
@@ -681,9 +684,9 @@ msgstr "Schwache Note:"
 #. i18n: file: src/kmetropreferencesbase.ui:327
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_weak_note)
 #: po/rc.cpp:274
-#, fuzzy
 msgid "This is the sound of the weak notes for the automatic patterns"
-msgstr "Dies ist die Lautstärke der starken Note im Rhythmusschema (die erste)"
+msgstr ""
+"Dies ist die Lautstärke der schwachen Note im automatischen Rhythmusschema"
 
 #. i18n: file: src/kmetropreferencesbase.ui:340
 #. i18n: ectx: property (text), widget (QLabel, textLabel8)
@@ -696,6 +699,8 @@ msgstr "Dauer der Note:"
 #: po/rc.cpp:280
 msgid "This is the note duration in ticks, when using NOTE OFF events"
 msgstr ""
+"Dies ist die Dauer der Note in Anzahl Ticks, wenn NOTE OFF Ereignisse "
+"benutzt werden."
 
 #. i18n: file: src/kmetropreferencesbase.ui:378
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
@@ -706,28 +711,29 @@ msgstr "Starke Note:"
 #. i18n: file: src/kmetropreferencesbase.ui:400
 #. i18n: ectx: property (whatsThis), widget (KComboBox, m_strong_note)
 #: po/rc.cpp:286
-#, fuzzy
 msgid "This is the sound of the strong notes for the automatic patterns"
-msgstr "Dies ist die Lautstärke der starken Note im Rhythmusschema (die erste)"
+msgstr ""
+"Dies ist die Lautstärke der starken Note im automatischen Rhythmusschema"
 
 #. i18n: file: src/kmetropreferencesbase.ui:411
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, m_use_noteoff)
 #: po/rc.cpp:289
-#, fuzzy
 msgid "Optional setting to send NOTE OFF events"
-msgstr "Sende NOTE OFF Ereignis"
+msgstr "Optionale Einstellung zum Senden von NOTE OFF Ereignissen"
 
 #. i18n: file: src/kmetropreferencesbase.ui:414
 #. i18n: ectx: property (text), widget (QCheckBox, m_use_noteoff)
 #: po/rc.cpp:292
 msgid "Send NOTE OFF events"
-msgstr "Sende NOTE OFF Ereignis"
+msgstr "Sende NOTE OFF Ereignisse"
 
 #. i18n: file: src/kmetropreferencesbase.ui:440
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, m_styledknobs)
 #: po/rc.cpp:295
 msgid "If this option is activated, the knobs are drawn using a custom style"
 msgstr ""
+"Beim Aktivieren dieser Option werden die Knöpfe mit einem "
+"benutzerdefinierten Stil dargestellt"
 
 #. i18n: file: src/kmetropreferencesbase.ui:443
 #. i18n: ectx: property (text), widget (QCheckBox, m_styledknobs)

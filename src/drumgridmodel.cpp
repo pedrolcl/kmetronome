@@ -104,6 +104,8 @@ QVariant DrumGridModel::headerData(int section ,
             int k = m_keys.value(section, 0);
             if (m_keyNames.contains(k))
                 return m_keyNames[k];
+            else
+                return QString::number(k);
         }
     }
     return QVariant();

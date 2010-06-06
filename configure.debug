@@ -1,11 +1,11 @@
 #!/bin/bash
-# a typical configuration for production usage...
+# a typical configuration for development usage...
 mkdir -p build
 cd build
 cmake .. -DCMAKE_CXX_FLAGS="-W -Wall" \
     -DCMAKE_BUILD_TYPE=Debug \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DKDE4_ENABLE_FINAL=NO \
-    -DSTATIC_DRUMSTICK=YES \
+    -DSTATIC_DRUMSTICK=NO \
     -DENABLE_PCH=NO $*
 echo "You can run 'make' now"

@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %files lang -f %{name}.lang
 
 %changelog
-* Sat Jun 5 2010 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.10.0
+* Sun Jun 6 2010 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.10.0
 - New version
 * Sat Dec 12 2009 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.9.1
 - New version

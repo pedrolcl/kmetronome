@@ -53,7 +53,9 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->tableView->setSelectionMode(QTableView::ContiguousSelection);
 
     m_ui->startButton->setIcon(KIcon("media-playback-start"));
+    m_ui->startButton->setShortcut( Qt::Key_MediaPlay );
     m_ui->stopButton->setIcon(KIcon("media-playback-stop"));
+    m_ui->stopButton->setShortcut( Qt::Key_MediaStop );
     m_ui->saveButton->setIcon(KIcon("document-save"));
     m_ui->deleteButton->setIcon(KIcon("edit-delete"));
     m_ui->addButton->setIcon(KIcon("list-add"));

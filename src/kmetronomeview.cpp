@@ -41,7 +41,9 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_exitbtn->setFocusPolicy(Qt::NoFocus);
     m_configbtn->setIcon(KIcon("configure"));
     m_playbtn->setIcon(KIcon("media-playback-start"));
+    m_playbtn->setShortcut( Qt::Key_MediaPlay );
     m_stopbtn->setIcon(KIcon("media-playback-stop"));
+    m_stopbtn->setShortcut( Qt::Key_MediaStop );
     m_patternbtn->setIcon(KIcon("document-edit"));
 
     m_dialStyle = new ClassicStyle();

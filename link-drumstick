@@ -29,6 +29,8 @@ INCLUDE_DIRECTORIES(
     \${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+ADD_DEFINITIONS(-DRTKIT_SUPPORT)
+
 # drumstick-alsa library
 
 SET(drumstick-alsa_QTOBJ_SRCS
@@ -41,6 +43,7 @@ SET(drumstick-alsa_QTOBJ_SRCS
 )
 
 SET(drumstick-alsa_HEADERS
+    include/macros.h
     include/alsaclient.h
     include/alsaevent.h
     include/alsaport.h

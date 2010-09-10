@@ -89,6 +89,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_Queue = m_Client->createQueue("KMetronome");
     m_queueId = m_Queue->getId();
 
+    m_Client->setRealTimeInput(true);
     m_Client->startSequencerInput();
 }
 
@@ -342,7 +343,7 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 		case 0x02:
 		case 0x42:
 			if (syx->getLength() < 9) return;
-			*ptr++;
+			(void) *ptr++;
 			num = *ptr++;
 			den = *ptr++;
 			emit signalNotation(num, den);

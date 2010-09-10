@@ -1,3 +1,8 @@
+2010-09-10 00:00 plcl
+
+    * drumstick: sync release 0.5
+    * request realtime priority for the MIDI input thread 
+
 2010-06-06 00:00 plcl
 
     * Release 0.10.0

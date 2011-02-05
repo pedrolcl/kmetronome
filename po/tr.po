@@ -1,0 +1,746 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Server Acim <serveracim@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://sourceforge."
+"net/tracker/?atid=731542&group_id=134956\n"
+"POT-Creation-Date: 2010-05-23 11:30+0200\n"
+"PO-Revision-Date: 2011-02-05 17:58+0200\n"
+"Last-Translator: Server Acim <serveracim@gmail.com>\n"
+"Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: src/drumgrid.cpp:49
+msgid "Pattern Editor"
+msgstr "Kalıp Düzenleyici"
+
+#: src/drumgrid.cpp:254
+msgid "Do you want to remove the current pattern?"
+msgstr "Bu kalıbı kaldırmak istiyor musunuz?"
+
+#: src/drumgrid.cpp:255
+msgid "Remove Pattern"
+msgstr "Kalıbı Kaldır"
+
+#: src/drumgrid.cpp:309
+msgctxt "name of an automatically created pattern"
+msgid "Sample Pattern"
+msgstr "Örnek Kalıp"
+
+#: src/drumgrid.cpp:340
+msgid "Insert Pattern Row"
+msgstr "Kalıp Sırası Ekle"
+
+#: src/drumgrid.cpp:341
+msgid "Drum Key:"
+msgstr "Davul Tuşu"
+
+#: src/drumgrid.cpp:361
+msgid "Please select one, and only one row"
+msgstr "Lütfen, sadece ve sadece bir sıra seçiniz"
+
+#: src/drumgrid.cpp:363
+msgid "Do you want to remove the selected pattern row?"
+msgstr "Seçili kalıbı sırasını kaldırmak istiyor musunuz?"
+
+#: src/drumgrid.cpp:364
+msgid "Remove Row"
+msgstr "Sırayı Kaldır"
+
+#: src/kmetronome.cpp:85
+msgid ""
+"Fatal error from the ALSA sequencer. This usually happens when the kernel "
+"doesn't have ALSA support, or the device node (/dev/snd/seq) doesn't exists, "
+"or the kernel module (snd_seq) is not loaded. Please check your ALSA/MIDI "
+"configuration. Returned error was: %1"
+msgstr ""
+"ALSA sekvansırdan ölümcül hata. Bu genelde çekirdeğin ALSA desteği olmadığı "
+"veya aygıt yolunun (/dev/snd/seq gibi) olmadığı durumlarda ya da çekirdek "
+"modülünün (örneğin snd seq) yüklü olmadığı durumlarda meydana gelir. Lütfen "
+"ALSA/MIDI ayarlarınızı kontrol edin. Gelen hata şöyle idi: %1"
+
+#: src/kmetronome.cpp:91
+msgid "Error"
+msgstr "Hata"
+
+#: src/kmetronome.cpp:112
+msgid "Play/Stop"
+msgstr "Çal/Dur"
+
+#: src/kmetronome.cpp:116
+msgid "Show Action Buttons"
+msgstr "Eylem Düğmelerini Göster"
+
+#. i18n: file: src/kmetronomeviewbase.ui:126
+#. i18n: ectx: property (text), widget (KPushButton, m_patternbtn)
+#: src/kmetronome.cpp:123 po/rc.cpp:130
+msgid "Patterns"
+msgstr "Kalıplar"
+
+#: src/kmetronome.cpp:128 src/kmetronome.cpp:490
+msgid "Import Patterns"
+msgstr "Kalıpları İçeri Aktar"
+
+#: src/kmetronome.cpp:133 src/kmetronome.cpp:503
+msgid "Export Patterns"
+msgstr "Kalıpları Dışarı Aktar"
+
+#: src/kmetronome.cpp:489 src/kmetronome.cpp:502
+msgid "*.pat|Pattern Files (*.pat)"
+msgstr "*.pat|Kalıp Dosyaları (*.pat)"
+
+#: src/kmetronomeview.cpp:143
+msgid "Tempo"
+msgstr "Tempo"
+
+#: src/kmetronomeview.cpp:143
+msgid "Enter new Tempo:"
+msgstr "Yeni Tempo Giriniz:"
+
+#: src/kmetronomeview.cpp:177
+msgctxt "the pattern is created automatically"
+msgid "Automatic"
+msgstr "Otomatik"
+
+#: src/kmetropreferences.cpp:29
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: src/main.cpp:29
+msgid "KDE MIDI metronome using ALSA sequencer"
+msgstr "KDE MIDI metronom ALSA sekvansır kullanıyor"
+
+#: src/main.cpp:40
+msgid "KMetronome"
+msgstr "KMetronom"
+
+#: src/main.cpp:42
+msgid "(C) 2005-2010 Pedro Lopez-Cabanillas"
+msgstr "(C) 2005-2010 Pedro Lopez-Cabanillas"
+
+#: src/main.cpp:46
+msgid "Pedro Lopez-Cabanillas"
+msgstr "Pedro Lopez-Cabanillas"
+
+#: src/sequenceradapter.cpp:65
+msgid "No connection"
+msgstr "Bağlantı Kurulamadı"
+
+#. i18n: file: src/drumgrid.ui:46
+#. i18n: ectx: property (text), widget (QLabel, patternLabel)
+#. i18n: file: src/kmetronomeviewbase.ui:191
+#. i18n: ectx: property (text), widget (QLabel, lblPattern)
+#: po/rc.cpp:3 po/rc.cpp:142
+msgid "Pattern:"
+msgstr "Kalıp:"
+
+#. i18n: file: src/drumgrid.ui:62
+#. i18n: ectx: property (whatsThis), widget (KComboBox, patternCombo)
+#: po/rc.cpp:6
+msgid ""
+"Type a new name and press the \"Save\" button to create a new pattern, or "
+"choose an existing pattern from the drop-down list."
+msgstr ""
+"Yeni bir kalıp oluşturmak için yeni bir başlık yazınız veya listeden var "
+"olan bir kalıp seçiniz."
+
+#. i18n: file: src/drumgrid.ui:72
+#. i18n: ectx: property (whatsThis), widget (KPushButton, saveButton)
+#: po/rc.cpp:9
+msgid "This button stores the current pattern definition with the name given"
+msgstr "Bu düğme şu anki kalıp tanımını yükler ve verilen başlığı kullanır"
+
+#. i18n: file: src/drumgrid.ui:75
+#. i18n: ectx: property (text), widget (KPushButton, saveButton)
+#: po/rc.cpp:12
+msgid "Save"
+msgstr "Kaydet"
+
+#. i18n: file: src/drumgrid.ui:82
+#. i18n: ectx: property (whatsThis), widget (KPushButton, deleteButton)
+#: po/rc.cpp:15
+msgid "This button deletes the current pattern definition"
+msgstr "Bu düğme şu anki kalıp tanımını siler"
+
+#. i18n: file: src/drumgrid.ui:85
+#. i18n: ectx: property (text), widget (KPushButton, deleteButton)
+#: po/rc.cpp:18
+msgid "Delete"
+msgstr "Sil"
+
+#. i18n: file: src/drumgrid.ui:104
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: po/rc.cpp:21
+msgid "Rows:"
+msgstr "Sıralar:"
+
+#. i18n: file: src/drumgrid.ui:111
+#. i18n: ectx: property (whatsThis), widget (KPushButton, addButton)
+#: po/rc.cpp:24
+msgid ""
+"Use this button to add new rows (sounds) to the current pattern definition"
+msgstr ""
+"Bu düğmeyi şu anki kalıp tanımına yeni sıralar (sesler) eklemek için kullanın"
+
+#. i18n: file: src/drumgrid.ui:114
+#. i18n: ectx: property (text), widget (KPushButton, addButton)
+#: po/rc.cpp:27
+msgid "Add"
+msgstr "Ekle"
+
+#. i18n: file: src/drumgrid.ui:121
+#. i18n: ectx: property (whatsThis), widget (KPushButton, removeButton)
+#: po/rc.cpp:30
+msgid ""
+"Use this button to remove the selected row (sound) from the pattern "
+"definition"
+msgstr ""
+"Bu düğmeyi şu anki kalıp tanımından seçilmiş sırayı (sesleri) kaldırmak için "
+"kullanın"
+
+#. i18n: file: src/drumgrid.ui:124
+#. i18n: ectx: property (text), widget (KPushButton, removeButton)
+#: po/rc.cpp:33
+msgid "Remove"
+msgstr "Kaldır"
+
+#. i18n: file: src/drumgrid.ui:144
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: po/rc.cpp:36
+msgid "Beats:"
+msgstr "Vuruşlar:"
+
+#. i18n: file: src/drumgrid.ui:151
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, chkselbeat)
+#: po/rc.cpp:39
+msgid "Highligh the grid columns while playing"
+msgstr "Çalarken ızgara sütünlarını vurgula"
+
+#. i18n: file: src/drumgrid.ui:155
+#. i18n: ectx: property (text), widget (QCheckBox, chkselbeat)
+#: po/rc.cpp:42
+msgid ""
+"Highlight\n"
+"Columns"
+msgstr ""
+"Sütunları\n"
+"Vurgula"
+
+#. i18n: file: src/drumgrid.ui:168
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, beatNumber)
+#: po/rc.cpp:46
+msgid "This is the current beat number"
+msgstr "Şu anki vuruş sayısıdır"
+
+#. i18n: file: src/drumgrid.ui:184
+#. i18n: ectx: property (whatsThis), widget (QTableView, tableView)
+#: po/rc.cpp:49
+msgid "This is the pattern table, beats as columns and sounds as rows"
+msgstr ""
+"Bu, vuruşların sütunlarla ve seslerin sıralar halinde gösterildiği kalıp "
+"tablosudur"
+
+#. i18n: file: src/drumgrid.ui:200
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, gridColumns)
+#: po/rc.cpp:52
+msgid "Number of beats per measure (bar)"
+msgstr "Ölçü başına düşen vuruş sayısı"
+
+#. i18n: file: src/drumgrid.ui:216
+#. i18n: ectx: property (whatsThis), widget (KComboBox, figureCombo)
+#: po/rc.cpp:55
+msgid "This is the beat length for the pattern column."
+msgstr "Bu, kalıp sütununda yer alan vuruş uzunluğudur."
+
+#. i18n: file: src/drumgrid.ui:226
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:282
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:58 po/rc.cpp:164
+msgid "Whole"
+msgstr "Birlik süre"
+
+#. i18n: file: src/drumgrid.ui:235
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:291
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:61 po/rc.cpp:167
+msgid "Half"
+msgstr "İkilik süre"
+
+#. i18n: file: src/drumgrid.ui:244
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:300
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:64 po/rc.cpp:170
+msgid "Quarter"
+msgstr "Dörtlük süre"
+
+#. i18n: file: src/drumgrid.ui:253
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:309
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:67 po/rc.cpp:173
+msgid "Eighth"
+msgstr "Sekizlik süre"
+
+#. i18n: file: src/drumgrid.ui:262
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:318
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:70 po/rc.cpp:176
+msgid "Sixteenth"
+msgstr "Onaltılık süre"
+
+#. i18n: file: src/drumgrid.ui:271
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:327
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:73 po/rc.cpp:179
+msgid "Thirty-Second"
+msgstr "Otuz-ikilik süre"
+
+#. i18n: file: src/drumgrid.ui:280
+#. i18n: ectx: property (text), item, widget (KComboBox, figureCombo)
+#. i18n: file: src/kmetronomeviewbase.ui:336
+#. i18n: ectx: property (text), item, widget (KComboBox, m_figure)
+#: po/rc.cpp:76 po/rc.cpp:182
+msgid "Sixty-Fourth"
+msgstr "Atmış-dörtlük süre"
+
+#. i18n: file: src/drumgrid.ui:292
+#. i18n: ectx: property (whatsThis), widget (QPushButton, startButton)
+#: po/rc.cpp:79
+msgid "This button starts playing the current pattern"
+msgstr "Bu düğme bu kalıbın çalmasını başlatır"
+
+#. i18n: file: src/drumgrid.ui:295
+#. i18n: ectx: property (text), widget (QPushButton, startButton)
+#. i18n: file: src/kmetronomeviewbase.ui:81
+#. i18n: ectx: property (text), widget (KPushButton, m_playbtn)
+#: po/rc.cpp:82 po/rc.cpp:112
+msgid "Play"
+msgstr "Çal"
+
+#. i18n: file: src/drumgrid.ui:308
+#. i18n: ectx: property (whatsThis), widget (QPushButton, stopButton)
+#: po/rc.cpp:85
+msgid "This button stops the playback"
+msgstr "Bu düğme çalmayı durdurur"
+
+#. i18n: file: src/drumgrid.ui:311
+#. i18n: ectx: property (text), widget (QPushButton, stopButton)
+#. i18n: file: src/kmetronomeviewbase.ui:100
+#. i18n: ectx: property (text), widget (KPushButton, m_stopbtn)
+#: po/rc.cpp:88 po/rc.cpp:118
+msgid "Stop"
+msgstr "Dur"
+
+#. i18n: file: src/drumgrid.ui:327
+#. i18n: ectx: property (whatsThis), widget (QLabel, label_3)
+#: po/rc.cpp:91
+msgid "QPM: quarters per minute"
+msgstr "QPM: dakika başına düşen vuruş sayısı"
+
+#. i18n: file: src/drumgrid.ui:330
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: po/rc.cpp:94
+msgctxt "Quarters per Minute"
+msgid "QPM:"
+msgstr "QPM:"
+
+#. i18n: file: src/drumgrid.ui:340
+#. i18n: ectx: property (whatsThis), widget (QLabel, tempoLabel)
+#: po/rc.cpp:97
+msgid "This is the current tempo in quarters per minute"
+msgstr "Bu, dakika başına düşen şu anki tempodur"
+
+#. i18n: file: src/drumgrid.ui:343
+#. i18n: ectx: property (text), widget (QLabel, tempoLabel)
+#: po/rc.cpp:100
+msgid "100"
+msgstr "100"
+
+#. i18n: file: src/drumgrid.ui:350
+#. i18n: ectx: property (whatsThis), widget (QSlider, tempoSlider)
+#: po/rc.cpp:103
+msgid "Drag the slider handle to change the tempo, in quarters per minute"
+msgstr ""
+"Tempoyu değiştirmek için dakika başına dörtlük olarak kaydırgaçı "
+"sürükleyiniz, "
+
+#. i18n: file: src/kmetronomeviewbase.ui:58
+#. i18n: ectx: property (windowTitle), widget (QWidget, KmetronomeViewBase)
+#: po/rc.cpp:106
+msgid "MIDI Metronome"
+msgstr "MIDI Metronome"
+
+#. i18n: file: src/kmetronomeviewbase.ui:78
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_playbtn)
+#: po/rc.cpp:109
+msgid "This button starts playing the rhythm pattern"
+msgstr "Bu düğme ritm kalıbının çalmasını başlatır"
+
+#. i18n: file: src/kmetronomeviewbase.ui:97
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_stopbtn)
+#: po/rc.cpp:115
+msgid "This button stops playing the rhythm pattern"
+msgstr "Bu düğme ritm kalıbının çalmasını durdurur"
+
+#. i18n: file: src/kmetronomeviewbase.ui:113
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_configbtn)
+#: po/rc.cpp:121
+msgid "This button opens the configuration window"
+msgstr "Bu düğme yapılandırma penceresini açar"
+
+#. i18n: file: src/kmetronomeviewbase.ui:116
+#. i18n: ectx: property (text), widget (KPushButton, m_configbtn)
+#: po/rc.cpp:124
+msgid "Settings"
+msgstr "Ayarlar"
+
+#. i18n: file: src/kmetronomeviewbase.ui:123
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_patternbtn)
+#: po/rc.cpp:127
+msgid "This button opens the pattern editor"
+msgstr "Bu düğme kalıp düzenleyicisini açar"
+
+#. i18n: file: src/kmetronomeviewbase.ui:139
+#. i18n: ectx: property (whatsThis), widget (KPushButton, m_exitbtn)
+#: po/rc.cpp:133
+msgid "This button exits the program"
+msgstr "Bu düğme programdan çıkılmasını sağlar"
+
+#. i18n: file: src/kmetronomeviewbase.ui:142
+#. i18n: ectx: property (text), widget (KPushButton, m_exitbtn)
+#: po/rc.cpp:136
+msgid "Quit"
+msgstr "Çık"
+
+#. i18n: file: src/kmetronomeviewbase.ui:173
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_measureLCD)
+#: po/rc.cpp:139
+msgid "Number of measures (bars) and beats played from beginning"
+msgstr "Baştan itibaren çalınan ölçü ve vuruşların sayısı"
+
+#. i18n: file: src/kmetronomeviewbase.ui:210
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_pattern)
+#: po/rc.cpp:145
+msgid ""
+"This is the pattern definition to play, either \"Automatic\" or a custom "
+"defined one."
+msgstr ""
+"Bu, çalınacak kalıbın tanımıdır, bunu \"Otomatik\" olarak "
+"ayarlayabileceğiniz "
+"gibi tanımı kendiniz de oluşturabilirsiniz."
+
+#. i18n: file: src/kmetronomeviewbase.ui:217
+#. i18n: ectx: property (text), widget (QLabel, lblBeats)
+#: po/rc.cpp:148
+msgid "Beats/Bar:"
+msgstr "Vuruşlar/Ölçüler:"
+
+#. i18n: file: src/kmetronomeviewbase.ui:238
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_beatsBar)
+#: po/rc.cpp:151
+msgid ""
+"This is the number of beats for each measure (bar).<br>\n"
+"Values are from 1 to 32.<br>\n"
+"It is the numerator of the time signature specification."
+msgstr ""
+"Bu, her ölçüdeki vuruşların sayısıdır.<br>\n"
+"Değerler 1 ile 32 arasındadır.<br>\n"
+"Ölçü birimi özelliğinin sayısal göstergesidir."
+
+#. i18n: file: src/kmetronomeviewbase.ui:254
+#. i18n: ectx: property (text), widget (QLabel, lblFigure)
+#: po/rc.cpp:156
+msgid "Beat Length:"
+msgstr "Vuruş Uzunluğu:"
+
+#. i18n: file: src/kmetronomeviewbase.ui:272
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_figure)
+#: po/rc.cpp:159
+msgid ""
+"This is the beat length.<br>\n"
+"Values mean 1, 2, 4, 8, 16, 32 and 64.<br>\n"
+"It is the denominator in the time signature specification."
+msgstr ""
+"Bu, vuruş süresidir.<br>\n"
+"Değerler 1, 2, 4, 8, 16, 32 ve 64 arasındadır.<br>\n"
+"Bunlar, ölçü birimi içindeki alt sürelerin özellikleridir."
+
+#. i18n: file: src/kmetronomeviewbase.ui:356
+#. i18n: ectx: property (text), widget (QLabel, label_1)
+#: po/rc.cpp:185
+msgctxt "weak notes MIDI velocity"
+msgid "Weak"
+msgstr "Zayıf"
+
+#. i18n: file: src/kmetronomeviewbase.ui:369
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: po/rc.cpp:188
+msgctxt "strong notes MIDI velocity"
+msgid "Strong"
+msgstr "Kuvvetli"
+
+#. i18n: file: src/kmetronomeviewbase.ui:382
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: po/rc.cpp:191
+msgctxt "audio volume level"
+msgid "Volume"
+msgstr "Gürlük"
+
+#. i18n: file: src/kmetronomeviewbase.ui:395
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: po/rc.cpp:194
+msgctxt "audio panning"
+msgid "Pan"
+msgstr "Pan"
+
+#. i18n: file: src/kmetronomeviewbase.ui:414
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial1)
+#: po/rc.cpp:197
+msgid ""
+"This is the velocity of the weak notes in the automatic rhythm pattern (all "
+"of them, except the first one)"
+msgstr ""
+"Bu, otomatik ritm kalıbındaki zayıf notanın seslendirme gücüdür (ilki "
+"dışındaki tüm notaların)"
+
+#. i18n: file: src/kmetronomeviewbase.ui:439
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial2)
+#: po/rc.cpp:200
+msgid ""
+"This is the velocity of the strong note in the automatic rhythm pattern (the "
+"first one)"
+msgstr ""
+"Bu, otomatik ritm kalıbındaki kuvvetli notanın seslendirme gücüdür (ilk "
+"vuruşun)"
+
+#. i18n: file: src/kmetronomeviewbase.ui:464
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial3)
+#: po/rc.cpp:203
+msgid "This is the MIDI volume control (CC7)"
+msgstr "Bu MIDI ses denetimidir (CC7)"
+
+#. i18n: file: src/kmetronomeviewbase.ui:489
+#. i18n: ectx: property (whatsThis), widget (Knob, m_dial4)
+#: po/rc.cpp:206
+msgid "This is the MIDI pan control (CC10)"
+msgstr "Bu MIDI pan denetimidir (CC10)"
+
+#. i18n: file: src/kmetronomeviewbase.ui:512
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_air)
+#: po/rc.cpp:209
+msgid "This is the musical name of the tempo value"
+msgstr "Bu, tempo değerinin müziksel adıdır"
+
+#. i18n: file: src/kmetronomeviewbase.ui:531
+#. i18n: ectx: property (whatsThis), widget (QLCDNumber, m_tempoLCD)
+#: po/rc.cpp:212
+msgid "The current <i>tempo</i> value"
+msgstr "Geçerli <i>tempo</i> değeri"
+
+#. i18n: file: src/kmetronomeviewbase.ui:554
+#. i18n: ectx: property (text), widget (QLabel, textLabel1_2)
+#: po/rc.cpp:215
+msgid "Tempo (in quarters per minute)"
+msgstr "Tempo (dakika başına dörtlük süre)"
+
+#. i18n: file: src/kmetronomeviewbase.ui:580
+#. i18n: ectx: property (whatsThis), widget (QSlider, m_tempo)
+#: po/rc.cpp:218
+msgid ""
+"This slider changes the <i>tempo</i>, or speed of the rhythm.<br>\n"
+"Values are 25 to 250 quarters per minute (<i>Maelzel Metronome units</i>)."
+msgstr ""
+"Kaydırgaç, <i>tempoyu</i>, veya ritmin hızını değiştirir.<br>\n"
+"Değerler dakika başına 25 ile 250 dörtlüktür. (<i>Maelzel Metronom birimine "
+"göre</i>)"
+
+#. i18n: file: src/kmetropreferencesbase.ui:37
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_autoconn)
+#: po/rc.cpp:222
+msgid ""
+"If this checkbox is activated, the the program will remember the connections "
+"for the input and output ports, and try to reconnect them at program startup."
+msgstr ""
+"Eğer bu seçim kutusu etkinse, program giriş çıkış portlarındaki bağlantıları "
+"hatırlayacaktır, ve program yeniden başladığında yeniden bağlanmayı "
+"deneyecektir."
+
+#. i18n: file: src/kmetropreferencesbase.ui:40
+#. i18n: ectx: property (text), widget (QCheckBox, m_autoconn)
+#: po/rc.cpp:225
+msgid "Automatic ports connection on startup"
+msgstr "Yeniden başlarken otomatik port bağlantıları yapılsın"
+
+#. i18n: file: src/kmetropreferencesbase.ui:61
+#. i18n: ectx: property (text), widget (QLabel, lblInputPort)
+#: po/rc.cpp:228
+msgid "Optional input port conn:"
+msgstr "Opsiyonel giriş portu conn değeri:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:83
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_in_connection)
+#: po/rc.cpp:231
+msgid "This is the optional connection for the MIDI IN port."
+msgstr "Bu MIDI IN portu için opsiyonel bağlantıdır."
+
+#. i18n: file: src/kmetropreferencesbase.ui:102
+#. i18n: ectx: property (text), widget (QLabel, lblOutputPort)
+#: po/rc.cpp:234
+msgid "Output port connection:"
+msgstr "Çıkış portu bağlantısı:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:124
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_out_connection)
+#: po/rc.cpp:237
+msgid "This is the mandatory connection for the MIDI OUT port"
+msgstr "MIDI OUT portu için zorunlu bağlantıdır"
+
+#. i18n: file: src/kmetropreferencesbase.ui:131
+#. i18n: ectx: property (text), widget (QLabel, lblInstrument)
+#: po/rc.cpp:240
+msgid "Output instrument:"
+msgstr "Çıkış çalgısı:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:147
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_instrument)
+#: po/rc.cpp:243
+msgid "This is the definition of the instrument connected to the MIDI OUT port"
+msgstr "Bu, MIDI OUT portuna bağlı olan çalgının tanımıdır"
+
+#. i18n: file: src/kmetropreferencesbase.ui:158
+#. i18n: ectx: property (text), widget (QLabel, lblBank)
+#: po/rc.cpp:246
+msgid "Bank:"
+msgstr "Ses Bankası:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:171
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_bank)
+#: po/rc.cpp:249
+msgid "This is the Bank of the selected MIDI program"
+msgstr "Bu, seçili MIDI programının Ses Bankasıdır"
+
+#. i18n: file: src/kmetropreferencesbase.ui:190
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: po/rc.cpp:252
+msgid "Channel:"
+msgstr "Kanal:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:207
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_channel)
+#: po/rc.cpp:255
+msgid ""
+"This is the MIDI channel, between 1 and 16. \n"
+"General MIDI uses the channel 10 for percussion sounds."
+msgstr ""
+"Bu, 1 ile 16 arasındaki MIDI kanalıdır. \n"
+"General MIDI vurma çalgı sesleri için 10 numaralı kanalı kullanır."
+
+#. i18n: file: src/kmetropreferencesbase.ui:235
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: po/rc.cpp:259
+msgid "Program:"
+msgstr "Program:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:257
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_program)
+#: po/rc.cpp:262
+msgid "This is the MIDI program"
+msgstr "Bu MIDI programıdır"
+
+#. i18n: file: src/kmetropreferencesbase.ui:270
+#. i18n: ectx: property (text), widget (QLabel, textLabel7)
+#: po/rc.cpp:265
+msgid "Resolution:"
+msgstr "Çözünürlük:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:286
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_resolution)
+#: po/rc.cpp:268
+msgid "This is the MIDI time resolution (number of ticks in a quarter note)"
+msgstr "Bu, MIDI zaman çözünürlüğüdür (dörtlük notadaki tıkların sayısı)"
+
+#. i18n: file: src/kmetropreferencesbase.ui:305
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: po/rc.cpp:271
+msgid "Weak note:"
+msgstr "Zayıf nota:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:327
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_weak_note)
+#: po/rc.cpp:274
+msgid "This is the sound of the weak notes for the automatic patterns"
+msgstr "Bu, otomatik kalıplardaki zayıf notaların sesidir"
+
+#. i18n: file: src/kmetropreferencesbase.ui:340
+#. i18n: ectx: property (text), widget (QLabel, textLabel8)
+#: po/rc.cpp:277
+msgid "Note duration:"
+msgstr "Nota süresi:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:356
+#. i18n: ectx: property (whatsThis), widget (KIntSpinBox, m_duration)
+#: po/rc.cpp:280
+msgid "This is the note duration in ticks, when using NOTE OFF events"
+msgstr "BU, NOTE OFF seçeneği kullanıldığında, tıklardaki nota süresidir"
+
+#. i18n: file: src/kmetropreferencesbase.ui:378
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: po/rc.cpp:283
+msgid "Strong note:"
+msgstr "Kuvvetli nota:"
+
+#. i18n: file: src/kmetropreferencesbase.ui:400
+#. i18n: ectx: property (whatsThis), widget (KComboBox, m_strong_note)
+#: po/rc.cpp:286
+msgid "This is the sound of the strong notes for the automatic patterns"
+msgstr "Bu, otomatik kalıplardaki kuvvetli notaların sesidir"
+
+#. i18n: file: src/kmetropreferencesbase.ui:411
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_use_noteoff)
+#: po/rc.cpp:289
+msgid "Optional setting to send NOTE OFF events"
+msgstr "NOTE OFF seçimi gönderildiğindeki seçimlik ayarlar"
+
+#. i18n: file: src/kmetropreferencesbase.ui:414
+#. i18n: ectx: property (text), widget (QCheckBox, m_use_noteoff)
+#: po/rc.cpp:292
+msgid "Send NOTE OFF events"
+msgstr "NOTE OFF olaylarını gönder"
+
+#. i18n: file: src/kmetropreferencesbase.ui:440
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, m_styledknobs)
+#: po/rc.cpp:295
+msgid "If this option is activated, the knobs are drawn using a custom style"
+msgstr ""
+"Eğer bu seçenek etkinse, düğmeler özelleştirilmiş stili kullanacaklardır"
+
+#. i18n: file: src/kmetropreferencesbase.ui:443
+#. i18n: ectx: property (text), widget (QCheckBox, m_styledknobs)
+#: po/rc.cpp:298
+msgid "Styled Knobs"
+msgstr "Stilize Düğmeler"
+
+#: po/rc.cpp:299
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Server Acim"
+
+#: po/rc.cpp:300
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "serveracim@gmail.com"
+
+

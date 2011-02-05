@@ -14,6 +14,8 @@ Translations
     French: Julien Richard-Foy <julien.rf@no-log.org>
     file: po/fr.po
 
+    Turkish: Server Acim <serveracim@gmail.com>
+    file: po/tr.po
 
 Instrument definitions (.INS files) support:
     Copyright (C) 2005-2009, rncbc aka Rui Nuno Capela

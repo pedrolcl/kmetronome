@@ -1,4 +1,4 @@
-# Copyright (C) 2005-2010 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+# Copyright (C) 2005-2011 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
 # 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions

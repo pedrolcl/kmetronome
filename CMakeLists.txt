@@ -137,7 +137,7 @@ ADD_CUSTOM_TARGET ( tarball
     COMMAND cp -r icons kmetronome-${VERSION}
     COMMAND cp -r po kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
-    COMMAND cp -rHL drumstick kmetronome-${VERSION}
+    #COMMAND cp -rHL drumstick kmetronome-${VERSION}
     COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
     COMMAND tar -cj --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
     COMMAND tar -cz --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}

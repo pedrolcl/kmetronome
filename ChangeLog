@@ -1,11 +1,16 @@
+2012-05-28 00:00 plcl
+
+    * assigned shortcuts for keyboard media keys
+    * Release 0.10.1
+
 2011-02-05 00:00 plcl
 
     * Turkish translation added, by Server Acim
-    
+
 2010-09-16 00:00 plcl
 
     * docbook version update
-     
+
 2010-09-10 00:00 plcl
 
     * drumstick: sync release 0.5
@@ -20,9 +25,9 @@
     * German translation updated, by Rene Landert
     * Custom pattern samples
     * release candidate
-    
+
 2010-05-23 00:00 plcl
-    
+
     * Enable the standard toolbar
     * Optionally hide the fake toolbar
     * Import/export patterns 
@@ -43,7 +48,7 @@
     * Release 0.9.3 
 
 2010-02-20 00:00 plcl
-    
+
     * aseqmm renamed to drumstick
 
 2009-12-23 00:00 plcl
@@ -117,7 +122,7 @@
 
 2005-06-20 21:17  plcl
 
-	* Implemented double click event handler, changing tempo as 
+	* Implemented double click event handler, changing tempo as
 	  suggested by Chris.
 
 2005-06-12 23:51  plcl
@@ -212,4 +217,3 @@
 2005-03-29 20:34  plcl
 
 	* Initial revision
-

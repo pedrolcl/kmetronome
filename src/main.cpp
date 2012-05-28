@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2011 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -40,7 +40,7 @@ int main (int argc, char **argv)
 {
     KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, ki18n(
             description), KAboutData::License_GPL, ki18n(
-            "(C) 2005-2011 Pedro Lopez-Cabanillas"), KLocalizedString(),
+            "(C) 2005-2012 Pedro Lopez-Cabanillas"), KLocalizedString(),
             "http://kmetronome.sourceforge.net", "plcl@users.sourceforge.net");
     about.addAuthor(ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(),
             "plcl@users.sourceforge.net");

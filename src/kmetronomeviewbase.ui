@@ -3,7 +3,7 @@
  <author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
  <comment>
 KMetronome - ALSA Sequencer based MIDI metronome
-Copyright (C) 2005-2011 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+Copyright (C) 2005-2012 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
 
 This program is free software; you can redistribute it and/or modify 
 it under the terms of the GNU General Public License as published by 
@@ -26,8 +26,8 @@ MA 02110-1301, USA
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>368</height>
+    <width>388</width>
+    <height>364</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -233,8 +233,8 @@ MA 02110-1301, USA
             </size>
            </property>
            <property name="whatsThis">
-            <string>This is the number of beats for each measure (bar).&lt;br&gt;
-Values are from 1 to 32.&lt;br&gt;
+            <string>This is the number of beats for each measure (bar).
+Values are from 1 to 32.
 It is the numerator of the time signature specification.</string>
            </property>
            <property name="value">
@@ -267,8 +267,8 @@ It is the numerator of the time signature specification.</string>
          <item row="2" column="1">
           <widget class="KComboBox" name="m_figure">
            <property name="whatsThis">
-            <string>This is the beat length.&lt;br&gt;
-Values mean 1, 2, 4, 8, 16, 32 and 64.&lt;br&gt;
+            <string>This is the beat length.
+Values mean 1, 2, 4, 8, 16, 32 and 64.
 It is the denominator in the time signature specification.</string>
            </property>
            <property name="currentIndex">
@@ -576,7 +576,7 @@ It is the denominator in the time signature specification.</string>
         </size>
        </property>
        <property name="whatsThis">
-        <string>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rhythm.&lt;br&gt;
+        <string>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rhythm.
 Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i&gt;).</string>
        </property>
        <property name="minimum">
@@ -606,11 +606,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
    <class>KIntSpinBox</class>
    <extends>QSpinBox</extends>
    <header>knuminput.h</header>
@@ -619,6 +614,11 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    <class>KPushButton</class>
    <extends>QPushButton</extends>
    <header>kpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>Knob</class>

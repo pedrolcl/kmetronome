@@ -23,7 +23,7 @@
 </authorgroup>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 <copyright>
-<year>2005-2010</year>
+<year>2005-2012</year>
 <holder>Pedro Lopez&#45;Cabanillas</holder>
 </copyright>
 
@@ -40,8 +40,8 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2010-06-06</date>
-<releaseinfo>0&#46;10&#46;0</releaseinfo>
+<date>2012-05-28</date>
+<releaseinfo>0&#46;10&#46;1</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -429,11 +429,11 @@ using a session management software like QJackCtl.</para>
 &kmetronome;
 </para>
 <para>
-Program copyright 2005-2010 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Program copyright 2005-2012 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <para>
-Documentation copyright 2005-2010 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
+Documentation copyright 2005-2012 Pedro Lopez&#45;Cabanillas <email>plcl&#64;users&#46;sourceforge&#46;net</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->

@@ -139,9 +139,8 @@ msgid "KMetronome"
 msgstr "KMetronome"
 
 #: src/main.cpp:43
-#, fuzzy
 msgid "(C) 2005-2012 Pedro Lopez-Cabanillas"
-msgstr "(C) 2005-2010 Pedro Lopez-Cabanillas"
+msgstr "(C) 2005-2012 Pedro Lopez-Cabanillas"
 
 #: src/main.cpp:45
 msgid "Pedro Lopez-Cabanillas"

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,12 +21,12 @@
 #include "kmetropreferences.h"
 
 KMetroPreferences::KMetroPreferences(QWidget *parent)
-    : KDialog(parent)
+    : QDialog(parent)
 {
-    QWidget* widget = new QWidget(this);
-    m_ui.setupUi(widget);
-    setMainWidget(widget);
-    setCaption(i18n("Preferences"));
+    //QWidget* widget = new QWidget(this);
+    m_ui.setupUi(this);
+    //setMainWidget(widget);
+    setWindowTitle(tr("Preferences"));
     connect( m_ui.m_instrument, SIGNAL(currentIndexChanged(int)),
              SLOT(slotInstrumentChanged(int)));
     connect( m_ui.m_bank, SIGNAL(currentIndexChanged(int)),
@@ -152,15 +152,15 @@ QString KMetroPreferences::getBankName()
 
 void KMetroPreferences::setInstrumentName(QString name)
 {
-    m_ui.m_instrument->setCurrentItem(name, false);
+    m_ui.m_instrument->setCurrentText(name);
 }
 
 void KMetroPreferences::setProgramName(QString name)
 {
-    m_ui.m_program->setCurrentItem(name, false);
+    m_ui.m_program->setCurrentText(name);
 }
 
 void KMetroPreferences::setBankName(QString name)
 {
-    m_ui.m_bank->setCurrentItem(name, false);
+    m_ui.m_bank->setCurrentText(name);
 }

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,11 +21,10 @@
 #ifndef KMETRONOME_H
 #define KMETRONOME_H
 
-#include <KDE/KXmlGuiWindow>
-#include <QtCore/QPointer>
+#include <QMainWindow>
+#include <QPointer>
 
-class KAction;
-class KToggleAction;
+class QAction;
 class KmetronomeView;
 class SequencerAdapter;
 class DrumGrid;
@@ -33,10 +32,10 @@ class DrumGridModel;
 class Instrument;
 class InstrumentList;
 
-class KMetronome : public KXmlGuiWindow
+class KMetronome : public QMainWindow
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
+    //Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
 
 public:
     KMetronome(QWidget* parent=0);
@@ -70,7 +69,7 @@ protected Q_SLOTS:
 private:
     void setupAccel();
     void setupActions();
-    void setupPlaces();
+    //void setupPlaces();
     void saveConfiguration();
     void readConfiguration();
     void readDrumGridPattern();
@@ -84,10 +83,10 @@ private:
     QPointer<DrumGrid> m_drumgrid;
     InstrumentList* m_instrumentList;
     DrumGridModel* m_model;
-    KAction* m_prefs;
-    KToggleAction* m_playStop;
-    KAction* m_editPatterns;
-    KToggleAction* m_fakeToolbar;
+    QAction* m_prefs;
+    QAction* m_playStop;
+    QAction* m_editPatterns;
+    QAction* m_fakeToolbar;
     QString m_instrument;
     QString m_bank;
     QString m_program;

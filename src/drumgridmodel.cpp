@@ -1,6 +1,6 @@
 /*
     KMetronome - ALSA Sequencer based MIDI metronome
-    Copyright (C) 2006-2012, Pedro Lopez-Cabanillas <plcl@users.sf.net>
+    Copyright (C) 2006-2014, Pedro Lopez-Cabanillas <plcl@users.sf.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 #include "drumgridmodel.h"
 #include "instrument.h"
-#include <KDE/KDebug>
+#include <QDebug>
 
 const QString DEFVAL("f");
 
@@ -151,7 +151,7 @@ void DrumGridModel::clearPattern()
     m_keys.clear();
     m_tempData.clear();
     m_tempKeys.clear();
-    reset();
+    //reset();
 }
 
 void DrumGridModel::addPatternData(int key, const QStringList& row)

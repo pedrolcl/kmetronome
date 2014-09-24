@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,11 +21,11 @@
 #ifndef KMETROPREFERENCES_H
 #define KMETROPREFERENCES_H
 
+#include <QDialog>
 #include "ui_kmetropreferencesbase.h"
 #include "instrument.h"
-#include <KDE/KDialog>
 
-class KMetroPreferences : public KDialog
+class KMetroPreferences : public QDialog
 {
     Q_OBJECT
 
@@ -42,7 +42,6 @@ public:
     int getResolution() { return m_ui.m_resolution->value(); }
     int getDuration() { return m_ui.m_duration->value(); }
     bool getSendNoteOff() { return m_ui.m_use_noteoff->isChecked(); }
-    bool getStyledKnobs() { return m_ui.m_styledknobs->isChecked(); }
     QString getInstrumentName();
     QString  getProgramName();
     QString  getBankName();
@@ -56,7 +55,6 @@ public:
     void setResolution(int newValue) { m_ui.m_resolution->setValue(newValue); }
     void setDuration(int newValue) { m_ui.m_duration->setValue(newValue); }
     void setSendNoteOff(bool newValue) { m_ui.m_use_noteoff->setChecked(newValue); }
-    void setStyledKnobs(bool newValue) { m_ui.m_styledknobs->setChecked(newValue); }
     void setWeakNote(int newValue);
     void setStrongNote(int newValue);
     void setInstrumentName(QString name);

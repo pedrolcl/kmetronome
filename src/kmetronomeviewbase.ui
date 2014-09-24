@@ -3,7 +3,7 @@
  <author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
  <comment>
 KMetronome - ALSA Sequencer based MIDI metronome
-Copyright (C) 2005-2012 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+Copyright (C) 2005-2014 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
 
 This program is free software; you can redistribute it and/or modify 
 it under the terms of the GNU General Public License as published by 
@@ -67,7 +67,7 @@ MA 02110-1301, USA
          <number>0</number>
         </property>
         <item>
-         <widget class="KPushButton" name="m_playbtn">
+         <widget class="QPushButton" name="m_playbtn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -83,7 +83,7 @@ MA 02110-1301, USA
          </widget>
         </item>
         <item>
-         <widget class="KPushButton" name="m_stopbtn">
+         <widget class="QPushButton" name="m_stopbtn">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -102,7 +102,7 @@ MA 02110-1301, USA
          </widget>
         </item>
         <item>
-         <widget class="KPushButton" name="m_configbtn">
+         <widget class="QPushButton" name="m_configbtn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -118,7 +118,7 @@ MA 02110-1301, USA
          </widget>
         </item>
         <item>
-         <widget class="KPushButton" name="m_patternbtn">
+         <widget class="QPushButton" name="m_patternbtn">
           <property name="whatsThis">
            <string>This button opens the pattern editor</string>
           </property>
@@ -128,7 +128,7 @@ MA 02110-1301, USA
          </widget>
         </item>
         <item>
-         <widget class="KPushButton" name="m_exitbtn">
+         <widget class="QPushButton" name="m_exitbtn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -172,7 +172,7 @@ MA 02110-1301, USA
          <property name="whatsThis">
           <string>Number of measures (bars) and beats played from beginning</string>
          </property>
-         <property name="numDigits">
+         <property name="digitCount">
           <number>6</number>
          </property>
          <property name="mode">
@@ -199,7 +199,7 @@ MA 02110-1301, USA
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="KComboBox" name="m_pattern">
+          <widget class="QComboBox" name="m_pattern">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -225,7 +225,7 @@ MA 02110-1301, USA
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="KIntSpinBox" name="m_beatsBar">
+          <widget class="QSpinBox" name="m_beatsBar">
            <property name="maximumSize">
             <size>
              <width>60</width>
@@ -265,7 +265,7 @@ It is the numerator of the time signature specification.</string>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="KComboBox" name="m_figure">
+          <widget class="QComboBox" name="m_figure">
            <property name="whatsThis">
             <string>This is the beat length.
 Values mean 1, 2, 4, 8, 16, 32 and 64.
@@ -403,7 +403,7 @@ It is the denominator in the time signature specification.</string>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="Knob" name="m_dial1">
+      <widget class="QDial" name="m_dial1">
        <property name="maximumSize">
         <size>
          <width>50</width>
@@ -428,7 +428,7 @@ It is the denominator in the time signature specification.</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="Knob" name="m_dial2">
+      <widget class="QDial" name="m_dial2">
        <property name="maximumSize">
         <size>
          <width>50</width>
@@ -453,7 +453,7 @@ It is the denominator in the time signature specification.</string>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="Knob" name="m_dial3">
+      <widget class="QDial" name="m_dial3">
        <property name="maximumSize">
         <size>
          <width>50</width>
@@ -478,7 +478,7 @@ It is the denominator in the time signature specification.</string>
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="Knob" name="m_dial4">
+      <widget class="QDial" name="m_dial4">
        <property name="maximumSize">
         <size>
          <width>50</width>
@@ -507,7 +507,7 @@ It is the denominator in the time signature specification.</string>
    <item row="1" column="1" rowspan="2">
     <layout class="QVBoxLayout" name="aireLayout">
      <item>
-      <widget class="KComboBox" name="m_air">
+      <widget class="QComboBox" name="m_air">
        <property name="whatsThis">
         <string>This is the musical name of the tempo value</string>
        </property>
@@ -530,7 +530,7 @@ It is the denominator in the time signature specification.</string>
        <property name="whatsThis">
         <string>The current &lt;i&gt;tempo&lt;/i&gt; value</string>
        </property>
-       <property name="numDigits">
+       <property name="digitCount">
         <number>3</number>
        </property>
        <property name="value" stdset="0">
@@ -604,28 +604,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Knob</class>
-   <extends>QDial</extends>
-   <header>knob.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>m_pattern</tabstop>
   <tabstop>m_beatsBar</tabstop>
@@ -637,16 +615,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   <tabstop>m_dial4</tabstop>
   <tabstop>m_tempo</tabstop>
  </tabstops>
- <includes>
-  <include location="local">knob.h</include>
-  <include location="local">knob.h</include>
-  <include location="local">kpushbutton.h</include>
-  <include location="local">kpushbutton.h</include>
-  <include location="local">kpushbutton.h</include>
-  <include location="local">kpushbutton.h</include>
-  <include location="local">knuminput.h</include>
-  <include location="local">kcombobox.h</include>
- </includes>
  <resources>
   <include location="kmetronome.qrc"/>
  </resources>

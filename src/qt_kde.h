@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas                        *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas                        *
  *   plcl@users.sourceforge.net                                            *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

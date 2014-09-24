@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -22,50 +22,37 @@
 #include "kmetronomeview.h"
 #include "kmetropreferences.h"
 #include "sequenceradapter.h"
-#include "kmetronomeadaptor.h"
+//#include "kmetronomeadaptor.h"
 #include "defs.h"
 #include "drumgrid.h"
 #include "drumgridmodel.h"
 #include "instrument.h"
 
 #include <cmath>
-#include <QtCore/QEvent>
-#include <QtGui/QLabel>
-#include <QtDBus/QDBusConnection>
+#include <QEvent>
+#include <QLabel>
+#include <QStandardPaths>
+#include <QMessageBox>
+#include <QSettings>
+#include <QFileDialog>
+#include <QDebug>
 
-#include <KDE/KApplication>
-#include <KDE/KMainWindow>
-#include <KDE/KLocale>
-#include <KDE/KAction>
-#include <KDE/KToggleAction>
-#include <KDE/KStandardAction>
-#include <KDE/KActionCollection>
-#include <KDE/KConfig>
-#include <KDE/KGlobal>
-#include <KDE/KXmlGuiWindow>
-#include <KDE/KXMLGUIFactory>
-#include <KDE/KMessageBox>
-#include <KDE/KEditToolBar>
-#include <KDE/KStandardDirs>
-#include <KDE/KFileDialog>
-#include <KDE/KUrl>
-#include <KDE/KFilePlacesModel>
-#include <KDE/KDebug>
+//#include <QtDBus/QDBusConnection>
 
 KMetronome::KMetronome(QWidget *parent) :
-    KXmlGuiWindow(parent),
+    QMainWindow(parent),
     m_styledKnobs(true),
     m_view(0),
     m_seq(0)
 {
-    new KmetronomeAdaptor(this);
-    QDBusConnection dbus = QDBusConnection::sessionBus();
-    dbus.registerObject("/", this);
+    //new KmetronomeAdaptor(this);
+    //QDBusConnection dbus = QDBusConnection::sessionBus();
+    //dbus.registerObject("/", this);
     m_view = new KmetronomeView(this);
     m_model = new DrumGridModel(this);
     m_instrumentList = new InstrumentList;
     m_model->setInstrumentList(m_instrumentList);
-    QString drums =  KStandardDirs::locate("appdata", "drums.ins");
+    QString drums =  QStandardPaths::locate(QStandardPaths::DataLocation, "drums.ins");
     if (!drums.isEmpty())
         m_instrumentList->load(drums);
     try {
@@ -80,17 +67,17 @@ KMetronome::KMetronome(QWidget *parent) :
                 SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
         setCentralWidget(m_view);
         setupActions();
-        setAutoSaveSettings();
-        setupPlaces();
+        //setAutoSaveSettings();
+        //setupPlaces();
         readConfiguration();
     } catch (SequencerError& ex) {
-        QString errorstr = i18n("Fatal error from the ALSA sequencer. "
+        QString errorstr = tr("Fatal error from the ALSA sequencer. "
             "This usually happens when the kernel doesn't have ALSA support, "
             "or the device node (/dev/snd/seq) doesn't exists, "
             "or the kernel module (snd_seq) is not loaded. "
-            "Please check your ALSA/MIDI configuration. Returned error was: %1",
-            ex.qstrError());
-        KMessageBox::error(0, errorstr, i18n("Error"));
+            "Please check your ALSA/MIDI configuration. Returned error was: %1")
+            .arg(ex.qstrError());
+        QMessageBox::critical(0, tr("Error"), errorstr);
         close();
     }
 }
@@ -102,42 +89,45 @@ KMetronome::~KMetronome()
 
 void KMetronome::setupActions()
 {
-    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-    m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
-                                           actionCollection());
-    KStandardAction::configureToolbars(this, SLOT(configureToolbars()),
-            actionCollection());
+    //QAction *quit = new QAction(this);
 
-    KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
-                                 actionCollection());
-    m_playStop = new KToggleAction(KIcon("media-playback-start"),
-                                   i18n("Play/Stop"), this);
-    actionCollection()->addAction("play_stop", m_playStop);
+//    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+//    m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
+//                                           actionCollection());
+//    KStandardAction::configureToolbars(this, SLOT(configureToolbars()),
+//            actionCollection());
+//    KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
+//                                 actionCollection());
+
+    m_playStop = new QAction(this);
+    m_playStop->setText(tr("Play/Stop"));
+    m_playStop->setCheckable(true);
+    m_playStop->setIcon(QIcon::fromTheme("media-playback-start"));
+    //actionCollection()->addAction("play_stop", m_playStop);
     connect(m_playStop, SIGNAL(triggered(bool)), SLOT(toggle(bool)));
 
-    m_fakeToolbar = new KToggleAction(i18n("Show Action Buttons"), this);
+    m_fakeToolbar = new QAction(this);
+    m_fakeToolbar->setCheckable(true);
+    m_fakeToolbar->setText(tr("Show Action Buttons"));
     m_fakeToolbar->setChecked(true);
-    actionCollection()->addAction("show_faketoolbar", m_fakeToolbar);
+    //actionCollection()->addAction("show_faketoolbar", m_fakeToolbar);
     connect(m_fakeToolbar, SIGNAL(triggered(bool)), m_view,
             SLOT(displayFakeToolbar(bool)));
 
-    m_editPatterns = new KAction(KIcon("document-edit"),
-                                 i18n("Patterns"), this);
-    actionCollection()->addAction("edit_patterns", m_editPatterns);
+    m_editPatterns = new QAction(QIcon::fromTheme("document-edit"), tr("Patterns"), this);
+    //actionCollection()->addAction("edit_patterns", m_editPatterns);
     connect(m_editPatterns, SIGNAL(triggered()), SLOT(editPatterns()));
 
-    KAction* imp = new KAction(KIcon("document-import"),
-                            i18n("Import Patterns"), this);
-    actionCollection()->addAction("import_patterns", imp);
+    QAction* imp = new QAction(QIcon::fromTheme("document-import"),tr("Import Patterns"), this);
+    //actionCollection()->addAction("import_patterns", imp);
     connect(imp, SIGNAL(triggered()), SLOT(importPatterns()));
 
-    KAction* exp = new KAction( KIcon("document-export"),
-                            i18n("Export Patterns"), this);
-    actionCollection()->addAction("export_patterns", exp);
+    QAction* exp = new QAction( QIcon::fromTheme("document-export"),tr("Export Patterns"), this);
+    //actionCollection()->addAction("export_patterns", exp);
     connect(exp, SIGNAL(triggered()), SLOT(exportPatterns()));
 
-    setStandardToolBarMenuEnabled(true);
-    createGUI();
+    //setStandardToolBarMenuEnabled(true);
+    //createGUI();
 }
 
 bool KMetronome::queryExit()
@@ -148,31 +138,33 @@ bool KMetronome::queryExit()
 
 void KMetronome::saveConfiguration()
 {
-    KConfigGroup config = KGlobal::config()->group("Settings");
+    QSettings settings;
+    settings.beginGroup("Settings");
     if (m_seq == NULL)
         return;
-    config.writeEntry("instrument", m_instrument);
-    config.writeEntry("bank", m_bank);
-    config.writeEntry("program", m_program);
-    config.writeEntry("weakNote", m_seq->getWeakNote());
-    config.writeEntry("strongNote", m_seq->getStrongNote());
-    config.writeEntry("channel", m_seq->getChannel());
-    config.writeEntry("weakVelocity", m_seq->getWeakVelocity());
-    config.writeEntry("strongVelocity", m_seq->getStrongVelocity());
-    config.writeEntry("volume", m_seq->getVolume());
-    config.writeEntry("balance", m_seq->getBalance());
-    config.writeEntry("resolution", m_seq->getResolution());
-    config.writeEntry("sendNoteOff", m_seq->getSendNoteOff());
-    config.writeEntry("duration", m_seq->getNoteDuration());
-    config.writeEntry("tempo", m_seq->getBpm());
-    config.writeEntry("rhythmNumerator", m_seq->getRhythmNumerator());
-    config.writeEntry("rhythmDenominator", m_seq->getRhythmDenominator());
-    config.writeEntry("autoconnect", m_seq->getAutoConnect());
-    config.writeEntry("outputConn", m_seq->getOutputConn());
-    config.writeEntry("inputConn", m_seq->getInputConn());
-    config.writeEntry("styledKnobs", m_styledKnobs);
-    config.writeEntry("fakeToolbar", m_fakeToolbar->isChecked());
-    config.sync();
+    settings.setValue("instrument", m_instrument);
+    settings.setValue("bank", m_bank);
+    settings.setValue("program", m_program);
+    settings.setValue("weakNote", m_seq->getWeakNote());
+    settings.setValue("strongNote", m_seq->getStrongNote());
+    settings.setValue("channel", m_seq->getChannel());
+    settings.setValue("weakVelocity", m_seq->getWeakVelocity());
+    settings.setValue("strongVelocity", m_seq->getStrongVelocity());
+    settings.setValue("volume", m_seq->getVolume());
+    settings.setValue("balance", m_seq->getBalance());
+    settings.setValue("resolution", m_seq->getResolution());
+    settings.setValue("sendNoteOff", m_seq->getSendNoteOff());
+    settings.setValue("duration", m_seq->getNoteDuration());
+    settings.setValue("tempo", m_seq->getBpm());
+    settings.setValue("rhythmNumerator", m_seq->getRhythmNumerator());
+    settings.setValue("rhythmDenominator", m_seq->getRhythmDenominator());
+    settings.setValue("autoconnect", m_seq->getAutoConnect());
+    settings.setValue("outputConn", m_seq->getOutputConn());
+    settings.setValue("inputConn", m_seq->getInputConn());
+    settings.setValue("styledKnobs", m_styledKnobs);
+    settings.setValue("fakeToolbar", m_fakeToolbar->isChecked());
+    settings.endGroup();
+    settings.sync();
 }
 
 void KMetronome::applyInstrumentSettings()
@@ -200,22 +192,23 @@ void KMetronome::applyInstrumentSettings()
 
 void KMetronome::readConfiguration()
 {
-    KConfigGroup config = KGlobal::config()->group("Settings");
-    m_instrument = config.readEntry("instrument", QString());
-    m_bank = config.readEntry("bank", QString());
-    m_program = config.readEntry("program", QString());
+    QSettings settings;
+    settings.beginGroup("Settings");
+    m_instrument = settings.value("instrument", QString()).toString();
+    m_bank = settings.value("bank", QString()).toString();
+    m_program = settings.value("program", QString()).toString();
     applyInstrumentSettings();
-    m_seq->setChannel(config.readEntry("channel", METRONOME_CHANNEL));
-    m_seq->setWeakNote(config.readEntry("weakNote", METRONOME_WEAK_NOTE));
-    m_seq->setStrongNote(config.readEntry("strongNote", METRONOME_STRONG_NOTE));
-    m_seq->setResolution(config.readEntry("resolution", METRONOME_RESOLUTION));
-    int volume = config.readEntry("volume", METRONOME_VOLUME);
-    int balance = config.readEntry("balance", METRONOME_PAN);
-    int weakVel = config.readEntry("weakVelocity", METRONOME_VELOCITY);
-    int strongVel = config.readEntry("strongVelocity", METRONOME_VELOCITY);
-    int tempo = config.readEntry("tempo", 100);
-    int ts_num = config.readEntry("rhythmNumerator", 4);
-    int ts_div = config.readEntry("rhythmDenominator", 4);
+    m_seq->setChannel(settings.value("channel", METRONOME_CHANNEL).toInt());
+    m_seq->setWeakNote(settings.value("weakNote", METRONOME_WEAK_NOTE).toInt());
+    m_seq->setStrongNote(settings.value("strongNote", METRONOME_STRONG_NOTE).toInt());
+    m_seq->setResolution(settings.value("resolution", METRONOME_RESOLUTION).toInt());
+    int volume = settings.value("volume", METRONOME_VOLUME).toInt();
+    int balance = settings.value("balance", METRONOME_PAN).toInt();
+    int weakVel = settings.value("weakVelocity", METRONOME_VELOCITY).toInt();
+    int strongVel = settings.value("strongVelocity", METRONOME_VELOCITY).toInt();
+    int tempo = settings.value("tempo", 100).toInt();
+    int ts_num = settings.value("rhythmNumerator", 4).toInt();
+    int ts_div = settings.value("rhythmDenominator", 4).toInt();
     m_seq->setVolume(volume);
     m_seq->setBalance(balance);
     m_seq->setWeakVelocity(weakVel);
@@ -230,22 +223,22 @@ void KMetronome::readConfiguration()
     m_view->displayStrongVelocity(strongVel);
     m_view->displayVolume(volume);
     m_view->displayBalance(balance);
-    int duration = config.readEntry("duration", NOTE_DURATION);
+    int duration = settings.value("duration", NOTE_DURATION).toInt();
     m_seq->setNoteDuration(duration);
-    bool sendNoteOff = config.readEntry("sendNoteOff", true);
+    bool sendNoteOff = settings.value("sendNoteOff", true).toBool();
     m_seq->setSendNoteOff(sendNoteOff);
-    bool autoconn = config.readEntry("autoconnect", false);
+    bool autoconn = settings.value("autoconnect", false).toBool();
     m_seq->setAutoConnect(autoconn);
     if(autoconn) {
-        m_seq->setOutputConn(config.readEntry("outputConn", "20:0"));
-        m_seq->setInputConn(config.readEntry("inputConn", "20:0"));
+        m_seq->setOutputConn(settings.value("outputConn", "20:0").toString());
+        m_seq->setInputConn(settings.value("inputConn", "20:0").toString());
         m_seq->connect_output();
         m_seq->connect_input();
     }
-    m_styledKnobs = config.readEntry("styledKnobs", true);
+    m_styledKnobs = settings.value("styledKnobs", true).toBool();
     m_seq->sendInitialControls();
-    m_view->updateKnobs(m_styledKnobs);
-    bool fakeToolbar = config.readEntry("fakeToolbar", true);
+    //m_view->updateKnobs(m_styledKnobs);
+    bool fakeToolbar = settings.value("fakeToolbar", true).toBool();
     m_fakeToolbar->setChecked(fakeToolbar);
     m_view->displayFakeToolbar(fakeToolbar);
     updatePatterns();
@@ -273,7 +266,6 @@ void KMetronome::optionsPreferences()
     dlg->setResolution(m_seq->getResolution());
     dlg->setSendNoteOff(m_seq->getSendNoteOff());
     dlg->setDuration(m_seq->getNoteDuration());
-    dlg->setStyledKnobs(m_styledKnobs);
     if (dlg->exec() == QDialog::Accepted) {
         m_seq->disconnect_output();
         m_seq->disconnect_input();
@@ -294,10 +286,6 @@ void KMetronome::optionsPreferences()
             m_seq->connect_output();
             m_seq->connect_input();
             m_seq->sendInitialControls();
-            if (m_styledKnobs != dlg->getStyledKnobs()) {
-                m_styledKnobs = dlg->getStyledKnobs();
-                m_view->updateKnobs(m_styledKnobs);
-            }
         }
     }
     delete dlg;
@@ -413,8 +401,8 @@ void KMetronome::updatePatterns()
 {
     const int n(QSTR_PATTERN.size());
     QStringList lst;
-    KGlobal::config()->reparseConfiguration();
-    foreach(const QString& name, KGlobal::config()->groupList()) {
+    QSettings settings;
+    foreach(const QString& name, settings.childGroups()) {
         if (name.startsWith(QSTR_PATTERN))
             lst += name.mid(n);
     }
@@ -460,42 +448,53 @@ void KMetronome::patternChanged(int /*idx*/)
 
 void KMetronome::importPatterns(const QString& path)
 {
-    KConfig cfg(path, KConfig::SimpleConfig);
-    foreach(const QString& name, cfg.groupList()) {
-        KConfigGroup input = cfg.group(name);
-        KConfigGroup output = KGlobal::config()->group(QSTR_PATTERN+name);
-        output.deleteGroup();
-        input.copyTo(&output);
+    QSettings settings;
+    QSettings input(path, QSettings::IniFormat, this);
+    foreach(const QString& name, input.childGroups()) {
+        input.beginGroup(name);
+        settings.beginGroup(QSTR_PATTERN+name);
+        settings.remove("");
+        foreach(const QString& key, input.childKeys()) {
+            settings.setValue(key, input.value(key));
+        }
+        settings.endGroup();
+        input.endGroup();
     }
+    settings.sync();
     updatePatterns();
 }
 
 void KMetronome::exportPatterns(const QString& path)
 {
+    QSettings settings;
+    QSettings output(path, QSettings::IniFormat, this);
     const int n(QSTR_PATTERN.size());
     QStringList lst;
-    KGlobal::config()->reparseConfiguration();
-    foreach(const QString& name, KGlobal::config()->groupList()) {
-        if (name.startsWith(QSTR_PATTERN))
+    foreach(const QString& name, settings.childGroups()) {
+        if (name.startsWith(QSTR_PATTERN)) {
             lst += name.mid(n);
+        }
     }
     if (!lst.isEmpty()) {
-        KConfig cfg(path, KConfig::SimpleConfig);
         foreach(const QString& name, lst) {
-            KConfigGroup input = KGlobal::config()->group(QSTR_PATTERN+name);
-            KConfigGroup output = cfg.group(name);
-            input.copyTo(&output);
+            settings.beginGroup(QSTR_PATTERN+name);
+            output.beginGroup(name);
+            output.remove("");
+            foreach(const QString& key, settings.childKeys()) {
+                output.setValue(key, settings.value(key));
+            }
+            output.endGroup();
+            settings.endGroup();
         }
-        cfg.sync();
+        output.sync();
     }
 }
 
 void KMetronome::importPatterns()
 {
-    KUrl u = KFileDialog::getOpenUrl(
-                KUrl("kfiledialog:///KMetronome"),
-                i18n("*.pat|Pattern Files (*.pat)"), this,
-                i18n("Import Patterns"));
+    QUrl u = QFileDialog::getOpenFileUrl(this, tr("Import Patterns"),
+                QUrl("kfiledialog:///KMetronome"),
+                tr("*.pat|Pattern Files (*.pat)"));
     if (!u.isEmpty()) {
         QString path = u.toLocalFile();
         if (!path.isNull())
@@ -505,10 +504,9 @@ void KMetronome::importPatterns()
 
 void KMetronome::exportPatterns()
 {
-    KUrl u = KFileDialog::getSaveUrl(
-                KUrl("kfiledialog:///KMetronome"),
-                i18n("*.pat|Pattern Files (*.pat)"), this,
-                i18n("Export Patterns"));
+    QUrl u = QFileDialog::getSaveFileUrl(this, tr("Export Patterns"),
+                QUrl("kfiledialog:///KMetronome"),
+                tr("*.pat|Pattern Files (*.pat)"));
     if (!u.isEmpty()) {
         QString path = u.toLocalFile();
         if (!path.isNull())
@@ -516,7 +514,7 @@ void KMetronome::exportPatterns()
     }
 }
 
-void KMetronome::setupPlaces()
+/*void KMetronome::setupPlaces()
 {
     KFilePlacesModel *placesModel = new KFilePlacesModel;
     QString drums =  KStandardDirs::locate("appdata", "drums.ins");
@@ -524,9 +522,9 @@ void KMetronome::setupPlaces()
         QFileInfo info(drums);
         KUrl samples(info.absolutePath());
         if (placesModel->url(placesModel->closestItem(samples)) != samples) {
-            placesModel->addPlace(i18n("Patterns"), samples,
+            placesModel->addPlace(tr("Patterns"), samples,
                 KApplication::applicationName(), KApplication::applicationName());
         }
     }
     delete placesModel;
-}
+}*/

@@ -3,7 +3,7 @@
  <author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
  <comment>
 KMetronome - ALSA Sequencer based MIDI metronome
-Copyright (C) 2005-2012 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+Copyright (C) 2005-2014 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
 
 This program is free software; you can redistribute it and/or modify 
 it under the terms of the GNU General Public License as published by 
@@ -51,7 +51,7 @@ MA 02110-1301, USA
        </widget>
       </item>
       <item>
-       <widget class="KComboBox" name="patternCombo">
+       <widget class="QComboBox" name="patternCombo">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -67,7 +67,7 @@ MA 02110-1301, USA
        </widget>
       </item>
       <item>
-       <widget class="KPushButton" name="saveButton">
+       <widget class="QPushButton" name="saveButton">
         <property name="whatsThis">
          <string>This button stores the current pattern definition with the name given</string>
         </property>
@@ -77,7 +77,7 @@ MA 02110-1301, USA
        </widget>
       </item>
       <item>
-       <widget class="KPushButton" name="deleteButton">
+       <widget class="QPushButton" name="deleteButton">
         <property name="whatsThis">
          <string>This button deletes the current pattern definition</string>
         </property>
@@ -106,7 +106,7 @@ MA 02110-1301, USA
        </widget>
       </item>
       <item>
-       <widget class="KPushButton" name="addButton">
+       <widget class="QPushButton" name="addButton">
         <property name="whatsThis">
          <string>Use this button to add new rows (sounds) to the current pattern definition</string>
         </property>
@@ -116,7 +116,7 @@ MA 02110-1301, USA
        </widget>
       </item>
       <item>
-       <widget class="KPushButton" name="removeButton">
+       <widget class="QPushButton" name="removeButton">
         <property name="whatsThis">
          <string>Use this button to remove the selected row (sound) from the pattern definition</string>
         </property>
@@ -167,7 +167,7 @@ Columns</string>
         <property name="whatsThis">
          <string>This is the current beat number</string>
         </property>
-        <property name="numDigits">
+        <property name="digitCount">
          <number>2</number>
         </property>
         <property name="segmentStyle">
@@ -198,7 +198,7 @@ Columns</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="KIntSpinBox" name="gridColumns">
+       <widget class="QSpinBox" name="gridColumns">
         <property name="whatsThis">
          <string>Number of beats per measure (bar)</string>
         </property>
@@ -214,7 +214,7 @@ Columns</string>
        </widget>
       </item>
       <item>
-       <widget class="KComboBox" name="figureCombo">
+       <widget class="QComboBox" name="figureCombo">
         <property name="whatsThis">
          <string>This is the beat length for the pattern column.</string>
         </property>
@@ -374,23 +374,6 @@ Columns</string>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>patternCombo</tabstop>
   <tabstop>saveButton</tabstop>

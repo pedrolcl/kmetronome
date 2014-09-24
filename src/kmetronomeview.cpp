@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -20,15 +20,14 @@
 
 #include "kmetronomeview.h"
 #include "kmetronome.h"
-#include "classicstyle.h"
-#include "knob.h"
 #include "defs.h"
 
-#include <QLCDNumber>
+#include <QApplication>
 #include <QMouseEvent>
-#include <KDE/KApplication>
-#include <KDE/KInputDialog>
-#include <KDE/KDebug>
+#include <QLCDNumber>
+#include <QIcon>
+#include <QInputDialog>
+#include <QDebug>
 
 KmetronomeView::KmetronomeView(QWidget *parent)
      : QWidget(parent), Ui::KmetronomeViewBase(),
@@ -37,22 +36,14 @@ KmetronomeView::KmetronomeView(QWidget *parent)
 {
     setupUi(this);
 
-    m_exitbtn->setIcon(KIcon("application-exit"));
+    m_exitbtn->setIcon(QIcon::fromTheme("application-exit"));
     m_exitbtn->setFocusPolicy(Qt::NoFocus);
-    m_configbtn->setIcon(KIcon("configure"));
-    m_playbtn->setIcon(KIcon("media-playback-start"));
-    m_playbtn->setShortcut( Qt::Key_MediaPlay );
-    m_stopbtn->setIcon(KIcon("media-playback-stop"));
-    m_stopbtn->setShortcut( Qt::Key_MediaStop );
-    m_patternbtn->setIcon(KIcon("document-edit"));
-
-    m_dialStyle = new ClassicStyle();
-    m_dialStyle->setParent(this);
-
-    m_dial1->setDialMode(Knob::LinearMode);
-    m_dial2->setDialMode(Knob::LinearMode);
-    m_dial3->setDialMode(Knob::LinearMode);
-    m_dial4->setDialMode(Knob::LinearMode);
+    m_configbtn->setIcon(QIcon::fromTheme("configure"));
+    m_playbtn->setIcon(QIcon::fromTheme("media-playback-start"));
+    m_playbtn->setShortcut(Qt::Key_MediaPlay);
+    m_stopbtn->setIcon(QIcon::fromTheme("media-playback-stop"));
+    m_stopbtn->setShortcut(Qt::Key_MediaStop);
+    m_patternbtn->setIcon(QIcon::fromTheme("document-edit"));
 
     /**
      * Tempo reference:
@@ -70,7 +61,7 @@ KmetronomeView::KmetronomeView(QWidget *parent)
     m_air->addItem("Prestissimo",200);
     m_air->setCurrentIndex(4);
 
-    connect( m_exitbtn, SIGNAL(clicked()), kapp, SLOT(quit()) );
+    connect( m_exitbtn, SIGNAL(clicked()), qApp, SLOT(quit()) );
     connect( m_configbtn, SIGNAL(clicked()),
              parent, SLOT(optionsPreferences()) );
     connect( m_patternbtn, SIGNAL(clicked()),
@@ -141,10 +132,8 @@ void KmetronomeView::enableControls(bool e)
 void KmetronomeView::mouseDoubleClickEvent(QMouseEvent *)
 {
     bool ok = false;
-    int newTempo = KInputDialog::getInteger(
-    					i18n("Tempo"), i18n("Enter new Tempo:"),
-    					m_tempo->value(), TEMPO_MIN, TEMPO_MAX, 1, 10,
-					    &ok, this );
+    int newTempo = QInputDialog::getInt(this, tr("Tempo"), tr("Enter new Tempo:"),
+                        m_tempo->value(), TEMPO_MIN, TEMPO_MAX, 1, &ok );
     if (ok) {
     	m_tempo->setValue(newTempo);
     }
@@ -155,13 +144,13 @@ void KmetronomeView::tempoComboChanged(int v)
     m_tempo->setValue(m_air->itemData(v).toInt());
 }
 
-void KmetronomeView::updateKnobs(bool styled)
-{
-    QList<Knob *> allKnobs = findChildren<Knob *> ();
-    foreach(Knob* knob, allKnobs) {
-        knob->setStyle(styled ? m_dialStyle : NULL);
-    }
-}
+//void KmetronomeView::updateKnobs(bool styled)
+//{
+//    QList<Knob *> allKnobs = findChildren<Knob *> ();
+//    foreach(Knob* knob, allKnobs) {
+//        knob->setStyle(styled ? m_dialStyle : NULL);
+//    }
+//}
 
 void KmetronomeView::play()
 {
@@ -176,7 +165,7 @@ void KmetronomeView::stop()
 void KmetronomeView::setPatterns(const QStringList& patterns)
 {
     m_pattern->clear();
-    m_pattern->addItem(i18nc("the pattern is created automatically", "Automatic"));
+    m_pattern->addItem(tr("Automatic", "the pattern is created automatically"));
     m_pattern->addItems(patterns);
 }
 
@@ -197,7 +186,7 @@ void KmetronomeView::setSelectedPattern(const QString& pattern)
     if (pattern.isEmpty()) {
         patternChanged(0);
     } else {
-        m_pattern->setCurrentItem(pattern);
+        m_pattern->setCurrentText(pattern);
         patternChanged(m_pattern->currentIndex());
     }
 }

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,8 +23,6 @@
 
 #include <QMouseEvent>
 #include <QStyle>
-#include <kcombobox.h>
-#include <knuminput.h>
 
 #include "ui_kmetronomeviewbase.h"
 
@@ -42,7 +40,7 @@ public:
     void setBeatsBar(int newValue) { m_beatsBar->setValue(newValue); }
     void setFigure(int newValue);
     void enableControls(bool e);
-    void updateKnobs(bool styled);
+    //void updateKnobs(bool styled);
     void setPatterns(const QStringList& patterns);
     bool patternMode() { return m_patternMode; }
     QString getSelectedPattern();

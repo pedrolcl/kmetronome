@@ -3,7 +3,7 @@
  <author>Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;</author>
  <comment>
 KMetronome - ALSA Sequencer based MIDI metronome
-Copyright (C) 2005-2012 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
+Copyright (C) 2005-2014 Pedro Lopez-Cabanillas &lt;plcl@users.sourceforge.net&gt;
 
 This program is free software; you can redistribute it and/or modify 
 it under the terms of the GNU General Public License as published by 
@@ -72,7 +72,7 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="KComboBox" name="m_in_connection">
+      <widget class="QComboBox" name="m_in_connection">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -113,7 +113,7 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="KComboBox" name="m_out_connection">
+      <widget class="QComboBox" name="m_out_connection">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -136,7 +136,7 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="KComboBox" name="m_instrument">
+      <widget class="QComboBox" name="m_instrument">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -166,7 +166,7 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="KComboBox" name="m_bank">
+      <widget class="QComboBox" name="m_bank">
        <property name="whatsThis">
         <string>This is the Bank of the selected MIDI program</string>
        </property>
@@ -201,7 +201,7 @@ MA 02110-1301, USA
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="KIntSpinBox" name="m_channel">
+      <widget class="QSpinBox" name="m_channel">
        <property name="whatsThis">
         <string>This is the MIDI channel, between 1 and 16. 
 General MIDI uses the channel 10 for percussion sounds.</string>
@@ -246,7 +246,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="KComboBox" name="m_program">
+      <widget class="QComboBox" name="m_program">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -281,7 +281,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="KIntSpinBox" name="m_resolution">
+      <widget class="QSpinBox" name="m_resolution">
        <property name="whatsThis">
         <string>This is the MIDI time resolution (number of ticks in a quarter note)</string>
        </property>
@@ -316,7 +316,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="KComboBox" name="m_weak_note">
+      <widget class="QComboBox" name="m_weak_note">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -351,7 +351,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="KIntSpinBox" name="m_duration">
+      <widget class="QSpinBox" name="m_duration">
        <property name="whatsThis">
         <string>This is the note duration in ticks, when using NOTE OFF events</string>
        </property>
@@ -389,7 +389,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
       </widget>
      </item>
      <item row="3" column="3">
-      <widget class="KComboBox" name="m_strong_note">
+      <widget class="QComboBox" name="m_strong_note">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -434,37 +434,12 @@ General MIDI uses the channel 10 for percussion sounds.</string>
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QCheckBox" name="m_styledknobs">
-       <property name="whatsThis">
-        <string>If this option is activated, the knobs are drawn using a custom style</string>
-       </property>
-       <property name="text">
-        <string>Styled Knobs</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>m_autoconn</tabstop>
   <tabstop>m_in_connection</tabstop>
@@ -478,12 +453,7 @@ General MIDI uses the channel 10 for percussion sounds.</string>
   <tabstop>m_duration</tabstop>
   <tabstop>m_strong_note</tabstop>
   <tabstop>m_use_noteoff</tabstop>
-  <tabstop>m_styledknobs</tabstop>
  </tabstops>
- <includes>
-  <include location="local">kcombobox.h</include>
-  <include location="local">knuminput.h</include>
- </includes>
  <resources/>
  <connections>
   <connection>

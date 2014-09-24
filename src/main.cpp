@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,17 +18,13 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include <kapplication.h>
-#include <kaboutdata.h>
-#include <kcmdlineargs.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <QApplication>
 #include "kmetronome.h"
 
-static const char description[] =
-        I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
+//static const char description[] =
+//        I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
 
-static const char version[] = VERSION;
+//static const char version[] = VERSION;
 
 /*static KCmdLineOptions options[] =
  {
@@ -38,27 +34,27 @@ static const char version[] = VERSION;
 
 int main (int argc, char **argv)
 {
-    KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, ki18n(
-            description), KAboutData::License_GPL, ki18n(
-            "(C) 2005-2012 Pedro Lopez-Cabanillas"), KLocalizedString(),
-            "http://kmetronome.sourceforge.net", "plcl@users.sourceforge.net");
-    about.addAuthor(ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(),
-            "plcl@users.sourceforge.net");
-    KCmdLineArgs::init(argc, argv, &about);
+//    KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, ki18n(
+//            description), KAboutData::License_GPL, ki18n(
+//            "(C) 2005-2012 Pedro Lopez-Cabanillas"), KLocalizedString(),
+//            "http://kmetronome.sourceforge.net", "plcl@users.sourceforge.net");
+//    about.addAuthor(ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(),
+//            "plcl@users.sourceforge.net");
+//    KCmdLineArgs::init(argc, argv, &about);
     //KCmdLineOptions options;
     //options.add("+[URL]", ki18n( "Document to open" ));
     //KCmdLineArgs::addCmdLineOptions( options );
 
-    KApplication app;
+    QApplication app(argc, argv);
     KMetronome *mainWin = 0;
-    if (app.isSessionRestored()) {
-        RESTORE(KMetronome);
-    } else {
+//    if (app.isSessionRestored()) {
+//        RESTORE(KMetronome);
+//    } else {
         // no session.. just start up normally
         //KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         mainWin = new KMetronome;
         mainWin->show();
         //args->clear();
-    }
+//    }
     return app.exec();
 }

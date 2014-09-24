@@ -1,6 +1,6 @@
 /*
     KMetronome - ALSA Sequencer based MIDI metronome
-    Copyright (C) 2006-2012, Pedro Lopez-Cabanillas <plcl@users.sf.net>
+    Copyright (C) 2006-2014, Pedro Lopez-Cabanillas <plcl@users.sf.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@
 #define DRUMGRID_H
 
 #include "defs.h"
-#include <KDE/KDialog>
-#include <QtGui/QMenu>
-#include <QtGui/QShortcut>
-#include <QtGui/QCloseEvent>
-#include <QtCore/QSignalMapper>
+#include <QDialog>
+#include <QMenu>
+#include <QShortcut>
+#include <QCloseEvent>
+#include <QSignalMapper>
+#include <QWidget>
 
 namespace Ui
 {
@@ -45,10 +46,9 @@ class DrumGridModel;
 
 using namespace drumstick;
 
-class DrumGrid : public KDialog
+class DrumGrid : public QDialog
 {
     Q_OBJECT
-
 public:
     DrumGrid(QWidget *parent = 0);
     virtual ~DrumGrid();

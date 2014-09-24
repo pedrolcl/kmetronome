@@ -1,6 +1,6 @@
 /***************************************************************************
  *   KMetronome - ALSA Sequencer based MIDI metronome                      *
- *   Copyright (C) 2005-2012 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
+ *   Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sf.net>    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,12 +21,9 @@
 #include "sequenceradapter.h"
 #include "defs.h"
 #include "drumgridmodel.h"
-#include <alsaqueue.h>
-#include <alsaevent.h>
+#include <drumstick/alsaqueue.h>
+#include <drumstick/alsaevent.h>
 #include <QStringList>
-#include <kapplication.h>
-#include <klocale.h>
-#include <kmessagebox.h>
 
 SequencerAdapter::SequencerAdapter(QObject *parent) :
     QObject(parent),
@@ -62,7 +59,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_patternMode(false),
     m_outputConn(""),
     m_inputConn(""),
-    NO_CONNECTION(i18n("No connection"))
+    NO_CONNECTION(tr("No connection"))
 {
     m_Client = new MidiClient(this);
     m_Client->open();

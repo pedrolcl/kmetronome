@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA
 </comment>
  <class>KMetroPreferencesBase</class>
- <widget class="QWidget" name="KMetroPreferencesBase">
+ <widget class="QDialog" name="KMetroPreferencesBase">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -436,6 +436,13 @@ General MIDI uses the channel 10 for percussion sounds.</string>
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -463,12 +470,44 @@ General MIDI uses the channel 10 for percussion sounds.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>296</y>
+     <x>139</x>
+     <y>264</y>
     </hint>
     <hint type="destinationlabel">
-     <x>158</x>
-     <y>259</y>
+     <x>162</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>KMetroPreferencesBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>261</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>326</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>KMetroPreferencesBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>217</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>218</x>
+     <y>325</y>
     </hint>
    </hints>
   </connection>

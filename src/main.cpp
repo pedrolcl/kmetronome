@@ -21,40 +21,16 @@
 #include <QApplication>
 #include "kmetronome.h"
 
-//static const char description[] =
-//        I18N_NOOP("KDE MIDI metronome using ALSA sequencer");
-
-//static const char version[] = VERSION;
-
-/*static KCmdLineOptions options[] =
- {
- //    { "+[URL]", I18N_NOOP( "Document to open." ), 0 },
- KCmdLineLastOption
- };*/
+const QString QSTR_APPNAME("Drumstick Metronome");
+const QString QSTR_DOMAIN("kmetronome.sourceforge.net");
 
 int main (int argc, char **argv)
 {
-//    KAboutData about("kmetronome", 0, ki18n("KMetronome"), version, ki18n(
-//            description), KAboutData::License_GPL, ki18n(
-//            "(C) 2005-2012 Pedro Lopez-Cabanillas"), KLocalizedString(),
-//            "http://kmetronome.sourceforge.net", "plcl@users.sourceforge.net");
-//    about.addAuthor(ki18n("Pedro Lopez-Cabanillas"), KLocalizedString(),
-//            "plcl@users.sourceforge.net");
-//    KCmdLineArgs::init(argc, argv, &about);
-    //KCmdLineOptions options;
-    //options.add("+[URL]", ki18n( "Document to open" ));
-    //KCmdLineArgs::addCmdLineOptions( options );
-
+    QCoreApplication::setOrganizationName(QSTR_DOMAIN);
+    QCoreApplication::setOrganizationDomain(QSTR_DOMAIN);
+    QCoreApplication::setApplicationName(QSTR_APPNAME);
     QApplication app(argc, argv);
-    KMetronome *mainWin = 0;
-//    if (app.isSessionRestored()) {
-//        RESTORE(KMetronome);
-//    } else {
-        // no session.. just start up normally
-        //KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        mainWin = new KMetronome;
-        mainWin->show();
-        //args->clear();
-//    }
+    KMetronome *mainWin = new KMetronome;
+    mainWin->show();
     return app.exec();
 }

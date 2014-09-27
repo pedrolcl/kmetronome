@@ -18,16 +18,6 @@
  *   MA 02110-1301, USA                                                    *
  ***************************************************************************/
 
-#include "kmetronome.h"
-#include "kmetronomeview.h"
-#include "kmetropreferences.h"
-#include "sequenceradapter.h"
-//#include "kmetronomeadaptor.h"
-#include "defs.h"
-#include "drumgrid.h"
-#include "drumgridmodel.h"
-#include "instrument.h"
-
 #include <cmath>
 #include <QEvent>
 #include <QLabel>
@@ -35,26 +25,88 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QFileDialog>
+#include <QInputDialog>
+#include <QCloseEvent>
+#include <QtDBus/QDBusConnection>
+
 #include <QDebug>
 
-//#include <QtDBus/QDBusConnection>
+#include "kmetronome.h"
+#include "kmetropreferences.h"
+#include "sequenceradapter.h"
+#include "defs.h"
+#include "drumgrid.h"
+#include "drumgridmodel.h"
+#include "instrument.h"
+#include "about.h"
+#include "kmetronome_adaptor.h"
+
+const QString QSTR_AppPX("kmetronome_");
+const QString QSTR_QTPX("qt_");
 
 KMetronome::KMetronome(QWidget *parent) :
     QMainWindow(parent),
-    m_styledKnobs(true),
-    m_view(0),
+    m_patternMode(false),
     m_seq(0)
 {
-    //new KmetronomeAdaptor(this);
-    //QDBusConnection dbus = QDBusConnection::sessionBus();
-    //dbus.registerObject("/", this);
-    m_view = new KmetronomeView(this);
+    new KmetronomeAdaptor(this);
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject("/", this);
+    dbus.registerService("net.sourceforge.kmetronome");
+
+    /*m_trq = new QTranslator(this);
+    m_trp = new QTranslator(this);
+    m_trq->load( QSTR_QTPX + configuredLanguage(),
+                 QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
+    m_trp->load( QSTR_AppPX + configuredLanguage(),
+                 QStandardPaths::locate(QStandardPaths::ApplicationsLocation,QSTR_AppPX + configuredLanguage()) );
+    QCoreApplication::installTranslator(m_trq);
+    QCoreApplication::installTranslator(m_trp);*/
+
+    m_ui.setupUi(this);
+    m_ui.m_exitbtn->setFocusPolicy(Qt::NoFocus);
+    m_ui.m_playbtn->setShortcut(Qt::Key_MediaPlay);
+    m_ui.m_stopbtn->setShortcut(Qt::Key_MediaStop);
+
+    /**
+     * Tempo reference:
+     * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html
+     */
+    m_ui.m_air->addItem("Larghissimo", 20);
+    m_ui.m_air->addItem("Largo",       40);
+    m_ui.m_air->addItem("Larghetto",   60);
+    m_ui.m_air->addItem("Adagio",      70);
+    m_ui.m_air->addItem("Andante",     90);
+    m_ui.m_air->addItem("Moderato",   110);
+    m_ui.m_air->addItem("Allegro",    120);
+    m_ui.m_air->addItem("Vivace",     160);
+    m_ui.m_air->addItem("Presto",     170);
+    m_ui.m_air->addItem("Prestissimo",200);
+    m_ui.m_air->setCurrentIndex(4);
+
+    connect( m_ui.m_exitbtn, SIGNAL(clicked()), SLOT(close()) );
+    connect( m_ui.m_configbtn, SIGNAL(clicked()), SLOT(optionsPreferences()) );
+    connect( m_ui.m_patternbtn, SIGNAL(clicked()), SLOT(editPatterns()) );
+    connect( m_ui.m_playbtn, SIGNAL(clicked()), SLOT(play()) );
+    connect( m_ui.m_stopbtn, SIGNAL(clicked()), SLOT(stop()) );
+    connect( m_ui.m_beatsBar, SIGNAL(valueChanged(int)), SLOT(beatsBarChanged(int)) );
+    connect( m_ui.m_figure, SIGNAL(activated(int)), SLOT(rhythmFigureChanged(int)) );
+    connect( m_ui.m_tempo, SIGNAL(valueChanged(int)), SLOT(tempoChanged(int)) );
+    connect( m_ui.m_dial1, SIGNAL(valueChanged(int)), SLOT(weakVeloChanged(int)) );
+    connect( m_ui.m_dial2, SIGNAL(valueChanged(int)), SLOT(strongVeloChanged(int)) );
+    connect( m_ui.m_dial3, SIGNAL(valueChanged(int)), SLOT(volumeChanged(int)) );
+    connect( m_ui.m_dial4, SIGNAL(valueChanged(int)), SLOT(balanceChanged(int)) );
+    connect( m_ui.m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
+    connect( m_ui.m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
+    connect( m_ui.m_pattern, SIGNAL(activated(int)), SLOT(patternChanged(int)) );
+
     m_model = new DrumGridModel(this);
     m_instrumentList = new InstrumentList;
     m_model->setInstrumentList(m_instrumentList);
     QString drums =  QStandardPaths::locate(QStandardPaths::DataLocation, "drums.ins");
-    if (!drums.isEmpty())
+    if (!drums.isEmpty()) {
         m_instrumentList->load(drums);
+    }
     try {
         m_seq = new SequencerAdapter(this);
         m_seq->setModel(m_model);
@@ -65,10 +117,7 @@ KMetronome::KMetronome(QWidget *parent) :
         connect(m_seq, SIGNAL(signalCont()), SLOT(cont()), Qt::QueuedConnection);
         connect(m_seq, SIGNAL(signalNotation(int,int)),
                 SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
-        setCentralWidget(m_view);
         setupActions();
-        //setAutoSaveSettings();
-        //setupPlaces();
         readConfiguration();
     } catch (SequencerError& ex) {
         QString errorstr = tr("Fatal error from the ALSA sequencer. "
@@ -89,80 +138,58 @@ KMetronome::~KMetronome()
 
 void KMetronome::setupActions()
 {
-    //QAction *quit = new QAction(this);
-
-//    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-//    m_prefs = KStandardAction::preferences(this, SLOT(optionsPreferences()),
-//                                           actionCollection());
-//    KStandardAction::configureToolbars(this, SLOT(configureToolbars()),
-//            actionCollection());
-//    KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
-//                                 actionCollection());
-
-    m_playStop = new QAction(this);
-    m_playStop->setText(tr("Play/Stop"));
-    m_playStop->setCheckable(true);
-    m_playStop->setIcon(QIcon::fromTheme("media-playback-start"));
-    //actionCollection()->addAction("play_stop", m_playStop);
-    connect(m_playStop, SIGNAL(triggered(bool)), SLOT(toggle(bool)));
-
-    m_fakeToolbar = new QAction(this);
-    m_fakeToolbar->setCheckable(true);
-    m_fakeToolbar->setText(tr("Show Action Buttons"));
-    m_fakeToolbar->setChecked(true);
-    //actionCollection()->addAction("show_faketoolbar", m_fakeToolbar);
-    connect(m_fakeToolbar, SIGNAL(triggered(bool)), m_view,
-            SLOT(displayFakeToolbar(bool)));
-
-    m_editPatterns = new QAction(QIcon::fromTheme("document-edit"), tr("Patterns"), this);
-    //actionCollection()->addAction("edit_patterns", m_editPatterns);
-    connect(m_editPatterns, SIGNAL(triggered()), SLOT(editPatterns()));
-
-    QAction* imp = new QAction(QIcon::fromTheme("document-import"),tr("Import Patterns"), this);
-    //actionCollection()->addAction("import_patterns", imp);
-    connect(imp, SIGNAL(triggered()), SLOT(importPatterns()));
-
-    QAction* exp = new QAction( QIcon::fromTheme("document-export"),tr("Export Patterns"), this);
-    //actionCollection()->addAction("export_patterns", exp);
-    connect(exp, SIGNAL(triggered()), SLOT(exportPatterns()));
-
-    //setStandardToolBarMenuEnabled(true);
-    //createGUI();
+    m_ui.actionAboutQt->setIcon(QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"));
+    connect( m_ui.actionPlayStop, SIGNAL(triggered(bool)), SLOT(toggle(bool)) );
+    connect( m_ui.actionImportPatterns, SIGNAL(triggered()), SLOT(importPatterns()) );
+    connect( m_ui.actionExportPatterns, SIGNAL(triggered()), SLOT(exportPatterns()) );
+    connect( m_ui.actionQuit, SIGNAL(triggered()), SLOT(close()) );
+    connect( m_ui.actionEditPatterns, SIGNAL(triggered()), SLOT(editPatterns()) );
+    connect( m_ui.actionShowActionButtons, SIGNAL(triggered(bool)), SLOT(displayFakeToolbar(bool)));
+    connect( m_ui.actionConfiguration, SIGNAL(triggered()), SLOT(optionsPreferences()) );
+    connect( m_ui.actionAbout, SIGNAL(triggered()), SLOT(about()) );
+    connect( m_ui.actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()) );
 }
 
-bool KMetronome::queryExit()
+void KMetronome::closeEvent(QCloseEvent *event)
 {
     saveConfiguration();
-    return true;
+    QMainWindow::closeEvent(event);
+}
+
+void KMetronome::about()
+{
+    About dlg(this);
+    dlg.exec();
 }
 
 void KMetronome::saveConfiguration()
 {
     QSettings settings;
     settings.beginGroup("Settings");
-    if (m_seq == NULL)
-        return;
-    settings.setValue("instrument", m_instrument);
-    settings.setValue("bank", m_bank);
-    settings.setValue("program", m_program);
-    settings.setValue("weakNote", m_seq->getWeakNote());
-    settings.setValue("strongNote", m_seq->getStrongNote());
-    settings.setValue("channel", m_seq->getChannel());
-    settings.setValue("weakVelocity", m_seq->getWeakVelocity());
-    settings.setValue("strongVelocity", m_seq->getStrongVelocity());
-    settings.setValue("volume", m_seq->getVolume());
-    settings.setValue("balance", m_seq->getBalance());
-    settings.setValue("resolution", m_seq->getResolution());
-    settings.setValue("sendNoteOff", m_seq->getSendNoteOff());
-    settings.setValue("duration", m_seq->getNoteDuration());
-    settings.setValue("tempo", m_seq->getBpm());
-    settings.setValue("rhythmNumerator", m_seq->getRhythmNumerator());
-    settings.setValue("rhythmDenominator", m_seq->getRhythmDenominator());
-    settings.setValue("autoconnect", m_seq->getAutoConnect());
-    settings.setValue("outputConn", m_seq->getOutputConn());
-    settings.setValue("inputConn", m_seq->getInputConn());
-    settings.setValue("styledKnobs", m_styledKnobs);
-    settings.setValue("fakeToolbar", m_fakeToolbar->isChecked());
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("windowState", saveState());
+    if (m_seq != 0) {
+        settings.setValue("instrument", m_instrument);
+        settings.setValue("bank", m_bank);
+        settings.setValue("program", m_program);
+        settings.setValue("weakNote", m_seq->getWeakNote());
+        settings.setValue("strongNote", m_seq->getStrongNote());
+        settings.setValue("channel", m_seq->getChannel());
+        settings.setValue("weakVelocity", m_seq->getWeakVelocity());
+        settings.setValue("strongVelocity", m_seq->getStrongVelocity());
+        settings.setValue("volume", m_seq->getVolume());
+        settings.setValue("balance", m_seq->getBalance());
+        settings.setValue("resolution", m_seq->getResolution());
+        settings.setValue("sendNoteOff", m_seq->getSendNoteOff());
+        settings.setValue("duration", m_seq->getNoteDuration());
+        settings.setValue("tempo", m_seq->getBpm());
+        settings.setValue("rhythmNumerator", m_seq->getRhythmNumerator());
+        settings.setValue("rhythmDenominator", m_seq->getRhythmDenominator());
+        settings.setValue("autoconnect", m_seq->getAutoConnect());
+        settings.setValue("outputConn", m_seq->getOutputConn());
+        settings.setValue("inputConn", m_seq->getInputConn());
+        settings.setValue("fakeToolbar", m_ui.actionShowActionButtons->isChecked());
+    }
     settings.endGroup();
     settings.sync();
 }
@@ -194,6 +221,8 @@ void KMetronome::readConfiguration()
 {
     QSettings settings;
     settings.beginGroup("Settings");
+    restoreGeometry(settings.value("geometry").toByteArray());
+    restoreState(settings.value("windowState").toByteArray());
     m_instrument = settings.value("instrument", QString()).toString();
     m_bank = settings.value("bank", QString()).toString();
     m_program = settings.value("program", QString()).toString();
@@ -216,13 +245,13 @@ void KMetronome::readConfiguration()
     m_seq->setBpm(tempo);
     m_seq->setRhythmNumerator(ts_num);
     m_seq->setRhythmDenominator(ts_div);
-    m_view->setBeatsBar(ts_num);
-    m_view->setFigure(ts_div);
-    m_view->setTempo(tempo);
-    m_view->displayWeakVelocity(weakVel);
-    m_view->displayStrongVelocity(strongVel);
-    m_view->displayVolume(volume);
-    m_view->displayBalance(balance);
+    setBeatsBar(ts_num);
+    setFigure(ts_div);
+    setTempo(tempo);
+    displayWeakVelocity(weakVel);
+    displayStrongVelocity(strongVel);
+    displayVolume(volume);
+    displayBalance(balance);
     int duration = settings.value("duration", NOTE_DURATION).toInt();
     m_seq->setNoteDuration(duration);
     bool sendNoteOff = settings.value("sendNoteOff", true).toBool();
@@ -235,12 +264,10 @@ void KMetronome::readConfiguration()
         m_seq->connect_output();
         m_seq->connect_input();
     }
-    m_styledKnobs = settings.value("styledKnobs", true).toBool();
     m_seq->sendInitialControls();
-    //m_view->updateKnobs(m_styledKnobs);
     bool fakeToolbar = settings.value("fakeToolbar", true).toBool();
-    m_fakeToolbar->setChecked(fakeToolbar);
-    m_view->displayFakeToolbar(fakeToolbar);
+    m_ui.actionShowActionButtons->setChecked(fakeToolbar);
+    displayFakeToolbar(fakeToolbar);
     updatePatterns();
 }
 
@@ -293,7 +320,7 @@ void KMetronome::optionsPreferences()
 
 void KMetronome::updateDisplay(int bar, int beat)
 {
-    m_view->display(bar, beat);
+    display(bar, beat);
 }
 
 void KMetronome::tempoChanged(int newTempo)
@@ -346,25 +373,27 @@ void KMetronome::toggle(bool checked)
 
 void KMetronome::play()
 {
-    m_view->enableControls(false);
-    m_prefs->setEnabled(false);
-    m_playStop->setChecked(true);
+    enableControls(false);
+    m_ui.actionConfiguration->setEnabled(false);
+    m_ui.actionPlayStop->setChecked(true);
     m_seq->metronome_start();
     updateDisplay(1, 0);
+    m_ui.m_stopbtn->setFocus();
 }
 
 void KMetronome::stop()
 {
     m_seq->metronome_stop();
-    m_view->enableControls(true);
-    m_prefs->setEnabled(true);
-    m_playStop->setChecked(false);
+    enableControls(true);
+    m_ui.actionConfiguration->setEnabled(true);
+    m_ui.actionPlayStop->setChecked(false);
+    m_ui.m_playbtn->setFocus();
 }
 
 void KMetronome::cont()
 {
-    m_view->enableControls(false);
-    m_prefs->setEnabled(false);
+    enableControls(false);
+    m_ui.actionConfiguration->setEnabled(false);
     m_seq->metronome_continue();
 }
 
@@ -372,7 +401,7 @@ void KMetronome::setTempo(int newTempo)
 {
     if (newTempo < TEMPO_MIN || newTempo > TEMPO_MAX)
         return;
-    m_view->setTempo(newTempo);
+    m_ui.m_tempo->setValue(newTempo);
 }
 
 void KMetronome::setTimeSignature(int numerator, int denominator)
@@ -388,8 +417,8 @@ void KMetronome::setTimeSignature(int numerator, int denominator)
     if (m_seq->isPlaying() ||  numerator < 1 || numerator > 32 || invalid)
         return;
 
-    m_view->setBeatsBar(numerator);
-    m_view->setFigure(denominator);
+    setBeatsBar(numerator);
+    setFigure(denominator);
     m_seq->setRhythmDenominator(denominator);
 }
 
@@ -406,7 +435,7 @@ void KMetronome::updatePatterns()
         if (name.startsWith(QSTR_PATTERN))
             lst += name.mid(n);
     }
-    m_view->setPatterns(lst);
+    setPatterns(lst);
 }
 
 void KMetronome::readDrumGridPattern()
@@ -417,8 +446,8 @@ void KMetronome::readDrumGridPattern()
         m_drumgrid->setSequencer(m_seq);
     }
     m_drumgrid->setInstrument(m_instrument);
-    if (m_view->patternMode())
-        m_drumgrid->readPattern(m_view->getSelectedPattern());
+    if (m_patternMode)
+        m_drumgrid->readPattern(getSelectedPattern());
 }
 
 void KMetronome::editPatterns()
@@ -430,20 +459,24 @@ void KMetronome::editPatterns()
     updatePatterns();
     if (res == QDialog::Accepted && m_drumgrid != NULL)
         tmpPattern = m_drumgrid->currentPattern();
-    tempoChanged(m_view->getTempo());
-    m_view->setSelectedPattern(tmpPattern);
-    m_seq->setPatternMode(m_view->patternMode());
+    tempoChanged(getTempo());
+    setSelectedPattern(tmpPattern);
+    m_seq->setPatternMode(patternMode());
 }
 
-void KMetronome::patternChanged(int /*idx*/)
+void KMetronome::patternChanged(int idx)
 {
-    if (m_view->patternMode())
+    m_patternMode = (idx > 0);
+    if (m_patternMode) {
         readDrumGridPattern();
-    m_seq->setPatternMode(m_view->patternMode());
-    if (m_view->patternMode()) {
-        m_view->setBeatsBar(m_model->columnCount());
-        m_view->setFigure(m_model->patternFigure());
     }
+    m_seq->setPatternMode(m_patternMode);
+    if (m_patternMode) {
+        setBeatsBar(m_model->columnCount());
+        setFigure(m_model->patternFigure());
+    }
+    m_ui.m_beatsBar->setEnabled(!m_patternMode);
+    m_ui.m_figure->setEnabled(!m_patternMode);
 }
 
 void KMetronome::importPatterns(const QString& path)
@@ -492,39 +525,109 @@ void KMetronome::exportPatterns(const QString& path)
 
 void KMetronome::importPatterns()
 {
-    QUrl u = QFileDialog::getOpenFileUrl(this, tr("Import Patterns"),
-                QUrl("kfiledialog:///KMetronome"),
-                tr("*.pat|Pattern Files (*.pat)"));
-    if (!u.isEmpty()) {
-        QString path = u.toLocalFile();
-        if (!path.isNull())
-            importPatterns(path);
+    QString dirName = QStandardPaths::locate(QStandardPaths::DataLocation, "*.pat", QStandardPaths::LocateDirectory) ;
+    QString path = QFileDialog::getOpenFileName(this, tr("Import Patterns"),dirName,tr("Pattern Files (*.pat)"));
+    if (!path.isEmpty()) {
+        importPatterns(path);
     }
 }
 
 void KMetronome::exportPatterns()
 {
-    QUrl u = QFileDialog::getSaveFileUrl(this, tr("Export Patterns"),
-                QUrl("kfiledialog:///KMetronome"),
-                tr("*.pat|Pattern Files (*.pat)"));
-    if (!u.isEmpty()) {
-        QString path = u.toLocalFile();
-        if (!path.isNull())
-            exportPatterns(path);
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    QDir dir(dirName);
+    if (!dir.exists()) {
+        dir.mkpath(dirName);
+    }
+    QFileDialog dialog(this);
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setWindowTitle(tr("Export Patterns"));
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(tr("Pattern Files (*.pat)"));
+    dialog.setDirectory(dirName);
+    dialog.setDefaultSuffix("pat");
+    if (dialog.exec() == QDialog::Accepted) {
+        QStringList files = dialog.selectedFiles();
+        if (!files.isEmpty()) {
+            QString path = files.at(0);
+            if (!path.isEmpty()) {
+                exportPatterns(path);
+            }
+        }
     }
 }
 
-/*void KMetronome::setupPlaces()
+void KMetronome::display(int bar, int beat)
 {
-    KFilePlacesModel *placesModel = new KFilePlacesModel;
-    QString drums =  KStandardDirs::locate("appdata", "drums.ins");
-    if (!drums.isEmpty()) {
-        QFileInfo info(drums);
-        KUrl samples(info.absolutePath());
-        if (placesModel->url(placesModel->closestItem(samples)) != samples) {
-            placesModel->addPlace(tr("Patterns"), samples,
-                KApplication::applicationName(), KApplication::applicationName());
-        }
+    m_ui.m_measureLCD->display(QString("%1:%2").arg(bar,  6, 10, QChar(' '))
+                                          .arg(beat, 2, 10, QChar('0')));
+}
+
+void KMetronome::setFigure(int newValue)
+{
+    int ts_dd;
+    int x = newValue;
+    for(ts_dd = 0; x > 1; x /= 2)
+        ++ts_dd;
+    m_ui.m_figure->setCurrentIndex(ts_dd);
+}
+
+void KMetronome::displayTempo(int newTempo)
+{
+    int i, j = 0;
+    m_ui.m_tempoLCD->display(newTempo);
+    for(i = 0; i < m_ui.m_air->count(); ++i) {
+        if (m_ui.m_air->itemData(i).toInt() > newTempo) break;
+        j = i;
     }
-    delete placesModel;
-}*/
+    m_ui.m_air->setCurrentIndex(j);
+}
+
+void KMetronome::enableControls(bool e)
+{
+    m_ui.m_playbtn->setEnabled(e);
+    m_ui.m_stopbtn->setEnabled(!e);
+    m_ui.m_configbtn->setEnabled(e);
+    m_ui.m_patternbtn->setEnabled(e);
+    m_ui.m_beatsBar->setEnabled(e & !m_patternMode);
+    m_ui.m_figure->setEnabled(e & !m_patternMode);
+    m_ui.m_pattern->setEnabled(e);
+}
+
+void KMetronome::mouseDoubleClickEvent(QMouseEvent *)
+{
+    bool ok = false;
+    int newTempo = QInputDialog::getInt(this, tr("Tempo"), tr("Enter new Tempo:"),
+                        m_ui.m_tempo->value(), TEMPO_MIN, TEMPO_MAX, 1, &ok );
+    if (ok) {
+        m_ui.m_tempo->setValue(newTempo);
+    }
+}
+
+void KMetronome::tempoComboChanged(int v)
+{
+    m_ui.m_tempo->setValue(m_ui.m_air->itemData(v).toInt());
+}
+
+void KMetronome::setPatterns(const QStringList& patterns)
+{
+    m_ui.m_pattern->clear();
+    m_ui.m_pattern->addItem(tr("Automatic", "the pattern is created automatically"));
+    m_ui.m_pattern->addItems(patterns);
+}
+
+QString KMetronome::getSelectedPattern()
+{
+    return m_ui.m_pattern->currentText();
+}
+
+void KMetronome::setSelectedPattern(const QString& pattern)
+{
+    if (pattern.isEmpty()) {
+        patternChanged(0);
+    } else {
+        m_ui.m_pattern->setCurrentText(pattern);
+        patternChanged(m_ui.m_pattern->currentIndex());
+    }
+}

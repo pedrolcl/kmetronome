@@ -41,9 +41,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_figure(PATTERN_FIGURE),
     m_columns(PATTERN_COLUMNS)
 {
-    //QWidget *widget = new QWidget(this);
     m_ui->setupUi(this);
-    //setMainWidget( widget );
     setWindowTitle( tr("Pattern Editor") );
     resize( 700, 400 );
     m_ui->tableView->setSelectionMode(QTableView::ContiguousSelection);
@@ -325,8 +323,7 @@ void DrumGrid::showEvent(QShowEvent* /*event*/)
     m_ui->patternCombo->addItems(patterns());
     if (m_currentPattern.isEmpty())
         if (m_ui->patternCombo->count() == 0) {
-            m_currentPattern = tr("name of an automatically created pattern",
-                "Sample Pattern");
+            m_currentPattern = tr("Sample Pattern", "name of an automatically created pattern");
             m_model->fillSampleData();
             m_ui->patternCombo->setCurrentText(m_currentPattern);
         } else {

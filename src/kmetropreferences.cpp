@@ -23,9 +23,7 @@
 KMetroPreferences::KMetroPreferences(QWidget *parent)
     : QDialog(parent)
 {
-    //QWidget* widget = new QWidget(this);
     m_ui.setupUi(this);
-    //setMainWidget(widget);
     setWindowTitle(tr("Preferences"));
     connect( m_ui.m_instrument, SIGNAL(currentIndexChanged(int)),
              SLOT(slotInstrumentChanged(int)));

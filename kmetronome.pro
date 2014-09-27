@@ -2,33 +2,37 @@ TEMPLATE = app
 TARGET = kmetronome
 DEPENDPATH += . src
 INCLUDEPATH += . src
-QT += core gui widgets
+VERSION = 1.0.0
+QT += core gui widgets dbus
+
+DEFINES += VERSION=$$VERSION
 
 PKGCONFIG += alsa drumstick-alsa
 CONFIG += link_pkgconfig
 
-#DBUS_INTERFACES += src/net.sourceforge.kmetronome.xml
+DBUS_ADAPTORS += src/net.sourceforge.kmetronome.xml
 
 HEADERS += src/drumgrid.h \
            src/drumgridmodel.h \
            src/instrument.h \
            src/kmetronome.h \
-           src/kmetronomeview.h \
            src/kmetropreferences.h \
-           src/sequenceradapter.h
+           src/sequenceradapter.h \
+           src/about.h
 
-FORMS +=   src/drumgrid.ui \
-           src/kmetronomeviewbase.ui \
-           src/kmetropreferencesbase.ui
+FORMS +=   src/about.ui \
+           src/drumgrid.ui \
+           src/kmetropreferencesbase.ui \
+           src/kmetronome.ui
 
 SOURCES += src/drumgrid.cpp \
            src/drumgridmodel.cpp \
            src/instrument.cpp \
            src/kmetronome.cpp \
-           src/kmetronomeview.cpp \
            src/kmetropreferences.cpp \
            src/main.cpp \
-           src/sequenceradapter.cpp
+           src/sequenceradapter.cpp \
+           src/about.cpp
 
 RESOURCES += src/kmetronome.qrc
 

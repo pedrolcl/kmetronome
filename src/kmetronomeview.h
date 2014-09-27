@@ -62,7 +62,7 @@ public Q_SLOTS:
     void stop();
 
 private:
-    QStyle* m_dialStyle;
+    //QStyle* m_dialStyle;
     bool m_patternMode;
 };
 

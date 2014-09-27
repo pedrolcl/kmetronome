@@ -147,11 +147,12 @@ QString DrumGridModel::patternKey(int row)
 
 void DrumGridModel::clearPattern()
 {
+    beginResetModel();
     m_modelData.clear();
     m_keys.clear();
     m_tempData.clear();
     m_tempKeys.clear();
-    //reset();
+    endResetModel();
 }
 
 void DrumGridModel::addPatternData(int key, const QStringList& row)

@@ -31,7 +31,7 @@
 
 KmetronomeView::KmetronomeView(QWidget *parent)
      : QWidget(parent), Ui::KmetronomeViewBase(),
-       m_dialStyle(0),
+       //m_dialStyle(0),
        m_patternMode(false)
 {
     setupUi(this);

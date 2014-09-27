@@ -21,74 +21,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA
  </comment>
  <class>DrumGrid</class>
- <widget class="QWidget" name="DrumGrid">
+ <widget class="QDialog" name="DrumGrid">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>400</height>
+    <height>429</height>
    </rect>
   </property>
+  <property name="windowIcon">
+   <iconset resource="kmetronome.qrc">
+    <normaloff>:/midi/icons/midi/icon16.png</normaloff>:/midi/icons/midi/icon16.png</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QFrame" name="topFrame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="patternLabel">
-        <property name="text">
-         <string>Pattern:</string>
-        </property>
-        <property name="buddy">
-         <cstring>patternCombo</cstring>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="patternCombo">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="whatsThis">
-         <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="saveButton">
-        <property name="whatsThis">
-         <string>This button stores the current pattern definition with the name given</string>
-        </property>
-        <property name="text">
-         <string>Save</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="deleteButton">
-        <property name="whatsThis">
-         <string>This button deletes the current pattern definition</string>
-        </property>
-        <property name="text">
-         <string>Delete</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QFrame" name="leftFrame">
      <property name="frameShape">
@@ -113,6 +65,9 @@ MA 02110-1301, USA
         <property name="text">
          <string>Add</string>
         </property>
+        <property name="icon">
+         <iconset theme="list-add"/>
+        </property>
        </widget>
       </item>
       <item>
@@ -122,6 +77,9 @@ MA 02110-1301, USA
         </property>
         <property name="text">
          <string>Remove</string>
+        </property>
+        <property name="icon">
+         <iconset theme="list-remove"/>
         </property>
        </widget>
       </item>
@@ -178,14 +136,68 @@ Columns</string>
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QTableView" name="tableView">
-     <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
+   <item row="0" column="0" colspan="2">
+    <widget class="QFrame" name="topFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="whatsThis">
-      <string>This is the pattern table, beats as columns and sounds as rows</string>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="patternLabel">
+        <property name="text">
+         <string>Pattern:</string>
+        </property>
+        <property name="buddy">
+         <cstring>patternCombo</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="patternCombo">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</string>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="saveButton">
+        <property name="whatsThis">
+         <string>This button stores the current pattern definition with the name given</string>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-save"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="deleteButton">
+        <property name="whatsThis">
+         <string>This button deletes the current pattern definition</string>
+        </property>
+        <property name="text">
+         <string>Delete</string>
+        </property>
+        <property name="icon">
+         <iconset theme="edit-delete"/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="3" column="0" colspan="2">
@@ -372,6 +384,23 @@ Columns</string>
      </layout>
     </widget>
    </item>
+   <item row="1" column="1">
+    <widget class="QTableView" name="tableView">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <property name="whatsThis">
+      <string>This is the pattern table, beats as columns and sounds as rows</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -391,5 +420,38 @@ Columns</string>
  <resources>
   <include location="kmetronome.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DrumGrid</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>566</x>
+     <y>481</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DrumGrid</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>516</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>515</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

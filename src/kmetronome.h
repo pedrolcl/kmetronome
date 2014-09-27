@@ -23,31 +23,56 @@
 
 #include <QMainWindow>
 #include <QPointer>
+#include <QTranslator>
+#include "ui_kmetronome.h"
 
-class QAction;
-class KmetronomeView;
 class SequencerAdapter;
 class DrumGrid;
 class DrumGridModel;
 class Instrument;
 class InstrumentList;
+class QCloseEvent;
 
 class KMetronome : public QMainWindow
 {
     Q_OBJECT
-    //Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
+    Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
 
 public:
     KMetronome(QWidget* parent=0);
     virtual ~KMetronome();
-    bool queryExit();
+
+    void display(int, int);
+    int getTempo() { return m_ui.m_tempo->value(); }
+    int getBeatsBar() { return m_ui.m_beatsBar->value(); }
+    int getFigure() { return m_ui.m_figure->currentIndex(); }
+    void setBeatsBar(int newValue) { m_ui.m_beatsBar->setValue(newValue); }
+    void setFigure(int newValue);
+    void enableControls(bool e);
+    void setPatterns(const QStringList& patterns);
+    bool patternMode() { return m_patternMode; }
+    QString getSelectedPattern();
+    void setSelectedPattern(const QString& pattern);
+    void closeEvent(QCloseEvent *event);
+
+protected:
+    virtual void mouseDoubleClickEvent ( QMouseEvent * e );
 
 public Q_SLOTS:
+    void about();
     void play();
     void stop();
     void cont();
     void setTempo(int newTempo);
     void setTimeSignature(int numerator, int denominator);
+
+    void displayTempo(int);
+    void displayWeakVelocity(int v) { m_ui.m_dial1->setValue(v); }
+    void displayStrongVelocity(int v) { m_ui.m_dial2->setValue(v); }
+    void displayVolume(int v) { m_ui. m_dial3->setValue(v); }
+    void displayBalance(int v) { m_ui.m_dial4->setValue(v); }
+    void displayFakeToolbar(bool b) { m_ui.m_fakeToolbar->setVisible(b); }
+    void tempoComboChanged(int);
 
 protected Q_SLOTS:
     void optionsPreferences();
@@ -69,27 +94,24 @@ protected Q_SLOTS:
 private:
     void setupAccel();
     void setupActions();
-    //void setupPlaces();
     void saveConfiguration();
     void readConfiguration();
     void readDrumGridPattern();
     void applyInstrumentSettings();
     void exportPatterns(const QString& path);
     void importPatterns(const QString& path);
+    bool m_patternMode;
+    Ui::KMetronomeWindow m_ui;
 
-    bool m_styledKnobs;
-    KmetronomeView* m_view;
     SequencerAdapter* m_seq;
     QPointer<DrumGrid> m_drumgrid;
     InstrumentList* m_instrumentList;
     DrumGridModel* m_model;
-    QAction* m_prefs;
-    QAction* m_playStop;
-    QAction* m_editPatterns;
-    QAction* m_fakeToolbar;
     QString m_instrument;
     QString m_bank;
     QString m_program;
+    QTranslator* m_trp;
+    QTranslator* m_trq;
 };
 
 #endif // KMETRONOME_H

@@ -7,19 +7,18 @@ Name:           kmetronome
 Version:        @VERSION@
 Release:        0
 License:        GPL v2 or later
-Summary:        KDE MIDI Metronome using ALSA Sequencer
+Summary:        MIDI Metronome using ALSA Sequencer
 Group:          Productivity/Multimedia/Sound/Midi
 URL:            http://kmetronome.sourceforge.net
 Source:         %name-%version.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  cmake
-BuildRequires:  alsa-devel
-BuildRequires:	libkde4-devel
-BuildRequires:  libdrumstick-devel
-%kde4_runtime_requires
+BuildRequires:  alsa-lib-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  drumstick-devel
 
 %description
-KMetronome is a MIDI metronome with KDE interface, based on the ALSA 
+Drumstick Metronome is a MIDI metronome with Qt interface, based on the ALSA 
 sequencer. The intended audience is musicians and music students. Like 
 solid, real metronomes it is a tool to keep the rhythm while playing musical 
 instruments. It uses MIDI for sound generation instead of digital audio, 
@@ -31,20 +30,15 @@ Authors:
 --------
     Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
 
-%lang_package
-%debug_package
 %prep
 %setup -q
 
 %build
-%cmake_kde4
+%cmake
 %make_jobs
 
 %install
 %makeinstall
-%suse_update_desktop_file -G "MIDI Metronome" %name AudioVideo Music
-%find_lang %name
-%kde_post_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,30 +48,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc INSTALL README ChangeLog AUTHORS TODO
 %doc %{_mandir}/man1/*
 %dir %{_datadir}/kde4/apps/%name
-%dir %{_datadir}/icons/hicolor/24x24
-%dir %{_datadir}/icons/hicolor/24x24/apps
+%dir %{_datadir}/icons/hicolor/*/apps
 %{_bindir}/%name
 %{_datadir}/appl*/*/%name.desktop
 %{_datadir}/dbus-1/*/*
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/kde4/apps/*/*
 
-%files lang -f %{name}.lang
-
 %changelog
-* Sun Jun 6 2010 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.10.0
-- New version
-* Sat Dec 12 2009 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.9.1
-- New version
-* Sun Nov 23 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.9.0
-- New version
-* Sun Apr 27 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.3svn-0
-- New version
-* Sun Apr 6 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.2-0
-- openSuse build service
-* Mon Mar 24 2008 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8.2
-- Release 0.8.2
-* Thu Dec 28 2006 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.8
-- CMake build system
-* Fri Sep 23 2005 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 0.6
-- first public release.
+* Sun Sep 28 2014 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.0
+- Initial version

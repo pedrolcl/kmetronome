@@ -1,21 +1,27 @@
-<?xml version="1.0" ?>
-<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
-<!ENTITY % English "INCLUDE">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" [
+  <!ENTITY language "en">
+  <!ENTITY Qt "Qt5">
 ]>
 
 <refentry lang="&language;">
 
 <refentryinfo>
-<title>KMetronome User&apos;s Manual</title>
+<title>Drumstick Metronome User&apos;s Manual</title>
 <author>
-<personname>
-<firstname>Pedro</firstname>
-<surname>Lopez-Cabanillas</surname>
-</personname>
-<email>plcl@users.sourceforge.net</email>
+  <personname>
+     <firstname>Pedro</firstname>
+     <surname>Lopez-Cabanillas</surname>
+  </personname>
+  <email>plcl@users.sourceforge.net</email>
+  <personblurb><para></para></personblurb>
 </author>
+<copyright>
+  <year>2009-2014</year>
+  <holder>Pedro Lopez-Cabanillas</holder>
+</copyright>
 <date>2009-06-27</date>
-<productname>KMetronome</productname>
+<productname>Drumstick Metronome</productname>
 </refentryinfo>
 
 <refmeta>
@@ -26,7 +32,7 @@
 <refnamediv>
 <refname>kmetronome</refname>
 <refpurpose>
-MIDI metronome using ALSA sequencer and &kde; user interface
+MIDI metronome using ALSA sequencer and &Qt; user interface
 </refpurpose>
 </refnamediv>
 
@@ -39,7 +45,7 @@ MIDI metronome using ALSA sequencer and &kde; user interface
 
 <refsect1>
 <title>Description</title>
-<para>KMetronome is a MIDI metronome with &kde; interface based on the ALSA 
+<para>Drumstick Metronome is a MIDI metronome with &Qt; interface based on the ALSA 
 sequencer. It is a tool for musicians and music students to keep the rhythm 
 while playing musical instruments. It uses MIDI for sound generation instead 
 of digital audio, allowing low CPU usage, and very accurate timing thanks to 
@@ -48,75 +54,6 @@ the ALSA sequencer.</para>
 
 <refsect1>
 <title>Options</title>
-
-<para>Generic options:</para>
-
-<variablelist>
-<varlistentry>
-<term><option>--help</option></term>
-<listitem><para>Show help about options</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--help-qt</option></term>
-<listitem><para>Show &Qt; specific options</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--help-kde</option></term>
-<listitem><para>Show &kde; specific options</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--help-all</option></term>
-<listitem><para>Show all options</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--author</option></term>
-<listitem><para>Show author information</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>-v</option>,<option>--version</option></term>
-<listitem><para>Show version information</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--license</option></term>
-<listitem><para>Show license information</para></listitem>
-</varlistentry>
-</variablelist>
-
-<para>&kde; options:</para>
-
-<variablelist>
-<varlistentry>
-<term><option>--caption</option> <parameter>caption</parameter></term>
-<listitem><para>Use <parameter>caption</parameter> as name in the
-titlebar.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--icon</option> <parameter>icon</parameter></term>
-<listitem><para>Use <parameter>icon</parameter> as the application icon.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--config</option> <parameter>filename</parameter></term>
-<listitem><para>Use the alternative configuration <parameter>filename</parameter></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--nocrashhandler</option></term>
-<listitem><para>Disable the crash handler, to get core dumps.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--waitforwm</option></term>
-<listitem><para>Waits for a WM_NET compatible windowmanager.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--style</option> <parameter>style</parameter></term>
-<listitem><para>Sets the application &GUI; style.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><option>--geometry</option> <parameter>geometry</parameter></term>
-<listitem><para>Sets the client geometry of the main widget.</para></listitem>
-</varlistentry>
-</variablelist>
-
-<para>&Qt; options:</para>
 
 <variablelist>
 
@@ -308,6 +245,7 @@ visual on an 8-bit display.</para>
 <para>applies the &Qt; stylesheet to the application widgets</para>
 </listitem>
 </varlistentry>
+
 </variablelist>
 
 </refsect1>
@@ -315,7 +253,7 @@ visual on an 8-bit display.</para>
 <refsect1>
 <title>License</title>
 <para>
-This manual page was written by 
+This manual page was written by
 <personname>
 <firstname>Pedro</firstname>
 <surname>Lopez-Cabanillas</surname>

@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=KMetronome
+Name=Drumstick Metronome
 Exec=kmetronome
 Icon=kmetronome
 Type=Application
-Comment=KDE MIDI Metronome Using ALSA Sequencer
-Comment[es]=Metrónomo MIDI de KDE utilizando el secuenciador ALSA
+Comment=MIDI Metronome Using ALSA Sequencer
+Comment[es]=Metrónomo MIDI utilizando el secuenciador ALSA
 Categories=AudioVideo;Audio;Midi;Education;Music;

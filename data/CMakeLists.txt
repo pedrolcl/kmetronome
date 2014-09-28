@@ -1,3 +1,2 @@
-FILE( GLOB SAMPLES *.pat )
-INSTALL( FILES drums.ins ${SAMPLES} 
-         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )
+INSTALL( FILES drums.ins samples.pat
+         DESTINATION share/kmetronome )

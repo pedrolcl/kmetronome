@@ -3,32 +3,22 @@ Copyright (C) 2005-2014 Pedro Lopez-Cabanillas  <plcl@users.sourceforge.net>
 Translations
 
     Czech: Pavel Fric <pavelfric@seznam.cz>  
-    file: po/cs.po
+    file: translations/cs.ts
 
     German. Rene Landert <rene.landert@bluewin.ch>
-    file: po/de.po
+    file: translations/de.ts
 
     Spanish: Pedro López-Cabanillas <plcl@users.sourceforge.net>
-    file: po/es.po
-    
+    file: translations/es.ts
+
     French: Julien Richard-Foy <julien.rf@no-log.org>
-    file: po/fr.po
+    file: translations/fr.ts
 
     Turkish: Server Acim <serveracim@gmail.com>
-    file: po/tr.po
+    file: translations/tr.ts
 
 Instrument definitions (.INS files) support:
     Copyright (C) 2005-2014, rncbc aka Rui Nuno Capela
     Files:
         src/Instrument.h
         src/Instrument.cpp
-
-
-Knob widget:
-    Rui Nuno Capela, Chris Cannam, Pedro Lopez-Cabanillas, 
-    Queen Mary University of London
-    Files:
-        src/knob.h
-        src/knob.cpp
-        src/classicstyle.h
-        src/classicstyle.cpp

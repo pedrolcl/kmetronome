@@ -1,14 +1,14 @@
 Begin4
-Title:          KMetronome
-Version:        0.9.0
+Title:          Drumstick Metronome
+Version:        1.0.0
 Entered-date:   2008-11-23
-Description:    KDE ALSA Sequencer based MIDI Metronome
-Keywords:       KDE Qt ALSA MIDI Metronome
+Description:    ALSA Sequencer based MIDI Metronome
+Keywords:       Qt ALSA MIDI Metronome
 Author:         plcl@users.sourceforge.net (Pedro Lopez-Cabanillas)
 Maintained-by:  plcl@users.sourceforge.net (Pedro Lopez-Cabanillas)
 Primary-site:   http://sourceforge.net/projects/kmetronome
 Alternate-site: http://kmetronome.sourceforge.net/
 Original-site:  
-Platforms:      Linux, requires KDE4 and ALSA
+Platforms:      Linux, requires Qt and ALSA MIDI
 Copying-policy: GPL
 End

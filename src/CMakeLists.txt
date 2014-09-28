@@ -16,78 +16,61 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-IF(NOT KMETRONOME_SOURCE_DIR)
-    MESSAGE(FATAL_ERROR "You need to run cmake or ccmake at the root directory")
-ENDIF(NOT KMETRONOME_SOURCE_DIR)
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
-IF(USE_PCH)
-    ADD_PRECOMPILED_HEADER(precompiled_headers qt_kde.h)
-ENDIF(USE_PCH)
+set(kmetronome_qtobject_SRCS
+    about.h
+    drumgrid.h
+    drumgridmodel.h
+    kmetronome.h
+    kmetropreferences.h
+    sequenceradapter.h )
 
-INCLUDE_DIRECTORIES(
-    ${ALSA_INC_DIR}
-    ${DRUMSTICK_INC_DIR}
-)
-
-LINK_DIRECTORIES(
-    ${ALSA_LIB_DIR}
-    ${DRUMSTICK_LIB_DIR}
-)
-
-SET(kmetronome_SRCS 
-    classicstyle.h
-    classicstyle.cpp
+set(kmetronome_SRCS 
     defs.h
+    about.h
+    about.cpp
     drumgrid.h
     drumgrid.cpp
     drumgridmodel.h
     drumgridmodel.cpp
     instrument.h
     instrument.cpp
-    knob.h
-    knob.cpp
     kmetronome.h
     kmetronome.cpp
-    kmetronomeview.h
-    kmetronomeview.cpp
     kmetropreferences.h
     kmetropreferences.cpp
     main.cpp
-    qt_kde.h
     sequenceradapter.h
-    sequenceradapter.cpp 
-)
+    sequenceradapter.cpp )
 
-SET(kmetronome_UI 
+set(kmetronome_UI
+    about.ui
     drumgrid.ui
-    kmetronomeviewbase.ui
+    kmetronome.ui
     kmetropreferencesbase.ui )
-	
-QT4_ADD_RESOURCES(kmetronome_SRCS kmetronome.qrc)
-KDE4_ADD_UI_FILES(kmetronome_SRCS ${kmetronome_UI})
-QT4_ADD_DBUS_ADAPTOR(kmetronome_SRCS 
-                     net.sourceforge.kmetronome.xml
-                     kmetronome.h KMetronome)
-KDE4_ADD_EXECUTABLE(kmetronome ${kmetronome_SRCS})
 
-IF(USE_PCH)
-    ADD_DEPENDENCIES(kmetronome precompiled_headers)
-ENDIF(USE_PCH)
+qt5_wrap_ui( kmetronome_SRCS ${kmetronome_UI} )
+qt5_wrap_cpp( kmetronome_moc_SRCS ${kmetronome_qtobject_SRCS} )
+qt5_add_resources( kmetronome_SRCS kmetronome.qrc )
+qt5_add_dbus_adaptor( kmetronome_SRCS 
+                      net.sourceforge.kmetronome.xml
+                      kmetronome.h 
+                      KMetronome 
+                      kmetronome_adaptor )
 
-TARGET_LINK_LIBRARIES(kmetronome
-    ${KDE4_KDEUI_LIBS}
-    ${KDE4_KIO_LIBS}
-    ${KDE4_KFILE_LIBS} 
-    ${ALSA_LIBS}
-    ${DRUMSTICK_LIBS}
+add_executable( kmetronome ${kmetronome_SRCS} ${kmetronome_moc_SRCS} )
+
+target_link_libraries( kmetronome
+    Qt5::Widgets
+    Qt5::DBus
+    ${DRUMSTICK_LIBRARIES}
+    ${ALSA_LIBRARIES}
 )
 
 # Install targets
-INSTALL( TARGETS kmetronome
-         RUNTIME DESTINATION ${BIN_INSTALL_DIR})
+install( TARGETS kmetronome
+         RUNTIME DESTINATION bin )
 
-INSTALL( FILES net.sourceforge.kmetronome.xml 
-         DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
-
-INSTALL( FILES kmetronomeui.rc 
-         DESTINATION ${DATA_INSTALL_DIR}/kmetronome )
+install( FILES net.sourceforge.kmetronome.xml 
+         DESTINATION share/dbus-1/interfaces )

@@ -53,13 +53,16 @@ public:
     bool patternMode() { return m_patternMode; }
     QString getSelectedPattern();
     void setSelectedPattern(const QString& pattern);
-    void closeEvent(QCloseEvent *event);
+    QString configuredLanguage();
+    void retranslateUi();
 
 protected:
-    virtual void mouseDoubleClickEvent ( QMouseEvent * e );
+    void closeEvent(QCloseEvent *event);
+    void mouseDoubleClickEvent ( QMouseEvent * e );
 
 public Q_SLOTS:
     void about();
+    void help();
     void play();
     void stop();
     void cont();
@@ -90,6 +93,7 @@ protected Q_SLOTS:
     void updatePatterns();
     void exportPatterns();
     void importPatterns();
+    void slotSwitchLanguage(QAction *action);
 
 private:
     void setupAccel();
@@ -100,6 +104,8 @@ private:
     void applyInstrumentSettings();
     void exportPatterns(const QString& path);
     void importPatterns(const QString& path);
+    void createLanguageMenu();
+
     bool m_patternMode;
     Ui::KMetronomeWindow m_ui;
 
@@ -110,8 +116,10 @@ private:
     QString m_instrument;
     QString m_bank;
     QString m_program;
+    QString m_language;
     QTranslator* m_trp;
     QTranslator* m_trq;
+    QAction* m_currentLang;
 };
 
 #endif // KMETRONOME_H

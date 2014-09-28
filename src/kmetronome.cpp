@@ -27,6 +27,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QCloseEvent>
+#include <QDesktopServices>
 #include <QtDBus/QDBusConnection>
 
 #include <QDebug>
@@ -41,8 +42,26 @@
 #include "about.h"
 #include "kmetronome_adaptor.h"
 
-const QString QSTR_AppPX("kmetronome_");
-const QString QSTR_QTPX("qt_");
+static QDir dataDirectory()
+{
+    QDir test(QApplication::applicationDirPath() + "/../share/kmetronome/");
+    if (test.exists())
+        return test;
+    QStringList candidates = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    foreach(const QString& d, candidates) {
+        test = QDir(d);
+        if (test.exists())
+            return test;
+    }
+    return QDir();
+}
+
+static QDir localeDirectory()
+{
+    QDir data = dataDirectory();
+    data.cd("locale");
+    return data;
+}
 
 KMetronome::KMetronome(QWidget *parent) :
     QMainWindow(parent),
@@ -54,14 +73,12 @@ KMetronome::KMetronome(QWidget *parent) :
     dbus.registerObject("/", this);
     dbus.registerService("net.sourceforge.kmetronome");
 
-    /*m_trq = new QTranslator(this);
+    m_trq = new QTranslator(this);
     m_trp = new QTranslator(this);
-    m_trq->load( QSTR_QTPX + configuredLanguage(),
-                 QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
-    m_trp->load( QSTR_AppPX + configuredLanguage(),
-                 QStandardPaths::locate(QStandardPaths::ApplicationsLocation,QSTR_AppPX + configuredLanguage()) );
-    QCoreApplication::installTranslator(m_trq);
-    QCoreApplication::installTranslator(m_trp);*/
+    m_trq->load( "qt_" + configuredLanguage(), QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
+    m_trp->load( configuredLanguage(), localeDirectory().absolutePath() );
+    QApplication::installTranslator(m_trq);
+    QApplication::installTranslator(m_trp);
 
     m_ui.setupUi(this);
     m_ui.m_exitbtn->setFocusPolicy(Qt::NoFocus);
@@ -103,7 +120,7 @@ KMetronome::KMetronome(QWidget *parent) :
     m_model = new DrumGridModel(this);
     m_instrumentList = new InstrumentList;
     m_model->setInstrumentList(m_instrumentList);
-    QString drums =  QStandardPaths::locate(QStandardPaths::DataLocation, "drums.ins");
+    QString drums =  dataDirectory().filePath("drums.ins");
     if (!drums.isEmpty()) {
         m_instrumentList->load(drums);
     }
@@ -119,6 +136,7 @@ KMetronome::KMetronome(QWidget *parent) :
                 SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
         setupActions();
         readConfiguration();
+        createLanguageMenu();
     } catch (SequencerError& ex) {
         QString errorstr = tr("Fatal error from the ALSA sequencer. "
             "This usually happens when the kernel doesn't have ALSA support, "
@@ -148,6 +166,7 @@ void KMetronome::setupActions()
     connect( m_ui.actionConfiguration, SIGNAL(triggered()), SLOT(optionsPreferences()) );
     connect( m_ui.actionAbout, SIGNAL(triggered()), SLOT(about()) );
     connect( m_ui.actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()) );
+    connect( m_ui.actionHelp, SIGNAL(triggered()), SLOT(help()) );
 }
 
 void KMetronome::closeEvent(QCloseEvent *event)
@@ -162,12 +181,24 @@ void KMetronome::about()
     dlg.exec();
 }
 
+void KMetronome::help()
+{
+    QString hlpFile = QLatin1Literal("kmetronome.html");
+    QDir data = dataDirectory();
+    QFileInfo finfo(data.filePath(hlpFile));
+    if (finfo.exists()) {
+        QUrl url = QUrl::fromLocalFile(finfo.absoluteFilePath());
+        QDesktopServices::openUrl(url);
+    }
+}
+
 void KMetronome::saveConfiguration()
 {
     QSettings settings;
     settings.beginGroup("Settings");
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
+    settings.setValue("language", m_language);
     if (m_seq != 0) {
         settings.setValue("instrument", m_instrument);
         settings.setValue("bank", m_bank);
@@ -630,4 +661,74 @@ void KMetronome::setSelectedPattern(const QString& pattern)
         m_ui.m_pattern->setCurrentText(pattern);
         patternChanged(m_ui.m_pattern->currentIndex());
     }
+}
+
+
+QString KMetronome::configuredLanguage()
+{
+    if (m_language.isEmpty()) {
+        QSettings settings;
+        QString defLang = QLocale::system().name();
+        settings.beginGroup("Settings");
+        m_language = settings.value("language", defLang).toString();
+        settings.endGroup();
+        //qDebug() << Q_FUNC_INFO << m_language;
+    }
+    return m_language;
+}
+
+void KMetronome::slotSwitchLanguage(QAction *action)
+{
+    QString lang = action->data().toString();
+    QLocale qlocale(lang);
+    QString localeName = QLocale::languageToString(qlocale.language());
+    if ( QMessageBox::question (this, tr("Language Changed"),
+            tr("The language for this application is going to change to %1. "
+               "Do you want to continue?").arg(localeName),
+            QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes )
+    {
+        m_language = lang;
+        retranslateUi();
+    } else {
+        m_currentLang->setChecked(true);
+    }
+}
+void KMetronome::createLanguageMenu()
+{
+    QString currentLang = configuredLanguage();
+    QActionGroup *languageGroup = new QActionGroup(this);
+    connect(languageGroup, SIGNAL(triggered(QAction *)),
+            SLOT(slotSwitchLanguage(QAction *)));
+    QDir dir = localeDirectory();
+    QStringList fileNames = dir.entryList(QStringList("*.qm"));
+    QStringList locales;
+    locales << "en";
+    foreach (const QString& fileName, fileNames) {
+        QString locale = fileName;
+        locale.truncate(locale.lastIndexOf('.'));
+        locales << locale;
+    }
+    locales.sort();
+    foreach (const QString& loc, locales) {
+        QLocale qlocale(loc);
+        QString localeName = QLocale::languageToString(qlocale.language());
+        QAction *action = new QAction(localeName, this);
+        action->setCheckable(true);
+        action->setData(loc);
+        m_ui.menuLanguage->addAction(action);
+        languageGroup->addAction(action);
+        if (currentLang.startsWith(loc)) {
+            action->setChecked(true);
+            m_currentLang = action;
+        }
+    }
+}
+
+void KMetronome::retranslateUi()
+{
+    m_trq->load( "qt_" + configuredLanguage(), QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
+    m_trp->load( configuredLanguage(), localeDirectory().absolutePath() );
+    m_ui.retranslateUi(this);
+    m_ui.menuLanguage->clear();
+    createLanguageMenu();
 }

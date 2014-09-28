@@ -627,6 +627,15 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
     <property name="title">
      <string>Help</string>
     </property>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>language</string>
+     </property>
+    </widget>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="menuLanguage"/>
+    <addaction name="separator"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
    </widget>
@@ -766,6 +775,16 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   <action name="actionAboutQt">
    <property name="text">
     <string>about Qt</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset theme="help-contents">
+     <normaloff/>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Help Contents</string>
    </property>
   </action>
  </widget>

@@ -199,6 +199,8 @@ void KMetronome::saveConfiguration()
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
     settings.setValue("language", m_language);
+    settings.setValue("fakeToolbar", m_ui.actionShowActionButtons->isChecked());
+    settings.setValue("toolbar", m_ui.actionShowToolbar->isChecked());
     if (m_seq != 0) {
         settings.setValue("instrument", m_instrument);
         settings.setValue("bank", m_bank);
@@ -219,7 +221,6 @@ void KMetronome::saveConfiguration()
         settings.setValue("autoconnect", m_seq->getAutoConnect());
         settings.setValue("outputConn", m_seq->getOutputConn());
         settings.setValue("inputConn", m_seq->getInputConn());
-        settings.setValue("fakeToolbar", m_ui.actionShowActionButtons->isChecked());
     }
     settings.endGroup();
     settings.sync();
@@ -298,7 +299,10 @@ void KMetronome::readConfiguration()
     m_seq->sendInitialControls();
     bool fakeToolbar = settings.value("fakeToolbar", true).toBool();
     m_ui.actionShowActionButtons->setChecked(fakeToolbar);
+    bool realToolbar = settings.value("toolbar", true).toBool();
+    m_ui.actionShowToolbar->setChecked(realToolbar);
     displayFakeToolbar(fakeToolbar);
+    m_ui.toolBar->setVisible(realToolbar);
     updatePatterns();
 }
 

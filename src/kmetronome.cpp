@@ -685,7 +685,7 @@ void KMetronome::slotSwitchLanguage(QAction *action)
 {
     QString lang = action->data().toString();
     QLocale qlocale(lang);
-    QString localeName = QLocale::languageToString(qlocale.language());
+    QString localeName = qlocale.nativeLanguageName();
     if ( QMessageBox::question (this, tr("Language Changed"),
             tr("The language for this application is going to change to %1. "
                "Do you want to continue?").arg(localeName),
@@ -697,6 +697,7 @@ void KMetronome::slotSwitchLanguage(QAction *action)
         m_currentLang->setChecked(true);
     }
 }
+
 void KMetronome::createLanguageMenu()
 {
     QString currentLang = configuredLanguage();
@@ -713,9 +714,10 @@ void KMetronome::createLanguageMenu()
         locales << locale;
     }
     locales.sort();
+    m_ui.menuLanguage->clear();
     foreach (const QString& loc, locales) {
         QLocale qlocale(loc);
-        QString localeName = QLocale::languageToString(qlocale.language());
+        QString localeName = qlocale.nativeLanguageName();
         QAction *action = new QAction(localeName, this);
         action->setCheckable(true);
         action->setData(loc);
@@ -733,6 +735,7 @@ void KMetronome::retranslateUi()
     m_trq->load( "qt_" + configuredLanguage(), QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
     m_trp->load( configuredLanguage(), localeDirectory().absolutePath() );
     m_ui.retranslateUi(this);
-    m_ui.menuLanguage->clear();
+    m_seq->retranslateUi();
     createLanguageMenu();
+    updatePatterns();
 }

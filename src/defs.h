@@ -58,5 +58,7 @@ const int PATTERN_COLUMNS(16);
 const QString QSTR_PATTERN("Pattern_");
 const QString QSTR_FIGURE("Figure");
 const QString QSTR_BEATS("Beats");
+const QString QSTR_APPNAME("Drumstick Metronome");
+const QString QSTR_DOMAIN("kmetronome.sourceforge.net");
 
 #endif /*DEFS_H*/

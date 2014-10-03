@@ -20,9 +20,7 @@
 
 #include <QApplication>
 #include "kmetronome.h"
-
-const QString QSTR_APPNAME("Drumstick Metronome");
-const QString QSTR_DOMAIN("kmetronome.sourceforge.net");
+#include "defs.h"
 
 int main (int argc, char **argv)
 {

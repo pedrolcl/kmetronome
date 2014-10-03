@@ -90,7 +90,8 @@ public:
 
     void sendControlChange( int cc, int value );
     void sendInitialControls();
-    
+    void retranslateUi();
+
     void metronome_start();
     void metronome_stop();
     void metronome_continue();

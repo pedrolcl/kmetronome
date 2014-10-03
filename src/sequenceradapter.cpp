@@ -58,12 +58,12 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_useNoteOff(true),
     m_patternMode(false),
     m_outputConn(""),
-    m_inputConn(""),
-    NO_CONNECTION(tr("No connection"))
+    m_inputConn("")
 {
+    retranslateUi();
     m_Client = new MidiClient(this);
     m_Client->open();
-    m_Client->setClientName("KMetronome");
+    m_Client->setClientName(QSTR_APPNAME);
     m_clientId = m_Client->getClientId();
 
     //connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
@@ -72,7 +72,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
 
     m_Port = new MidiPort(this);
     m_Port->attach( m_Client );
-    m_Port->setPortName("KMetronome");
+    m_Port->setPortName(QSTR_APPNAME);
     m_Port->setCapability(SND_SEQ_PORT_CAP_WRITE |
                           SND_SEQ_PORT_CAP_SUBS_WRITE |
                           SND_SEQ_PORT_CAP_READ |
@@ -83,7 +83,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_inputPortId = m_outputPortId = m_Port->getPortId();
     m_Port->subscribeFromAnnounce();
 
-    m_Queue = m_Client->createQueue("KMetronome");
+    m_Queue = m_Client->createQueue(QSTR_APPNAME);
     m_queueId = m_Queue->getId();
 
     m_Client->setRealTimeInput(true);
@@ -95,6 +95,11 @@ SequencerAdapter::~SequencerAdapter()
     m_Client->stopSequencerInput();    
     m_Port->detach();
     m_Client->close();
+}
+
+void SequencerAdapter::retranslateUi()
+{
+    NO_CONNECTION = tr("No connection");
 }
 
 QStringList SequencerAdapter::inputConnections() 

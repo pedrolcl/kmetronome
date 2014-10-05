@@ -36,6 +36,7 @@ message (STATUS "Build configuration: ${CMAKE_BUILD_TYPE}")
 # Check for Qt
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5DBus REQUIRED)
+find_package(Qt5Svg REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")

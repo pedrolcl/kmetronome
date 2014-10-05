@@ -24,6 +24,7 @@ set(kmetronome_qtobject_SRCS
     drumgridmodel.h
     kmetronome.h
     kmetropreferences.h
+    lcdnumberview.h
     sequenceradapter.h )
 
 set(kmetronome_SRCS 
@@ -40,6 +41,8 @@ set(kmetronome_SRCS
     kmetronome.cpp
     kmetropreferences.h
     kmetropreferences.cpp
+    lcdnumberview.h
+    lcdnumberview.cpp
     main.cpp
     sequenceradapter.h
     sequenceradapter.cpp )
@@ -52,7 +55,7 @@ set(kmetronome_UI
 
 qt5_wrap_ui( kmetronome_SRCS ${kmetronome_UI} )
 qt5_wrap_cpp( kmetronome_moc_SRCS ${kmetronome_qtobject_SRCS} )
-qt5_add_resources( kmetronome_SRCS kmetronome.qrc )
+qt5_add_resources( kmetronome_SRCS kmetronome.qrc lcdnumbers.qrc)
 qt5_add_dbus_adaptor( kmetronome_SRCS 
                       net.sourceforge.kmetronome.xml
                       kmetronome.h 
@@ -64,6 +67,7 @@ add_executable( kmetronome ${kmetronome_SRCS} ${kmetronome_moc_SRCS} )
 target_link_libraries( kmetronome
     Qt5::Widgets
     Qt5::DBus
+    Qt5::Svg
     ${DRUMSTICK_LIBRARIES}
     ${ALSA_LIBRARIES}
 )

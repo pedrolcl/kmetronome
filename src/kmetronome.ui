@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>396</width>
-    <height>407</height>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,11 +18,23 @@
     <normaloff>:/midi/icons/midi/icon16.png</normaloff>:/midi/icons/midi/icon16.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,1">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetNoConstraint</enum>
+    </property>
     <item row="0" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetNoConstraint</enum>
+      </property>
       <item>
        <widget class="QFrame" name="m_fakeToolbar">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>200</height>
+         </size>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <property name="leftMargin">
           <number>0</number>
@@ -146,7 +158,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>28</height>
+             <height>60</height>
             </size>
            </property>
           </spacer>
@@ -156,8 +168,11 @@
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetNoConstraint</enum>
+        </property>
         <item>
-         <widget class="QLCDNumber" name="m_measureLCD">
+         <widget class="LCDNumberView" name="m_measureLCD">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -167,19 +182,13 @@
           <property name="whatsThis">
            <string>Number of measures (bars) and beats played from beginning</string>
           </property>
-          <property name="digitCount">
-           <number>6</number>
-          </property>
-          <property name="mode">
-           <enum>QLCDNumber::Dec</enum>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
-          </property>
          </widget>
         </item>
         <item>
          <layout class="QFormLayout" name="formLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
           <property name="fieldGrowthPolicy">
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
@@ -515,7 +524,7 @@ It is the denominator in the time signature specification.</string>
        </widget>
       </item>
       <item>
-       <widget class="QLCDNumber" name="m_tempoLCD">
+       <widget class="LCDNumberView" name="m_tempoLCD">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -528,14 +537,14 @@ It is the denominator in the time signature specification.</string>
           <height>100</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>100</height>
+         </size>
+        </property>
         <property name="whatsThis">
          <string>The current &lt;i&gt;tempo&lt;/i&gt; value</string>
-        </property>
-        <property name="digitCount">
-         <number>3</number>
-        </property>
-        <property name="value" stdset="0">
-         <double>100.000000000000000</double>
         </property>
        </widget>
       </item>
@@ -543,10 +552,13 @@ It is the denominator in the time signature specification.</string>
     </item>
     <item row="2" column="0">
      <layout class="QVBoxLayout" name="tempoSliderLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetNoConstraint</enum>
+      </property>
       <item>
        <widget class="QLabel" name="textLabel1">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -565,7 +577,7 @@ It is the denominator in the time signature specification.</string>
       <item>
        <widget class="QSlider" name="m_tempo">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -794,6 +806,13 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LCDNumberView</class>
+   <extends>QGraphicsView</extends>
+   <header>lcdnumberview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="kmetronome.qrc"/>
  </resources>

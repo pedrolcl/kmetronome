@@ -84,7 +84,10 @@ KMetronome::KMetronome(QWidget *parent) :
     m_ui.m_exitbtn->setFocusPolicy(Qt::NoFocus);
     m_ui.m_playbtn->setShortcut(Qt::Key_MediaPlay);
     m_ui.m_stopbtn->setShortcut(Qt::Key_MediaStop);
-
+    m_ui.m_tempoLCD->setDigitCount(3);
+    m_ui.m_tempoLCD->setNumber("100");
+    m_ui.m_measureLCD->setDigitCount(5);
+    m_ui.m_measureLCD->setNumber(" 1:01");
     /**
      * Tempo reference:
      * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html
@@ -595,8 +598,8 @@ void KMetronome::exportPatterns()
 
 void KMetronome::display(int bar, int beat)
 {
-    m_ui.m_measureLCD->display(QString("%1:%2").arg(bar,  6, 10, QChar(' '))
-                                          .arg(beat, 2, 10, QChar('0')));
+    m_ui.m_measureLCD->setNumber(QString("%1:%2").arg(bar,  2, 10, QChar(' '))
+                                                 .arg(beat, 2, 10, QChar('0')));
 }
 
 void KMetronome::setFigure(int newValue)
@@ -611,7 +614,7 @@ void KMetronome::setFigure(int newValue)
 void KMetronome::displayTempo(int newTempo)
 {
     int i, j = 0;
-    m_ui.m_tempoLCD->display(newTempo);
+    m_ui.m_tempoLCD->setNumber(QString("%1").arg(newTempo, 3, 10, QChar(' ')));
     for(i = 0; i < m_ui.m_air->count(); ++i) {
         if (m_ui.m_air->itemData(i).toInt() > newTempo) break;
         j = i;

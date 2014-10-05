@@ -56,6 +56,8 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->removeButton->setIcon(QIcon::fromTheme("list-remove"));
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
+    m_ui->beatNumber->setDigitCount(2);
+    m_ui->beatNumber->setNumber(" 1");
 
     m_popup = new QMenu(this);
     addEditAction(tr("Cut"), SLOT(slotCut()), QKeySequence::Cut);
@@ -348,7 +350,7 @@ void DrumGrid::updateDisplay(int /*bar*/, int beat)
 {
     if (m_ui->chkselbeat->isChecked())
         m_ui->tableView->selectColumn(beat-1);
-    m_ui->beatNumber->display(beat);
+    m_ui->beatNumber->setNumber(QString("%1").arg(beat, 2, 10, QChar(' ')));
 }
 
 void DrumGrid::addRow()

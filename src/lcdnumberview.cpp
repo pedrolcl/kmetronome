@@ -25,7 +25,7 @@ LCDNumberView::LCDNumberView(QWidget *parent) :
     QGraphicsView(parent),
     m_digitWidth(0),
     m_digitHeight(0),
-    m_digitsCount(0)
+    m_digitsCount(10)
 {
     setScene(new QGraphicsScene(this));
     setTransformationAnchor(AnchorUnderMouse);
@@ -47,6 +47,10 @@ void LCDNumberView::setNumber(const QString& number)
 {
     if (number != m_number) {
         m_number = number;
+        if (m_number.length() > m_digitsCount)
+        {
+            setDigitCount(m_number.length());
+        }
         update();
     }
 }
@@ -58,50 +62,56 @@ int LCDNumberView::digitCount()
 
 void LCDNumberView::setDigitCount(const int count)
 {
-    m_digitsCount = count;
-    rescale();
+    if (count != m_digitsCount) {
+        m_digitsCount = count;
+        scene()->clear();
+        for ( int i = 0; i < count; ++i ) {
+            QGraphicsSvgItem *itm = new QGraphicsSvgItem();
+            itm->setSharedRenderer(&m_renderer);
+            itm->setPos(i * m_digitWidth, 0);
+            scene()->addItem(itm);
+        }
+        QRectF rect(0, 0, m_digitsCount * m_digitWidth, m_digitHeight);
+        scene()->setSceneRect(rect);
+    }
 }
 
 void LCDNumberView::update()
 {
-    int count = 0;
-    qreal x = 0;
-    scene()->clear();
+    int i;
+    QList<QGraphicsItem *> lst = scene()->items(Qt::AscendingOrder);
+    for (i = 0; i < lst.length(); ++i) {
+        lst.at(i)->setVisible(false);
+    }
+    i = m_digitsCount - m_number.length();
+    if (i >= lst.length())
+        return;
     foreach(const QChar& ch, m_number) {
-        QGraphicsSvgItem *itm = new QGraphicsSvgItem();
-        itm->setSharedRenderer(&m_renderer);
-        if(ch == ':') {
-            itm->setElementId(QLatin1Literal("colon"));
-        } else if (ch == '_') {
-            itm->setElementId(QLatin1Literal("underscore"));
-        } else {
-            QString id(ch);
-            if (m_renderer.elementExists(id)) {
-                itm->setElementId(id);
+        QGraphicsSvgItem *itm = dynamic_cast<QGraphicsSvgItem*>(lst.at(i));
+        if (itm != 0) {
+            if(ch == ':') {
+                itm->setElementId(QLatin1Literal("colon"));
+                itm->setVisible(true);
+            } else if (ch == '_') {
+                itm->setElementId(QLatin1Literal("underscore"));
+                itm->setVisible(true);
             } else {
-                x += m_digitWidth;
-                delete itm;
-                continue;
+                if (m_renderer.elementExists(QString(ch))) {
+                    itm->setElementId(QString(ch));
+                    itm->setVisible(true);
+                }
             }
         }
-        itm->setPos(x, 0);
-        scene()->addItem(itm);
-        x += m_digitWidth;
-        count++;
+        i++;
+        if (i > m_digitsCount)
+            break;
     }
-    if (count > 0) {
-        if (count > m_digitsCount) {
-            m_digitsCount = count;
-        }
-        rescale();
-    }
+    rescale();
 }
 
 void LCDNumberView::rescale()
 {
-    QRectF rect(0, 0, m_digitWidth * m_digitsCount, m_digitHeight);
-    scene()->setSceneRect(rect);
-    fitInView(rect, Qt::KeepAspectRatio);
+    fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
 }
 
 void LCDNumberView::resizeEvent(QResizeEvent *event)

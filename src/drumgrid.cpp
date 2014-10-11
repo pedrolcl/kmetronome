@@ -45,6 +45,10 @@ DrumGrid::DrumGrid(QWidget *parent)
     setWindowTitle( tr("Pattern Editor") );
     resize( 700, 400 );
     m_ui->tableView->setSelectionMode(QTableView::ContiguousSelection);
+    QHeaderView *vH = m_ui->tableView->verticalHeader();
+    vH->setSectionResizeMode(QHeaderView::ResizeToContents);
+    QHeaderView *hH = m_ui->tableView->horizontalHeader();
+    hH->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     m_ui->startButton->setIcon(QIcon::fromTheme("media-playback-start"));
     m_ui->startButton->setShortcut( Qt::Key_MediaPlay );
@@ -57,7 +61,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
     m_ui->beatNumber->setDigitCount(2);
-    m_ui->beatNumber->setNumber(" 1");
+    m_ui->beatNumber->setNumber("1");
 
     m_popup = new QMenu(this);
     addEditAction(tr("Cut"), SLOT(slotCut()), QKeySequence::Cut);

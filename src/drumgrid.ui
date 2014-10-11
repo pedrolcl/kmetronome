@@ -406,6 +406,9 @@ Columns</string>
      <property name="whatsThis">
       <string>This is the pattern table, beats as columns and sounds as rows</string>
      </property>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>16</number>
+     </attribute>
     </widget>
    </item>
    <item row="4" column="0" colspan="2">

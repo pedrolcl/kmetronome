@@ -87,7 +87,7 @@ KMetronome::KMetronome(QWidget *parent) :
     m_ui.m_tempoLCD->setDigitCount(3);
     m_ui.m_tempoLCD->setNumber("100");
     m_ui.m_measureLCD->setDigitCount(5);
-    m_ui.m_measureLCD->setNumber(" 1:01");
+    m_ui.m_measureLCD->setNumber("1:01");
     /**
      * Tempo reference:
      * http://www.music.vt.edu/musicdictionary/appendix/tempo/tempo1.html

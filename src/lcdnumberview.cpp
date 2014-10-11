@@ -25,7 +25,7 @@ LCDNumberView::LCDNumberView(QWidget *parent) :
     QGraphicsView(parent),
     m_digitWidth(0),
     m_digitHeight(0),
-    m_digitsCount(10)
+    m_digitsCount(0)
 {
     setScene(new QGraphicsScene(this));
     setTransformationAnchor(AnchorUnderMouse);
@@ -34,8 +34,8 @@ LCDNumberView::LCDNumberView(QWidget *parent) :
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_renderer.load(QLatin1Literal(":/lcdnumbers.svg"));
-    m_digitWidth = m_renderer.boundsOnElement("8").width();
-    m_digitHeight = m_renderer.boundsOnElement("8").height();
+    m_digitWidth = m_renderer.boundsOnElement("d8").width();
+    m_digitHeight = m_renderer.boundsOnElement("d8").height();
 }
 
 QString LCDNumberView::number()
@@ -96,8 +96,9 @@ void LCDNumberView::update()
                 itm->setElementId(QLatin1Literal("underscore"));
                 itm->setVisible(true);
             } else {
-                if (m_renderer.elementExists(QString(ch))) {
-                    itm->setElementId(QString(ch));
+                QString id = QString("d%0").arg(ch);
+                if (m_renderer.elementExists(id)) {
+                    itm->setElementId(id);
                     itm->setVisible(true);
                 }
             }

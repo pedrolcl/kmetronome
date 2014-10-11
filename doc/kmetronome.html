@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -19,11 +19,11 @@
                   <p class="author"><span class="firstname">Pedro</span>
                     <span class="othername"></span> <span
                       class="surname">Lopez-Cabanillas</span> <code
-                      class="email">&lt;plcl@users.sourceforge.net&gt;</code></p>
+                      class="email">&lt;plcl AT
+                      users.sourceforge.net&gt;</code></p>
                 </div>
               </div>
-              <div>Revision <span class="releaseinfo">1.0.0 (<span
-                    class="date">2014-09-28</span>)</span></div>
+              <div>Revision <span class="releaseinfo">1.0.0</span></div>
               <div>
                 <p class="copyright">Copyright © 2005-2014 Pedro
                   Lopez-Cabanillas</p>
@@ -50,6 +50,8 @@
                 <dl>
                   <dt><span class="sect1"><a href="#kmetronome-features">Features</a></span></dt>
                   <dt><span class="sect1"><a href="#getting-started">Getting
+
+
 
                         Started</a></span></dt>
                   <dt><span class="sect1"><a
@@ -97,6 +99,8 @@
 
 
 
+
+
                         Interface</a></span></dt>
                   <dt><span class="sect1"><a href="#kmetronome-sysex">Universal
 
@@ -105,8 +109,12 @@
 
 
 
+
+
                         System Exclusive messages</a></span></dt>
                   <dt><span class="sect1"><a href="#kmetronome-midi">MIDI
+
+
 
 
 
@@ -121,10 +129,14 @@
               <dd>
                 <dl>
                   <dt><span class="sect1"><a href="#getting-kmetronome">How
+
+
                         to obtain <span class="application">Drumstick
                           Metronome</span></a></span></dt>
                   <dt><span class="sect1"><a href="#requirements">Requirements</a></span></dt>
                   <dt><span class="sect1"><a href="#compilation">Compilation
+
+
 
 
 
@@ -149,9 +161,9 @@
                 </div>
                 <p><span class="application">Drumstick Metronome</span>
                   is a MIDI based metronome using the ALSA sequencer.</p>
-                <p>The intended audience are musicians and music
-                  students. Like the solid, real metronomes it is a tool
-                  to keep the rhythm while playing musical instruments.</p>
+                <p>Intended for musicians and music students, it is a
+                  tool to keep the rhythm while playing musical
+                  instruments.</p>
                 <p>It uses MIDI for sound generation instead of digital
                   audio, allowing low CPU usage and very accurate timing
                   thanks to the ALSA sequencer.</p>
@@ -170,6 +182,8 @@
                   <div>
                     <div>
                       <h1 class="title"><a name="using-kmetronome"></a>Chapter&nbsp;2.&nbsp;Using
+
+
 
 
 
@@ -275,6 +289,8 @@
 
 
 
+
+
                           Metronome</span>, and then make the connection
                         between the two programs, either on <span
                           class="application">Drumstick Metronome</span>'s
@@ -290,12 +306,13 @@
 
 
 
+
+
                         configuration dialog or using an external
                         connection manager like <a class="ulink"
                           href="http://qjackctl.sourceforge.net/"
-                          target="_top">QJackCtl</a>. </p>
-                      <p> Don't forget to install a good <a
-                          class="ulink"
+                          target="_top">QJackCtl</a>. Don't forget to
+                        install a good <a class="ulink"
                           href="http://en.wikipedia.org/wiki/SoundFont"
                           target="_top">Sound Font</a> into QSynth's
                         "Setup..." dialog. </p>
@@ -326,11 +343,11 @@
                         can remember one connection for the ALSA output
                         port, and one connection for its input port.
                         Connections are stored when the program exits
-                        and remembered at startup. You don't need this
+                        and remembered at start-up. You don't need this
                         feature if you prefer to make such connections
                         by hand, using aconnect or any other equivalent
                         utility, or if you use an external session
-                        manager like the patchbay included in the
+                        manager like the patch-bay included in the
                         program <a class="ulink"
                           href="http://qjackctl.sourceforge.net"
                           target="_top">QJackCtl</a>.</p>
@@ -341,14 +358,14 @@
                         drop-down list allows to choose one among the
                         standard General MIDI, Roland GS and Yamaha XG
                         drum maps. You can add more definitions creating
-                        a file named drums.ins at
+                        a file named "drums.ins" at
                         "$HOME/.local/share/net.sourceforge.kmetronome/Drumstick
                         Metronome". The contents of Bank, Program, Weak
                         and Strong note drop-down lists also depend on
                         this definition.</p>
-                      <p>Channel is usually 10, meaning the percussion
-                        channel of a MIDI synthesizer. It must be a
-                        number beween 1 and 16.</p>
+                      <p>Channel number is usually 10, meaning the
+                        percussion channel of a MIDI synthesizer. It
+                        must be a number between 1 and 16.</p>
                       <p>Resolution is the number of ticks (time units)
                         for each quarter note. Value range from 48 to
                         960.</p>
@@ -360,7 +377,7 @@
                         clicks on some synthesizers.</p>
                       <p> Percussion sounds usually don't need NOTE OFF
                         events to be sent after every NOTE ON. Select
-                        the Send NOTE OFF events checkbox only if your
+                        the Send NOTE OFF events check-box only if your
                         synthesizer or instrument supports or requires
                         this setting.</p>
                       <p>Bank and Program is used to change the drum set
@@ -384,6 +401,8 @@
                           <div>
                             <h2 class="title" style="clear: both"><a
                                 name="kmetronome-pattern-editor"></a>Pattern
+
+
 
 
 
@@ -454,6 +473,8 @@
 
 
 
+
+
                         Reference</h1>
                     </div>
                   </div>
@@ -474,6 +495,8 @@
                       <div>
                         <div>
                           <h3 class="title"><a name="idm140082979133136"></a>The
+
+
 
 
 
@@ -505,10 +528,14 @@
 
 
 
+
+
                                 Patterns</span></span></span></dt>
                         <dd>
                           <p><span class="action">Imports</span> pattern
                             definitions into <span class="application">Drumstick
+
+
 
 
 
@@ -541,10 +568,14 @@
 
 
 
+
+
                                 Patterns</span></span></span></dt>
                         <dd>
                           <p><span class="action">Exports</span> pattern
                             definitions from <span class="application">Drumstick
+
+
 
 
 
@@ -606,6 +637,8 @@
 
 
 
+
+
                             <span class="guiitem"><span class="guimenu">Edit</span></span>
                             Menu</h3>
                         </div>
@@ -615,8 +648,9 @@
                     <div class="variablelist">
                       <dl class="variablelist">
                         <dt><span class="term"><span class="guiitem"><span
-                                class="guimenu">Edit</span></span> → <span
-                              class="guiitem"><span class="guimenuitem">Patterns</span></span></span></dt>
+                                class="guimenu">Edit</span></span> →
+                            Edit <span class="guiitem"><span
+                                class="guimenuitem">Patterns</span></span></span></dt>
                         <dd>
                           <p><span class="action">Opens</span> the
                             pattern editor</p>
@@ -630,6 +664,8 @@
                       <div>
                         <div>
                           <h3 class="title"><a name="idm140082979107024"></a>The
+
+
 
 
 
@@ -677,6 +713,8 @@
 
 
 
+
+
                             <span class="guiitem"><span class="guimenu">Help</span></span>
                             Menu</h3>
                         </div>
@@ -700,128 +738,33 @@
                         </dd>
                         <dt><span class="term"><span class="guiitem"><span
                                 class="guimenu">Help</span></span> → <span
-                              class="guiitem"><span class="guimenuitem">What's
-
-
-
-
-
-
-
-
-
-
-                                This?</span></span> (<span
-                              class="shortcut"><strong><span
-                                  class="keycap"><strong>Shift</strong></span>+<span
-                                  class="keycap"><strong>F1</strong></span></strong></span>)
-                          </span></dt>
+                              class="guiitem"><span class="guimenuitem">Language...</span></span></span></dt>
                         <dd>
-                          <p><span class="action">Changes the mouse
-                              cursor to a combination arrow and question
-                              mark.</span> Clicking on items within <span
-                              class="application">Drumstick Metronome</span>
-                            will open a help window (if one exists for
-                            the particular item) explaining the item's
-                            function.</p>
-                        </dd>
-                        <dt><span class="term"><span class="guiitem"><span
-                                class="guimenu">Help</span></span> → <span
-                              class="guiitem"><span class="guimenuitem">Report
-
-
-
-
-
-
-
-
-
-
-                                Bug...</span></span></span></dt>
-                        <dd>
-                          <p><span class="action">Opens the Bug report
-                              dialog</span> where you can report a bug
-                            or request a <span class="quote">“<span
-                                class="quote">wishlist</span>”</span>
-                            feature.</p>
-                        </dd>
-                        <dt><span class="term"><span class="guiitem"><span
-                                class="guimenu">Help</span></span> → <span
-                              class="guiitem"><span class="guimenuitem">Switch
-
-
-
-
-
-
-
-
-
-
-
-                                Application Language...</span></span></span></dt>
-                        <dd>
-                          <p><span class="action">Opens a dialog</span>
-                            where you can edit the <span
-                              class="guiitem"><span class="guilabel">Primary
-
-
-
-
-
-
-
-
-
-
-
-
-                                language</span></span> and <span
-                              class="guiitem"><span class="guilabel">Fallback
-
-
-
-
-
-
-
-
-
-
-
-
-                                language</span></span> for this
-                            application.</p>
+                          <p><span class="action">Opens a list</span>
+                            where you can choose the <span
+                              class="guiitem"><span class="guilabel">language</span></span>
+                            for this application.</p>
                         </dd>
                         <dt><span class="term"><span class="guiitem"><span
                                 class="guimenu">Help</span></span> → <span
                               class="guiitem"><span class="guimenuitem">About
 
 
-
-
-
-
-
-
-
-
-                                <span class="application">Drumstick
-                                  Metronome</span></span></span></span></dt>
-                        <dd>
-                          <p><span class="action">This will display
-                              version and author information.</span></p>
-                        </dd>
-                        <dt><span class="term"><span class="guiitem"><span
-                                class="guimenu">Help</span></span> → <span
-                              class="guiitem"><span class="guimenuitem">About
                                 <br>
                               </span></span></span></dt>
                         <dd>
-                          <p><span class="action">This displays
-                              the&nbsp; version and other basic
-                              information.</span></p>
+                          <p><span class="action">Opens a dialog
+                              displaying the program version, credits,
+                              license and other basic information.</span></p>
+                        </dd>
+                        <dt><span class="term"><span class="guiitem"><span
+                                class="guimenu">Help</span></span> → <span
+                              class="guiitem"><span class="guimenuitem">About
+
+                                Qt<span class="application"></span></span></span></span></dt>
+                        <dd>
+                          <p><span class="action">This will display the
+                              Qt version and license information.</span></p>
                         </dd>
                       </dl>
                     </div>
@@ -837,6 +780,8 @@
                   <div>
                     <div>
                       <h1 class="title"><a name="external-control"></a>Chapter&nbsp;4.&nbsp;External
+
+
 
 
 
@@ -869,14 +814,15 @@
                     provides some functions through its D-Bus interface.
                     You can use a D-Bus enabled program to control <span
                       class="application">Drumstick Metronome</span>
-                    like kdbus or the commandline utility qdbus. </p>
+                    like qdbusviewer or the command-line utility qdbus.
+                  </p>
                   <p> For instance, these commands can be used from a
                     shell prompt: </p>
-                  <pre class="screen">$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.play
-$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.stop
-$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.cont
-$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 150
-$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8
+                  <pre class="screen">$ qdbus net.sourceforge.kmetronome / net.sourceforge.kmetronome.play
+$ qdbus net.sourceforge.kmetronome / net.sourceforge.kmetronome.stop
+$ qdbus net.sourceforge.kmetronome / net.sourceforge.kmetronome.cont
+$ qdbus net.sourceforge.kmetronome / net.sourceforge.kmetronome.setTempo 150
+$ qdbus net.sourceforge.kmetronome / net.sourceforge.kmetronome.setTimeSignature 3 8
 </pre>
                   <p> </p>
                 </div>
@@ -950,6 +896,8 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 
 
 
+
+
                           Metronome</span>. This connection must be done
                         by hand, or using a session management software
                         like QJackCtl.</p>
@@ -978,16 +926,18 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 
 
 
+
+
                         and License</h1>
                     </div>
                   </div>
                 </div>
                 <p> <span class="application">Drumstick Metronome</span>
                 </p>
-                <p> Program copyright 2005-2014 Pedro Lopez-Cabanillas <code
-                    class="email">(plcl AT users.sourceforge.net)</code>
+                <p> Program copyright © 2005-2014 Pedro Lopez-Cabanillas
+                  <code class="email">(plcl AT users.sourceforge.net)</code>
                 </p>
-                <p> Documentation copyright 2005-2014 Pedro
+                <p> Documentation copyright © 2005-2014 Pedro
                   Lopez-Cabanillas <code class="email">(plcl AT
                     users.sourceforge.net)</code> </p>
                 <p>This program is licensed under the terms of the <a
@@ -1068,6 +1018,8 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 
 
 
+
+
                         </a> </p>
                     </div>
                   </div>
@@ -1088,6 +1040,8 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
                           class="application">Drumstick Metronome</span>
                         on your system, type the following in the base
                         directory of the <span class="application">Drumstick
+
+
 
 
 

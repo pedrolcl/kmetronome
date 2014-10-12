@@ -1,4 +1,3 @@
-#
 # spec file for package kmetronome (Version @VERSION@)
 #
 # norootforbuild
@@ -15,14 +14,16 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  cmake
 BuildRequires:  alsa-lib-devel
 BuildRequires:  qt5-qtbase-devel
-BuildRequires:  drumstick-devel
+BuildRequires:  qt5-qtsvg-devel
+BuildRequires:  qt5-qttools-devel
+BuildRequires:  libdrumstick-devel
 
 %description
 Drumstick Metronome is a MIDI metronome with Qt interface, based on the ALSA 
-sequencer. The intended audience is musicians and music students. Like 
-solid, real metronomes it is a tool to keep the rhythm while playing musical 
-instruments. It uses MIDI for sound generation instead of digital audio, 
-allowing low CPU usage, and very accurate timing thanks to the ALSA sequencer.
+sequencer. Intended for musicians and music students, it is a tool to keep 
+the rhythm while playing musical instruments. It uses MIDI for sound 
+generation instead of digital audio, allowing low CPU usage, and very 
+accurate timing thanks to the ALSA sequencer.
 
 
 
@@ -35,10 +36,10 @@ Authors:
 
 %build
 %cmake
-%make_jobs
+make %{?jobs:-j %jobs} VERBOSE=1
 
 %install
-%makeinstall
+make install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -47,13 +48,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc INSTALL README ChangeLog AUTHORS TODO
 %doc %{_mandir}/man1/*
-%dir %{_datadir}/kde4/apps/%name
+%dir %{_datadir}/%name
 %dir %{_datadir}/icons/hicolor/*/apps
+%dir %{_datadir}/dbus-1/services
+%dir %{_datadir}/dbus-1/interfaces
 %{_bindir}/%name
-%{_datadir}/appl*/*/%name.desktop
+%{_datadir}/applications/%name.desktop
 %{_datadir}/dbus-1/*/*
 %{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/kde4/apps/*/*
+%{_datadir}/%name/*
 
 %changelog
 * Sun Oct 12 2014 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.0

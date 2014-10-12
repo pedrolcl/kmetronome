@@ -1,4 +1,7 @@
 [Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Terminal=false
 Categories=AudioVideo;Audio;Midi;Education;Music;
 Comment[en_US]=MIDI Metronome Using ALSA Sequencer
 Comment[es]=Metrónomo MIDI utilizando el secuenciador ALSA
@@ -9,4 +12,5 @@ GenericName[es]=Metrónomo MIDI
 GenericName=MIDI Metronome
 Icon=kmetronome
 Name[en_US]=Drumstick Metronome
+Name[es]=Metrónomo Drumstick
 Name=Drumstick Metronome

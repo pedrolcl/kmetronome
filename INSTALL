@@ -1,4 +1,4 @@
-You will need CMake 2.6.0 or newer.  If your Linux distribution
+You will need CMake 2.8.11 or newer.  If your Linux distribution
 doesn't provide CMake, or if it provides an older version, you can get
 it here:
 

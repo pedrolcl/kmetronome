@@ -94,12 +94,11 @@ add_custom_target ( tarball
     COMMAND cp -r data kmetronome-${VERSION}
     COMMAND cp -r doc kmetronome-${VERSION}
     COMMAND cp -r icons kmetronome-${VERSION}
-    COMMAND cp -r translations metronome-${VERSION}
+    COMMAND cp -r translations kmetronome-${VERSION}
     COMMAND cp -r src kmetronome-${VERSION}
-    #COMMAND cp -rHL drumstick kmetronome-${VERSION}
     COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* COPYING INSTALL kmetronome.* net.sourceforge.kmetronome.* NEWS README TODO kmetronome-${VERSION}
-    COMMAND tar -cj --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
-    COMMAND tar -cz --exclude .svn --exclude *.old --exclude *~ -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
+    COMMAND tar -cj --exclude .svn --exclude *.old --exclude *~ --exclude *.user -f kmetronome-${VERSION}.tar.bz2 kmetronome-${VERSION}
+    COMMAND tar -cz --exclude .svn --exclude *.old --exclude *~ --exclude *.user -f kmetronome-${VERSION}.tar.gz kmetronome-${VERSION}
     COMMAND rm -rf kmetronome-${VERSION}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )

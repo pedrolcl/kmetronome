@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Application
-Encoding=UTF-8
 Terminal=false
 Categories=AudioVideo;Audio;Midi;Education;Music;
 Comment[en_US]=MIDI Metronome Using ALSA Sequencer
@@ -14,3 +13,4 @@ Icon=kmetronome
 Name[en_US]=Drumstick Metronome
 Name[es]=Metrónomo Drumstick
 Name=Drumstick Metronome
+Keywords=Music;MIDI;Metronome;

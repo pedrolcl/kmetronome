@@ -4,6 +4,7 @@
       This fix provides better looking and usability with dark and light desktop themes.
     * Updated CMake buildsystem, requires CMake 3.1 or newer
     * Updated documentation.
+    * Release 1.0.1
 
 2014-10-12 00:00 plcl
 

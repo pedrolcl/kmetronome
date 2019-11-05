@@ -1,6 +1,6 @@
 Begin4
 Title:          Drumstick Metronome
-Version:        1.0.0
+Version:        1.0.1
 Entered-date:   2008-11-23
 Description:    ALSA Sequencer based MIDI Metronome
 Keywords:       Qt ALSA MIDI Metronome

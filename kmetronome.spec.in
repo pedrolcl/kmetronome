@@ -59,5 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%name/*
 
 %changelog
+* Tue Nov 5 2019 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.1
+- New release
 * Sun Oct 12 2014 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.0
 - Initial version

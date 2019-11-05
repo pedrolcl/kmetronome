@@ -2,13 +2,13 @@ You will need CMake 2.8.11 or newer.  If your Linux distribution
 doesn't provide CMake, or if it provides an older version, you can get
 it here:
 
-    http://www.cmake.org/cmake/resources/software.html
+    https://cmake.org/download/
 
 There are ready to use binary packages available for Linux from
 that page.  If you must build it from source, please read the instructions
 supplied here:
 
-    http://www.cmake.org/cmake/help/install.html
+    https://cmake.org/install/
     
 This program needs the Drumstick libraries. You should install the development
 package before trying to compile KMetronome. You can alternatively build
@@ -35,6 +35,28 @@ Now run CMake to generate the build files.
 
 $ cmake ..
 
+Some variables you may want to set:
+
+    * CMAKE_INSTALL_PREFIX:
+      cmake .. -DCMAKE_INSTALL_PREFIX=/usr 
+
+    * CMAKE_PREFIX_PATH:
+      cmake .. -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.5/gcc_64/
+
+For example:
+
+$ cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+
+Look the configure.release and configure.debug scripts for more examples. 
+If you prefer to avoid all this typing, you can use ccmake to view and change 
+these options using a friendly curses-based interface:
+
+$ ccmake ..
+
+There is a GUI equivalent:
+
+$ cmake-gui ..
+
 Finally, run make, and then (sudo) make install, and you're done.
 
 $ make
@@ -58,42 +80,17 @@ copying the files:
 
 $ make install DESTDIR=~/rpmroot
 
-Some variables you may want to set:
-
-    * CMAKE_INSTALL_PREFIX:
-      cmake .. -DCMAKE_INSTALL_PREFIX=/opt/kde4 is the equivalent to
-      "configure --prefix=/opt/kde4" for programs using autotools
-
-    * there are some extra options available:  
-    STATIC_DRUMSTICK  Statically linked Drumstick (default OFF)
-    ENABLE_PCH        Use precompiled headers (default OFF)
-
-The above options can take any of the following values: 0, 1, OFF, ON,
-TRUE, FALSE, YES, NO (case insensitive). For example:
-
-$ cmake .. -DENABLE_PCH=YES -DCMAKE_INSTALL_PREFIX=/usr
-
-Look to the configure.release and configure.debug for more examples. 
-If you prefer to avoid all this typing, you can use ccmake to view and change 
-these options using a friendly curses-based interface:
-
-$ ccmake ..
-
-There is a GUI equivalent:
-
-$ cmake-gui ..
-
 Dealing with Configuration Problems
 -----------------------------------
 
 First, look for an answer in CMake FAQ:
 
-    http://www.cmake.org/Wiki/CMake_FAQ
+    https://gitlab.kitware.com/cmake/community/wikis/FAQ
 
 You may want to read the documentation at:
 
-    http://www.cmake.org/cmake/help/cmake2.6docs.html
+    https://cmake.org/documentation
 
 If you can't solve your problem, open a request for support at the project site:
 
-    http://sourceforge.net/projects/kmetronome/
+    https://sourceforge.net/p/kmetronome/

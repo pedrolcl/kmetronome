@@ -35,6 +35,7 @@ public:
     void setDigitCount(const int count);
 
 protected:
+    void loadRenderer();
     void resizeEvent(QResizeEvent *event);
     void update();
     void rescale();

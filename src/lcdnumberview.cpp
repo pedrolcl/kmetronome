@@ -17,6 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <QDebug>
 #include <QtGlobal>
 #include <QGraphicsItem>
 #include "lcdnumberview.h"
@@ -33,9 +34,7 @@ LCDNumberView::LCDNumberView(QWidget *parent) :
     setBackgroundRole(QPalette::Background);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_renderer.load(QLatin1Literal(":/lcdnumbers.svg"));
-    m_digitWidth = m_renderer.boundsOnElement("d8").width();
-    m_digitHeight = m_renderer.boundsOnElement("d8").height();
+    loadRenderer();
 }
 
 QString LCDNumberView::number()
@@ -119,4 +118,21 @@ void LCDNumberView::resizeEvent(QResizeEvent *event)
 {
     QGraphicsView::resizeEvent(event);
     rescale();
+}
+
+void LCDNumberView::loadRenderer()
+{
+    QString foreColor = palette().color(QPalette::Active, QPalette::Foreground).name(QColor::HexRgb);
+    QString backColor = palette().color(QPalette::Active, QPalette::Background).name(QColor::HexRgb);
+    QFile resource(QLatin1Literal(":/lcdnumbers.svg"));
+    if (resource.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QString rescontents = QString::fromUtf8(resource.readAll()).arg(foreColor).arg(backColor);
+        resource.close();
+        if(m_renderer.load(rescontents.toUtf8())) {
+            m_digitWidth = m_renderer.boundsOnElement("d8").width();
+            m_digitHeight = m_renderer.boundsOnElement("d8").height();
+        } else
+            qWarning() << "renderer failed to load the SVG resource";
+    } else
+        qWarning() << "failed to open" << resource.fileName();
 }

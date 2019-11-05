@@ -1,3 +1,10 @@
+2019-11-05 00:00 plcl
+
+    * Fixed the LCD number component, to use the application palette instead of hardcoded colors. 
+      This fix provides better looking and usability with dark and light desktop themes.
+    * Updated CMake buildsystem, requires CMake 3.1 or newer
+    * Updated documentation.
+
 2014-10-12 00:00 plcl
 
     * Migration to Qt5

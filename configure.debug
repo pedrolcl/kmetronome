@@ -1,6 +1,6 @@
 #!/bin/bash
 # a typical configuration for development usage...
-QTDIR=$HOME/Qt/5.3/gcc_64
+QTDIR=$HOME/Qt/5.12.5/gcc_64
 QTLIB=$QTDIR/lib
 QTINC=$QTDIR/include
 QT_PLUGIN_PATH=$QTDIR/plugins

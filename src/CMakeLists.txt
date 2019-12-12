@@ -1,5 +1,5 @@
 # KMetronome - ALSA Sequencer based MIDI metronome
-# Copyright (C) 2005-2014 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+# Copyright (C) 2005-2019 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,63 +16,61 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-set(kmetronome_qtobject_SRCS
+set(kmetronome_SRCS
     about.h
     drumgrid.h
     drumgridmodel.h
     kmetronome.h
     kmetropreferences.h
     lcdnumberview.h
-    sequenceradapter.h )
-
-set(kmetronome_SRCS 
+    sequenceradapter.h
     defs.h
-    about.h
-    about.cpp
-    drumgrid.h
-    drumgrid.cpp
-    drumgridmodel.h
-    drumgridmodel.cpp
     instrument.h
+    about.cpp
+    drumgrid.cpp
+    drumgridmodel.cpp
     instrument.cpp
-    kmetronome.h
     kmetronome.cpp
-    kmetropreferences.h
     kmetropreferences.cpp
-    lcdnumberview.h
     lcdnumberview.cpp
     main.cpp
-    sequenceradapter.h
-    sequenceradapter.cpp )
-
-set(kmetronome_UI
+    sequenceradapter.cpp
     about.ui
     drumgrid.ui
     kmetronome.ui
-    kmetropreferencesbase.ui )
+    kmetropreferencesbase.ui
+    kmetronome.qrc
+    lcdnumbers.qrc
+)
 
-qt5_wrap_ui( kmetronome_SRCS ${kmetronome_UI} )
-qt5_wrap_cpp( kmetronome_moc_SRCS ${kmetronome_qtobject_SRCS} )
-qt5_add_resources( kmetronome_SRCS kmetronome.qrc lcdnumbers.qrc)
 qt5_add_dbus_adaptor( kmetronome_SRCS 
-                      net.sourceforge.kmetronome.xml
-                      kmetronome.h 
-                      KMetronome 
-                      kmetronome_adaptor )
+    net.sourceforge.kmetronome.xml
+    kmetronome.h
+    KMetronome
+    kmetronome_adaptor
+)
 
-add_executable( kmetronome ${kmetronome_SRCS} ${kmetronome_moc_SRCS} )
+set_property(SOURCE kmetronome_adaptor.h kmetronome_adaptor.cpp
+    PROPERTY SKIP_AUTOGEN ON)
+
+add_executable( kmetronome ${kmetronome_SRCS} )
 
 target_link_libraries( kmetronome
     Qt5::Widgets
     Qt5::DBus
     Qt5::Svg
-    ${DRUMSTICK_LIBRARIES}
-    ${ALSA_LIBRARIES}
+    Drumstick::ALSA
 )
 
-# Install targets
+target_compile_definitions( kmetronome
+    PRIVATE -DVERSION=${PROJECT_VERSION}
+)
+
 install( TARGETS kmetronome
          RUNTIME DESTINATION bin )
 

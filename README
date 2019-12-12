@@ -9,10 +9,6 @@ You need the following software:
     Debian: "cmake"
     http://packages.debian.org/sid/cmake
 
-* pkg-config
-    Debian: "pkg-config"
-    http://packages.debian.org/sid/pkg-config
-
 * Qt5 libraries
     Debian: "qtbase5-dev"
     https://packages.debian.org/sid/qtbase5-dev-tools
@@ -43,6 +39,8 @@ $ svn checkout https://svn.code.sf.net/p/drumstick/code/trunk drumstick
 
 The module 'drumstick' is also used by other projects in a similar way as an 
 independent shared dynamic library.
+
+You need to configure, compile and optionally install drumstick libraries.
 
 2. Check out the module kmetronome from the SVN repository.
         Host: svn.code.sf.net

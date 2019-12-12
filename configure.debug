@@ -1,16 +1,10 @@
 #!/bin/bash
 # a typical configuration for development usage...
-QTDIR=$HOME/Qt/5.12.5/gcc_64
-QTLIB=$QTDIR/lib
-QTINC=$QTDIR/include
-QT_PLUGIN_PATH=$QTDIR/plugins
-PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib64/pkgconfig:$QTLIB/pkgconfig
-export QTDIR QTLIB QTINC QT_PLUGIN_PATH PKG_CONFIG_PATH
 mkdir -p build
 cd build
 cmake .. \
-    -DCMAKE_PREFIX_PATH=$QTDIR \
-    -DCMAKE_CXX_FLAGS="-W -Wall" \
+    -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.6/gcc_64 \
+    -DDrumstick_DIR=$HOME/Projects/drumstick/build \
     -DCMAKE_BUILD_TYPE=Debug \
-    -DCMAKE_INSTALL_PREFIX=/usr/local
-echo "You can run 'make' now"
+    -DCMAKE_INSTALL_PREFIX=/usr
+echo "You can run 'cmake --build .' now"

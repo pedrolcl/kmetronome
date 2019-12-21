@@ -25,7 +25,6 @@
 #include <QMenu>
 #include <QShortcut>
 #include <QCloseEvent>
-#include <QSignalMapper>
 #include <QWidget>
 
 namespace Ui
@@ -101,7 +100,6 @@ private:
     int m_figure;
     int m_columns;
     unsigned long m_tick;
-    QSignalMapper* m_mapper;
     QVector<QShortcut*> m_shortcuts;
     QString m_currentPattern;
     QMenu* m_popup;

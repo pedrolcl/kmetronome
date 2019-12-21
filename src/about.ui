@@ -35,7 +35,7 @@ MA 02110-1301, USA
   </property>
   <property name="windowIcon">
    <iconset resource="kmetronome.qrc">
-    <normaloff>:/midi/icons/midi/icon16.png</normaloff>:/midi/icons/midi/icon16.png</iconset>
+    <normaloff>:/icons/midi/icon16.png</normaloff>:/icons/midi/icon16.png</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -91,7 +91,7 @@ MA 02110-1301, USA
         </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="kmetronome.qrc">:/midi/icons/midi/icon128.png</pixmap>
+        <pixmap resource="kmetronome.qrc">:/icons/midi/icon128.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>false</bool>

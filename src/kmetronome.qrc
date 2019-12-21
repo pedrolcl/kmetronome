@@ -7,8 +7,6 @@
         <file>icons/16.png</file>
         <file>icons/32.png</file>
         <file>icons/64.png</file>
-    </qresource>
-    <qresource prefix="/midi">
         <file>icons/midi/icon16.png</file>
         <file>icons/midi/icon32.png</file>
         <file>icons/midi/icon64.png</file>

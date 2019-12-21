@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+        <file>drums.ins</file>
+        <file>samples.pat</file>
+    </qresource>
+</RCC>

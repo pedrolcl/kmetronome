@@ -449,7 +449,6 @@ General MIDI uses the channel 10 for percussion sounds.</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
   <tabstop>m_autoconn</tabstop>
   <tabstop>m_in_connection</tabstop>

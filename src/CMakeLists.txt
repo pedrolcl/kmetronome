@@ -25,6 +25,7 @@ set(kmetronome_SRCS
     about.h
     drumgrid.h
     drumgridmodel.h
+    iconutils.h
     kmetronome.h
     kmetropreferences.h
     lcdnumberview.h
@@ -34,6 +35,7 @@ set(kmetronome_SRCS
     about.cpp
     drumgrid.cpp
     drumgridmodel.cpp
+    iconutils.cpp
     instrument.cpp
     kmetronome.cpp
     kmetropreferences.cpp
@@ -46,6 +48,7 @@ set(kmetronome_SRCS
     kmetropreferencesbase.ui
     kmetronome.qrc
     lcdnumbers.qrc
+    ../data/datafiles.qrc
 )
 
 qt5_add_dbus_adaptor( kmetronome_SRCS 

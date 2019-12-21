@@ -17,21 +17,20 @@
     51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include "defs.h"
-#include "drumgrid.h"
-#include "drumgridmodel.h"
-#include "sequenceradapter.h"
-#include "ui_drumgrid.h"
-
 #include <qmath.h>
 #include <QWidget>
 #include <QInputDialog>
 #include <QShortcut>
 #include <QToolTip>
 #include <QClipboard>
-#include <QSignalMapper>
 #include <QSettings>
 #include <QMessageBox>
+#include "defs.h"
+#include "drumgrid.h"
+#include "drumgridmodel.h"
+#include "sequenceradapter.h"
+#include "ui_drumgrid.h"
+#include "iconutils.h"
 
 DrumGrid::DrumGrid(QWidget *parent)
     : QDialog(parent),
@@ -63,25 +62,26 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->beatNumber->setDigitCount(2);
     m_ui->beatNumber->setNumber("1");
 
+    IconUtils::SetupComboFigures(m_ui->figureCombo);
+
     m_popup = new QMenu(this);
     addEditAction(tr("Cut"), SLOT(slotCut()), QKeySequence::Cut);
     addEditAction(tr("Copy"), SLOT(slotCopy()), QKeySequence::Copy);
     addEditAction(tr("Paste"), SLOT(slotPaste()), QKeySequence::Paste);
     m_popup->addSeparator();
 
-    m_mapper = new QSignalMapper(this);
-    addShortcut(QKeySequence("f"), "f");
-    addShortcut(QKeySequence("p"), "p");
-    addShortcut(QKeySequence("1"), "1");
-    addShortcut(QKeySequence("2"), "2");
-    addShortcut(QKeySequence("3"), "3");
-    addShortcut(QKeySequence("4"), "4");
-    addShortcut(QKeySequence("5"), "5");
-    addShortcut(QKeySequence("6"), "6");
-    addShortcut(QKeySequence("7"), "7");
-    addShortcut(QKeySequence("8"), "8");
-    addShortcut(QKeySequence("9"), "9");
-    addShortcut(QKeySequence("0"), QString());
+    addShortcut(QKeySequence(Qt::Key_F), "f");
+    addShortcut(QKeySequence(Qt::Key_P), "p");
+    addShortcut(QKeySequence(Qt::Key_1), "1");
+    addShortcut(QKeySequence(Qt::Key_2), "2");
+    addShortcut(QKeySequence(Qt::Key_3), "3");
+    addShortcut(QKeySequence(Qt::Key_4), "4");
+    addShortcut(QKeySequence(Qt::Key_5), "5");
+    addShortcut(QKeySequence(Qt::Key_6), "6");
+    addShortcut(QKeySequence(Qt::Key_7), "7");
+    addShortcut(QKeySequence(Qt::Key_8), "8");
+    addShortcut(QKeySequence(Qt::Key_9), "9");
+    addShortcut(QKeySequence(Qt::Key_0), QString());
     addShortcut(QKeySequence::Delete, QString());
 
     connect( m_ui->startButton, SIGNAL(clicked()), SLOT(play()));
@@ -96,7 +96,6 @@ DrumGrid::DrumGrid(QWidget *parent)
     connect( m_ui->removeButton, SIGNAL(clicked()), SLOT(removeRow()));
     connect( m_ui->tableView, SIGNAL(customContextMenuRequested(const QPoint&)),
              SLOT(gridContextMenu(const QPoint&)) );
-    connect( m_mapper, SIGNAL(mapped(QString)), SLOT(shortcutPressed(QString)));
     connect( this, SIGNAL(signalUpdate(int,int)), SLOT(updateDisplay(int,int)));
 }
 
@@ -203,15 +202,10 @@ void DrumGrid::shortcutPressed(const QString& value)
 void DrumGrid::addShortcut(const QKeySequence& key, const QString& value)
 {
     QShortcut* shortcut = new QShortcut(key, m_ui->tableView);
-    connect (shortcut, SIGNAL(activated()), m_mapper, SLOT(map()));
-    m_mapper->setMapping(shortcut, value);
+    connect (shortcut, &QShortcut::activated, [=]{ shortcutPressed(value); });
     m_shortcuts.append(shortcut);
-    QAction* action;
-    if (value.isEmpty())
-        action = m_popup->addAction(key.toString(), m_mapper, SLOT(map()));
-    else
-        action = m_popup->addAction(value, m_mapper, SLOT(map()));
-    m_mapper->setMapping(action, value);
+    QAction* action = m_popup->addAction(value.isEmpty() ? key.toString() : value);
+    connect(action, &QAction::triggered, [=]{ shortcutPressed(value); });
 }
 
 void DrumGrid::addEditAction(const QString& name, const char* slot, const QKeySequence& key)

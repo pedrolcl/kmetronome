@@ -41,26 +41,36 @@
 #include "instrument.h"
 #include "about.h"
 #include "kmetronome_adaptor.h"
+#include "iconutils.h"
 
-static QDir dataDirectory()
+static QString dataDirectory()
 {
     QDir test(QApplication::applicationDirPath() + "/../share/kmetronome/");
-    if (test.exists())
-        return test;
+    if (test.exists()) {
+        return test.absolutePath();
+    }
     QStringList candidates = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     foreach(const QString& d, candidates) {
         test = QDir(d);
-        if (test.exists())
-            return test;
+        if (test.exists()) {
+            return d;
+        }
     }
-    return QDir();
+    return QString();
 }
 
-static QDir localeDirectory()
+static QString localeDirectory()
 {
-    QDir data = dataDirectory();
-    data.cd("locale");
-    return data;
+    QString d = dataDirectory();
+    if (!d.isEmpty()) {
+        QDir data(d);
+        if (data.exists() && data != QDir()) {
+            if (data.cd("locale")) {
+                return data.absolutePath();
+            }
+        }
+    }
+    return QString();
 }
 
 KMetronome::KMetronome(QWidget *parent) :
@@ -76,7 +86,7 @@ KMetronome::KMetronome(QWidget *parent) :
     m_trq = new QTranslator(this);
     m_trp = new QTranslator(this);
     m_trq->load( "qt_" + configuredLanguage(), QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
-    m_trp->load( configuredLanguage(), localeDirectory().absolutePath() );
+    m_trp->load( configuredLanguage(), localeDirectory() );
     QApplication::installTranslator(m_trq);
     QApplication::installTranslator(m_trp);
 
@@ -104,6 +114,8 @@ KMetronome::KMetronome(QWidget *parent) :
     m_ui.m_air->addItem("Prestissimo",200);
     m_ui.m_air->setCurrentIndex(4);
 
+    IconUtils::SetupComboFigures(m_ui.m_figure);
+
     connect( m_ui.m_exitbtn, SIGNAL(clicked()), SLOT(close()) );
     connect( m_ui.m_configbtn, SIGNAL(clicked()), SLOT(optionsPreferences()) );
     connect( m_ui.m_patternbtn, SIGNAL(clicked()), SLOT(editPatterns()) );
@@ -123,9 +135,16 @@ KMetronome::KMetronome(QWidget *parent) :
     m_model = new DrumGridModel(this);
     m_instrumentList = new InstrumentList;
     m_model->setInstrumentList(m_instrumentList);
-    QString drums =  dataDirectory().filePath("drums.ins");
-    if (!drums.isEmpty()) {
-        m_instrumentList->load(drums);
+    QString data = dataDirectory();
+    if (data.isEmpty()) {
+        m_instrumentList->load(":/data/drums.ins");
+    } else {
+        QFileInfo f(data, "drums.ins");
+        if (f.exists()) {
+            m_instrumentList->load(f.absoluteFilePath());
+        } else {
+            m_instrumentList->load(":/data/drums.ins");
+        }
     }
     try {
         m_seq = new SequencerAdapter(this);
@@ -186,7 +205,7 @@ void KMetronome::about()
 
 void KMetronome::help()
 {
-    QString hlpFile = QLatin1Literal("kmetronome.html");
+    QString hlpFile = QLatin1String("kmetronome.html");
     QDir data = dataDirectory();
     QFileInfo finfo(data.filePath(hlpFile));
     if (finfo.exists()) {
@@ -307,6 +326,9 @@ void KMetronome::readConfiguration()
     displayFakeToolbar(fakeToolbar);
     m_ui.toolBar->setVisible(realToolbar);
     updatePatterns();
+    if (m_ui.m_pattern->count() == 0) {
+        importPatterns(":/data/samples.pat");
+    }
 }
 
 void KMetronome::optionsPreferences()
@@ -473,7 +495,9 @@ void KMetronome::updatePatterns()
         if (name.startsWith(QSTR_PATTERN))
             lst += name.mid(n);
     }
-    setPatterns(lst);
+    if (!lst.isEmpty()) {
+        setPatterns(lst);
+    }
 }
 
 void KMetronome::readDrumGridPattern()
@@ -736,7 +760,7 @@ void KMetronome::createLanguageMenu()
 void KMetronome::retranslateUi()
 {
     m_trq->load( "qt_" + configuredLanguage(), QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
-    m_trp->load( configuredLanguage(), localeDirectory().absolutePath() );
+    m_trp->load( configuredLanguage(), localeDirectory() );
     m_ui.retranslateUi(this);
     m_seq->retranslateUi();
     createLanguageMenu();

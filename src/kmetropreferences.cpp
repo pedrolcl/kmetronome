@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "kmetropreferences.h"
+#include "iconutils.h"
 
 KMetroPreferences::KMetroPreferences(QWidget *parent)
     : QDialog(parent)
@@ -31,6 +32,7 @@ KMetroPreferences::KMetroPreferences(QWidget *parent)
              SLOT(slotBankChanged(int)));
     connect( m_ui.m_program, SIGNAL(currentIndexChanged(int)),
              SLOT(slotProgramChanged(int)));
+    IconUtils::SetWindowIcon(this);
 }
 
 KMetroPreferences::~KMetroPreferences()

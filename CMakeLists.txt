@@ -24,6 +24,8 @@ project(kmetronome
         LANGUAGES CXX
 )
 
+option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED Yes)
@@ -41,11 +43,15 @@ if(Drumstick_FOUND)
     message("Found Drumstick version: ${Drumstick_VERSION}")
 endif()
 
-add_subdirectory(src)
+include(GNUInstallDirs)
+
 add_subdirectory(icons)
-add_subdirectory(translations)
+if(NOT EMBED_TRANSLATIONS)
+    add_subdirectory(translations)
+endif()
 add_subdirectory(doc)
 add_subdirectory(data)
+add_subdirectory(src)
 
 include(DBusMacros)
 dbus_add_activation_service(net.sourceforge.kmetronome.service.in)
@@ -77,4 +83,4 @@ add_custom_target ( tarball
 )
 
 install( FILES kmetronome.desktop
-         DESTINATION share/applications )
+         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications )

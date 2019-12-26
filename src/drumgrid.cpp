@@ -63,6 +63,7 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_ui->beatNumber->setNumber("1");
 
     IconUtils::SetupComboFigures(m_ui->figureCombo);
+    IconUtils::SetWindowIcon(this);
 
     m_popup = new QMenu(this);
     addEditAction(tr("Cut"), SLOT(slotCut()), QKeySequence::Cut);

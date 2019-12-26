@@ -12,6 +12,7 @@ namespace  IconUtils
     QPixmap GetPixmap(QWidget* widget, const QString& fileName);
     void SetLabelIcon(QLabel *label, const QString& fileName);
     void SetupComboFigures(QComboBox *combo);
+    void SetWindowIcon(QWidget *widget);
 }
 
 #endif // ICONUTILS_H

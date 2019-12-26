@@ -39,4 +39,9 @@ namespace IconUtils
             combo->addItem(QIcon(GetPixmap(combo, p.second)), p.first);
         }
     }
+
+    void SetWindowIcon(QWidget *widget)
+    {
+        widget->setWindowIcon(QIcon(GetPixmap(widget, ":/icons/midi/icon32.png")));
+    }
 }

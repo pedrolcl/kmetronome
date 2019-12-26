@@ -1,2 +1,2 @@
 install( FILES drums.ins samples.pat
-         DESTINATION share/kmetronome )
+         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kmetronome )

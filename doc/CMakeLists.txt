@@ -16,7 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA
 
-install(FILES kmetronome.1 
-	DESTINATION share/man/man1)
-install(FILES kmetronome.html kmetronome_1.png kmetronome_2.png kmetronome_3.png
-	DESTINATION share/kmetronome)
+install( FILES kmetronome.1
+    DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+
+install( FILES kmetronome.html kmetronome_1.png kmetronome_2.png kmetronome_3.png
+    DESTINATION ${CMAKE_INSTALL_DOCDIR} )

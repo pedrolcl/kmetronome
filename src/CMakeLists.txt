@@ -21,6 +21,20 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+if(EMBED_TRANSLATIONS)
+    set( TRANSLATIONS
+         ../translations/cs.ts
+         ../translations/de.ts
+         ../translations/es.ts
+         ../translations/fr.ts
+         ../translations/tr.ts
+    )
+    qt5_add_translation(QM_FILES ${TRANSLATIONS})
+    include(TranslationUtils)
+    add_app_translations_resource(APP_RES ${QM_FILES})
+    add_qt_translations_resource(QT_RES cs de es fr tr)
+endif()
+
 set(kmetronome_SRCS
     about.h
     drumgrid.h
@@ -32,6 +46,7 @@ set(kmetronome_SRCS
     sequenceradapter.h
     defs.h
     instrument.h
+    helpwindow.h
     about.cpp
     drumgrid.cpp
     drumgridmodel.cpp
@@ -42,6 +57,7 @@ set(kmetronome_SRCS
     lcdnumberview.cpp
     main.cpp
     sequenceradapter.cpp
+    helpwindow.cpp
     about.ui
     drumgrid.ui
     kmetronome.ui
@@ -49,6 +65,8 @@ set(kmetronome_SRCS
     kmetronome.qrc
     lcdnumbers.qrc
     ../data/datafiles.qrc
+    ${APP_RES}
+    ${QT_RES}
 )
 
 qt5_add_dbus_adaptor( kmetronome_SRCS 
@@ -70,12 +88,13 @@ target_link_libraries( kmetronome
     Drumstick::ALSA
 )
 
-target_compile_definitions( kmetronome
-    PRIVATE -DVERSION=${PROJECT_VERSION}
+target_compile_definitions( kmetronome PRIVATE
+    -DVERSION=${PROJECT_VERSION}
+    -DTRANSLATIONS_PATH=$<IF:$<BOOL:${EMBED_TRANSLATIONS}>,:/,${CMAKE_INSTALL_DATAROOTDIR}/kmetronome/translations/>
 )
 
 install( TARGETS kmetronome
-         RUNTIME DESTINATION bin )
+         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} )
 
 install( FILES net.sourceforge.kmetronome.xml 
-         DESTINATION share/dbus-1/interfaces )
+         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/interfaces )

@@ -31,13 +31,11 @@ namespace drumstick {
 
 class DrumGridModel;
 
-using namespace drumstick;
-
 const int TAG_FIXED(0);
 const int TAG_WEAK(1);
 const int TAG_STRONG(2);
 
-class SequencerAdapter : public QObject, public SequencerEventHandler
+class SequencerAdapter : public QObject, public drumstick::ALSA::SequencerEventHandler
 {
     Q_OBJECT
 
@@ -109,14 +107,14 @@ public:
     int decodeVelocity(const QString drumVel);
     int decodeTag(const QString drumVel);
 
-    void parse_sysex(SequencerEvent *ev);
+    void parse_sysex(drumstick::ALSA::SequencerEvent *ev);
     void metronome_note(int note, int vel, int tick, int tag);
     void metronome_echo(int tick, int ev_type);
     void metronome_simple_pattern(int tick);
     void metronome_grid_pattern(int tick);
-    void metronome_event_output(SequencerEvent* ev);
-    void metronome_note_output(SequencerEvent* ev);
-    void metronome_schedule_event(SequencerEvent* ev, int tick);
+    void metronome_event_output(drumstick::ALSA::SequencerEvent* ev);
+    void metronome_note_output(drumstick::ALSA::SequencerEvent* ev);
+    void metronome_schedule_event(drumstick::ALSA::SequencerEvent* ev, int tick);
     int calc_lsb(int x);
     int calc_msb(int x);
 
@@ -124,7 +122,7 @@ public:
 //    void sequencerEvent(SequencerEvent *ev);
 
 // SequencerEventHandler method
-    void handleSequencerEvent(SequencerEvent *ev);
+    void handleSequencerEvent(drumstick::ALSA::SequencerEvent *ev);
 
 signals:
     void signalUpdate(int,int);
@@ -134,9 +132,9 @@ signals:
     void signalNotation(int,int);
     
 private:
-    MidiClient* m_Client;
-    MidiPort* m_Port;
-    MidiQueue* m_Queue;
+    drumstick::ALSA::MidiClient* m_Client;
+    drumstick::ALSA::MidiPort* m_Port;
+    drumstick::ALSA::MidiQueue* m_Queue;
     DrumGridModel* m_model;
     int m_clientId;
     int m_inputPortId;

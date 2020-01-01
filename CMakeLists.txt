@@ -38,7 +38,7 @@ if(Qt5_FOUND)
     message(STATUS "Found Qt5 version: ${Qt5Core_VERSION_STRING}")
 endif()
 
-find_package(Drumstick 1.1.3 COMPONENTS ALSA REQUIRED)
+find_package(Drumstick 2.0 COMPONENTS ALSA REQUIRED)
 if(Drumstick_FOUND)
     message("Found Drumstick version: ${Drumstick_VERSION}")
 endif()

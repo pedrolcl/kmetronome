@@ -25,6 +25,8 @@
 #include <drumstick/alsaevent.h>
 #include <QStringList>
 
+using namespace drumstick::ALSA;
+
 SequencerAdapter::SequencerAdapter(QObject *parent) :
     QObject(parent),
     m_Client(0),

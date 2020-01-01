@@ -102,7 +102,7 @@ KMetronome::KMetronome(QWidget *parent) :
     if (!m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
         qWarning() << "Failure loading Qt5 translations for" << configuredLanguage();
     }
-    if (!m_trp->load(locale, QString(), QString(), trDirectory())) {
+    if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
         qWarning() << "Failure loading program translations for" << configuredLanguage();
     }
     QLocale::setDefault(locale);
@@ -175,7 +175,7 @@ KMetronome::KMetronome(QWidget *parent) :
         setupActions();
         readConfiguration();
         createLanguageMenu();
-    } catch (SequencerError& ex) {
+    } catch (drumstick::ALSA::SequencerError& ex) {
         QString errorstr = tr("Fatal error from the ALSA sequencer. "
             "This usually happens when the kernel doesn't have ALSA support, "
             "or the device node (/dev/snd/seq) doesn't exists, "
@@ -714,6 +714,7 @@ QString KMetronome::configuredLanguage()
         m_language = settings.value("language", defLang).toString();
         settings.endGroup();
     }
+    qDebug() << Q_FUNC_INFO << m_language;
     return m_language;
 }
 
@@ -738,16 +739,15 @@ void KMetronome::createLanguageMenu()
 {
     QString currentLang = configuredLanguage();
     QActionGroup *languageGroup = new QActionGroup(this);
-    connect(languageGroup, SIGNAL(triggered(QAction *)),
-            SLOT(slotSwitchLanguage(QAction *)));
+    connect(languageGroup, &QActionGroup::triggered, this, &KMetronome::slotSwitchLanguage);
     QStringList locales;
     locales << "en";
     QDirIterator it(trDirectory(), {"*.qm"}, QDir::NoFilter, QDirIterator::NoIteratorFlags);
     while (it.hasNext()) {
         QFileInfo f(it.next());
         QString locale = f.fileName();
-        if (!locale.startsWith("qt_")) {
-            locale.truncate(locale.lastIndexOf('.'));
+        if (locale.startsWith("kmetronome_")) {
+            locale.remove(0, 11).truncate(locale.lastIndexOf('.'));
             locales << locale;
         }
     }
@@ -774,7 +774,7 @@ void KMetronome::retranslateUi()
     if (!m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
         qWarning() << "Failure loading Qt5 translations for" << configuredLanguage();
     }
-    if (!m_trp->load(locale, QString(), QString(), trDirectory())) {
+    if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
         qWarning() << "Failure loading program translations for" << configuredLanguage();
     }
     m_ui.retranslateUi(this);

@@ -23,11 +23,11 @@ set(CMAKE_AUTOUIC ON)
 
 if(EMBED_TRANSLATIONS)
     set( TRANSLATIONS
-         ../translations/cs.ts
-         ../translations/de.ts
-         ../translations/es.ts
-         ../translations/fr.ts
-         ../translations/tr.ts
+         ../translations/kmetronome_cs.ts
+         ../translations/kmetronome_de.ts
+         ../translations/kmetronome_es.ts
+         ../translations/kmetronome_fr.ts
+         ../translations/kmetronome_tr.ts
     )
     qt5_add_translation(QM_FILES ${TRANSLATIONS})
     include(TranslationUtils)

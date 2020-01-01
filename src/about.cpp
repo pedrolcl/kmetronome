@@ -17,8 +17,6 @@
     51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <QPainter>
-#include <QDebug>
 #include "about.h"
 #include "iconutils.h"
 

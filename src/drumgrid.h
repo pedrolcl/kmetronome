@@ -32,18 +32,8 @@ namespace Ui
     class DrumGrid;
 }
 
-namespace drumstick
-{
-    class MidiClient;
-    class MidiPort;
-    class MidiQueue;
-    class SequencerEvent;
-}
-
 class SequencerAdapter;
 class DrumGridModel;
-
-using namespace drumstick;
 
 class DrumGrid : public QDialog
 {

@@ -56,11 +56,12 @@ RESOURCES += src/kmetronome.qrc \
     src/lcdnumbers.qrc \
     data/datafiles.qrc
 
-TRANSLATIONS += translations/cs.ts \
-    translations/de.ts \
-    translations/es.ts \
-    translations/fr.ts \
-    translations/tr.ts
+TRANSLATIONS += \
+    translations/kmetronome_cs.ts \
+    translations/kmetronome_de.ts \
+    translations/kmetronome_es.ts \
+    translations/kmetronome_fr.ts \
+    translations/kmetronome_tr.ts
 
 LCONVERT_LANGS=cs de es fr tr
 include(lconvert.pri)

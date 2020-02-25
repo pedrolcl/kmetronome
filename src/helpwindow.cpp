@@ -17,6 +17,7 @@
 */
 
 #include <QApplication>
+#include <QDesktopWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include "helpwindow.h"
@@ -69,9 +70,11 @@ void HelpWindow::updateWindowTitle()
     setWindowTitle(tr("Help: %1").arg(textBrowser->documentTitle()));
 }
 
-void HelpWindow::showPage(const QString &page)
+void HelpWindow::showPage(QWidget* parent, const QString &page)
 {
     HelpWindow *browser = new HelpWindow(QLatin1String(":/"), page);
-    browser->resize(500, 400);
+    browser->resize(640, 480);
+    browser->setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,browser->size(),
+        qApp->desktop()->availableGeometry(parent)));
     browser->show();
 }

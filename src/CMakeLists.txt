@@ -63,6 +63,7 @@ set(kmetronome_SRCS
     kmetronome.qrc
     lcdnumbers.qrc
     ../data/datafiles.qrc
+    ../doc/docs.qrc
     ${APP_RES}
     ${QT_RES}
 )

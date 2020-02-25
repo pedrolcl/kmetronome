@@ -193,16 +193,17 @@ KMetronome::~KMetronome()
 void KMetronome::setupActions()
 {
     m_ui.actionAboutQt->setIcon(QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"));
-    connect( m_ui.actionPlayStop, SIGNAL(triggered(bool)), SLOT(toggle(bool)) );
-    connect( m_ui.actionImportPatterns, SIGNAL(triggered()), SLOT(importPatterns()) );
-    connect( m_ui.actionExportPatterns, SIGNAL(triggered()), SLOT(exportPatterns()) );
-    connect( m_ui.actionQuit, SIGNAL(triggered()), SLOT(close()) );
-    connect( m_ui.actionEditPatterns, SIGNAL(triggered()), SLOT(editPatterns()) );
-    connect( m_ui.actionShowActionButtons, SIGNAL(triggered(bool)), SLOT(displayFakeToolbar(bool)));
-    connect( m_ui.actionConfiguration, SIGNAL(triggered()), SLOT(optionsPreferences()) );
-    connect( m_ui.actionAbout, SIGNAL(triggered()), SLOT(about()) );
-    connect( m_ui.actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()) );
-    connect( m_ui.actionHelp, SIGNAL(triggered()), SLOT(help()) );
+    m_ui.actionAbout->setIcon(QIcon(IconUtils::GetPixmap(this, ":/icons/midi/icon32.png")));
+    connect( m_ui.actionPlayStop, &QAction::triggered, this, &KMetronome::toggle );
+    connect( m_ui.actionImportPatterns, &QAction::triggered, this, &KMetronome::slotImportPatterns );
+    connect( m_ui.actionExportPatterns, &QAction::triggered, this, &KMetronome::slotExportPatterns );
+    connect( m_ui.actionQuit, &QAction::triggered, this, &KMetronome::close );
+    connect( m_ui.actionEditPatterns, &QAction::triggered, this, &KMetronome::editPatterns );
+    connect( m_ui.actionShowActionButtons, &QAction::triggered, this, &KMetronome::displayFakeToolbar );
+    connect( m_ui.actionConfiguration, &QAction::triggered, this, &KMetronome::optionsPreferences );
+    connect( m_ui.actionAbout, &QAction::triggered, this, &KMetronome::about );
+    connect( m_ui.actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt );
+    connect( m_ui.actionHelp, &QAction::triggered, this, &KMetronome::help );
 }
 
 void KMetronome::closeEvent(QCloseEvent *event)
@@ -219,7 +220,7 @@ void KMetronome::about()
 
 void KMetronome::help()
 {
-    HelpWindow::showPage(QLatin1String("kmetronome.html"));
+    HelpWindow::showPage(this, QStringLiteral("help/kmetronome.html"));
 }
 
 void KMetronome::saveConfiguration()
@@ -593,7 +594,7 @@ void KMetronome::exportPatterns(const QString& path)
     }
 }
 
-void KMetronome::importPatterns()
+void KMetronome::slotImportPatterns()
 {
     QString dirName = QStandardPaths::locate(QStandardPaths::DataLocation, "*.pat", QStandardPaths::LocateDirectory) ;
     QString path = QFileDialog::getOpenFileName(this, tr("Import Patterns"),dirName,tr("Pattern Files (*.pat)"));
@@ -602,7 +603,7 @@ void KMetronome::importPatterns()
     }
 }
 
-void KMetronome::exportPatterns()
+void KMetronome::slotExportPatterns()
 {
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     QDir dir(dirName);

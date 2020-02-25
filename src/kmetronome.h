@@ -89,8 +89,8 @@ protected Q_SLOTS:
     void editPatterns();
     void patternChanged(int);
     void updatePatterns();
-    void exportPatterns();
-    void importPatterns();
+    void slotExportPatterns();
+    void slotImportPatterns();
     void slotSwitchLanguage(QAction *action);
 
 private:

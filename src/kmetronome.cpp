@@ -56,9 +56,7 @@ static QString dataDirectory()
     return QString();
 }
 
-#define LITERAL(s) #s
-#define STRINGIFY(s) LITERAL(s)
-const QString trPath_(STRINGIFY(TRANSLATIONS_PATH));
+const QString trPath_(QT_STRINGIFY(TRANSLATIONS_PATH));
 
 static QString trDirectory()
 {

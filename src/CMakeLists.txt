@@ -88,8 +88,8 @@ target_link_libraries( kmetronome
 )
 
 target_compile_definitions( kmetronome PRIVATE
-    -DVERSION=${PROJECT_VERSION}
-    -DTRANSLATIONS_PATH=$<IF:$<BOOL:${EMBED_TRANSLATIONS}>,:/,${CMAKE_INSTALL_DATAROOTDIR}/kmetronome/translations/>
+    VERSION=${PROJECT_VERSION}
+    $<$<BOOL:${EMBED_TRANSLATIONS}>:TRANSLATIONS_EMBEDDED>
 )
 
 install( TARGETS kmetronome

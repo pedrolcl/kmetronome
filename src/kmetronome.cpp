@@ -28,6 +28,7 @@
 #include <QDesktopServices>
 #include <QDBusConnection>
 #include <QDebug>
+#include <drumstick/sequencererror.h>
 #include "kmetronome.h"
 #include "kmetropreferences.h"
 #include "sequenceradapter.h"
@@ -56,26 +57,25 @@ static QString dataDirectory()
     return QString();
 }
 
-const QString trPath_(QT_STRINGIFY(TRANSLATIONS_PATH));
-
 static QString trDirectory()
 {
-    if (trPath_ == ":/" ) {
-        return trPath_;
-    }
-    QDir test(QApplication::applicationDirPath() + "/../" + trPath_);
+#if defined(TRANSLATIONS_EMBEDDED)
+    return QLatin1String(":/");
+#else
+    QDir test(dataDirectory() + "translations/");
     qDebug() << test.absolutePath();
     if (test.exists()) {
         return test.absolutePath();
     }
     return QString();
+#endif
 }
 
 static QString trQtDirectory()
 {
-    if (trPath_ == ":/" ) {
-        return trPath_;
-    }
+#if defined(TRANSLATIONS_EMBEDDED)
+    return QLatin1String(":/");
+#endif
     return QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 }
 
@@ -753,7 +753,7 @@ void KMetronome::createLanguageMenu()
     for (const QString& loc : locales) {
         QLocale qlocale(loc);
         QString localeName = loc == "en" ? QLocale::languageToString(qlocale.language()) : qlocale.nativeLanguageName();
-        QAction *action = new QAction(localeName, this);
+        QAction *action = new QAction(localeName.section(" ", 0, 0), this);
         action->setCheckable(true);
         action->setData(loc);
         m_ui.menuLanguage->addAction(action);

@@ -27,7 +27,7 @@ DrumGridModel::DrumGridModel(QObject *parent)
     m_columns(PATTERN_COLUMNS),
     m_figure(PATTERN_FIGURE),
     m_lastValue(DEFVAL),
-    m_insList(NULL)
+    m_insList(nullptr)
 {
     m_modelData.clear();
     m_keys.clear();
@@ -40,7 +40,7 @@ void DrumGridModel::setInstrumentList(InstrumentList* instruments)
 
 void DrumGridModel::loadKeyNames(const QString& instrument, int bank, int patch)
 {
-    if (m_insList != NULL) {
+    if (m_insList != nullptr) {
         Instrument ins = m_insList->value(instrument);
         const InstrumentData& notes = ins.notes(bank, patch);
         InstrumentData::ConstIterator k;

@@ -38,7 +38,7 @@ class DrumGrid : public QDialog
 {
     Q_OBJECT
 public:
-    DrumGrid(QWidget *parent = 0);
+    DrumGrid(QWidget *parent = nullptr);
     virtual ~DrumGrid();
     void setSequencer(SequencerAdapter* seq);
     void setModel(DrumGridModel* model);
@@ -52,8 +52,8 @@ public:
     void writePattern(const QString& name);
     void removePattern(const QString& name);
     void updateTempo(int newTempo);
-    void showEvent(QShowEvent* event);
-    void done(int r);
+    void showEvent(QShowEvent* event) override;
+    void done(int r) override;
     QStringList patterns();
     QString currentPattern() { return m_currentPattern; }
     void setFigure(int figure);

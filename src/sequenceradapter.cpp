@@ -27,10 +27,10 @@ using namespace drumstick::ALSA;
 
 SequencerAdapter::SequencerAdapter(QObject *parent) :
     QObject(parent),
-    m_Client(0),
-    m_Port(0),
-    m_Queue(0),
-    m_model(0),
+    m_Client(nullptr),
+    m_Port(nullptr),
+    m_Queue(nullptr),
+    m_model(nullptr),
     m_clientId(-1),
     m_inputPortId(-1),
     m_outputPortId(-1),
@@ -328,7 +328,7 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 {
 	int num, den;
 	SysExEvent* syx = static_cast<SysExEvent*>(ev);
-	if (syx == NULL)
+	if (syx == nullptr)
 	    return;
 	unsigned char *ptr =(unsigned char *) syx->getData();
 	if (syx->getLength() < 6) return;

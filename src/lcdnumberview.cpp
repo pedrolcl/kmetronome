@@ -86,7 +86,7 @@ void LCDNumberView::update()
         return;
     foreach(const QChar& ch, m_number) {
         QGraphicsSvgItem *itm = dynamic_cast<QGraphicsSvgItem*>(lst.at(i));
-        if (itm != 0) {
+        if (itm != nullptr) {
             if(ch == ':') {
                 itm->setElementId(QLatin1Literal("colon"));
                 itm->setVisible(true);

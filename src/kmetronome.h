@@ -37,7 +37,7 @@ class KMetronome : public QMainWindow
     Q_CLASSINFO("D-Bus Interface", "net.sourceforge.kmetronome")
 
 public:
-    KMetronome(QWidget* parent=0);
+    KMetronome(QWidget* parent = nullptr);
     virtual ~KMetronome();
 
     void display(int, int);
@@ -55,8 +55,8 @@ public:
     void retranslateUi();
 
 protected:
-    void closeEvent(QCloseEvent *event);
-    void mouseDoubleClickEvent ( QMouseEvent * e );
+    void closeEvent(QCloseEvent *event) override;
+    void mouseDoubleClickEvent ( QMouseEvent * e ) override;
 
 public Q_SLOTS:
     void about();

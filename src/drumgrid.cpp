@@ -34,8 +34,8 @@
 DrumGrid::DrumGrid(QWidget *parent)
     : QDialog(parent),
     m_ui(new Ui::DrumGrid),
-    m_seq(NULL),
-    m_model(NULL),
+    m_seq(nullptr),
+    m_model(nullptr),
     m_figure(PATTERN_FIGURE),
     m_columns(PATTERN_COLUMNS)
 {
@@ -385,7 +385,7 @@ void DrumGrid::removeRow()
 
 void DrumGrid::gridContextMenu(const QPoint&)
 {
-    if (m_popup != NULL)
+    if (m_popup != nullptr)
         m_popup->exec(QCursor::pos());
 }
 

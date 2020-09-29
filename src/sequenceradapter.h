@@ -120,7 +120,7 @@ public:
 //    void sequencerEvent(SequencerEvent *ev);
 
 // SequencerEventHandler method
-    void handleSequencerEvent(drumstick::ALSA::SequencerEvent *ev);
+    void handleSequencerEvent(drumstick::ALSA::SequencerEvent *ev) override;
 
 signals:
     void signalUpdate(int,int);

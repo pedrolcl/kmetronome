@@ -82,7 +82,7 @@ static QString trQtDirectory()
 KMetronome::KMetronome(QWidget *parent) :
     QMainWindow(parent),
     m_patternMode(false),
-    m_seq(0)
+    m_seq(nullptr)
 {
     new KmetronomeAdaptor(this);
     QDBusConnection dbus = QDBusConnection::sessionBus();
@@ -178,7 +178,7 @@ KMetronome::KMetronome(QWidget *parent) :
             "or the kernel module (snd_seq) is not loaded. "
             "Please check your ALSA/MIDI configuration. Returned error was: %1")
             .arg(ex.qstrError());
-        QMessageBox::critical(0, tr("Error"), errorstr);
+        QMessageBox::critical(nullptr, tr("Error"), errorstr);
         close();
     }
 }
@@ -230,7 +230,7 @@ void KMetronome::saveConfiguration()
     settings.setValue("language", m_language);
     settings.setValue("fakeToolbar", m_ui.actionShowActionButtons->isChecked());
     settings.setValue("toolbar", m_ui.actionShowToolbar->isChecked());
-    if (m_seq != 0) {
+    if (m_seq != nullptr) {
         settings.setValue("instrument", m_instrument);
         settings.setValue("bank", m_bank);
         settings.setValue("program", m_program);
@@ -346,10 +346,10 @@ void KMetronome::optionsPreferences()
     dlg->fillInstruments(m_instrumentList);
     dlg->setAutoConnect(m_seq->getAutoConnect());
     QString conn = m_seq->getOutputConn();
-    if (conn != NULL && !conn.isEmpty())
+    if (conn != nullptr && !conn.isEmpty())
         dlg->setOutputConnection(conn);
     conn = m_seq->getInputConn();
-    if (conn != NULL && !conn.isEmpty())
+    if (conn != nullptr && !conn.isEmpty())
         dlg->setInputConnection(conn);
     dlg->setInstrumentName(m_instrument);
     dlg->setBankName(m_bank);
@@ -363,7 +363,7 @@ void KMetronome::optionsPreferences()
     if (dlg->exec() == QDialog::Accepted) {
         m_seq->disconnect_output();
         m_seq->disconnect_input();
-        if (dlg != NULL) {
+        if (dlg != nullptr) {
             m_seq->setAutoConnect(dlg->getAutoConnect());
             m_seq->setOutputConn(dlg->getOutputConnection());
             m_seq->setInputConn(dlg->getInputConnection());
@@ -509,7 +509,7 @@ void KMetronome::updatePatterns()
 
 void KMetronome::readDrumGridPattern()
 {
-    if (m_drumgrid == NULL) {
+    if (m_drumgrid == nullptr) {
         m_drumgrid = new DrumGrid(this);
         m_drumgrid->setModel(m_model);
         m_drumgrid->setSequencer(m_seq);
@@ -526,7 +526,7 @@ void KMetronome::editPatterns()
     readDrumGridPattern();
     res = m_drumgrid->exec();
     updatePatterns();
-    if (res == QDialog::Accepted && m_drumgrid != NULL)
+    if (res == QDialog::Accepted && m_drumgrid != nullptr)
         tmpPattern = m_drumgrid->currentPattern();
     tempoChanged(getTempo());
     setSelectedPattern(tmpPattern);

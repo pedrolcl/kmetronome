@@ -28,14 +28,14 @@ class LCDNumberView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit LCDNumberView(QWidget *parent = 0);
+    explicit LCDNumberView(QWidget *parent = nullptr);
     QString number();
     int digitCount();
     void setDigitCount(const int count);
 
 protected:
     void loadRenderer();
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
     void update();
     void rescale();
 

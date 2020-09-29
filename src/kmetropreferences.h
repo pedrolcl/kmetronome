@@ -28,7 +28,7 @@ class KMetroPreferences : public QDialog
     Q_OBJECT
 
 public:
-    KMetroPreferences(QWidget *parent = 0);
+    KMetroPreferences(QWidget *parent = nullptr);
     virtual ~KMetroPreferences();
     void fillInputConnections(QStringList lst) { m_ui.m_in_connection->insertItems(0, lst); }
     void fillOutputConnections(QStringList lst) { m_ui.m_out_connection->insertItems(0, lst); }

@@ -1,3 +1,8 @@
+2020-12-31 00:00 plcl
+    * Build system and code modernized
+    * Synchronized to Drumstick 2.0.0
+    * release 1.2.0
+
 2019-11-05 00:00 plcl
 
     * Fixed the LCD number component, to use the application palette instead of hardcoded colors. 

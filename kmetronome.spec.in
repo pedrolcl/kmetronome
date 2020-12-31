@@ -1,9 +1,9 @@
-# spec file for package kmetronome (Version @VERSION@)
+# spec file for package kmetronome (Version @PROJECT_VERSION@)
 #
 # norootforbuild
 
 Name:           kmetronome
-Version:        @VERSION@
+Version:        @PROJECT_VERSION@
 Release:        0
 License:        GPL v2 or later
 Summary:        MIDI Metronome using ALSA Sequencer
@@ -59,6 +59,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%name/*
 
 %changelog
+* Thu Dec 31 2020 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.2.0
+- New release
 * Tue Nov 5 2019 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.1
 - New release
 * Sun Oct 12 2014 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net> 1.0.0

@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = kmetronome
 DEPENDPATH += . src
 INCLUDEPATH += . src
-VERSION = 1.0.2
+VERSION = 1.2.0
 QT += core gui widgets dbus svg
 CONFIG += c++11 link_pkgconfig lrelease embed_translations
 DEFINES += VERSION=$$VERSION \

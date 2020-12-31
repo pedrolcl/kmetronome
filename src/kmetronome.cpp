@@ -62,7 +62,7 @@ static QString trDirectory()
 #if defined(TRANSLATIONS_EMBEDDED)
     return QLatin1String(":/");
 #else
-    QDir test(dataDirectory() + "translations/");
+    QDir test(dataDirectory() + "/translations/");
     qDebug() << test.absolutePath();
     if (test.exists()) {
         return test.absolutePath();
@@ -728,6 +728,9 @@ void KMetronome::slotSwitchLanguage(QAction *action)
         m_language = lang;
         retranslateUi();
     } else {
+        if (m_currentLang == nullptr) {
+            m_currentLang = action;
+        }
         m_currentLang->setChecked(true);
     }
 }
@@ -750,7 +753,7 @@ void KMetronome::createLanguageMenu()
     }
     locales.sort();
     m_ui.menuLanguage->clear();
-    for (const QString& loc : locales) {
+    for (const QString& loc : qAsConst(locales)) {
         QLocale qlocale(loc);
         QString localeName = loc == "en" ? QLocale::languageToString(qlocale.language()) : qlocale.nativeLanguageName();
         QAction *action = new QAction(localeName.section(" ", 0, 0), this);

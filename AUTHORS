@@ -1,4 +1,4 @@
-Copyright (C) 2005-2020 Pedro Lopez-Cabanillas  <plcl@users.sourceforge.net>
+Copyright (C) 2005-2021 Pedro Lopez-Cabanillas  <plcl@users.sourceforge.net>
 
 Translations
 
@@ -18,7 +18,7 @@ Translations
     file: translations/tr.ts
 
 Instrument definitions (.INS files) support:
-    Copyright (C) 2005-2020, rncbc aka Rui Nuno Capela
+    Copyright (C) 2005-2021, rncbc aka Rui Nuno Capela
     Files:
         src/Instrument.h
         src/Instrument.cpp

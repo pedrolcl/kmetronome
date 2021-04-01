@@ -747,7 +747,8 @@ void KMetronome::createLanguageMenu()
         QFileInfo f(it.next());
         QString locale = f.fileName();
         if (locale.startsWith("kmetronome_")) {
-            locale.remove(0, 11).truncate(locale.lastIndexOf('.'));
+            locale.remove(0, locale.indexOf('_') + 1);
+            locale.truncate(locale.lastIndexOf('.'));
             locales << locale;
         }
     }

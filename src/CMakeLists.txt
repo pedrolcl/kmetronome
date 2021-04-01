@@ -92,6 +92,11 @@ target_compile_definitions( kmetronome PRIVATE
     $<$<BOOL:${EMBED_TRANSLATIONS}>:TRANSLATIONS_EMBEDDED>
 )
 
+if (DEFINED PROJECT_WC_REVISION)
+    target_compile_definitions( ${PROJECT_NAME} PRIVATE
+        REVISION=${PROJECT_WC_REVISION} )
+endif()
+
 install( TARGETS kmetronome
          RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} )
 

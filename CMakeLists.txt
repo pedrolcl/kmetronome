@@ -14,17 +14,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.14)
 
-project(kmetronome
-        VERSION 1.2.0
-        DESCRIPTION "ALSA Sequencer based MIDI metronome"
-        LANGUAGES CXX
+project ( kmetronome
+    VERSION 1.2.1
+    LANGUAGES CXX
+    DESCRIPTION "ALSA Sequencer based MIDI metronome"
+    HOMEPAGE_URL "https://kmetronome.sourceforge.io"
 )
 
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
+include(SCMRevision)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED Yes)
 

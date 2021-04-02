@@ -92,5 +92,8 @@ add_custom_target ( tarball
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 
-install( FILES kmetronome.desktop
+install( FILES net.sourceforge.kmetronome.desktop
          DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications )
+
+install( FILES net.sourceforge.kmetronome.appdata.xml
+         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo )

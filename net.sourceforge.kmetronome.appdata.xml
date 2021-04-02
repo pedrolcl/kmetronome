@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.sourceforge.kmetronome</id>
+  <name>Drumstick Metronome</name>
+  <summary>Drumstick MIDI Metronome based on the ALSA Sequencer</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <description>
+    <p>
+      Drumstick Metronome is a MIDI metronome with Qt5 interface, based on the ALSA sequencer. 
+      Intended for musicians and music students, it is a tool to keep the rhythm while playing musical instruments. 
+      It uses MIDI for sound generation instead of digital audio, allowing low CPU usage, and very accurate timing thanks to the ALSA sequencer.
+    </p>
+  </description>
+  <launchable type="desktop-id">kmetronome.desktop</launchable>
+  <translation type="qt">kmetronome</translation>
+  <url type="homepage">https://kmetronome.sourceforge.io/</url>
+  <developer_name>Pedro López-Cabanillas</developer_name>
+  <update_contact>plcl_AT_users.sourceforge.net</update_contact>
+   <!-- <content_rating type="oars-1.1" /> this is broken, validator fail -->
+  <screenshots>
+    <!--TODO: pending better screenshots-->
+    <screenshot type="default">
+      <image>https://kmetronome.sourceforge.io/images/kmetronome1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://kmetronome.sourceforge.io/images/kmetronome2.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="1.2.0" date="2020-12-31" />
+  </releases>
+</component>

@@ -37,7 +37,8 @@ DrumGrid::DrumGrid(QWidget *parent)
     m_seq(nullptr),
     m_model(nullptr),
     m_figure(PATTERN_FIGURE),
-    m_columns(PATTERN_COLUMNS)
+    m_columns(PATTERN_COLUMNS),
+    m_internalIcons(false)
 {
     m_ui->setupUi(this);
     setWindowTitle( tr("Pattern Editor") );
@@ -48,14 +49,14 @@ DrumGrid::DrumGrid(QWidget *parent)
     QHeaderView *hH = m_ui->tableView->horizontalHeader();
     hH->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    m_ui->startButton->setIcon(QIcon::fromTheme("media-playback-start"));
+    m_ui->startButton->setIcon(IconUtils::GetIcon("media-playback-start"));
     m_ui->startButton->setShortcut( Qt::Key_MediaPlay );
-    m_ui->stopButton->setIcon(QIcon::fromTheme("media-playback-stop"));
+    m_ui->stopButton->setIcon(IconUtils::GetIcon("media-playback-stop"));
     m_ui->stopButton->setShortcut( Qt::Key_MediaStop );
-    m_ui->saveButton->setIcon(QIcon::fromTheme("document-save"));
-    m_ui->deleteButton->setIcon(QIcon::fromTheme("edit-delete"));
-    m_ui->addButton->setIcon(QIcon::fromTheme("list-add"));
-    m_ui->removeButton->setIcon(QIcon::fromTheme("list-remove"));
+    m_ui->saveButton->setIcon(IconUtils::GetIcon("document-save"));
+    m_ui->deleteButton->setIcon(IconUtils::GetIcon("edit-delete"));
+    m_ui->addButton->setIcon(IconUtils::GetIcon("list-add"));
+    m_ui->removeButton->setIcon(IconUtils::GetIcon("list-remove"));
     m_ui->tempoSlider->setMaximum(TEMPO_MAX);
     m_ui->tempoSlider->setMinimum(TEMPO_MIN);
     m_ui->beatNumber->setDigitCount(2);
@@ -143,6 +144,17 @@ void DrumGrid::enableWidgets(bool enable)
     m_ui->saveButton->setEnabled(enable);
     m_ui->deleteButton->setEnabled(enable);
     m_ui->patternCombo->setEnabled(enable);
+}
+
+void DrumGrid::setIcons(bool internal)
+{
+    m_internalIcons = internal;
+    m_ui->startButton->setIcon(IconUtils::GetIcon("media-playback-start", m_internalIcons));
+    m_ui->stopButton->setIcon(IconUtils::GetIcon("media-playback-stop", m_internalIcons));
+    m_ui->saveButton->setIcon(IconUtils::GetIcon("document-save", m_internalIcons));
+    m_ui->deleteButton->setIcon(IconUtils::GetIcon("edit-delete", m_internalIcons));
+    m_ui->addButton->setIcon(IconUtils::GetIcon("list-add", m_internalIcons));
+    m_ui->removeButton->setIcon(IconUtils::GetIcon("list-remove", m_internalIcons));
 }
 
 void DrumGrid::play()

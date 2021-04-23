@@ -24,12 +24,288 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>378</width>
-    <height>310</height>
+    <width>345</width>
+    <height>423</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0" colspan="3">
+    <widget class="QLabel" name="lblInstrument">
+     <property name="text">
+      <string>Output instrument:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="buddy">
+      <cstring>m_instrument</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <widget class="QComboBox" name="m_bank">
+     <property name="whatsThis">
+      <string>This is the Bank of the selected MIDI program</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="lblOutputPort">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>160</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Output port connection:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_out_connection</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QComboBox" name="m_out_connection">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the mandatory connection for the MIDI OUT port</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="4">
+    <widget class="QCheckBox" name="m_dark_mode">
+     <property name="text">
+      <string>Forced Dark Mode</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QSpinBox" name="m_resolution">
+     <property name="whatsThis">
+      <string>This is the MIDI time resolution (number of ticks in a quarter note)</string>
+     </property>
+     <property name="minimum">
+      <number>48</number>
+     </property>
+     <property name="maximum">
+      <number>960</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QComboBox" name="m_instrument">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the definition of the instrument connected to the MIDI OUT port</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QLabel" name="textLabel5">
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Strong note:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_strong_note</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QSpinBox" name="m_channel">
+     <property name="whatsThis">
+      <string>This is the MIDI channel, between 1 and 16. 
+General MIDI uses the channel 10 for percussion sounds.</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>16</number>
+     </property>
+     <property name="value">
+      <number>10</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLabel" name="textLabel3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Program:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_program</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="textLabel7">
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Resolution:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_resolution</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0" colspan="4">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QSpinBox" name="m_duration">
+     <property name="whatsThis">
+      <string>This is the note duration in ticks, when using NOTE OFF events</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>960</number>
+     </property>
+     <property name="value">
+      <number>10</number>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLabel" name="textLabel4">
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Weak note:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_weak_note</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="textLabel8">
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Note duration:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_duration</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QComboBox" name="m_strong_note">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the sound of the strong notes for the automatic patterns</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="4">
+    <widget class="QCheckBox" name="m_use_noteoff">
+     <property name="whatsThis">
+      <string>Optional setting to send NOTE OFF events</string>
+     </property>
+     <property name="text">
+      <string>Send NOTE OFF events</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
     <widget class="QCheckBox" name="m_autoconn">
      <property name="whatsThis">
       <string>If this checkbox is activated, the the program will remember the connections for the input and output ports, and try to reconnect them at program startup.</string>
@@ -39,408 +315,131 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
      </property>
     </widget>
    </item>
-   <item>
-    <layout class="QFormLayout" name="formLayout_3">
-     <property name="labelAlignment">
+   <item row="1" column="3">
+    <widget class="QComboBox" name="m_in_connection">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the optional connection for the MIDI IN port.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QComboBox" name="m_weak_note">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the sound of the weak notes for the automatic patterns</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="textLabel2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>17</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Channel:</string>
+     </property>
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="lblInputPort">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>160</width>
-         <height>22</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Optional input port conn:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_in_connection</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="m_in_connection">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the optional connection for the MIDI IN port.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="lblOutputPort">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>160</width>
-         <height>22</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Output port connection:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_out_connection</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="m_out_connection">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the mandatory connection for the MIDI OUT port</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="lblInstrument">
-       <property name="text">
-        <string>Output instrument:</string>
-       </property>
-       <property name="buddy">
-        <cstring>m_instrument</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="m_instrument">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the definition of the instrument connected to the MIDI OUT port</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_channel</cstring>
+     </property>
+    </widget>
    </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="2">
-      <widget class="QLabel" name="lblBank">
-       <property name="text">
-        <string>Bank:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buddy">
-        <cstring>m_bank</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QComboBox" name="m_bank">
-       <property name="whatsThis">
-        <string>This is the Bank of the selected MIDI program</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="textLabel2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Channel:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_channel</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="m_channel">
-       <property name="whatsThis">
-        <string>This is the MIDI channel, between 1 and 16. 
-General MIDI uses the channel 10 for percussion sounds.</string>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>16</number>
-       </property>
-       <property name="value">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="textLabel3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Program:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_program</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QComboBox" name="m_program">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the MIDI program</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="textLabel7">
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Resolution:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_resolution</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QSpinBox" name="m_resolution">
-       <property name="whatsThis">
-        <string>This is the MIDI time resolution (number of ticks in a quarter note)</string>
-       </property>
-       <property name="minimum">
-        <number>48</number>
-       </property>
-       <property name="maximum">
-        <number>960</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLabel" name="textLabel4">
-       <property name="minimumSize">
-        <size>
-         <width>90</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Weak note:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_weak_note</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QComboBox" name="m_weak_note">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the sound of the weak notes for the automatic patterns</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="textLabel8">
-       <property name="minimumSize">
-        <size>
-         <width>90</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Note duration:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_duration</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QSpinBox" name="m_duration">
-       <property name="whatsThis">
-        <string>This is the note duration in ticks, when using NOTE OFF events</string>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>960</number>
-       </property>
-       <property name="value">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="textLabel5">
-       <property name="minimumSize">
-        <size>
-         <width>90</width>
-         <height>17</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Strong note:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="buddy">
-        <cstring>m_strong_note</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="3">
-      <widget class="QComboBox" name="m_strong_note">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>This is the sound of the strong notes for the automatic patterns</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="12" column="0" colspan="4">
+    <widget class="QCheckBox" name="m_internal_icons">
+     <property name="text">
+      <string>Internal Icon Theme</string>
+     </property>
+    </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QCheckBox" name="m_use_noteoff">
-       <property name="whatsThis">
-        <string>Optional setting to send NOTE OFF events</string>
-       </property>
-       <property name="text">
-        <string>Send NOTE OFF events</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="spacer5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>88</width>
-         <height>33</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+   <item row="5" column="0" colspan="3">
+    <widget class="QLabel" name="lblBank">
+     <property name="text">
+      <string>Bank:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="buddy">
+      <cstring>m_bank</cstring>
+     </property>
+    </widget>
    </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <item row="6" column="3">
+    <widget class="QComboBox" name="m_program">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>This is the MIDI program</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLabel" name="lblInputPort">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>160</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Optional input port conn:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="buddy">
+      <cstring>m_in_connection</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="3">
+    <widget class="QComboBox" name="m_style"/>
+   </item>
+   <item row="10" column="0" colspan="3">
+    <widget class="QLabel" name="lblQtStyle">
+     <property name="text">
+      <string>Qt Style:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>

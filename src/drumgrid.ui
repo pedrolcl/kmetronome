@@ -24,8 +24,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>644</width>
-    <height>484</height>
+    <width>579</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowIcon">
@@ -69,10 +69,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
         <property name="text">
          <string>Add</string>
         </property>
-        <property name="icon">
-         <iconset theme="list-add">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
        </widget>
       </item>
       <item>
@@ -82,10 +78,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
         </property>
         <property name="text">
          <string>Remove</string>
-        </property>
-        <property name="icon">
-         <iconset theme="list-remove">
-          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -185,10 +177,6 @@ Columns</string>
         <property name="text">
          <string>Save</string>
         </property>
-        <property name="icon">
-         <iconset theme="document-save">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
        </widget>
       </item>
       <item>
@@ -198,10 +186,6 @@ Columns</string>
         </property>
         <property name="text">
          <string>Delete</string>
-        </property>
-        <property name="icon">
-         <iconset theme="edit-delete">
-          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -254,10 +238,6 @@ Columns</string>
         <property name="text">
          <string>Play</string>
         </property>
-        <property name="icon">
-         <iconset theme="media-playback-start">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -273,10 +253,6 @@ Columns</string>
         </property>
         <property name="text">
          <string>Stop</string>
-        </property>
-        <property name="icon">
-         <iconset theme="media-playback-stop">
-          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>

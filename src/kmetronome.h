@@ -103,6 +103,8 @@ private:
     void exportPatterns(const QString& path);
     void importPatterns(const QString& path);
     void createLanguageMenu();
+    void applyVisualStyle();
+    void refreshIcons();
 
     bool m_patternMode;
     Ui::KMetronomeWindow m_ui;
@@ -118,6 +120,9 @@ private:
     QTranslator* m_trp;
     QTranslator* m_trq;
     QAction* m_currentLang;
+    QString m_style;
+    bool m_darkMode;
+    bool m_internalIcons;
 };
 
 #endif // KMETRONOME_H

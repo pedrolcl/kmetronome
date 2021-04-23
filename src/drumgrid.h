@@ -59,6 +59,7 @@ public:
     void setFigure(int figure);
     void setInstrument(const QString& instrument);
     void enableWidgets(bool enable);
+    void setIcons(bool internal);
 
 public slots:
     void updateView();
@@ -92,6 +93,7 @@ private:
     QVector<QShortcut*> m_shortcuts;
     QString m_currentPattern;
     QMenu* m_popup;
+    bool m_internalIcons;
 };
 
 #endif // DRUMGRID_H

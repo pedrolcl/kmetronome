@@ -33,6 +33,7 @@ public:
     void fillInputConnections(QStringList lst) { m_ui.m_in_connection->insertItems(0, lst); }
     void fillOutputConnections(QStringList lst) { m_ui.m_out_connection->insertItems(0, lst); }
     void fillInstruments(InstrumentList* instruments);
+    void fillStyles();
     bool getAutoConnect() { return m_ui.m_autoconn->isChecked(); }
     QString getOutputConnection() { return m_ui.m_out_connection->currentText(); }
     QString getInputConnection() { return m_ui.m_in_connection->currentText(); }
@@ -41,10 +42,13 @@ public:
     int getDuration() { return m_ui.m_duration->value(); }
     bool getSendNoteOff() { return m_ui.m_use_noteoff->isChecked(); }
     QString getInstrumentName();
-    QString  getProgramName();
-    QString  getBankName();
+    QString getProgramName();
+    QString getBankName();
+    QString getStyle();
     int getWeakNote();
     int getStrongNote();
+    bool getDarkMode() { return m_ui.m_dark_mode->isChecked(); }
+    bool getInternalIcons() { return m_ui.m_internal_icons->isChecked(); }
 
     void setAutoConnect(bool newValue) { m_ui.m_autoconn->setChecked(newValue); }
     void setOutputConnection(QString newValue);
@@ -58,6 +62,8 @@ public:
     void setInstrumentName(QString name);
     void setProgramName(QString name);
     void setBankName(QString name);
+    void setDarkMode(bool mode) { m_ui.m_dark_mode->setChecked(mode); }
+    void setInternalIcons(bool icons) { m_ui.m_internal_icons->setChecked(icons); }
 
 public slots:
     void slotInstrumentChanged(int idx);

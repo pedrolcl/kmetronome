@@ -1,15 +1,30 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/1.png</file>
-        <file>icons/2.png</file>
-        <file>icons/4.png</file>
-        <file>icons/8.png</file>
-        <file>icons/16.png</file>
-        <file>icons/32.png</file>
-        <file>icons/64.png</file>
+        <file>icons/notevalues/1.png</file>
+        <file>icons/notevalues/2.png</file>
+        <file>icons/notevalues/4.png</file>
+        <file>icons/notevalues/8.png</file>
+        <file>icons/notevalues/16.png</file>
+        <file>icons/notevalues/32.png</file>
+        <file>icons/notevalues/64.png</file>
         <file>icons/midi/icon16.png</file>
         <file>icons/midi/icon32.png</file>
         <file>icons/midi/icon64.png</file>
         <file>icons/midi/icon128.png</file>
+        <file>icons/document-save.png</file>
+        <file>icons/edit-delete.png</file>
+        <file>icons/go-home.png</file>
+        <file>icons/go-previous.png</file>
+        <file>icons/list-add.png</file>
+        <file>icons/list-remove.png</file>
+        <file>icons/media-playback-start.png</file>
+        <file>icons/media-playback-stop.png</file>
+        <file>icons/window-close.png</file>
+        <file>icons/application-exit.png</file>
+        <file>icons/configure.png</file>
+        <file>icons/document-edit.png</file>
+        <file>icons/document-export.png</file>
+        <file>icons/document-import.png</file>
+        <file>icons/help-contents.png</file>
     </qresource>
 </RCC>

@@ -62,10 +62,6 @@
            <property name="text">
             <string>Play</string>
            </property>
-           <property name="icon">
-            <iconset theme="media-playback-start">
-             <normaloff>.</normaloff>.</iconset>
-           </property>
           </widget>
          </item>
          <item>
@@ -85,10 +81,6 @@
            <property name="text">
             <string>Stop</string>
            </property>
-           <property name="icon">
-            <iconset theme="media-playback-stop">
-             <normaloff>.</normaloff>.</iconset>
-           </property>
           </widget>
          </item>
          <item>
@@ -105,10 +97,6 @@
            <property name="text">
             <string>Settings</string>
            </property>
-           <property name="icon">
-            <iconset theme="configure">
-             <normaloff>.</normaloff>.</iconset>
-           </property>
           </widget>
          </item>
          <item>
@@ -118,10 +106,6 @@
            </property>
            <property name="text">
             <string>Patterns</string>
-           </property>
-           <property name="icon">
-            <iconset theme="document-edit">
-             <normaloff>.</normaloff>.</iconset>
            </property>
           </widget>
          </item>
@@ -138,10 +122,6 @@
            </property>
            <property name="text">
             <string>Quit</string>
-           </property>
-           <property name="icon">
-            <iconset theme="application-exit">
-             <normaloff>.</normaloff>.</iconset>
            </property>
           </widget>
          </item>
@@ -627,7 +607,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   </widget>
   <action name="actionImportPatterns">
    <property name="icon">
-    <iconset theme="document-import">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -636,7 +616,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   </action>
   <action name="actionExportPatterns">
    <property name="icon">
-    <iconset theme="document-export">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -648,7 +628,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="media-playback-start">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -657,7 +637,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   </action>
   <action name="actionEditPatterns">
    <property name="icon">
-    <iconset theme="document-edit">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -666,7 +646,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
   </action>
   <action name="actionConfiguration">
    <property name="icon">
-    <iconset theme="configure">
+    <iconset>
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -674,19 +654,11 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    </property>
   </action>
   <action name="actionAbout">
-   <property name="icon">
-    <iconset resource="kmetronome.qrc">
-     <normaloff>:/icons/midi/icon16.png</normaloff>:/icons/midi/icon16.png</iconset>
-   </property>
    <property name="text">
     <string>about</string>
    </property>
   </action>
   <action name="actionQuit">
-   <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
    <property name="text">
     <string>Quit</string>
    </property>
@@ -722,10 +694,6 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    </property>
   </action>
   <action name="actionHelp">
-   <property name="icon">
-    <iconset theme="help-contents">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
    <property name="text">
     <string>Help Contents</string>
    </property>

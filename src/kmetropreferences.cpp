@@ -16,6 +16,8 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.*
  ***************************************************************************/
 
+#include <QStyle>
+#include <QStyleFactory>
 #include "kmetropreferences.h"
 #include "iconutils.h"
 
@@ -59,6 +61,19 @@ void KMetroPreferences::fillInstruments(InstrumentList* instruments)
     for(it = m_insList->constBegin(); it != m_insList->constEnd(); ++it) {
         //kDebug() << it.key();
         m_ui.m_instrument->addItem(it.key());
+    }
+}
+
+void KMetroPreferences::fillStyles()
+{
+    QStringList styleNames = QStyleFactory::keys();
+    m_ui.m_style->addItems(styleNames);
+    QString currentStyle = qApp->style()->objectName();
+    foreach(const QString& s, styleNames) {
+        if (QString::compare(s, currentStyle, Qt::CaseInsensitive) == 0) {
+            m_ui.m_style->setCurrentText(s);
+            break;
+        }
     }
 }
 
@@ -146,6 +161,11 @@ QString KMetroPreferences::getProgramName()
 QString KMetroPreferences::getBankName()
 {
     return m_ui.m_bank->currentText();
+}
+
+QString KMetroPreferences::getStyle()
+{
+    return m_ui.m_style->currentText();
 }
 
 void KMetroPreferences::setInstrumentName(QString name)

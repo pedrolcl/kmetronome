@@ -88,9 +88,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
          <height>160</height>
         </size>
        </property>
-       <property name="pixmap">
-        <pixmap resource="kmetronome.qrc">:/icons/midi/icon128.png</pixmap>
-       </property>
        <property name="scaledContents">
         <bool>false</bool>
        </property>

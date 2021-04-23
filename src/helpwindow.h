@@ -31,6 +31,7 @@ public:
                         const QString &page,
                         QWidget *parent = nullptr);
     static void showPage(QWidget* parent, const QString &page);
+    static void setIcons(bool internal);
 
 private slots:
     void updateWindowTitle();
@@ -40,6 +41,7 @@ private:
     QPushButton *homeButton;
     QPushButton *backButton;
     QPushButton *closeButton;
+    static bool m_internalIcons;
 };
 
 #endif // HELPWINDOW_H

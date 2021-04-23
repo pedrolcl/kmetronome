@@ -171,6 +171,7 @@ KMetronome::KMetronome(QWidget *parent) :
         setupActions();
         readConfiguration();
         createLanguageMenu();
+        applyVisualStyle();
     } catch (drumstick::ALSA::SequencerError& ex) {
         QString errorstr = tr("Fatal error from the ALSA sequencer. "
             "This usually happens when the kernel doesn't have ALSA support, "
@@ -191,7 +192,7 @@ KMetronome::~KMetronome()
 void KMetronome::setupActions()
 {
     m_ui.actionAboutQt->setIcon(QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"));
-    m_ui.actionAbout->setIcon(QIcon(IconUtils::GetPixmap(this, ":/icons/midi/icon32.png")));
+    m_ui.actionAbout->setIcon(QIcon(IconUtils::GetPixmap(":/icons/midi/icon32.png")));
     connect( m_ui.actionPlayStop, &QAction::triggered, this, &KMetronome::toggle );
     connect( m_ui.actionImportPatterns, &QAction::triggered, this, &KMetronome::slotImportPatterns );
     connect( m_ui.actionExportPatterns, &QAction::triggered, this, &KMetronome::slotExportPatterns );
@@ -218,6 +219,7 @@ void KMetronome::about()
 
 void KMetronome::help()
 {
+    HelpWindow::setIcons(m_internalIcons);
     HelpWindow::showPage(this, QStringLiteral("help/kmetronome.html"));
 }
 
@@ -230,6 +232,9 @@ void KMetronome::saveConfiguration()
     settings.setValue("language", m_language);
     settings.setValue("fakeToolbar", m_ui.actionShowActionButtons->isChecked());
     settings.setValue("toolbar", m_ui.actionShowToolbar->isChecked());
+    settings.setValue("qtstyle", m_style);
+    settings.setValue("darkMode", m_darkMode);
+    settings.setValue("internalIcons", m_internalIcons);
     if (m_seq != nullptr) {
         settings.setValue("instrument", m_instrument);
         settings.setValue("bank", m_bank);
@@ -299,6 +304,9 @@ void KMetronome::readConfiguration()
     int tempo = settings.value("tempo", 100).toInt();
     int ts_num = settings.value("rhythmNumerator", 4).toInt();
     int ts_div = settings.value("rhythmDenominator", 4).toInt();
+    m_style = settings.value("qtstyle", "fusion").toString();
+    m_darkMode = settings.value("darkMode", false).toBool();
+    m_internalIcons = settings.value("internalIcons", false).toBool();
     m_seq->setVolume(volume);
     m_seq->setBalance(balance);
     m_seq->setWeakVelocity(weakVel);
@@ -344,6 +352,9 @@ void KMetronome::optionsPreferences()
     dlg->fillOutputConnections(m_seq->outputConnections());
     dlg->fillInputConnections(m_seq->inputConnections());
     dlg->fillInstruments(m_instrumentList);
+    dlg->fillStyles();
+    dlg->setDarkMode(m_darkMode);
+    dlg->setInternalIcons(m_internalIcons);
     dlg->setAutoConnect(m_seq->getAutoConnect());
     QString conn = m_seq->getOutputConn();
     if (conn != nullptr && !conn.isEmpty())
@@ -381,6 +392,10 @@ void KMetronome::optionsPreferences()
             m_seq->connect_input();
             m_seq->sendInitialControls();
         }
+        m_style = dlg->getStyle();
+        m_darkMode = dlg->getDarkMode();
+        m_internalIcons = dlg->getInternalIcons();
+        applyVisualStyle();
     }
     delete dlg;
 }
@@ -515,6 +530,7 @@ void KMetronome::readDrumGridPattern()
         m_drumgrid->setSequencer(m_seq);
     }
     m_drumgrid->setInstrument(m_instrument);
+    m_drumgrid->setIcons(m_internalIcons);
     if (m_patternMode)
         m_drumgrid->readPattern(getSelectedPattern());
 }
@@ -767,6 +783,32 @@ void KMetronome::createLanguageMenu()
             m_currentLang = action;
         }
     }
+}
+
+void KMetronome::applyVisualStyle()
+{
+    static QPalette light = qApp->palette();
+    static QPalette dark(QColor(0x30,0x30,0x30));
+    qApp->setPalette( m_darkMode ? dark : light );
+    qApp->setStyle( m_style );
+    refreshIcons();
+}
+
+void KMetronome::refreshIcons()
+{
+    m_ui.actionImportPatterns->setIcon(IconUtils::GetIcon("document-import", m_internalIcons));
+    m_ui.actionExportPatterns->setIcon(IconUtils::GetIcon("document-export", m_internalIcons));
+    m_ui.actionPlayStop->setIcon(IconUtils::GetIcon("media-playback-start", m_internalIcons));
+    m_ui.actionEditPatterns->setIcon(IconUtils::GetIcon("document-edit", m_internalIcons));
+    m_ui.actionConfiguration->setIcon(IconUtils::GetIcon("configure", m_internalIcons));
+    m_ui.actionAbout->setIcon(IconUtils::GetIcon("midi/icon32", true));
+    m_ui.actionQuit->setIcon(IconUtils::GetIcon("application-exit", m_internalIcons));
+    m_ui.actionHelp->setIcon(IconUtils::GetIcon("help-contents", m_internalIcons));
+    m_ui.m_playbtn->setIcon(IconUtils::GetIcon("media-playback-start", m_internalIcons));
+    m_ui.m_stopbtn->setIcon(IconUtils::GetIcon("media-playback-stop", m_internalIcons));
+    m_ui.m_patternbtn->setIcon(IconUtils::GetIcon("document-edit", m_internalIcons));
+    m_ui.m_configbtn->setIcon(IconUtils::GetIcon("configure", m_internalIcons));
+    m_ui.m_exitbtn->setIcon(IconUtils::GetIcon("application-exit", m_internalIcons));
 }
 
 void KMetronome::retranslateUi()

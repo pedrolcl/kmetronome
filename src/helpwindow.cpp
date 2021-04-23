@@ -24,6 +24,8 @@
 #include "helpwindow.h"
 #include "iconutils.h"
 
+bool HelpWindow::m_internalIcons;
+
 HelpWindow::HelpWindow(const QString &path, const QString &page, QWidget *parent):
     QWidget(parent)
 {
@@ -33,12 +35,12 @@ HelpWindow::HelpWindow(const QString &path, const QString &page, QWidget *parent
 
     textBrowser = new QTextBrowser(this);
     homeButton = new QPushButton(tr("&Home"), this);
-    homeButton->setIcon(QIcon::fromTheme("go-home"));
+    homeButton->setIcon(IconUtils::GetIcon("go-home", m_internalIcons));
     backButton = new QPushButton(tr("&Back"), this);
-    backButton->setIcon(QIcon::fromTheme("go-previous"));
+    backButton->setIcon(IconUtils::GetIcon("go-previous", m_internalIcons));
     closeButton = new QPushButton(tr("Close"), this);
     closeButton->setShortcut(tr("Esc"));
-    closeButton->setIcon(QIcon::fromTheme("window-close"));
+    closeButton->setIcon(IconUtils::GetIcon("window-close", m_internalIcons));
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(homeButton);
@@ -51,10 +53,10 @@ HelpWindow::HelpWindow(const QString &path, const QString &page, QWidget *parent
     mainLayout->addWidget(textBrowser);
     setLayout(mainLayout);
 
-    connect(homeButton, SIGNAL(clicked()), textBrowser, SLOT(home()));
-    connect(backButton, SIGNAL(clicked()), textBrowser, SLOT(backward()));
-    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
-    connect(textBrowser, SIGNAL(sourceChanged(const QUrl &)), this, SLOT(updateWindowTitle()));
+    connect(homeButton, &QAbstractButton::clicked, textBrowser, &QTextBrowser::home);
+    connect(backButton, &QAbstractButton::clicked, textBrowser, &QTextBrowser::backward);
+    connect(closeButton, &QAbstractButton::clicked, this, &QWidget::close);
+    connect(textBrowser, &QTextBrowser::sourceChanged, this, &HelpWindow::updateWindowTitle);
 
     QPalette p = textBrowser->palette();
     p.setColor(QPalette::Base, Qt::white);
@@ -80,4 +82,9 @@ void HelpWindow::showPage(QWidget* parent, const QString &page)
         Qt::LeftToRight, Qt::AlignCenter, browser->size(),
         screen->availableGeometry()));
     browser->show();
+}
+
+void HelpWindow::setIcons(bool internal)
+{
+    m_internalIcons = internal;
 }

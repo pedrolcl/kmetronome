@@ -17,7 +17,7 @@
   <url type="homepage">https://kmetronome.sourceforge.io/</url>
   <developer_name>Pedro López-Cabanillas</developer_name>
   <update_contact>plcl_AT_users.sourceforge.net</update_contact>
-   <!-- <content_rating type="oars-1.1" /> this is broken, validator fail -->
+  <content_rating type="oars-1.1" /> <!-- this is broken, validator fails -->
   <screenshots>
     <!--TODO: pending better screenshots-->
     <screenshot type="default">

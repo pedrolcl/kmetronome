@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>Drumstick Metronome</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="kmetronome.qrc">
-    <normaloff>:/icons/midi/icon16.png</normaloff>:/icons/midi/icon16.png</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,1">
     <property name="sizeConstraint">
@@ -706,9 +702,7 @@ Values are 25 to 250 quarters per minute (&lt;i&gt;Maelzel Metronome units&lt;/i
    <header>lcdnumberview.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="kmetronome.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>actionShowToolbar</sender>

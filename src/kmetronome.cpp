@@ -128,7 +128,6 @@ KMetronome::KMetronome(QWidget *parent) :
     m_ui.m_air->setCurrentIndex(4);
 
     IconUtils::SetupComboFigures(m_ui.m_figure);
-    IconUtils::SetWindowIcon(this);
 
     connect( m_ui.m_exitbtn, SIGNAL(clicked()), SLOT(close()) );
     connect( m_ui.m_configbtn, SIGNAL(clicked()), SLOT(optionsPreferences()) );
@@ -809,6 +808,7 @@ void KMetronome::refreshIcons()
     m_ui.m_patternbtn->setIcon(IconUtils::GetIcon("document-edit", m_internalIcons));
     m_ui.m_configbtn->setIcon(IconUtils::GetIcon("configure", m_internalIcons));
     m_ui.m_exitbtn->setIcon(IconUtils::GetIcon("application-exit", m_internalIcons));
+    IconUtils::SetWindowIcon(this);
 }
 
 void KMetronome::retranslateUi()

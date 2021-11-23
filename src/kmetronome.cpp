@@ -129,21 +129,21 @@ KMetronome::KMetronome(QWidget *parent) :
 
     IconUtils::SetupComboFigures(m_ui.m_figure);
 
-    connect( m_ui.m_exitbtn, SIGNAL(clicked()), SLOT(close()) );
-    connect( m_ui.m_configbtn, SIGNAL(clicked()), SLOT(optionsPreferences()) );
-    connect( m_ui.m_patternbtn, SIGNAL(clicked()), SLOT(editPatterns()) );
-    connect( m_ui.m_playbtn, SIGNAL(clicked()), SLOT(play()) );
-    connect( m_ui.m_stopbtn, SIGNAL(clicked()), SLOT(stop()) );
-    connect( m_ui.m_beatsBar, SIGNAL(valueChanged(int)), SLOT(beatsBarChanged(int)) );
-    connect( m_ui.m_figure, SIGNAL(activated(int)), SLOT(rhythmFigureChanged(int)) );
-    connect( m_ui.m_tempo, SIGNAL(valueChanged(int)), SLOT(tempoChanged(int)) );
-    connect( m_ui.m_dial1, SIGNAL(valueChanged(int)), SLOT(weakVeloChanged(int)) );
-    connect( m_ui.m_dial2, SIGNAL(valueChanged(int)), SLOT(strongVeloChanged(int)) );
-    connect( m_ui.m_dial3, SIGNAL(valueChanged(int)), SLOT(volumeChanged(int)) );
-    connect( m_ui.m_dial4, SIGNAL(valueChanged(int)), SLOT(balanceChanged(int)) );
-    connect( m_ui.m_air, SIGNAL(activated(int)), SLOT(tempoComboChanged(int)) );
-    connect( m_ui.m_tempo, SIGNAL(valueChanged(int)), SLOT(displayTempo(int)) );
-    connect( m_ui.m_pattern, SIGNAL(activated(int)), SLOT(patternChanged(int)) );
+    connect( m_ui.m_exitbtn, &QAbstractButton::clicked, this, &QWidget::close );
+    connect( m_ui.m_configbtn, &QAbstractButton::clicked, this, &KMetronome::optionsPreferences );
+    connect( m_ui.m_patternbtn, &QAbstractButton::clicked, this, &KMetronome::editPatterns );
+    connect( m_ui.m_playbtn, &QAbstractButton::clicked, this, &KMetronome::play );
+    connect( m_ui.m_stopbtn, &QAbstractButton::clicked, this, &KMetronome::stop );
+    connect( m_ui.m_beatsBar, QOverload<int>::of(&QSpinBox::valueChanged), this, &KMetronome::beatsBarChanged );
+    connect( m_ui.m_figure, QOverload<int>::of(&QComboBox::activated), this, &KMetronome::rhythmFigureChanged );
+    connect( m_ui.m_tempo, &QAbstractSlider::valueChanged, this, &KMetronome::tempoChanged );
+    connect( m_ui.m_dial1, &QAbstractSlider::valueChanged, this, &KMetronome::weakVeloChanged );
+    connect( m_ui.m_dial2, &QAbstractSlider::valueChanged, this, &KMetronome::strongVeloChanged );
+    connect( m_ui.m_dial3, &QAbstractSlider::valueChanged, this, &KMetronome::volumeChanged );
+    connect( m_ui.m_dial4, &QAbstractSlider::valueChanged, this, &KMetronome::balanceChanged );
+    connect( m_ui.m_air, QOverload<int>::of(&QComboBox::activated), this, &KMetronome::tempoComboChanged );
+    connect( m_ui.m_tempo, &QAbstractSlider::valueChanged, this, &KMetronome::displayTempo );
+    connect( m_ui.m_pattern, QOverload<int>::of(&QComboBox::activated), this, &KMetronome::patternChanged );
 
     m_model = new DrumGridModel(this);
     m_instrumentList = new InstrumentList;
@@ -162,11 +162,11 @@ KMetronome::KMetronome(QWidget *parent) :
     try {
         m_seq = new SequencerAdapter(this);
         m_seq->setModel(m_model);
-        connect(m_seq, SIGNAL(signalUpdate(int,int)), this, SLOT(updateDisplay(int,int)), Qt::QueuedConnection);
-        connect(m_seq, SIGNAL(signalPlay()), this, SLOT(play()), Qt::QueuedConnection);
-        connect(m_seq, SIGNAL(signalStop()), this, SLOT(stop()), Qt::QueuedConnection);
-        connect(m_seq, SIGNAL(signalCont()), this, SLOT(cont()), Qt::QueuedConnection);
-        connect(m_seq, SIGNAL(signalNotation(int,int)), this, SLOT(setTimeSignature(int,int)), Qt::QueuedConnection);
+        connect(m_seq, &SequencerAdapter::signalUpdate, this, &KMetronome::updateDisplay, Qt::QueuedConnection);
+        connect(m_seq, &SequencerAdapter::signalPlay, this, &KMetronome::play, Qt::QueuedConnection);
+        connect(m_seq, &SequencerAdapter::signalStop, this, &KMetronome::stop, Qt::QueuedConnection);
+        connect(m_seq, &SequencerAdapter::signalCont, this, &KMetronome::cont, Qt::QueuedConnection);
+        connect(m_seq, &SequencerAdapter::signalNotation, this, &KMetronome::setTimeSignature, Qt::QueuedConnection);
         setupActions();
         readConfiguration();
         createLanguageMenu();
@@ -218,8 +218,14 @@ void KMetronome::about()
 
 void KMetronome::help()
 {
+    QDir hdir(":/");
     HelpWindow::setIcons(m_internalIcons);
-    HelpWindow::showPage(this, QStringLiteral("help/kmetronome.html"));
+    QString hname = QString("help/%1/index.html").arg(configuredLanguage());
+    QFileInfo finfo(hdir, hname);
+    if (!finfo.exists()) {
+        hname = "help/en/index.html";
+    }
+    HelpWindow::showPage(this, hname);
 }
 
 void KMetronome::saveConfiguration()

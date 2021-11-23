@@ -14,8 +14,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-install( FILES kmetronome.1
-    DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
-
-install( FILES kmetronome.html kmetronome_1.png kmetronome_2.png kmetronome_3.png
-    DESTINATION ${CMAKE_INSTALL_DOCDIR} )
+set(MANPAGE ${PROJECT_NAME}.1)
+include(PandocMacros)
+if (BUILD_DOCS)
+    if (UNIX AND NOT APPLE)
+        add_manpage(${MANPAGE})
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${MANPAGE}
+                DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+    endif()
+    update_helpfiles(en es)
+else()
+    if (UNIX AND NOT APPLE)
+        install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${MANPAGE}
+                DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+    endif()
+    foreach(_lang IN ITEMS "en;es")
+        install( FILES ${_lang}/index.html
+                 DESTINATION ${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME}/${_lang} )
+    endforeach()
+    #install( FILES kmetronome_1.png kmetronome_2.png kmetronome_3.png
+    #         DESTINATION ${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME} )
+endif()

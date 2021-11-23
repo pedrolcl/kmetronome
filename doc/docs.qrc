@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/help">
-        <file>kmetronome_1.png</file>
-        <file>kmetronome_2.png</file>
-        <file>kmetronome_3.png</file>
-        <file>kmetronome.html</file>
+        <file>en/index.html</file>
+        <file>es/index.html</file>
     </qresource>
 </RCC>

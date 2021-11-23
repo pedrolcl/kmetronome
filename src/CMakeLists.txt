@@ -79,6 +79,9 @@ set_property(SOURCE kmetronome_adaptor.h kmetronome_adaptor.cpp
     PROPERTY SKIP_AUTOGEN ON)
 
 add_executable( kmetronome ${kmetronome_SRCS} )
+if (BUILD_DOCS)
+    add_dependencies ( kmetronome update_helpfiles )
+endif()
 
 target_link_libraries( kmetronome
     Qt5::Widgets

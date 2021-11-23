@@ -26,7 +26,7 @@ int main (int argc, char **argv)
     QCoreApplication::setOrganizationDomain(QSTR_DOMAIN);
     QCoreApplication::setApplicationName(QSTR_APPNAME);
     QApplication app(argc, argv);
-    KMetronome *mainWin = new KMetronome;
-    mainWin->show();
+    KMetronome mainWin;
+    mainWin.show();
     return app.exec();
 }

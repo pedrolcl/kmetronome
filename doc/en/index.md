@@ -199,8 +199,8 @@ and System Exclusive MIDI messages.
 ## D-Bus Interface 
 
 Drumstick Metronome provides some functions through its D-Bus interface. You can
-use a D-Bus enabled program to control Drumstick Metronome like qdbusviewer or the 
-commandline utility qdbus.
+use a D-Bus enabled program to control Drumstick Metronome like `qdbusviewer` or the 
+commandline utility `qdbus`.
 
 For instance, these commands can be used from a shell prompt:
 
@@ -216,11 +216,11 @@ Drumstick Metronome understands some Universal System Exclusive messages. Becaus
 the device ID is not yet implemented, all the recogniced messages must
 be marked as broadcast (0x7F).
 
-MTC Message: Time Signature Change Message
+Realtime Message: Time Signature Change Message
 
     Format: 0xF0 0x7F 0x7F 0x03 Command Length Numerator Denominator ... 0xF7
-                                0x02: TS change 
-                                0x42: TS change 
+                                0x02: Time Signature Change 
+                                0x42: Time Signature Change Delayed
 
 Notes: both commands affect only the next scheduled patterns after
 receiving the command. Length is at least 2. Extra bytes following

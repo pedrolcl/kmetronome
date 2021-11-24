@@ -181,6 +181,8 @@ KMetronome::KMetronome(QWidget *parent) :
         QMessageBox::critical(nullptr, tr("Error"), errorstr);
         close();
     }
+    m_helpWindow = new HelpWindow(this);
+    m_helpWindow->applySettings();
 }
 
 KMetronome::~KMetronome()
@@ -219,13 +221,13 @@ void KMetronome::about()
 void KMetronome::help()
 {
     QDir hdir(":/");
-    HelpWindow::setIcons(m_internalIcons);
+    m_helpWindow->setIcons(m_internalIcons);
     QString hname = QString("help/%1/index.html").arg(configuredLanguage());
     QFileInfo finfo(hdir, hname);
     if (!finfo.exists()) {
         hname = "help/en/index.html";
     }
-    HelpWindow::showPage(this, hname);
+    m_helpWindow->showPage(hname);
 }
 
 void KMetronome::saveConfiguration()
@@ -828,6 +830,7 @@ void KMetronome::retranslateUi()
     }
     m_ui.retranslateUi(this);
     m_seq->retranslateUi();
+    m_helpWindow->retranslateUi();
     createLanguageMenu();
     updatePatterns();
 }

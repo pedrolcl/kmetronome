@@ -123,7 +123,7 @@
 <h1 id="external-control">External Control</h1>
 <p>Drumstick Metronome can be controlled using its D-Bus interface, System Realtime and System Exclusive MIDI messages.</p>
 <h2 id="d-bus-interface">D-Bus Interface</h2>
-<p>Drumstick Metronome provides some functions through its D-Bus interface. You can use a D-Bus enabled program to control Drumstick Metronome like qdbusviewer or the commandline utility qdbus.</p>
+<p>Drumstick Metronome provides some functions through its D-Bus interface. You can use a D-Bus enabled program to control Drumstick Metronome like <code>qdbusviewer</code> or the commandline utility <code>qdbus</code>.</p>
 <p>For instance, these commands can be used from a shell prompt:</p>
 <pre><code>$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.play
 $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.stop
@@ -132,10 +132,10 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 1
 $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8</code></pre>
 <h2 id="universal-system-exclusive-messages">Universal System Exclusive messages</h2>
 <p>Drumstick Metronome understands some Universal System Exclusive messages. Because the device ID is not yet implemented, all the recogniced messages must be marked as broadcast (0x7F).</p>
-<p>MTC Message: Time Signature Change Message</p>
+<p>Realtime Message: Time Signature Change Message</p>
 <pre><code>Format: 0xF0 0x7F 0x7F 0x03 Command Length Numerator Denominator ... 0xF7
-                            0x02: TS change 
-                            0x42: TS change </code></pre>
+                            0x02: Time Signature Change 
+                            0x42: Time Signature Change Delayed</code></pre>
 <p>Notes: both commands affect only the next scheduled patterns after receiving the command. Length is at least 2. Extra bytes following Numerator and Denominator are ignored.</p>
 <p>MMC Messages</p>
 <pre><code>Format: 0xF0 0x7F 0x7F 0x06 Command 0xF7

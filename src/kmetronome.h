@@ -23,6 +23,7 @@
 #include <QPointer>
 #include <QTranslator>
 #include "ui_kmetronome.h"
+#include "helpwindow.h"
 
 class SequencerAdapter;
 class DrumGrid;
@@ -111,6 +112,7 @@ private:
 
     SequencerAdapter* m_seq;
     QPointer<DrumGrid> m_drumgrid;
+    QPointer<HelpWindow> m_helpWindow;
     InstrumentList* m_instrumentList;
     DrumGridModel* m_model;
     QString m_instrument;

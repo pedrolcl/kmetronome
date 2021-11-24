@@ -19,29 +19,39 @@
 #ifndef HELPWINDOW_H
 #define HELPWINDOW_H
 
-#include <QWidget>
+#include <QObject>
+#include <QMainWindow>
 #include <QTextBrowser>
-#include <QPushButton>
+#include <QAction>
+#include <QCloseEvent>
+#include <QShowEvent>
 
-class HelpWindow : public QWidget
+class HelpWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit HelpWindow(const QString &path,
-                        const QString &page,
-                        QWidget *parent = nullptr);
-    static void showPage(QWidget* parent, const QString &page);
-    static void setIcons(bool internal);
+    explicit HelpWindow(QWidget *parent = nullptr);
+    void readSettings();
+    void writeSettings();
+    void retranslateUi();
+    void applySettings();
+    void showPage(const QString &page);
+    void setIcons(bool internal);
 
 private slots:
     void updateWindowTitle();
+    void showEvent( QShowEvent *event ) override;
+    void closeEvent( QCloseEvent *event ) override;
 
 private:
-    QTextBrowser *textBrowser;
-    QPushButton *homeButton;
-    QPushButton *backButton;
-    QPushButton *closeButton;
-    static bool m_internalIcons;
+    QTextBrowser *m_textBrowser;
+    QAction *m_home;
+    QAction *m_back;
+    QAction *m_close;
+    QAction *m_zoomIn;
+    QAction *m_zoomOut;
+    bool m_internalIcons;
+    QString m_page;
 };
 
 #endif // HELPWINDOW_H

@@ -45,7 +45,7 @@
 <p>Drumstick Metronome is a MIDI based metronome using the ALSA sequencer.</p>
 <p>The intended audience are musicians and music students. Like any physical metronome it is a tool to keep the rhythm while playing musical instruments.</p>
 <p>It uses MIDI instead of digital audio, allowing low CPU usage and very accurate timing thanks to the ALSA sequencer. This means that you also need a MIDI synthesizer for sound generation, because the program does not produce any sound by itself. The best results come from using a hardware synthesizer, but you may also use software synthesizers instead.</p>
-<p>Report problems, bugs and feature requests to the tracking system at <a href="https://sourceforge.net/p/kmetronome/support-requests/">SourceForge project site</a></p>
+<p>Ask for support, report problems, bugs and feature requests to the tracking system at <a href="https://sourceforge.net/p/kmetronome/support-requests/">SourceForge project site</a></p>
 <h1 id="using-drumstick-metronome">Using Drumstick Metronome</h1>
 <h2 id="features">Features</h2>
 <p>You only need to adjust some controls, like the tempo slider, the beats/bar spin box and the beat length selector. Press the play button to start. Use the stop button at your convenience.</p>
@@ -60,7 +60,7 @@
 <p>Don't forget to install a good <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> into QSynth's &quot;Setup...&quot; dialog.</p>
 <h2 id="configuration">Configuration</h2>
 <p>Drumstick Metronome has limited session management capabilities. It can remember one connection for the ALSA output port, and one connection for its input port. Connections are stored when the program exits and remembered at startup. You don't need this feature if you prefer to make such connections by hand, using aconnect or any other equivalent utility, or if you use an external session manager like the patchbay included in the program <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>Drumstick Metronome uses an instrument definition file in .INS format, the same format as Qtractor, TSE3, Cakewalk and Sonar. The <strong>Output instrument</strong> drop-down list allows to choose one among the standard General MIDI, Roland GS and Yamaha XG drum maps. You can add more definitions creating a file named <code>drums.ins</code> at <code>\$HOME/.local/share/kmetronome.sourceforge.net</code>. The contents of <strong>Bank</strong>, <strong>Program</strong>, <strong>Weak</strong> and <strong>Strong note</strong> drop-down lists also depend on this definition.</p>
+<p>Drumstick Metronome uses an instrument definition file in .INS format, the same format as Qtractor, TSE3, Cakewalk and Sonar. The <strong>Output instrument</strong> drop-down list allows to choose one among the standard General MIDI, Roland GS and Yamaha XG drum maps. You can add more definitions creating a file named <code>drums.ins</code> at <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. The contents of <strong>Bank</strong>, <strong>Program</strong>, <strong>Weak</strong> and <strong>Strong note</strong> drop-down lists also depend on this definition.</p>
 <p><strong>Channel</strong> is usually 10, meaning the percussion channel of a General MIDI synthesizer. It must be a number beween 1 and 16.</p>
 <p><strong>Resolution</strong> is the number of ticks (time units) for each quarter note. Value range from 48 to 960. Defaults to 120.</p>
 <p><strong>Note duration</strong> is the length (in number of ticks) of the time span between a NOTE ON and its corresponding NOTE OFF event. This control is enabled only when <strong>Send NOTE OFF events</strong> is also enabled. Very low values can cause muted clicks on some synthesizers.</p>
@@ -74,49 +74,49 @@
 <h2 id="the-main-window">The main window</h2>
 <h3 id="the-file-menu">The File Menu</h3>
 <dl>
-<dt>[File &gt; Import Patterns]</dt>
+<dt><strong>File → Import Patterns</strong></dt>
 <dd><p>Imports pattern definitions into Drumstick Metronome</p>
 </dd>
-<dt>[File &gt; Export Patterns]</dt>
+<dt><strong>File → Export Patterns</strong></dt>
 <dd><p>Exports pattern definitions from Drumstick Metronome</p>
 </dd>
-<dt>[File &gt; Play/Stop]</dt>
+<dt><strong>File → Play/Stop</strong></dt>
 <dd><p>Controls pattern playback</p>
 </dd>
-<dt>[File &gt; Quit]</dt>
+<dt><strong>File → Quit</strong></dt>
 <dd><p>Quits Drumstick Metronome</p>
 </dd>
 </dl>
 <h3 id="the-edit-menu">The Edit Menu</h3>
 <dl>
-<dt>[Edit &gt; Edit Patterns]</dt>
+<dt><strong>Edit → Edit Patterns</strong></dt>
 <dd><p>Opens the pattern editor</p>
 </dd>
 </dl>
 <h3 id="the-settings-menu">The Settings Menu</h3>
 <dl>
-<dt>[Settings &gt; Show Action Buttons]</dt>
+<dt><strong>Settings → Show Action Buttons</strong></dt>
 <dd><p>Shows or hides the action buttons. There are equivalent menu items for every button.</p>
 </dd>
-<dt>[Settings &gt; Show Toolbar]</dt>
+<dt><strong>Settings → Show Toolbar</strong></dt>
 <dd><p>Shows or hides the toolbar. There are equivalent menu items for every button.</p>
 </dd>
-<dt>[Settings &gt; Configuration]</dt>
+<dt><strong>Settings → Configuration</strong></dt>
 <dd><p>Configures Drumstick Metronome</p>
 </dd>
 </dl>
 <h3 id="the-help-menu">The Help Menu</h3>
 <dl>
-<dt>[Help &gt; Help Contents]</dt>
+<dt><strong>Help → Help Contents</strong></dt>
 <dd><p>Opens the help window</p>
 </dd>
-<dt>[Help &gt; Language]</dt>
+<dt><strong>Help → Language</strong></dt>
 <dd><p>Opens a sub-menu showing the available translations</p>
 </dd>
-<dt>[Help &gt; about]</dt>
+<dt><strong>Help → about</strong></dt>
 <dd><p>Opens an about box of this program</p>
 </dd>
-<dt>[Help &gt; about Qt]</dt>
+<dt><strong>Help → about Qt</strong></dt>
 <dd><p>Opens an about box of the Qt frameworks</p>
 </dd>
 </dl>
@@ -146,21 +146,21 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 <p>You can use a MIDI device generating MIDI System Realtime messages to control Drumstick Metronome. System Realtime messages accepted are: Start (0xFA), Stop (0xFC) and Continue (0xFB).</p>
 <p>Many master MIDI keyboards and MIDI buttons devices provide those three MIDI transport controls. You need to connect your external MIDI devices to the computer using MIDI (or USB) cables, and connect the corresponding ALSA port to the input port of Drumstick Metronome. This connection must be done by hand, or using a session management software like QJackCtl.</p>
 <h1 id="credits-and-license">Credits and License</h1>
-<p>Program Copyright © 2005-2021 Pedro Lopez-Cabanillas <a href="mailto:plcl@users.sourceforge.net">plcl@users.sourceforge.net</a></p>
-<p>Documentation Copyright © 2005-2021 Pedro Lopez-Cabanillas <a href="mailto:plcl@users.sourceforge.net">plcl@users.sourceforge.net</a></p>
+<p>Program Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
+<p>Documentation Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
 <p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
 <h1 id="installation">Installation</h1>
 <h2 id="how-to-obtain-drumstick-metronome">How to obtain Drumstick Metronome</h2>
-<p>Here you can find the last version: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Project home page</a></p>
+<p>Here you can find the latest version: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Project's files</a></p>
 <h2 id="requirements">Requirements</h2>
 <p>In order to successfully compile and use Drumstick Metronome, you need Qt 5 or later, Drumstick 2, ALSA drivers and ALSA library.</p>
 <p>You also need a MIDI synthesizer to produce sound.</p>
 <p>The build system requires <a href="https://cmake.org">CMake</a> 3.14 or newer.</p>
 <p>ALSA library, drivers and utilities can be found at <a href="https://www.alsa-project.org">ALSA home page</a>.</p>
 <p>Drumstick::ALSA is a C++ wrapper around the ALSA sequencer interface using Qt objects, idioms and style. You can find it at the <a href="https://drumstick.sourceforge.io">Drumstick home page</a>.</p>
-<p><a href="https://kmetronome.sourceforge.io/kmetronome.shtml">See also the home page</a>.</p>
+<p>See also the <a href="https://kmetronome.sourceforge.io/kmetronome.shtml">Drumstick Metronome home page</a>.</p>
 <h2 id="compilation-and-installation">Compilation and Installation</h2>
 <p>In order to compile and install Drumstick Metronome on your system, type the following in the base directory of the Drumstick Metronome distribution:</p>
 <pre><code>% cmake .

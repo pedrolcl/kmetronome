@@ -14,7 +14,7 @@ synthesizer for sound generation, because the program does not produce any sound
 by itself. The best results come from using a hardware synthesizer, but you may
 also use software synthesizers instead.
 
-Report problems, bugs and feature requests to the tracking system at 
+Ask for support, report problems, bugs and feature requests to the tracking system at 
 [SourceForge project site](https://sourceforge.net/p/kmetronome/support-requests/)
 
 # Using Drumstick Metronome
@@ -85,7 +85,7 @@ Drumstick Metronome uses an instrument definition file in .INS format, the same
 format as Qtractor, TSE3, Cakewalk and Sonar. The **Output instrument**
 drop-down list allows to choose one among the standard General MIDI,
 Roland GS and Yamaha XG drum maps. You can add more definitions creating
-a file named `drums.ins` at `\$HOME/.local/share/kmetronome.sourceforge.net`. The
+a file named `drums.ins` at `$HOME/.local/share/kmetronome.sourceforge.net`. The
 contents of **Bank**, **Program**, **Weak** and **Strong note** drop-down lists 
 also depend on this definition.
 
@@ -137,57 +137,57 @@ cells.
 
 ### The File Menu
 
-[File &gt; Import Patterns]
+**File → Import Patterns**
 
 :   Imports pattern definitions into Drumstick Metronome
 
-[File &gt; Export Patterns]
+**File → Export Patterns**
 
 :   Exports pattern definitions from Drumstick Metronome
 
-[File &gt; Play/Stop]
+**File → Play/Stop**
 
 :   Controls pattern playback
 
-[File &gt; Quit]
+**File → Quit**
 
 :   Quits Drumstick Metronome
 
 ### The Edit Menu
 
-[Edit &gt; Edit Patterns]
+**Edit → Edit Patterns**
 
 :   Opens the pattern editor
 
 ### The Settings Menu
 
-[Settings &gt; Show Action Buttons]
+**Settings → Show Action Buttons**
 
 :   Shows or hides the action buttons. There are equivalent menu items for every button.
 
-[Settings &gt; Show Toolbar]
+**Settings → Show Toolbar**
 
 :   Shows or hides the toolbar. There are equivalent menu items for every button.
 
-[Settings &gt; Configuration]
+**Settings → Configuration**
 
 :   Configures Drumstick Metronome
 
 ### The Help Menu
 
-[Help &gt; Help Contents]
+**Help → Help Contents**
 
 :   Opens the help window
 
-[Help &gt; Language]
+**Help → Language**
 
 :   Opens a sub-menu showing the available translations
 
-[Help &gt; about]
+**Help → about**
 
 :   Opens an about box of this program
 
-[Help &gt; about Qt]
+**Help → about Qt**
 
 :   Opens an about box of the Qt frameworks
 
@@ -249,10 +249,8 @@ QJackCtl.
 # Credits and License
 
 Program Copyright © 2005-2021 Pedro Lopez-Cabanillas
-<plcl@users.sourceforge.net>
 
 Documentation Copyright © 2005-2021 Pedro Lopez-Cabanillas
-<plcl@users.sourceforge.net>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -265,14 +263,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
                                                                         
 You should have received a copy of the GNU General Public License
-along with this program. If not, see <https://www.gnu.org/licenses>
+along with this program. If not, see [https://www.gnu.org/licenses](https://www.gnu.org/licenses)
 
 # Installation
-
+ 
 ## How to obtain Drumstick Metronome
 
-Here you can find the last version: 
-[Project home page](https://sourceforge.net/projects/kmetronome/files/kmetronome/)
+Here you can find the latest version: 
+[Project's files](https://sourceforge.net/projects/kmetronome/files/kmetronome/)
 
 ## Requirements
 
@@ -290,7 +288,7 @@ Drumstick::ALSA is a C++ wrapper around the ALSA sequencer interface using Qt
 objects, idioms and style. You can find it at the 
 [Drumstick home page](https://drumstick.sourceforge.io).
 
-[See also the home page](https://kmetronome.sourceforge.io/kmetronome.shtml).
+See also the [Drumstick Metronome home page](https://kmetronome.sourceforge.io/kmetronome.shtml).
 
 ## Compilation and Installation
 

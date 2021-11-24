@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#úvod">Úvod</a></li>
+<li><a href="#použití-drumstick-metronome">Použití Drumstick Metronome</a><ul>
+<li><a href="#funkce">Funkce</a></li>
+<li><a href="#začínáme">Začínáme</a></li>
+<li><a href="#konfigurace">Konfigurace</a></li>
+<li><a href="#editor-vzorů">Editor vzorů</a></li>
+</ul></li>
+<li><a href="#reference-příkazů">Reference příkazů</a><ul>
+<li><a href="#hlavní-okno">Hlavní okno</a><ul>
+<li><a href="#nabídka-soubor">Nabídka Soubor</a></li>
+<li><a href="#nabídka-úpravy">Nabídka Úpravy</a></li>
+<li><a href="#nabídka-nastavení">Nabídka Nastavení</a></li>
+<li><a href="#nabídka-nápověda">Nabídka Nápověda</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#externí-kontrola">Externí kontrola</a><ul>
+<li><a href="#rozhraní-d-bus">Rozhraní D-Bus</a></li>
+<li><a href="#zprávy-universal-system-exclusive">Zprávy Universal System Exclusive</a></li>
+<li><a href="#rozhraní-systému-midi-v-reálném-čase">Rozhraní systému MIDI v reálném čase</a></li>
+</ul></li>
+<li><a href="#kredity-a-licence">Kredity a licence</a></li>
+<li><a href="#instalace">Instalace</a><ul>
+<li><a href="#jak-získat-drumstick-metronome">Jak získat Drumstick Metronome</a></li>
+<li><a href="#požadavky">Požadavky</a></li>
+<li><a href="#kompilace-a-instalace">Kompilace a instalace</a></li>
+</ul></li>
+</ul>
+</div>
+<p>% Index nápovědy</p>
+<h1 id="úvod">Úvod</h1>
+<p>Drumstick Metronome je metronom založený na MIDI využívající sekvencer ALSA.</p>
+<p>Zamýšleným publikem jsou hudebníci a studenti hudby. Jako každá fyzická metronom je nástroj k udržení rytmu při hraní muzikálu nástroje.</p>
+<p>Místo digitálního zvuku používá MIDI, což umožňuje nízké využití procesoru a velmi přesné časování díky sekvenceru ALSA. To znamená, že potřebujete také MIDI syntezátor pro generování zvuku, protože program neprodukuje žádný zvuk sama o sobě. Nejlepších výsledků dosáhnete při použití hardwarového syntezátoru, ale můžete místo toho také použijte softwarové syntezátory.</p>
+<p>Požádejte o podporu, nahlaste problémy, chyby a požadavky na funkce sledovacímu systému na adrese <a href="https://sourceforge.net/p/kmetronome/support-requests/">Stránka projektu SourceForge</a></p>
+<h1 id="použití-drumstick-metronome">Použití Drumstick Metronome</h1>
+<h2 id="funkce">Funkce</h2>
+<p>Potřebujete pouze upravit některé ovládací prvky, jako je posuvník tempa otáčecí pole beatů/taktů a volič délky taktu. Stiskněte tlačítko přehrávání začít. Podle potřeby použijte tlačítko stop.</p>
+<p>Tempo lze nastavit od 25 do 250 QPM pomocí posuvníku. Jednotky jsou čtvrt za minutu (jednotky Mälzel Metronome). Můžete také dvakrát kliknout přes hlavní okno otevřete dialogové okno, kde můžete zadat nový tempo přímo pomocí klávesnice. Na výběr je také combo box a zobrazit tempo pomocí italských hudebních jmen.</p>
+<p>Beats/Bar lze nastavit od 1 do 32 taktů. Toto jsou počty úderů na každém taktu nebo taktu a je to čitatel na taktu jako bylo by to notováno.</p>
+<p>Délka taktu je jmenovatelem specifikace taktu, a představuje dobu trvání každé doby. Změna této hodnoty ne změnit význam jednotek tempa.</p>
+<p>Vzor je rozevírací seznam pro výběr definice vzoru. Výchozí Hodnota &quot;Automatic&quot; znamená, že program generuje vzory pomocí noty nastavené v konfiguračním dialogu (Strong/Weak) a rytmus definice poskytnutá &quot;údery/takty&quot; a &quot;délka taktu&quot;. Obsahuje také názvy uživatelsky definovaných vzorů.</p>
+<h2 id="začínáme">Začínáme</h2>
+<p>Tento program používá protokol MIDI, takže je dobré mít některé základní pojmy o MIDI, abyste plně porozuměli konceptům za tím. Zde najdete dobrý úvod: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">Co je MIDI</a>.</p>
+<p>Drumstick Metronome produkuje MIDI události. Pokud chcete slyšet události přeloženo do zvuků, z tohoto musíte připojit port MIDI OUT program do MIDI IN portu MIDI syntezátoru. Může to být buď a hardwarový MIDI syntezátor nebo softwarový. Pokud se jedná o externí hardwarový syntezátor, potřebujete také MIDI rozhraní s podporou ALSA nainstalovaný ve vašem počítači a MIDI kabel připojený k oběma MIDI rozhraní počítače a konektor MIDI IN syntezátoru.</p>
+<p>Pokud nemáte externí MIDI syntezátor, můžete jej stále používat program se softwarovým MIDI syntezátorem podporujícím sekvencer ALSA připojení, jako je <a href="https://qsynth.sourceforge.io">QSynth</a>. Začněte svůj softwarový syntezátor před Drumstick Metronome a poté proveďte připojení mezi těmito dvěma programy, buď v konfiguračním dialogu Drumstick Metronome nebo pomocí externího správce připojení jako <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>Nezapomeňte si nainstalovat dobrý <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> do dialogu &quot;Nastavení...&quot; QSynth.</p>
+<h2 id="konfigurace">Konfigurace</h2>
+<p>Drumstick Metronome má omezené možnosti správy relací. Může si to pamatovat jedno připojení pro výstupní port ALSA a jedno připojení pro jeho vstupní port. Připojení jsou uložena při ukončení programu a zapamatována při spuštění. Tuto funkci nepotřebujete, pokud ji chcete vytvořit připojení ručně, pomocí aconnect nebo jiného ekvivalentního nástroje, popř pokud používáte externího správce relací, jako je patchbay obsažený v program <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>Drumstick Metronome používá soubor definice nástroje ve formátu .INS, stejný formát jako Qtractor, TSE3, Cakewalk a Sonar. <strong>Výstupní nástroj</strong> rozevírací seznam umožňuje vybrat jeden ze standardních General MIDI, Bubnové mapy Roland GS a Yamaha XG. Můžete přidat další vytváření definic soubor s názvem <code>drums.ins</code> na <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. The obsah rozbalovacích seznamů <strong>Banka</strong>, <strong>Program</strong>, <strong>Slabá</strong> a <strong>Silná poznámka</strong> závisí také na této definici.</p>
+<p><strong>Kanál</strong> je obvykle 10, což znamená kanál perkusí obecného MIDI syntetizér. Musí to být číslo mezi 1 a 16.</p>
+<p><strong>Rozlišení</strong> je počet tiků (časových jednotek) pro každou čtvrtletní notu. Rozsah hodnot od 48 do 960. Výchozí hodnota je 120.</p>
+<p><strong>Trvání poznámky</strong> je délka (v počtu zaškrtnutí) časového rozpětí mezi událostí NOTE ON a odpovídající událostí NOTE OFF. Tato kontrola je povoleno pouze v případě, že je také povoleno <strong>Odeslat události VYPNUTO POZNÁMKA</strong>. Velmi nízké hodnoty může u některých syntezátorů způsobit ztlumená kliknutí.</p>
+<p>Zvuky perkusí obvykle nevyžadují odeslání událostí NOTE OFF každá POZNÁMKA ZAPNUTA. Zaškrtněte políčko <strong>Posílat události NOTE OFF</strong> pouze v případě, že jste syntetizér nebo nástroj toto nastavení podporuje nebo vyžaduje.</p>
+<p><strong>Banka</strong> a <strong>Program</strong> slouží k výměně bicí sady pro nástroje podpora několika nastavení. Mnoho syntezátorů nerozumí programu změny pro kanál perkusí.</p>
+<p>V režimu <strong>Automatic</strong> pattern se jako první doba přehraje zvuk <strong>Silná nota</strong> v každém taktu, zatímco jakýkoli jiný takt ve stejném taktu se hraje pomocí zvuk <strong>Slabá nota</strong>. Číselné hodnoty 33 a 34 jsou zvuky GM2 a XG pro kliknutí metronomu a zvonek metronomu.</p>
+<h2 id="editor-vzorů">Editor vzorů</h2>
+<p>Pomocí tohoto dialogového okna můžete upravovat, testovat a vybírat vzory. Vytvořit nové vzory, jednoduše uložíte aktuální definici pod novým názvem. Vzory jsou reprezentovány tabulkou. Řádky v tabulce odpovídají zazní perkuse. Ze seznamu zvuků můžete odstranit a přidat řádky definované nastavením přístroje v konfiguračním dialogu. The počet sloupců v tabulce určuje délku vzoru, mezi 1 a 99 prvky libovolné délky taktu.</p>
+<p>Každá buňka tabulky přijímá hodnoty mezi N=1 a 9, což odpovídá MIDI dynamika (N*127/9) not, nebo 0 pro zrušení zvuku. Platný hodnoty jsou také f (=forte) a p (=piano) odpovídající proměnné rychlosti definované otočnými knoflíky (Strong/Weak) v hlavním okně. Hodnoty buněk lze vybrat a upravit pomocí klávesnice nebo myš. Před úpravou není třeba zastavovat přehrávání buňky.</p>
+<h1 id="reference-příkazů">Reference příkazů</h1>
+<h2 id="hlavní-okno">Hlavní okno</h2>
+<h3 id="nabídka-soubor">Nabídka Soubor</h3>
+<dl>
+<dt><strong>Soubor → Importovat vzory</strong></dt>
+<dd><p>Importuje definice vzoru do Drumstick Metronome</p>
+</dd>
+<dt><strong>Soubor → Exportovat vzory</strong></dt>
+<dd><p>Exportuje definice vzoru z Drumstick Metronome</p>
+</dd>
+<dt><strong>Soubor → Přehrát/Zastavit</strong></dt>
+<dd><p>Ovládá přehrávání vzoru</p>
+</dd>
+<dt><strong>Soubor → Konec</strong></dt>
+<dd><p>Ukončí Drumstick Metronome</p>
+</dd>
+</dl>
+<h3 id="nabídka-úpravy">Nabídka Úpravy</h3>
+<dl>
+<dt><strong>Upravit → Upravit vzory</strong></dt>
+<dd><p>Otevře editor vzorů</p>
+</dd>
+</dl>
+<h3 id="nabídka-nastavení">Nabídka Nastavení</h3>
+<dl>
+<dt><strong>Nastavení → Zobrazit tlačítka akcí</strong></dt>
+<dd><p>Zobrazí nebo skryje tlačítka akcí. Pro každé tlačítko existují ekvivalentní položky nabídky.</p>
+</dd>
+<dt><strong>Nastavení → Zobrazit lištu</strong></dt>
+<dd><p>Zobrazí nebo skryje panel nástrojů. Pro každé tlačítko existují ekvivalentní položky nabídky.</p>
+</dd>
+<dt><strong>Nastavení → Konfigurace</strong></dt>
+<dd><p>Konfiguruje metronom bicí paličky</p>
+</dd>
+</dl>
+<h3 id="nabídka-nápověda">Nabídka Nápověda</h3>
+<dl>
+<dt><strong>Nápověda → Obsah nápovědy</strong></dt>
+<dd><p>Otevře okno nápovědy</p>
+</dd>
+<dt><strong>Nápověda → Jazyk</strong></dt>
+<dd><p>Otevře podnabídku s dostupnými překlady</p>
+</dd>
+<dt><strong>Nápověda → o</strong></dt>
+<dd><p>Otevře okno o tomto programu</p>
+</dd>
+<dt><strong>Nápověda → o Qt</strong></dt>
+<dd><p>Otevře okno o rámcích Qt</p>
+</dd>
+</dl>
+<h1 id="externí-kontrola">Externí kontrola</h1>
+<p>Drumstick Metronome lze ovládat pomocí rozhraní D-Bus, System Realtime a MIDI zprávy System Exclusive.</p>
+<h2 id="rozhraní-d-bus">Rozhraní D-Bus</h2>
+<p>Drumstick Metronome poskytuje některé funkce prostřednictvím rozhraní D-Bus. Můžeš použijte program podporující D-Bus k ovládání Drumstick Metronome, jako je <code>qdbusviewer</code> nebo další nástroj příkazového řádku <code>qdbus</code>.</p>
+<p>Tyto příkazy lze například použít z příkazového řádku:</p>
+<pre><code>$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.play
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.stop
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.cont
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 150
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8</code></pre>
+<h2 id="zprávy-universal-system-exclusive">Zprávy Universal System Exclusive</h2>
+<p>Drumstick Metronome rozumí některým zprávám Universal System Exclusive. Protože ID zařízení ještě není implementováno, musí být všechny rozpoznané zprávy být označen jako vysílání (0x7F).</p>
+<p>Zpráva v reálném čase: Zpráva o změně časového podpisu</p>
+<pre><code>Formát: 0xF0 0x7F 0x7F 0x03 Délka příkazu Čitatel Jmenovatel ... 0xF7
+                            0x02: Změna časového podpisu 
+                            0x42: Změna časového podpisu zpožděna</code></pre>
+<p>Poznámky: oba příkazy ovlivňují pouze následující naplánované vzory po přijímání příkazu. Délka je alespoň 2. Následují další bajty Čitatel a jmenovatel jsou ignorovány.</p>
+<p>Zprávy MMC</p>
+<pre><code>Formát: 0xF0 0x7F 0x7F 0x06 Příkaz 0xF7
+                            0x01: Stop
+                            0x02: Hrajte
+                            0x03: Odložená hra</code></pre>
+<h2 id="rozhraní-systému-midi-v-reálném-čase">Rozhraní systému MIDI v reálném čase</h2>
+<p>Můžete použít MIDI zařízení generující zprávy MIDI System Realtime ovládání Drumstick Metronome. Systémové zprávy v reálném čase jsou přijímány: Start (0xFA), Zastavit (0xFC) a pokračovat (0xFB).</p>
+<p>Mnoho hlavních MIDI klávesnic a zařízení s MIDI tlačítky poskytuje tyto tři Ovládací prvky přenosu MIDI. Musíte připojit vaše externí MIDI zařízení k počítači pomocí MIDI (nebo USB) kabelů a připojte odpovídající port ALSA ke vstupnímu portu Drumstick Metronome. Toto spojení musí být provedeno ručně nebo pomocí softwaru pro správu relací, jako je QJackCtl.</p>
+<h1 id="kredity-a-licence">Kredity a licence</h1>
+<p>Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
+<p>Dokumentace Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
+<p>Tento program je svobodný software; můžete jej dále distribuovat a/nebo upravovat to za podmínek GNU General Public License, jak byla zveřejněna nadace pro svobodný software; buď verze 2 licence, nebo (podle vašeho uvážení) jakékoli pozdější verze.</p>
+<p>Tento program je distribuován v naději, že bude užitečný, ale BEZ JAKÉKOLI ZÁRUKY; dokonce bez předpokládané záruky OBCHODOVATELNOST nebo VHODNOST PRO KONKRÉTNÍ ÚČEL. Viz Další podrobnosti naleznete v GNU General Public License.</p>
+<p>Měli byste obdržet kopii GNU General Public License spolu s tímto programem. Pokud ne, přejděte na <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<h1 id="instalace">Instalace</h1>
+<h2 id="jak-získat-drumstick-metronome">Jak získat Drumstick Metronome</h2>
+<p>Zde najdete nejnovější verzi: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Soubory projektu</a></p>
+<h2 id="požadavky">Požadavky</h2>
+<p>Abyste mohli úspěšně zkompilovat a používat Drumstick Metronome, potřebujete Qt 5 resp později Drumstick 2, ovladače ALSA a knihovna ALSA.</p>
+<p>K produkci zvuku potřebujete také MIDI syntezátor.</p>
+<p>Systém sestavení vyžaduje <a href="https://cmake.org">CMake</a> 3.14 nebo novější.</p>
+<p>Knihovnu ALSA, ovladače a nástroje naleznete na <a href="https://www.alsa-project.org">Domovská stránka ALSA</a>.</p>
+<p>Drumstick::ALSA je obal C++ kolem rozhraní sekvenceru ALSA využívající Qt předměty, idiomy a styl. Najdete ho na <a href="https://drumstick.sourceforge.io">Domovská stránka paličky</a>.</p>
+<p>Podívejte se také na [domovskou stránku Drumstick Metronome] (https://kmetronome.sourceforge.io/kmetronome.shtml).</p>
+<h2 id="kompilace-a-instalace">Kompilace a instalace</h2>
+<p>Chcete-li zkompilovat a nainstalovat Drumstick Metronome na váš systém, zadejte následující v základním adresáři distribuce Drumstick Metronome:</p>
+<pre><code>% cmake .
+% udělat
+% sudo make install</code></pre>
+<p>Protože Drumstick Metronome používá <code>cmake</code> a <code>make</code>, neměli byste mít žádné potíže jeho sestavování. Pokud narazíte na problémy, nahlaste je na autora nebo projektu <a href="https://sourceforge.net/p/kmetronome/bugs/">systém sledování chyb</a>.</p>
+</body>
+</html>

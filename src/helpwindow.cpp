@@ -24,6 +24,8 @@
 #include <QShowEvent>
 #include <QCloseEvent>
 #include <QSettings>
+#include <QFileInfo>
+#include <QDir>
 #if QT_VERSION < QT_VERSION_CHECK(5,14,0)
 #include <QDesktopWidget>
 #else
@@ -89,9 +91,16 @@ void HelpWindow::updateWindowTitle()
 void HelpWindow::showPage(const QString &page)
 {
     //qDebug() << Q_FUNC_INFO << page;
+    QDir hdir(":/");
+    QFileInfo finfo(hdir, page);
+    if (finfo.exists()) {
+        m_page = page;
+    } else {
+        m_page = "help/en/index.html";
+    }
     m_textBrowser->clear();
     m_textBrowser->clearHistory();
-    m_textBrowser->setSource(page);
+    m_textBrowser->setSource(m_page);
     show();
 }
 
@@ -165,7 +174,7 @@ void HelpWindow::retranslateUi()
 {
     QString language = qobject_cast<KMetronome*>(parent())->configuredLanguage();
     m_page = QStringLiteral("help/%1/index.html").arg(language);
-    m_textBrowser->setSource(m_page);
+    showPage(m_page);
     updateWindowTitle();
     m_home->setText(tr("&Home"));
     m_back->setText(tr("&Back"));

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#utilisation-du-métronome-drumstick">Utilisation du métronome Drumstick</a><ul>
+<li><a href="#caractéristiques">Caractéristiques</a></li>
+<li><a href="#commencer">Commencer</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#éditeur-de-motifs">Éditeur de motifs</a></li>
+</ul></li>
+<li><a href="#référence-de-commande">Référence de commande</a><ul>
+<li><a href="#la-fenêtre-principale">La fenêtre principale</a><ul>
+<li><a href="#le-menu-fichier">Le menu Fichier</a></li>
+<li><a href="#le-menu-édition">Le menu Édition</a></li>
+<li><a href="#le-menu-paramètres">Le menu Paramètres</a></li>
+<li><a href="#le-menu-daide">Le menu d'aide</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#contrôle-externe">Contrôle externe</a><ul>
+<li><a href="#interface-d-bus">Interface D-Bus</a></li>
+<li><a href="#messages-universels-exclusifs-au-système">Messages universels exclusifs au système</a></li>
+<li><a href="#interface-en-temps-réel-du-système-midi">Interface en temps réel du système MIDI</a></li>
+</ul></li>
+<li><a href="#crédits-et-licence">Crédits et licence</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#comment-obtenir-le-métronome-drumstick">Comment obtenir le métronome Drumstick</a></li>
+<li><a href="#conditions">Conditions</a></li>
+<li><a href="#compilation-et-installation">Compilation et installation</a></li>
+</ul></li>
+</ul>
+</div>
+<p>% de l'index de l'aide</p>
+<h1 id="introduction">Introduction</h1>
+<p>Drumstick Metronome est un métronome basé sur MIDI utilisant le séquenceur ALSA.</p>
+<p>Le public visé sont les musiciens et les étudiants en musique. Comme tout physique métronome c'est un outil pour garder le rythme tout en jouant de la musique instruments.</p>
+<p>Il utilise le MIDI au lieu de l'audio numérique, permettant une faible utilisation du processeur et très précis timing grâce au séquenceur ALSA. Cela signifie que vous avez également besoin d'un MIDI synthétiseur pour la génération sonore, car le programme ne produit aucun son par lui-même. Les meilleurs résultats proviennent de l'utilisation d'un synthétiseur matériel, mais vous pouvez utilisez également des synthétiseurs logiciels à la place.</p>
+<p>Demandez de l'aide, signalez les problèmes, les bogues et les demandes de fonctionnalités au système de suivi à l'adresse <a href="https://sourceforge.net/p/kmetronome/support-requests/">Site du projet SourceForge</a></p>
+<h1 id="utilisation-du-métronome-drumstick">Utilisation du métronome Drumstick</h1>
+<h2 id="caractéristiques">Caractéristiques</h2>
+<p>Vous n'avez qu'à ajuster certaines commandes, comme le curseur de tempo, le la boîte de sélection des battements/mesure et le sélecteur de longueur de battement. Appuyez sur le bouton de lecture commencer. Utilisez le bouton d'arrêt à votre convenance.</p>
+<p>Le tempo peut être réglé de 25 à 250 QPM à l'aide du curseur. Les unités sont quarts par minute (unités de métronome Mälzel). Vous pouvez également double-cliquer sur la fenêtre principale pour ouvrir une boîte de dialogue où vous pouvez entrer un nouveau tempo directement avec le clavier. Il y a aussi une zone de liste déroulante à choisir et afficher le tempo en utilisant des noms musicaux italiens.</p>
+<p>Beats/Bar peut être réglé de 1 à 32 temps. Ce sont le nombre de battements sur chaque mesure ou mesure, et c'est le numérateur sur la signature de temps comme ce serait noté.</p>
+<p>La longueur du battement est le dénominateur sur la spécification de la signature rythmique, et représente la durée de chaque battement. La modification de cette valeur ne changer la signification des unités de tempo.</p>
+<p>Motif est une liste déroulante permettant de choisir une définition de motif. Le défaut La valeur « automatique » signifie que le programme génère des modèles en utilisant le notes définies dans la boîte de dialogue de configuration (Fort/Faible) et le rythme définition fournie par &quot;Beats/Bar&quot; et &quot;Beat length&quot;. Il contient également les noms des modèles définis par l'utilisateur.</p>
+<h2 id="commencer">Commencer</h2>
+<p>Ce programme utilise le protocole MIDI, c'est donc une bonne idée d'avoir quelques notions de base sur le MIDI afin de bien comprendre les concepts derrière. Vous pouvez trouver ici une bonne introduction: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">Qu'est-ce que le MIDI</a>.</p>
+<p>Drumstick Metronome produit des événements MIDI. Si vous voulez entendre les événements traduit en sons dont vous avez besoin pour connecter le port MIDI OUT de ce programme au port MIDI IN d'un synthétiseur MIDI. Il peut s'agir soit d'un synthétiseur MIDI matériel ou logiciel. S'il s'agit d'un externe synthétiseur matériel, vous avez également besoin d'une interface MIDI prise en charge par ALSA installé sur votre ordinateur et un câble MIDI connecté à la fois au l'interface MIDI de l'ordinateur et la prise MIDI IN du synthétiseur.</p>
+<p>Si vous n'avez pas de synthétiseur MIDI externe, vous pouvez toujours utiliser le programme avec un synthétiseur logiciel MIDI prenant en charge le séquenceur ALSA connexions, comme <a href="https://qsynth.sourceforge.io">QSynth</a>. Commencez votre synthétiseur logiciel avant Drumstick Metronome, puis effectuez la connexion entre les deux programmes, soit dans la boîte de dialogue de configuration de Drumstick Metronome ou en utilisant un gestionnaire de connexion externe comme <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>N'oubliez pas d'installer une bonne <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> dans la boîte de dialogue &quot;Configuration...&quot; de QSynth.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Drumstick Metronome a des capacités de gestion de session limitées. il peut se souvenir une connexion pour le port de sortie ALSA, et une connexion pour son port d'entrée. Les connexions sont stockées à la sortie du programme et mémorisées au démarrage. Vous n'avez pas besoin de cette fonctionnalité si vous préférez faire de tels les connexions à la main, en utilisant aconnect ou tout autre utilitaire équivalent, ou si vous utilisez un gestionnaire de session externe comme le patchbay inclus dans le programme <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>Drumstick Metronome utilise un fichier de définition d'instrument au format .INS, le même format comme Qtractor, TSE3, Cakewalk et Sonar. L'<strong>instrument de sortie</strong> la liste déroulante permet d'en choisir un parmi les standards General MIDI, Cartes de batterie Roland GS et Yamaha XG. Vous pouvez ajouter plus de définitions en créant un fichier nommé <code>drums.ins</code> dans <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. Les contenu des listes déroulantes <strong>Banque</strong>, <strong>Programme</strong>, <strong>Faible</strong> et <strong>Note forte</strong> dépendent aussi de cette définition.</p>
+<p><strong>Canal</strong> est généralement 10, ce qui signifie le canal de percussion d'un General MIDI synthétiseur. Il doit s'agir d'un nombre entre 1 et 16.</p>
+<p><strong>Résolution</strong> est le nombre de ticks (unités de temps) pour chaque noire. Plage de valeurs de 48 à 960. La valeur par défaut est 120.</p>
+<p><strong>La durée de la note</strong> est la longueur (en nombre de ticks) de la période entre une NOTE ON et son événement NOTE OFF correspondant. Ce contrôle est activé uniquement lorsque <strong>Envoyer les événements NOTE OFF</strong> est également activé. Valeurs très faibles peut provoquer des clics assourdis sur certains synthétiseurs.</p>
+<p>Les sons de percussion n'ont généralement pas besoin d'événements NOTE OFF pour être envoyés après chaque NOTE ON. Cochez la case <strong>Envoyer les événements NOTE OFF</strong> uniquement si votre synthétiseur ou instrument prend en charge ou nécessite ce réglage.</p>
+<p><strong>Bank</strong> et <strong>Program</strong> sont utilisés pour changer la batterie des instruments prenant en charge plusieurs paramètres. De nombreux synthétiseurs ne comprennent pas le programme changements pour le canal de percussion.</p>
+<p>En mode motif <strong>Automatique</strong>, le son <strong>Note forte</strong> est joué comme premier temps dans chaque mesure, tandis que tout autre temps dans la même mesure est joué en utilisant le son <strong>Note faible</strong>. Les valeurs numériques 33 et 34 sont les sons GM2 et XG pour le clic du métronome et la cloche du métronome respectivement.</p>
+<h2 id="éditeur-de-motifs">Éditeur de motifs</h2>
+<p>En utilisant cette boîte de dialogue, vous pouvez éditer, tester et sélectionner des modèles. Créer nouveaux modèles, vous enregistrez simplement la définition actuelle sous un nouveau nom. Les motifs sont représentés par un tableau. Les lignes du tableau correspondent à les sons de percussions. Vous pouvez supprimer et ajouter des lignes à partir d'une liste de sons défini par les paramètres de l'instrument dans la boîte de dialogue de configuration. Les le nombre de colonnes du tableau détermine la longueur du motif, entre 1 et 99 éléments de n'importe quelle longueur de battement.</p>
+<p>Chaque cellule du tableau accepte des valeurs comprises entre N=1 et 9, correspondant au Vélocité MIDI (N*127/9) des notes, ou 0 pour annuler le son. Valide les valeurs sont aussi f (=forte) et p (=piano) correspondant à la variable vitesses définies par les boutons rotatifs (Fort/Faible) dans la fenêtre principale. Les valeurs des cellules peuvent être sélectionnées et modifiées à l'aide du clavier ou la souris. Il n'est pas nécessaire d'arrêter la lecture avant de modifier le cellules.</p>
+<h1 id="référence-de-commande">Référence de commande</h1>
+<h2 id="la-fenêtre-principale">La fenêtre principale</h2>
+<h3 id="le-menu-fichier">Le menu Fichier</h3>
+<dl>
+<dt><strong>Fichier → Importer des modèles</strong></dt>
+<dd><p>Importe les définitions de motifs dans Drumstick Metronome</p>
+</dd>
+<dt><strong>Fichier → Exporter les modèles</strong></dt>
+<dd><p>exporte les définitions de motifs depuis Drumstick Metronome</p>
+</dd>
+<dt><strong>Fichier → Lecture/Arrêt</strong></dt>
+<dd><p>Contrôle la lecture du motif</p>
+</dd>
+<dt><strong>Fichier → Quitter</strong></dt>
+<dd><p>Quitte Drumstick Metronome</p>
+</dd>
+</dl>
+<h3 id="le-menu-édition">Le menu Édition</h3>
+<dl>
+<dt><strong>Modifier → Modifier les modèles</strong></dt>
+<dd><p>Ouvre l'éditeur de modèle</p>
+</dd>
+</dl>
+<h3 id="le-menu-paramètres">Le menu Paramètres</h3>
+<dl>
+<dt><strong>Paramètres → Afficher les boutons d'action</strong></dt>
+<dd><p>affiche ou masque les boutons d'action. Il existe des éléments de menu équivalents pour chaque bouton.</p>
+</dd>
+<dt><strong>Paramètres → Afficher la barre d'outils</strong></dt>
+<dd><p>affiche ou masque la barre d'outils. Il existe des éléments de menu équivalents pour chaque bouton.</p>
+</dd>
+<dt><strong>Paramètres → Configuration</strong></dt>
+<dd><p>Configure le métronome de la baguette</p>
+</dd>
+</dl>
+<h3 id="le-menu-daide">Le menu d'aide</h3>
+<dl>
+<dt><strong>Aide → Contenu de l'aide</strong></dt>
+<dd><p>Ouvre la fenêtre d'aide</p>
+</dd>
+<dt><strong>Aide → Langue</strong></dt>
+<dd><p>Ouvre un sous-menu affichant les traductions disponibles</p>
+</dd>
+<dt><strong>Aide → à propos</strong></dt>
+<dd><p>Ouvre une boîte à propos de ce programme</p>
+</dd>
+<dt><strong>Aide → à propos de Qt</strong></dt>
+<dd><p>Ouvre une boîte à propos des frameworks Qt</p>
+</dd>
+</dl>
+<h1 id="contrôle-externe">Contrôle externe</h1>
+<p>Drumstick Metronome peut être contrôlé à l'aide de son interface D-Bus, System Realtime et messages MIDI exclusifs au système.</p>
+<h2 id="interface-d-bus">Interface D-Bus</h2>
+<p>Drumstick Metronome fournit certaines fonctions via son interface D-Bus. Vous pouvez utiliser un programme compatible D-Bus pour contrôler le métronome de baguette comme <code>qdbusviewer</code> ou le utilitaire de ligne de commande <code>qdbus</code>.</p>
+<p>Par exemple, ces commandes peuvent être utilisées à partir d'une invite shell :</p>
+<pre><code>$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.play
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.stop
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.cont
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 150
+$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8</code></pre>
+<h2 id="messages-universels-exclusifs-au-système">Messages universels exclusifs au système</h2>
+<p>Drumstick Metronome comprend certains messages Universal System Exclusive. Parce que l'ID de l'appareil n'est pas encore implémenté, tous les messages reconnus doivent être marqué comme diffusé (0x7F).</p>
+<p>Message en temps réel : Message de modification de la signature horaire</p>
+<pre><code>Format : 0xF0 0x7F 0x7F 0x03 Longueur de commande Numérateur Dénominateur ... 0xF7
+                            0x02 : Modification de la signature temporelle 
+                            0x42 : changement de signature de temps retardé</code></pre>
+<p>Remarques : les deux commandes n'affectent que les prochains modèles programmés après réception de la commande. La longueur est d'au moins 2. Octets supplémentaires suivant Le numérateur et le dénominateur sont ignorés.</p>
+<p>Messages MMC</p>
+<pre><code>Format : 0xF0 0x7F 0x7F 0x06 Commande 0xF7
+                            0x01 : Arrêter
+                            0x02 : jouer
+                            0x03 : jeu différé</code></pre>
+<h2 id="interface-en-temps-réel-du-système-midi">Interface en temps réel du système MIDI</h2>
+<p>Vous pouvez utiliser un appareil MIDI générant des messages MIDI System Realtime pour contrôle Drumstick Métronome. Les messages système en temps réel acceptés sont : Démarrer (0xFA), Arrêter (0xFC) et continuer (0xFB).</p>
+<p>De nombreux claviers maîtres MIDI et appareils à boutons MIDI fournissent ces trois Contrôles de transport MIDI. Vous devez connecter vos appareils MIDI externes à l'ordinateur à l'aide de câbles MIDI (ou USB) et connectez le port ALSA correspondant au port d'entrée de Drumstick Metronome. Cette connexion doit être fait à la main, ou à l'aide d'un logiciel de gestion de session comme QJackCtl.</p>
+<h1 id="crédits-et-licence">Crédits et licence</h1>
+<p>Programme Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
+<p>Documentation Copyright © 2005-2021 Pedro Lopez-Cabanillas</p>
+<p>Ce programme est un logiciel libre ; vous pouvez le redistribuer et/ou modifier sous les termes de la licence publique générale GNU telle que publiée par la Fondation du logiciel libre ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.</p>
+<p>Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou ADAPTATION À UN USAGE PARTICULIER. Voir le Licence publique générale GNU pour plus de détails.</p>
+<p>Vous devriez avoir reçu une copie de la licence publique générale GNU avec ce programme. Sinon, voir <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<h1 id="installation">Installation</h1>
+<h2 id="comment-obtenir-le-métronome-drumstick">Comment obtenir le métronome Drumstick</h2>
+<p>Ici vous pouvez trouver la dernière version: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Fichiers du projet</a></p>
+<h2 id="conditions">Conditions</h2>
+<p>Pour compiler et utiliser avec succès Drumstick Metronome, vous avez besoin de Qt 5 ou plus tard, Drumstick 2, les pilotes ALSA et la bibliothèque ALSA.</p>
+<p>Vous avez également besoin d'un synthétiseur MIDI pour produire du son.</p>
+<p>Le système de construction nécessite <a href="https://cmake.org">CMake</a> 3.14 ou plus récent.</p>
+<p>La bibliothèque ALSA, les pilotes et les utilitaires peuvent être trouvés sur <a href="https://www.alsa-project.org">Page d'accueil ALSA</a>.</p>
+<p>Drumstick::ALSA est un wrapper C++ autour de l'interface du séquenceur ALSA utilisant Qt objets, idiomes et style. Vous pouvez le trouver au <a href="https://drumstick.sourceforge.io">Page d'accueil de Drumstick</a>.</p>
+<p>Voir aussi la <a href="https://kmetronome.sourceforge.io/kmetronome.shtml">page d'accueil de Drumstick Metronome</a>.</p>
+<h2 id="compilation-et-installation">Compilation et installation</h2>
+<p>Pour compiler et installer Drumstick Metronome sur votre système, tapez le suivant dans le répertoire de base de la distribution Drumstick Metronome :</p>
+<pre><code>% cmake .
+% Fabriquer
+% sudo faire l&#39;installation</code></pre>
+<p>Étant donné que Drumstick Metronome utilise <code>cmake</code> et <code>make</code> vous ne devriez avoir aucun problème le compiler. Si vous rencontrez des problèmes, veuillez les signaler au l'auteur ou le projet <a href="https://sourceforge.net/p/kmetronome/bugs/">système de suivi des bogues</a>.</p>
+</body>
+</html>

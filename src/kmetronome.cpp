@@ -94,7 +94,7 @@ KMetronome::KMetronome(QWidget *parent) :
     m_trp = new QTranslator(this);
     QCoreApplication::installTranslator(m_trp);
     QLocale locale(configuredLanguage());
-    qDebug() << "locale:" << locale << "path:" << trDirectory();
+    //qDebug() << "locale:" << locale << "path:" << trDirectory();
     if (!m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
         qWarning() << "Failure loading Qt5 translations for" << configuredLanguage();
     }
@@ -220,13 +220,8 @@ void KMetronome::about()
 
 void KMetronome::help()
 {
-    QDir hdir(":/");
     m_helpWindow->setIcons(m_internalIcons);
     QString hname = QString("help/%1/index.html").arg(configuredLanguage());
-    QFileInfo finfo(hdir, hname);
-    if (!finfo.exists()) {
-        hname = "help/en/index.html";
-    }
     m_helpWindow->showPage(hname);
 }
 
@@ -724,7 +719,6 @@ void KMetronome::setSelectedPattern(const QString& pattern)
     }
 }
 
-
 QString KMetronome::configuredLanguage()
 {
     if (m_language.isEmpty()) {
@@ -734,7 +728,7 @@ QString KMetronome::configuredLanguage()
         m_language = settings.value("language", defLang).toString();
         settings.endGroup();
     }
-    qDebug() << Q_FUNC_INFO << m_language;
+    //qDebug() << Q_FUNC_INFO << m_language;
     return m_language;
 }
 

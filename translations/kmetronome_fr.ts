@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="fr">
 <context>
     <name>About</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-family:&apos;Sans Serif&apos;; font-size:12pt; font-style:normal;&quot;&gt;&lt;p style=&quot;margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: %1&lt;br/&gt;Build date: %2&lt;br/&gt;Build time: %3&lt;br/&gt;Compiler: %4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-family:&apos;Sans Serif&apos;; font-size:12pt; font-style:normal;&quot;&gt;&lt;p style=&quot;margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: %1&lt;br/&gt;Qt version: %5&lt;br/&gt;Drumstick version: %6&lt;br/&gt;Build date: %2&lt;br/&gt;Build time: %3&lt;br/&gt;Compiler: %4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -27,20 +27,19 @@ p, li { white-space: pre-wrap; }
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://kmetronome.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://kmetronome.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://kmetronome.sourceforge.io&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;https://kmetronome.sourceforge.io&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Copyright © 2002-2021, &lt;/span&gt;&lt;a href=&quot;mailto:plcl@users.sf.net?subject=VMPK&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Pedro Lopez-Cabanillas &amp;lt;plcl@users.sf.net&amp;gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;This program is free software; you can redistribute it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;You should have received a copy of the GNU General Public License
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Copyright © 2002-2021, &lt;/span&gt;&lt;a href=&quot;mailto:plcl@users.sf.net?subject=VMPK&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;Pedro Lopez-Cabanillas &amp;lt;plcl@users.sf.net&amp;gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;This program is free software; you can redistribute it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;/span&gt;&lt;a href=&quot;https://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;https://www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -48,7 +47,7 @@ p, li { white-space: pre-wrap; }
     <name>DrumGrid</name>
     <message>
         <source>Rows:</source>
-        <translation type="unfinished">Lignes :</translation>
+        <translation type="unfinished">Lignes&#xa0;:</translation>
     </message>
     <message>
         <source>Use this button to add new rows (sounds) to the current pattern definition</source>
@@ -68,7 +67,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Beats:</source>
-        <translation type="unfinished">Notes :</translation>
+        <translation type="unfinished">Notes&#xa0;:</translation>
     </message>
     <message>
         <source>Highligh the grid columns while playing</source>
@@ -86,11 +85,11 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished">Figure :</translation>
+        <translation type="unfinished">Figure&#xa0;:</translation>
     </message>
     <message>
         <source>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</source>
-        <translation type="unfinished">Saisissez un nouveau nom et cliquez sur le bouton « Enregistrer » pour créer une nouvelle figure rythmique, ou choisissez une figure existante dans la liste déroulante.</translation>
+        <translation type="unfinished">Saisissez un nouveau nom et cliquez sur le bouton «&#xa0;Enregistrer&#xa0;» pour créer une nouvelle figure rythmique, ou choisissez une figure existante dans la liste déroulante.</translation>
     </message>
     <message>
         <source>This button stores the current pattern definition with the name given</source>
@@ -118,31 +117,31 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Whole</source>
-        <translation type="unfinished">Ronde</translation>
+        <translation type="obsolete">Ronde</translation>
     </message>
     <message>
         <source>Half</source>
-        <translation type="unfinished">Blanche</translation>
+        <translation type="obsolete">Blanche</translation>
     </message>
     <message>
         <source>Quarter</source>
-        <translation type="unfinished">Noire</translation>
+        <translation type="obsolete">Noire</translation>
     </message>
     <message>
         <source>Eighth</source>
-        <translation type="unfinished">Croche</translation>
+        <translation type="obsolete">Croche</translation>
     </message>
     <message>
         <source>Sixteenth</source>
-        <translation type="unfinished">Double croche</translation>
+        <translation type="obsolete">Double croche</translation>
     </message>
     <message>
         <source>Thirty-Second</source>
-        <translation type="unfinished">Triple croche</translation>
+        <translation type="obsolete">Triple croche</translation>
     </message>
     <message>
         <source>Sixty-Fourth</source>
-        <translation type="unfinished">Quadruple croche</translation>
+        <translation type="obsolete">Quadruple croche</translation>
     </message>
     <message>
         <source>This button starts playing the current pattern</source>
@@ -167,7 +166,7 @@ en surbrillance</translation>
     <message>
         <source>QPM:</source>
         <comment>Quarters per Minute</comment>
-        <translation type="unfinished">Tempo :</translation>
+        <translation type="unfinished">Tempo&#xa0;:</translation>
     </message>
     <message>
         <source>This is the current tempo in quarters per minute</source>
@@ -205,7 +204,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Do you want to remove the current pattern?</source>
-        <translation type="unfinished">Voulez-vous supprimer la figure actuelle ?</translation>
+        <translation type="unfinished">Voulez-vous supprimer la figure actuelle&#xa0;?</translation>
     </message>
     <message>
         <source>Sample Pattern</source>
@@ -218,7 +217,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Drum Key:</source>
-        <translation type="unfinished">Touche « tambour » :</translation>
+        <translation type="unfinished">Touche «&#xa0;tambour&#xa0;»&#xa0;:</translation>
     </message>
     <message>
         <source>Sorry</source>
@@ -234,7 +233,30 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Do you want to remove the selected pattern row?</source>
-        <translation type="unfinished">Voulez-vous supprimer la figure rythmique de cette ligne ?</translation>
+        <translation type="unfinished">Voulez-vous supprimer la figure rythmique de cette ligne&#xa0;?</translation>
+    </message>
+</context>
+<context>
+    <name>HelpWindow</name>
+    <message>
+        <source>&amp;Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -256,7 +278,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Optional input port conn:</source>
-        <translation type="unfinished">Connexion (optionnelle) du port d&apos;entrée :</translation>
+        <translation type="unfinished">Connexion (optionnelle) du port d&apos;entrée&#xa0;:</translation>
     </message>
     <message>
         <source>This is the optional connection for the MIDI IN port.</source>
@@ -264,7 +286,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Output port connection:</source>
-        <translation type="unfinished">Connexion du port de sortie :</translation>
+        <translation type="unfinished">Connexion du port de sortie&#xa0;:</translation>
     </message>
     <message>
         <source>This is the mandatory connection for the MIDI OUT port</source>
@@ -272,7 +294,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Output instrument:</source>
-        <translation type="unfinished">Instrument de sortie :</translation>
+        <translation type="unfinished">Instrument de sortie&#xa0;:</translation>
     </message>
     <message>
         <source>This is the definition of the instrument connected to the MIDI OUT port</source>
@@ -280,7 +302,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Bank:</source>
-        <translation type="unfinished">Banque :</translation>
+        <translation type="unfinished">Banque&#xa0;:</translation>
     </message>
     <message>
         <source>This is the Bank of the selected MIDI program</source>
@@ -288,17 +310,17 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Channel:</source>
-        <translation type="unfinished">Canal :</translation>
+        <translation type="unfinished">Canal&#xa0;:</translation>
     </message>
     <message>
         <source>This is the MIDI channel, between 1 and 16. 
 General MIDI uses the channel 10 for percussion sounds.</source>
         <translation type="unfinished">Canal MIDI, entre 1 et 16.
-Le programme « General » utilise le canal 10 pour les sons de percussion.</translation>
+Le programme «&#xa0;General&#xa0;» utilise le canal 10 pour les sons de percussion.</translation>
     </message>
     <message>
         <source>Program:</source>
-        <translation type="unfinished">Programme :</translation>
+        <translation type="unfinished">Programme&#xa0;:</translation>
     </message>
     <message>
         <source>This is the MIDI program</source>
@@ -306,7 +328,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Resolution:</source>
-        <translation type="unfinished">Résolution :</translation>
+        <translation type="unfinished">Résolution&#xa0;:</translation>
     </message>
     <message>
         <source>This is the MIDI time resolution (number of ticks in a quarter note)</source>
@@ -314,7 +336,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Weak note:</source>
-        <translation type="unfinished">Note du temps faible :</translation>
+        <translation type="unfinished">Note du temps faible&#xa0;:</translation>
     </message>
     <message>
         <source>This is the sound of the weak notes for the automatic patterns</source>
@@ -322,7 +344,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Note duration:</source>
-        <translation type="unfinished">Durée d&apos;une note :</translation>
+        <translation type="unfinished">Durée d&apos;une note&#xa0;:</translation>
     </message>
     <message>
         <source>This is the note duration in ticks, when using NOTE OFF events</source>
@@ -330,7 +352,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Strong note:</source>
-        <translation type="unfinished">Note du temps fort :</translation>
+        <translation type="unfinished">Note du temps fort&#xa0;:</translation>
     </message>
     <message>
         <source>This is the sound of the strong notes for the automatic patterns</source>
@@ -338,18 +360,30 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Optional setting to send NOTE OFF events</source>
-        <translation type="unfinished">Envoyer des évènements « NOTE OFF » (facultatif)</translation>
+        <translation type="unfinished">Envoyer des évènements «&#xa0;NOTE OFF&#xa0;» (facultatif)</translation>
     </message>
     <message>
         <source>Send NOTE OFF events</source>
-        <translation type="unfinished">Envoyer des évènements « NOTE OFF »</translation>
+        <translation type="unfinished">Envoyer des évènements «&#xa0;NOTE OFF&#xa0;»</translation>
+    </message>
+    <message>
+        <source>Forced Dark Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Icon Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Style:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>KMetronome</name>
     <message>
         <source>Fatal error from the ALSA sequencer. This usually happens when the kernel doesn&apos;t have ALSA support, or the device node (/dev/snd/seq) doesn&apos;t exists, or the kernel module (snd_seq) is not loaded. Please check your ALSA/MIDI configuration. Returned error was: %1</source>
-        <translation type="unfinished">Erreur fatale du séquenceur ALSA. Cela arrive généralement lorsque le noyau ne gère pas ALSA, ou lorsque le fichier « /dev/snd/seq » n&apos;existe pas, ou lorsque le module noyau « snd_seq » n&apos;est pas chargé. Veuillez vérifier la configuration de ALSA/MIDI. Le nº d&apos;erreur retourné est : %1</translation>
+        <translation type="unfinished">Erreur fatale du séquenceur ALSA. Cela arrive généralement lorsque le noyau ne gère pas ALSA, ou lorsque le fichier «&#xa0;/dev/snd/seq&#xa0;» n&apos;existe pas, ou lorsque le module noyau «&#xa0;snd_seq&#xa0;» n&apos;est pas chargé. Veuillez vérifier la configuration de ALSA/MIDI. Le nº d&apos;erreur retourné est&#xa0;: %1</translation>
     </message>
     <message>
         <source>Error</source>
@@ -373,7 +407,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Enter new Tempo:</source>
-        <translation type="unfinished">Saisissez le nouveau tempo :</translation>
+        <translation type="unfinished">Saisissez le nouveau tempo&#xa0;:</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -441,15 +475,15 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished">Figure :</translation>
+        <translation type="unfinished">Figure&#xa0;:</translation>
     </message>
     <message>
         <source>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</source>
-        <translation type="unfinished">Définition de la figure à jouer, « automatique » ou personnalisée.</translation>
+        <translation type="unfinished">Définition de la figure à jouer, «&#xa0;automatique&#xa0;» ou personnalisée.</translation>
     </message>
     <message>
         <source>Beats/Bar:</source>
-        <translation type="unfinished">Notes par mesure :</translation>
+        <translation type="unfinished">Notes par mesure&#xa0;:</translation>
     </message>
     <message>
         <source>This is the number of beats for each measure (bar).
@@ -461,7 +495,7 @@ C’est le numérateur de la signature rythmique.</translation>
     </message>
     <message>
         <source>Beat Length:</source>
-        <translation type="unfinished">Durée de la note :</translation>
+        <translation type="unfinished">Durée de la note&#xa0;:</translation>
     </message>
     <message>
         <source>This is the beat length.
@@ -473,31 +507,31 @@ C&apos;est le dénominateur de la signature rythmique.</translation>
     </message>
     <message>
         <source>Whole</source>
-        <translation type="unfinished">Ronde</translation>
+        <translation type="obsolete">Ronde</translation>
     </message>
     <message>
         <source>Half</source>
-        <translation type="unfinished">Blanche</translation>
+        <translation type="obsolete">Blanche</translation>
     </message>
     <message>
         <source>Quarter</source>
-        <translation type="unfinished">Noire</translation>
+        <translation type="obsolete">Noire</translation>
     </message>
     <message>
         <source>Eighth</source>
-        <translation type="unfinished">Croche</translation>
+        <translation type="obsolete">Croche</translation>
     </message>
     <message>
         <source>Sixteenth</source>
-        <translation type="unfinished">Double croche</translation>
+        <translation type="obsolete">Double croche</translation>
     </message>
     <message>
         <source>Thirty-Second</source>
-        <translation type="unfinished">Triple croche</translation>
+        <translation type="obsolete">Triple croche</translation>
     </message>
     <message>
         <source>Sixty-Fourth</source>
-        <translation type="unfinished">Quadruple croche</translation>
+        <translation type="obsolete">Quadruple croche</translation>
     </message>
     <message>
         <source>Weak</source>
@@ -545,7 +579,7 @@ C&apos;est le dénominateur de la signature rythmique.</translation>
     </message>
     <message>
         <source>Tempo (in quarters per minute)</source>
-        <translation type="unfinished">Tempo (en noires par minute) :</translation>
+        <translation type="unfinished">Tempo (en noires par minute)&#xa0;:</translation>
     </message>
     <message>
         <source>This slider changes the &lt;i&gt;tempo&lt;/i&gt;, or speed of the rhythm.
@@ -616,6 +650,37 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <message>
         <source>Help Contents</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QApplication</name>
+    <message>
+        <source>Whole</source>
+        <translation type="unfinished">Ronde</translation>
+    </message>
+    <message>
+        <source>Half</source>
+        <translation type="unfinished">Blanche</translation>
+    </message>
+    <message>
+        <source>Quarter</source>
+        <translation type="unfinished">Noire</translation>
+    </message>
+    <message>
+        <source>Eight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sixteenth</source>
+        <translation type="unfinished">Double croche</translation>
+    </message>
+    <message>
+        <source>Thirty-Second</source>
+        <translation type="unfinished">Triple croche</translation>
+    </message>
+    <message>
+        <source>Sixty-Fourth</source>
+        <translation type="unfinished">Quadruple croche</translation>
     </message>
 </context>
 <context>
@@ -742,21 +807,21 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:140</name>
     <message>
         <source>Pattern:</source>
-        <translation type="vanished">Figure :</translation>
+        <translation type="vanished">Figure&#xa0;:</translation>
     </message>
 </context>
 <context>
     <name>po/rc.cpp:143</name>
     <message>
         <source>This is the pattern definition to play, either &quot;Automatic&quot; or a custom defined one.</source>
-        <translation type="vanished">Définition de la figure à jouer, « automatique » ou personnalisée.</translation>
+        <translation type="vanished">Définition de la figure à jouer, «&#xa0;automatique&#xa0;» ou personnalisée.</translation>
     </message>
 </context>
 <context>
     <name>po/rc.cpp:146</name>
     <message>
         <source>Beats/Bar:</source>
-        <translation type="vanished">Notes par mesure :</translation>
+        <translation type="vanished">Notes par mesure&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -781,7 +846,7 @@ C’est le numérateur de la signature rythmique.</translation>
     <name>po/rc.cpp:154</name>
     <message>
         <source>Beat Length:</source>
-        <translation type="vanished">Durée de la note :</translation>
+        <translation type="vanished">Durée de la note&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -918,7 +983,7 @@ C&apos;est le dénominateur de la signature rythmique.</translation>
     <name>po/rc.cpp:21</name>
     <message>
         <source>Rows:</source>
-        <translation type="vanished">Lignes :</translation>
+        <translation type="vanished">Lignes&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -932,7 +997,7 @@ C&apos;est le dénominateur de la signature rythmique.</translation>
     <name>po/rc.cpp:213</name>
     <message>
         <source>Tempo (in quarters per minute)</source>
-        <translation type="vanished">Tempo (en noires par minute) :</translation>
+        <translation type="vanished">Tempo (en noires par minute)&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -962,7 +1027,7 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:226</name>
     <message>
         <source>Optional input port conn:</source>
-        <translation type="vanished">Connexion (optionnelle) du port d&apos;entrée :</translation>
+        <translation type="vanished">Connexion (optionnelle) du port d&apos;entrée&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -976,7 +1041,7 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:232</name>
     <message>
         <source>Output port connection:</source>
-        <translation type="vanished">Connexion du port de sortie :</translation>
+        <translation type="vanished">Connexion du port de sortie&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -990,7 +1055,7 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:238</name>
     <message>
         <source>Output instrument:</source>
-        <translation type="vanished">Instrument de sortie :</translation>
+        <translation type="vanished">Instrument de sortie&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1011,7 +1076,7 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:244</name>
     <message>
         <source>Bank:</source>
-        <translation type="vanished">Banque :</translation>
+        <translation type="vanished">Banque&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1025,7 +1090,7 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
     <name>po/rc.cpp:250</name>
     <message>
         <source>Channel:</source>
-        <translation type="vanished">Canal :</translation>
+        <translation type="vanished">Canal&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1034,14 +1099,14 @@ Les valeurs possibles vont de 25 à 250 noires par minute (&lt;i&gt;unités du m
         <source>This is the MIDI channel, between 1 and 16. 
 General MIDI uses the channel 10 for percussion sounds.</source>
         <translation type="vanished">Canal MIDI, entre 1 et 16.
-Le programme « General » utilise le canal 10 pour les sons de percussion.</translation>
+Le programme «&#xa0;General&#xa0;» utilise le canal 10 pour les sons de percussion.</translation>
     </message>
 </context>
 <context>
     <name>po/rc.cpp:257</name>
     <message>
         <source>Program:</source>
-        <translation type="vanished">Programme :</translation>
+        <translation type="vanished">Programme&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1120,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:263</name>
     <message>
         <source>Resolution:</source>
-        <translation type="vanished">Résolution :</translation>
+        <translation type="vanished">Résolution&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1134,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:269</name>
     <message>
         <source>Weak note:</source>
-        <translation type="vanished">Note du temps faible :</translation>
+        <translation type="vanished">Note du temps faible&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1090,7 +1155,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:275</name>
     <message>
         <source>Note duration:</source>
-        <translation type="vanished">Durée d&apos;une note :</translation>
+        <translation type="vanished">Durée d&apos;une note&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1104,7 +1169,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:281</name>
     <message>
         <source>Strong note:</source>
-        <translation type="vanished">Note du temps fort :</translation>
+        <translation type="vanished">Note du temps fort&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1118,14 +1183,14 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:287</name>
     <message>
         <source>Optional setting to send NOTE OFF events</source>
-        <translation type="vanished">Envoyer des évènements « NOTE OFF » (facultatif)</translation>
+        <translation type="vanished">Envoyer des évènements «&#xa0;NOTE OFF&#xa0;» (facultatif)</translation>
     </message>
 </context>
 <context>
     <name>po/rc.cpp:290</name>
     <message>
         <source>Send NOTE OFF events</source>
-        <translation type="vanished">Envoyer des évènements « NOTE OFF »</translation>
+        <translation type="vanished">Envoyer des évènements «&#xa0;NOTE OFF&#xa0;»</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1225,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:3</name>
     <message>
         <source>Pattern:</source>
-        <translation type="vanished">Figure :</translation>
+        <translation type="vanished">Figure&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1181,7 +1246,7 @@ Le programme « General » utilise le canal 10 pour les sons de percussion.</t
     <name>po/rc.cpp:36</name>
     <message>
         <source>Beats:</source>
-        <translation type="vanished">Notes :</translation>
+        <translation type="vanished">Notes&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1304,7 @@ en surbrillance</translation>
     <name>po/rc.cpp:6</name>
     <message>
         <source>Type a new name and press the &quot;Save&quot; button to create a new pattern, or choose an existing pattern from the drop-down list.</source>
-        <translation type="vanished">Saisissez un nouveau nom et cliquez sur le bouton « Enregistrer » pour créer une nouvelle figure rythmique, ou choisissez une figure existante dans la liste déroulante.</translation>
+        <translation type="vanished">Saisissez un nouveau nom et cliquez sur le bouton «&#xa0;Enregistrer&#xa0;» pour créer une nouvelle figure rythmique, ou choisissez une figure existante dans la liste déroulante.</translation>
     </message>
 </context>
 <context>
@@ -1330,7 +1395,7 @@ en surbrillance</translation>
     <name>po/rc.cpp:94</name>
     <message>
         <source>QPM:</source>
-        <translation type="vanished">Tempo :</translation>
+        <translation type="vanished">Tempo&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1344,7 +1409,7 @@ en surbrillance</translation>
     <name>src/drumgrid.cpp:278</name>
     <message>
         <source>Do you want to remove the current pattern?</source>
-        <translation type="vanished">Voulez-vous supprimer la figure actuelle ?</translation>
+        <translation type="vanished">Voulez-vous supprimer la figure actuelle&#xa0;?</translation>
     </message>
 </context>
 <context>
@@ -1372,7 +1437,7 @@ en surbrillance</translation>
     <name>src/drumgrid.cpp:365</name>
     <message>
         <source>Drum Key:</source>
-        <translation type="vanished">Touche « tambour » :</translation>
+        <translation type="vanished">Touche «&#xa0;tambour&#xa0;»&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -1386,7 +1451,7 @@ en surbrillance</translation>
     <name>src/drumgrid.cpp:388</name>
     <message>
         <source>Do you want to remove the selected pattern row?</source>
-        <translation type="vanished">Voulez-vous supprimer la figure rythmique de cette ligne ?</translation>
+        <translation type="vanished">Voulez-vous supprimer la figure rythmique de cette ligne&#xa0;?</translation>
     </message>
 </context>
 <context>
@@ -1500,7 +1565,7 @@ en surbrillance</translation>
     <name>src/kmetronome.cpp:87</name>
     <message>
         <source>Fatal error from the ALSA sequencer. This usually happens when the kernel doesn&apos;t have ALSA support, or the device node (/dev/snd/seq) doesn&apos;t exists, or the kernel module (snd_seq) is not loaded. Please check your ALSA/MIDI configuration. Returned error was: %1</source>
-        <translation type="vanished">Erreur fatale du séquenceur ALSA. Cela arrive généralement lorsque le noyau ne gère pas ALSA, ou lorsque le fichier « /dev/snd/seq » n&apos;existe pas, ou lorsque le module noyau « snd_seq » n&apos;est pas chargé. Veuillez vérifier la configuration de ALSA/MIDI. Le nº d&apos;erreur retourné est : %1</translation>
+        <translation type="vanished">Erreur fatale du séquenceur ALSA. Cela arrive généralement lorsque le noyau ne gère pas ALSA, ou lorsque le fichier «&#xa0;/dev/snd/seq&#xa0;» n&apos;existe pas, ou lorsque le module noyau «&#xa0;snd_seq&#xa0;» n&apos;est pas chargé. Veuillez vérifier la configuration de ALSA/MIDI. Le nº d&apos;erreur retourné est&#xa0;: %1</translation>
     </message>
 </context>
 <context>
@@ -1518,7 +1583,7 @@ en surbrillance</translation>
     </message>
     <message>
         <source>Enter new Tempo:</source>
-        <translation type="vanished">Saisissez le nouveau tempo :</translation>
+        <translation type="vanished">Saisissez le nouveau tempo&#xa0;:</translation>
     </message>
 </context>
 <context>

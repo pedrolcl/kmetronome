@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="tr">
 <context>
     <name>About</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-family:&apos;Sans Serif&apos;; font-size:12pt; font-style:normal;&quot;&gt;&lt;p style=&quot;margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: %1&lt;br/&gt;Build date: %2&lt;br/&gt;Build time: %3&lt;br/&gt;Compiler: %4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;font-family:&apos;Sans Serif&apos;; font-size:12pt; font-style:normal;&quot;&gt;&lt;p style=&quot;margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version: %1&lt;br/&gt;Qt version: %5&lt;br/&gt;Drumstick version: %6&lt;br/&gt;Build date: %2&lt;br/&gt;Build time: %3&lt;br/&gt;Compiler: %4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -27,20 +27,19 @@ p, li { white-space: pre-wrap; }
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://kmetronome.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://kmetronome.sourceforge.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://kmetronome.sourceforge.io&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;https://kmetronome.sourceforge.io&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Copyright © 2002-2021, &lt;/span&gt;&lt;a href=&quot;mailto:plcl@users.sf.net?subject=VMPK&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Pedro Lopez-Cabanillas &amp;lt;plcl@users.sf.net&amp;gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;This program is free software; you can redistribute it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;You should have received a copy of the GNU General Public License
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Copyright © 2002-2021, &lt;/span&gt;&lt;a href=&quot;mailto:plcl@users.sf.net?subject=VMPK&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;Pedro Lopez-Cabanillas &amp;lt;plcl@users.sf.net&amp;gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;This program is free software; you can redistribute it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;/span&gt;&lt;a href=&quot;https://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;https://www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -118,31 +117,31 @@ Vurgula</translation>
     </message>
     <message>
         <source>Whole</source>
-        <translation type="unfinished">Birlik süre</translation>
+        <translation type="obsolete">Birlik süre</translation>
     </message>
     <message>
         <source>Half</source>
-        <translation type="unfinished">İkilik süre</translation>
+        <translation type="obsolete">İkilik süre</translation>
     </message>
     <message>
         <source>Quarter</source>
-        <translation type="unfinished">Dörtlük süre</translation>
+        <translation type="obsolete">Dörtlük süre</translation>
     </message>
     <message>
         <source>Eighth</source>
-        <translation type="unfinished">Sekizlik süre</translation>
+        <translation type="obsolete">Sekizlik süre</translation>
     </message>
     <message>
         <source>Sixteenth</source>
-        <translation type="unfinished">Onaltılık süre</translation>
+        <translation type="obsolete">Onaltılık süre</translation>
     </message>
     <message>
         <source>Thirty-Second</source>
-        <translation type="unfinished">Otuz-ikilik süre</translation>
+        <translation type="obsolete">Otuz-ikilik süre</translation>
     </message>
     <message>
         <source>Sixty-Fourth</source>
-        <translation type="unfinished">Atmış-dörtlük süre</translation>
+        <translation type="obsolete">Atmış-dörtlük süre</translation>
     </message>
     <message>
         <source>This button starts playing the current pattern</source>
@@ -235,6 +234,29 @@ Vurgula</translation>
     <message>
         <source>Do you want to remove the selected pattern row?</source>
         <translation type="unfinished">Seçili kalıbı sırasını kaldırmak istiyor musunuz?</translation>
+    </message>
+</context>
+<context>
+    <name>HelpWindow</name>
+    <message>
+        <source>&amp;Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -343,6 +365,18 @@ General MIDI vurma çalgı sesleri için 10 numaralı kanalı kullanır.</transl
     <message>
         <source>Send NOTE OFF events</source>
         <translation type="unfinished">NOTE OFF olaylarını gönder</translation>
+    </message>
+    <message>
+        <source>Forced Dark Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Icon Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Style:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -473,31 +507,31 @@ Bunlar, ölçü birimi içindeki alt sürelerin özellikleridir.</translation>
     </message>
     <message>
         <source>Whole</source>
-        <translation type="unfinished">Birlik süre</translation>
+        <translation type="obsolete">Birlik süre</translation>
     </message>
     <message>
         <source>Half</source>
-        <translation type="unfinished">İkilik süre</translation>
+        <translation type="obsolete">İkilik süre</translation>
     </message>
     <message>
         <source>Quarter</source>
-        <translation type="unfinished">Dörtlük süre</translation>
+        <translation type="obsolete">Dörtlük süre</translation>
     </message>
     <message>
         <source>Eighth</source>
-        <translation type="unfinished">Sekizlik süre</translation>
+        <translation type="obsolete">Sekizlik süre</translation>
     </message>
     <message>
         <source>Sixteenth</source>
-        <translation type="unfinished">Onaltılık süre</translation>
+        <translation type="obsolete">Onaltılık süre</translation>
     </message>
     <message>
         <source>Thirty-Second</source>
-        <translation type="unfinished">Otuz-ikilik süre</translation>
+        <translation type="obsolete">Otuz-ikilik süre</translation>
     </message>
     <message>
         <source>Sixty-Fourth</source>
-        <translation type="unfinished">Atmış-dörtlük süre</translation>
+        <translation type="obsolete">Atmış-dörtlük süre</translation>
     </message>
     <message>
         <source>Weak</source>
@@ -616,6 +650,37 @@ Değerler dakika başına 25 ile 250 dörtlüktür. (&lt;i&gt;Maelzel Metronom b
     <message>
         <source>Help Contents</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QApplication</name>
+    <message>
+        <source>Whole</source>
+        <translation type="unfinished">Birlik süre</translation>
+    </message>
+    <message>
+        <source>Half</source>
+        <translation type="unfinished">İkilik süre</translation>
+    </message>
+    <message>
+        <source>Quarter</source>
+        <translation type="unfinished">Dörtlük süre</translation>
+    </message>
+    <message>
+        <source>Eight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sixteenth</source>
+        <translation type="unfinished">Onaltılık süre</translation>
+    </message>
+    <message>
+        <source>Thirty-Second</source>
+        <translation type="unfinished">Otuz-ikilik süre</translation>
+    </message>
+    <message>
+        <source>Sixty-Fourth</source>
+        <translation type="unfinished">Atmış-dörtlük süre</translation>
     </message>
 </context>
 <context>

@@ -22,7 +22,7 @@ if (BUILD_DOCS)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${MANPAGE}
                 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
     endif()
-    update_helpfiles(en es)
+    update_helpfiles(cs de fr en es tr)
 else()
     if (UNIX AND NOT APPLE)
         install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${MANPAGE}

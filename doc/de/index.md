@@ -1,5 +1,3 @@
-
-
 % Hilfeindex
 
 # Einführung

@@ -1,6 +1,4 @@
-
-
-% de l'index de l'aide
+% Index de l'aide
 
 # Introduction
 

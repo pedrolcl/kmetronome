@@ -1,5 +1,3 @@
-
-
 % Yardım Dizini
 
 # Tanıtım

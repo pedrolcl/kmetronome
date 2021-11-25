@@ -22,16 +22,14 @@ if (BUILD_DOCS)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${MANPAGE}
                 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
     endif()
-    update_helpfiles(cs de fr en es tr)
+    update_helpfiles(cs de en es fr tr)
 else()
     if (UNIX AND NOT APPLE)
         install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${MANPAGE}
                 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
     endif()
-    foreach(_lang IN ITEMS "en;es")
-        install( FILES ${_lang}/index.html
+    foreach(_lang IN ITEMS cs de en es fr tr)
+        install( FILES "${_lang}/index.html"
                  DESTINATION ${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME}/${_lang} )
     endforeach()
-    #install( FILES kmetronome_1.png kmetronome_2.png kmetronome_3.png
-    #         DESTINATION ${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME} )
 endif()

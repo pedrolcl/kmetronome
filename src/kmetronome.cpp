@@ -69,7 +69,7 @@ static QString trDirectory()
     return QLatin1String(":/");
 #else
     QDir test(dataDirectory() + "/translations/");
-    qDebug() << test.absolutePath();
+    //qDebug() << test.absolutePath();
     if (test.exists()) {
         return test.absolutePath();
     }

@@ -19,6 +19,8 @@
 #include <QDebug>
 #include <QtGlobal>
 #include <QGraphicsItem>
+#include <QFile>
+#include <QApplication>
 #include "lcdnumberview.h"
 
 LCDNumberView::LCDNumberView(QWidget *parent) :
@@ -30,7 +32,7 @@ LCDNumberView::LCDNumberView(QWidget *parent) :
     setScene(new QGraphicsScene(this));
     setTransformationAnchor(AnchorUnderMouse);
     setViewportUpdateMode(FullViewportUpdate);
-    setBackgroundRole(QPalette::Background);
+    setBackgroundRole(QPalette::Window);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     loadRenderer();
@@ -88,10 +90,10 @@ void LCDNumberView::update()
         QGraphicsSvgItem *itm = dynamic_cast<QGraphicsSvgItem*>(lst.at(i));
         if (itm != nullptr) {
             if(ch == ':') {
-                itm->setElementId(QLatin1Literal("colon"));
+                itm->setElementId(QStringLiteral("colon"));
                 itm->setVisible(true);
             } else if (ch == '_') {
-                itm->setElementId(QLatin1Literal("underscore"));
+                itm->setElementId(QStringLiteral("underscore"));
                 itm->setVisible(true);
             } else {
                 QString id = QString("d%0").arg(ch);
@@ -121,11 +123,12 @@ void LCDNumberView::resizeEvent(QResizeEvent *event)
 
 void LCDNumberView::loadRenderer()
 {
-    QString foreColor = palette().color(QPalette::Active, QPalette::Foreground).name(QColor::HexRgb);
-    QString backColor = palette().color(QPalette::Active, QPalette::Background).name(QColor::HexRgb);
-    QFile resource(QLatin1Literal(":/lcdnumbers.svg"));
+    QString foreColor = qApp->palette().color(QPalette::Active, QPalette::WindowText).name(QColor::HexRgb);
+    QString backColor = qApp->palette().color(QPalette::Active, QPalette::Window).name(QColor::HexRgb);
+    //qDebug() << Q_FUNC_INFO << "FG:" << foreColor << "BG:" << backColor;
+    QFile resource(QStringLiteral(":/lcdnumbers.svg"));
     if (resource.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QString rescontents = QString::fromUtf8(resource.readAll()).arg(foreColor).arg(backColor);
+        QString rescontents = QString::fromUtf8(resource.readAll()).arg(foreColor, backColor);
         resource.close();
         if(m_renderer.load(rescontents.toUtf8())) {
             m_digitWidth = m_renderer.boundsOnElement("d8").width();

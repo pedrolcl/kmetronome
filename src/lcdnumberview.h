@@ -32,12 +32,10 @@ public:
     QString number();
     int digitCount();
     void setDigitCount(const int count);
-
-protected:
     void loadRenderer();
-    void resizeEvent(QResizeEvent *event) override;
     void update();
     void rescale();
+    void resizeEvent(QResizeEvent *event) override;
 
 public slots:
     void setNumber(const QString& number);

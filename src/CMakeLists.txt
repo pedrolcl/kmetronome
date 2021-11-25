@@ -27,7 +27,11 @@ if(EMBED_TRANSLATIONS)
          ../translations/kmetronome_fr.ts
          ../translations/kmetronome_tr.ts
     )
-    qt5_add_translation(QM_FILES ${TRANSLATIONS})
+    if (QT_VERSION VERSION_LESS 5.15.0)
+        qt5_add_translation(QM_FILES ${TRANSLATIONS})
+    else()
+        qt_add_translation(QM_FILES ${TRANSLATIONS})
+    endif()
     include(TranslationUtils)
     add_app_translations_resource(APP_RES ${QM_FILES})
     add_qt_translations_resource(QT_RES cs de es fr tr)
@@ -68,12 +72,21 @@ set(kmetronome_SRCS
     ${QT_RES}
 )
 
-qt5_add_dbus_adaptor( kmetronome_SRCS 
-    net.sourceforge.kmetronome.xml
-    kmetronome.h
-    KMetronome
-    kmetronome_adaptor
-)
+if (QT_VERSION VERSION_LESS 5.15.0)
+    qt5_add_dbus_adaptor( kmetronome_SRCS
+        net.sourceforge.kmetronome.xml
+        kmetronome.h
+        KMetronome
+        kmetronome_adaptor
+    )
+else()
+    qt_add_dbus_adaptor( kmetronome_SRCS
+        net.sourceforge.kmetronome.xml
+        kmetronome.h
+        KMetronome
+        kmetronome_adaptor
+    )
+endif()
 
 set_property(SOURCE kmetronome_adaptor.h kmetronome_adaptor.cpp
     PROPERTY SKIP_AUTOGEN ON)
@@ -84,11 +97,19 @@ if (BUILD_DOCS)
 endif()
 
 target_link_libraries( kmetronome
-    Qt5::Widgets
-    Qt5::DBus
-    Qt5::Svg
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::DBus
+    Qt${QT_VERSION_MAJOR}::Svg
     Drumstick::ALSA
 )
+
+if (QT_VERSION VERSION_GREATER_EQUAL 6.0.0)
+    target_link_libraries( kmetronome
+        Qt6::Gui
+        Qt6::SvgWidgets
+        Qt6::Core5Compat
+     )
+endif()
 
 target_compile_definitions( kmetronome PRIVATE
     VERSION=${PROJECT_VERSION}

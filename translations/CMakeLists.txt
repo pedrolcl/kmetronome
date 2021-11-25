@@ -5,7 +5,11 @@ set( TRANSLATIONS
      kmetronome_fr.ts
      kmetronome_tr.ts )
 
-qt5_add_translation(QM_FILES ${TRANSLATIONS})
+ if (QT_VERSION VERSION_LESS 5.15.0)
+     qt5_add_translation(QM_FILES ${TRANSLATIONS})
+ else()
+     qt_add_translation(QM_FILES ${TRANSLATIONS})
+ endif()
 
 add_custom_target(translations ALL DEPENDS ${QM_FILES})
 

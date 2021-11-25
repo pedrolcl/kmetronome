@@ -79,7 +79,6 @@ HelpWindow::HelpWindow(QWidget *parent): QMainWindow(parent)
     m_textBrowser->setOpenExternalLinks(true);
     m_textBrowser->setSearchPaths({":/help/en",":/help", ":/"});
 
-    retranslateUi();
     applySettings();
 }
 

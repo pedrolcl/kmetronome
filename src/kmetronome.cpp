@@ -19,6 +19,7 @@
 #include <cmath>
 #include <QEvent>
 #include <QLabel>
+#include <QActionGroup>
 #include <QStandardPaths>
 #include <QMessageBox>
 #include <QSettings>
@@ -47,7 +48,12 @@ static QString dataDirectory()
     if (test.exists()) {
         return test.absolutePath();
     }
-    QStringList candidates = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    QStringList candidates =
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+        QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+#else
+        QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation);
+#endif
     foreach(const QString& d, candidates) {
         test = QDir(d);
         if (test.exists()) {
@@ -75,8 +81,9 @@ static QString trQtDirectory()
 {
 #if defined(TRANSLATIONS_EMBEDDED)
     return QLatin1String(":/");
-#endif
+#else
     return QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
 }
 
 KMetronome::KMetronome(QWidget *parent) :
@@ -612,7 +619,13 @@ void KMetronome::exportPatterns(const QString& path)
 
 void KMetronome::slotImportPatterns()
 {
-    QString dirName = QStandardPaths::locate(QStandardPaths::DataLocation, "*.pat", QStandardPaths::LocateDirectory) ;
+    QString dirName = QStandardPaths::locate(
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+        QStandardPaths::DataLocation
+#else
+        QStandardPaths::AppLocalDataLocation
+#endif
+        , "*.pat", QStandardPaths::LocateDirectory);
     QString path = QFileDialog::getOpenFileName(this, tr("Import Patterns"),dirName,tr("Pattern Files (*.pat)"));
     if (!path.isEmpty()) {
         importPatterns(path);
@@ -621,7 +634,12 @@ void KMetronome::slotImportPatterns()
 
 void KMetronome::slotExportPatterns()
 {
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    QString dirName = QStandardPaths::writableLocation(
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+        QStandardPaths::DataLocation);
+#else
+        QStandardPaths::AppLocalDataLocation);
+#endif
     QDir dir(dirName);
     if (!dir.exists()) {
         dir.mkpath(dirName);
@@ -788,11 +806,16 @@ void KMetronome::createLanguageMenu()
 
 void KMetronome::applyVisualStyle()
 {
+    //qDebug() << Q_FUNC_INFO << m_darkMode;
     static QPalette light = qApp->palette();
     static QPalette dark(QColor(0x30,0x30,0x30));
     qApp->setPalette( m_darkMode ? dark : light );
     qApp->setStyle( m_style );
     refreshIcons();
+    m_ui.m_measureLCD->loadRenderer();
+    m_ui.m_tempoLCD->loadRenderer();
+    m_ui.m_measureLCD->update();
+    m_ui.m_tempoLCD->update();
 }
 
 void KMetronome::refreshIcons()

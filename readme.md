@@ -1,27 +1,28 @@
+# Drumstick Metronome (a.k.a. kmetronome)
+
+Drumstick Metronome is a MIDI based metronome using the ALSA sequencer.
+
+The intended audience are musicians and music students. Like any physical 
+metronome, it is a tool to keep the rhythm while playing musical instruments.
+
+It uses MIDI instead of digital audio, allowing low CPU usage and very accurate 
+timing thanks to the ALSA sequencer. This means that you also need a MIDI 
+synthesizer for sound generation, because the program does not produce any sound
+by itself. The best results come from using a hardware synthesizer, but you may
+also use software synthesizers instead.
+
 For brief building instructions, see INSTALL.
 
-Developers environment
-======================
+## Developers environment
 
 You need the following software:
 
-* CMake
-    Debian: "cmake"
-    http://packages.debian.org/sid/cmake
+* CMake 3.14 or later
+* Qt libraries 5.12 or later
+* ALSA library 
+* Drumstick libraries 2.0 or later
 
-* Qt5 libraries
-    Debian: "qtbase5-dev"
-    https://packages.debian.org/sid/qtbase5-dev-tools
-
-* ALSA library
-    Debian package: "libasound2-dev"
-    http://packages.debian.org/sid/libasound2-dev
-
-* Drumstick libraries
-    http://drumstick.sourceforge.net
-
-Getting the development sources
-===============================
+## Getting the development sources
 
 Compiling and hacking the SVN sources is a bit different compared to the
 distribution tarball. You can get the latest sources either using a sourceforge
@@ -34,8 +35,13 @@ https://sourceforge.net/p/forge/documentation/SVN%20Overview/
         Path: /p/drumstick/code/trunk
         Module: drumstick
 
+There is also a [Git mirror at GitHub](https://github.com/pedrolcl/drumstick)
+
 example:
+
+~~~
 $ svn checkout https://svn.code.sf.net/p/drumstick/code/trunk drumstick
+~~~
 
 The module 'drumstick' is also used by other projects in a similar way as an 
 independent shared dynamic library.
@@ -47,17 +53,24 @@ You need to configure, compile and optionally install drumstick libraries.
         Path: /p/kmetronome/code/trunk
         Module: kmetronome
 
+There is also a [Git mirror at GitHub](https://github.com/pedrolcl/kmetronome)
+
 example:
-$ svn co  https://svn.code.sf.net/p/kmetronome/code/trunk kmetronome 
+
+~~~
+$ svn checkout https://svn.code.sf.net/p/kmetronome/code/trunk kmetronome 
+~~~
 
 4. Configure and compile
 
+~~~
+$ cd kmetronome
 $ mkdir build
 $ cd build
 $ cmake .. -DCMAKE_BUILD_TYPE=debug \
-           -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.5/gcc_64/ \
+           -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.11/gcc_64/ \
            -DCMAKE_INSTALL_PREFIX=/usr/local/
-
 $ make VERBOSE=1
+~~~
 
 5. Hack and enjoy!

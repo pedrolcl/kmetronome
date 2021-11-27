@@ -17,15 +17,32 @@
  ***************************************************************************/
 
 #include <QApplication>
+#include <QCommandLineParser>
 #include "kmetronome.h"
-#include "defs.h"
 
 int main (int argc, char **argv)
 {
+    const QString QSTR_APPNAME("Drumstick Metronome");
+    const QString QSTR_DOMAIN("kmetronome.sourceforge.net");
+    const QString QSTR_DESCRIPTION("ALSA Sequencer based MIDI Metronome");
+    const QString QSTR_VERSION(QT_STRINGIFY(VERSION));
+
     QCoreApplication::setOrganizationName(QSTR_DOMAIN);
     QCoreApplication::setOrganizationDomain(QSTR_DOMAIN);
     QCoreApplication::setApplicationName(QSTR_APPNAME);
+    QCoreApplication::setApplicationVersion(QSTR_VERSION);
     QApplication app(argc, argv);
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(QSTR_DESCRIPTION);
+    auto helpOption = parser.addHelpOption();
+    auto versionOption = parser.addVersionOption();
+    parser.process(app);
+
+    if (parser.isSet(versionOption) || parser.isSet(helpOption)) {
+        return 0;
+    }
+
     KMetronome mainWin;
     mainWin.show();
     return app.exec();

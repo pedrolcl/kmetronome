@@ -7,7 +7,7 @@
 
 # SYNOPSIS
 
-| **kmetronome** \[standard options]
+| **kmetronome** \[options]
 
 # DESCRIPTION
 
@@ -16,6 +16,20 @@ ALSA sequencer. It is a tool for musicians and music students to keep
 the rhythm while playing musical instruments. It uses MIDI for sound
 generation instead of digital audio, allowing low CPU usage, and very
 accurate timing thanks to the ALSA sequencer.
+
+## Options
+
+`--help`
+
+:   Show help about options
+
+`--help-all`
+
+:   Show all options
+
+`-v`,`--version`
+
+:   Show version information
 
 ## Standard Options
 
@@ -87,11 +101,6 @@ The following options apply to all Qt5 applications.
 
 :   Specify the window geometry for the main window on X11. For example:
     -geometry 100x100+50+50
-
-`-dialogs=` \[xp|none\]
-
-:   Only available for the Windows platform. XP uses native style
-    dialogs and none disables them.
 
 `-fontengine=` freetype
 

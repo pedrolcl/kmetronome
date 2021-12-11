@@ -1,8 +1,13 @@
+2021-12-12
+    * Release 1.3.0
+
 2021-11-28
     * Czech translation, by Pavel Fric
 
 2021-11-25
     * Qt6 compatibility fixes
+    * New build options: USE_QT and BUILD_DOCS
+    * Documentation: using Pandoc to create man page and help documents
 
 2021-11-24
     * revised documentation system

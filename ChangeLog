@@ -1,3 +1,8 @@
+2021-12-16
+    * Fixed launchable name in appdata.xml
+    * Added downloads in documentation
+    * Bumped version for the next development cycle
+
 2021-12-12
     * Release 1.3.0
 

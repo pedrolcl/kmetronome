@@ -17,13 +17,13 @@
 cmake_minimum_required(VERSION 3.14)
 
 project ( kmetronome
-    VERSION 1.3.0
+    VERSION 1.3.1
     LANGUAGES CXX
     DESCRIPTION "ALSA Sequencer based MIDI metronome"
     HOMEPAGE_URL "https://kmetronome.sourceforge.io"
 )
 
-set(PROJECT_RELEASE_DATE "December 12, 2021")
+#set(PROJECT_RELEASE_DATE "December 12, 2021")
 option(BUILD_DOCS "Process Markdown sources of man pages and help files" ON)
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
 option(USE_QT "Choose which Qt major version (5 or 6) to prefer. By default uses whatever is found")

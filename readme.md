@@ -1,6 +1,7 @@
 # Drumstick Metronome (a.k.a. kmetronome)
 
-Drumstick Metronome is a MIDI based metronome using the ALSA sequencer.
+[Drumstick Metronome](https://kmetronome.sourceforge.io) is a MIDI based 
+metronome using the ALSA sequencer.
 
 The intended audience are musicians and music students. Like any physical 
 metronome, it is a tool to keep the rhythm while playing musical instruments.
@@ -12,6 +13,16 @@ by itself. The best results come from using a hardware synthesizer, but you may
 also use software synthesizers instead.
 
 For brief building instructions, see INSTALL.
+
+## Downloads
+
+Sources: https://sourceforge.net/projects/kmetronome/files/
+
+[![Download Drumstick Metronome](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/kmetronome/files/latest/download)
+
+[<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>](https://flathub.org/apps/details/net.sourceforge.kmetronome)
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/kmetronome.svg)](https://repology.org/project/kmetronome/versions)
 
 ## Developers environment
 

@@ -1,6 +1,6 @@
 # Drumstick Metronome (a.k.a. kmetronome)
 
-[Drumstick Metronome](https://kmetronome.sourceforge.io) is a MIDI based 
+[Drumstick Metronome](https://kmetronome.sourceforge.io/kmetronome.shtml) is a MIDI based 
 metronome using the ALSA sequencer.
 
 The intended audience are musicians and music students. Like any physical 

@@ -83,14 +83,14 @@ program [QJackCtl](https://qjackctl.sourceforge.io).
 
 Drumstick Metronome uses an instrument definition file in .INS format, the same
 format as Qtractor, TSE3, Cakewalk and Sonar. The **Output instrument**
-drop-down list allows to choose one among the standard General MIDI,
+drop-down list allows one to choose one among the standard General MIDI,
 Roland GS and Yamaha XG drum maps. You can add more definitions creating
 a file named `drums.ins` at `$HOME/.local/share/kmetronome.sourceforge.net`. The
 contents of **Bank**, **Program**, **Weak** and **Strong note** drop-down lists 
 also depend on this definition.
 
 **Channel** is usually 10, meaning the percussion channel of a General MIDI
-synthesizer. It must be a number beween 1 and 16.
+synthesizer. It must be a number between 1 and 16.
 
 **Resolution** is the number of ticks (time units) for each quarter note.
 Value range from 48 to 960. Defaults to 120.
@@ -213,7 +213,7 @@ For instance, these commands can be used from a shell prompt:
 ## Universal System Exclusive messages
 
 Drumstick Metronome understands some Universal System Exclusive messages. Because
-the device ID is not yet implemented, all the recogniced messages must
+the device ID is not yet implemented, all the recognised messages must
 be marked as broadcast (0x7F).
 
 Realtime Message: Time Signature Change Message

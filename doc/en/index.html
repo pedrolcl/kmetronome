@@ -60,8 +60,8 @@
 <p>Don't forget to install a good <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> into QSynth's &quot;Setup...&quot; dialog.</p>
 <h2 id="configuration">Configuration</h2>
 <p>Drumstick Metronome has limited session management capabilities. It can remember one connection for the ALSA output port, and one connection for its input port. Connections are stored when the program exits and remembered at startup. You don't need this feature if you prefer to make such connections by hand, using aconnect or any other equivalent utility, or if you use an external session manager like the patchbay included in the program <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>Drumstick Metronome uses an instrument definition file in .INS format, the same format as Qtractor, TSE3, Cakewalk and Sonar. The <strong>Output instrument</strong> drop-down list allows to choose one among the standard General MIDI, Roland GS and Yamaha XG drum maps. You can add more definitions creating a file named <code>drums.ins</code> at <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. The contents of <strong>Bank</strong>, <strong>Program</strong>, <strong>Weak</strong> and <strong>Strong note</strong> drop-down lists also depend on this definition.</p>
-<p><strong>Channel</strong> is usually 10, meaning the percussion channel of a General MIDI synthesizer. It must be a number beween 1 and 16.</p>
+<p>Drumstick Metronome uses an instrument definition file in .INS format, the same format as Qtractor, TSE3, Cakewalk and Sonar. The <strong>Output instrument</strong> drop-down list allows one to choose one among the standard General MIDI, Roland GS and Yamaha XG drum maps. You can add more definitions creating a file named <code>drums.ins</code> at <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. The contents of <strong>Bank</strong>, <strong>Program</strong>, <strong>Weak</strong> and <strong>Strong note</strong> drop-down lists also depend on this definition.</p>
+<p><strong>Channel</strong> is usually 10, meaning the percussion channel of a General MIDI synthesizer. It must be a number between 1 and 16.</p>
 <p><strong>Resolution</strong> is the number of ticks (time units) for each quarter note. Value range from 48 to 960. Defaults to 120.</p>
 <p><strong>Note duration</strong> is the length (in number of ticks) of the time span between a NOTE ON and its corresponding NOTE OFF event. This control is enabled only when <strong>Send NOTE OFF events</strong> is also enabled. Very low values can cause muted clicks on some synthesizers.</p>
 <p>Percussion sounds usually don't need NOTE OFF events to be sent after every NOTE ON. Select the <strong>Send NOTE OFF events</strong> checkbox only if your synthesizer or instrument supports or requires this setting.</p>
@@ -131,7 +131,7 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.cont
 $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTempo 150
 $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSignature 3 8</code></pre>
 <h2 id="universal-system-exclusive-messages">Universal System Exclusive messages</h2>
-<p>Drumstick Metronome understands some Universal System Exclusive messages. Because the device ID is not yet implemented, all the recogniced messages must be marked as broadcast (0x7F).</p>
+<p>Drumstick Metronome understands some Universal System Exclusive messages. Because the device ID is not yet implemented, all the recognised messages must be marked as broadcast (0x7F).</p>
 <p>Realtime Message: Time Signature Change Message</p>
 <pre><code>Format: 0xF0 0x7F 0x7F 0x03 Command Length Numerator Denominator ... 0xF7
                             0x02: Time Signature Change 

@@ -106,7 +106,7 @@ add_custom_target ( tarball
     COMMAND cp -r icons kmetronome-${PROJECT_VERSION}
     COMMAND cp -r translations kmetronome-${PROJECT_VERSION}
     COMMAND cp -r src kmetronome-${PROJECT_VERSION}
-    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* lconvert.pri COPYING INSTALL kmetronome.{lsm,pro,spec,spec.in} net.sourceforge.kmetronome.{desktop,service.in,appdata.xml} NEWS readme.md TODO kmetronome-${PROJECT_VERSION}
+    COMMAND cp AUTHORS ChangeLog CMakeLists.txt configure.* lconvert.pri COPYING INSTALL kmetronome.{lsm,pro,spec,spec.in} net.sourceforge.kmetronome.{desktop,service.in,metainfo.xml} NEWS readme.md TODO kmetronome-${PROJECT_VERSION}
     COMMAND tar -cj -f kmetronome-${PROJECT_VERSION}.tar.bz2 kmetronome-${PROJECT_VERSION}
     COMMAND tar -cz -f kmetronome-${PROJECT_VERSION}.tar.gz kmetronome-${PROJECT_VERSION}
     COMMAND rm -rf kmetronome-${PROJECT_VERSION}
@@ -116,5 +116,5 @@ add_custom_target ( tarball
 install( FILES net.sourceforge.kmetronome.desktop
          DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications )
 
-install( FILES net.sourceforge.kmetronome.appdata.xml
+install( FILES net.sourceforge.kmetronome.metainfo.xml
          DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo )

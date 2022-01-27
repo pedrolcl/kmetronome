@@ -89,26 +89,39 @@ static QString trQtDirectory()
 KMetronome::KMetronome(QWidget *parent) :
     QMainWindow(parent),
     m_patternMode(false),
-    m_seq(nullptr)
+    m_seq(nullptr),
+    m_trp(nullptr),
+    m_trq(nullptr),
+    m_currentLang(nullptr)
 {
     new KmetronomeAdaptor(this);
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/", this);
     dbus.registerService("net.sourceforge.kmetronome");
 
-    m_trq = new QTranslator(this);
-    QCoreApplication::installTranslator(m_trq);
-    m_trp = new QTranslator(this);
-    QCoreApplication::installTranslator(m_trp);
-    QLocale locale(configuredLanguage());
-    //qDebug() << "locale:" << locale << "path:" << trDirectory();
-    if (!m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
-        qWarning() << "Failure loading Qt5 translations for" << configuredLanguage();
+    QString lang = configuredLanguage();
+    QLocale locale;
+    if (!lang.isEmpty()) {
+        locale = QLocale(lang);
     }
-    if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
-        qWarning() << "Failure loading program translations for" << configuredLanguage();
+    if (locale.language() != QLocale::C && locale.language() != QLocale::English) {
+        m_trq = new QTranslator(this);
+        if (m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
+            QCoreApplication::installTranslator(m_trq);
+        } else {
+            qWarning() << "Failure loading Qt5 translations for" << lang
+                       << "from" << trQtDirectory();
+            delete m_trq;
+        }
+        m_trp = new QTranslator(this);
+        if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
+            QCoreApplication::installTranslator(m_trp);
+        } else {
+            qWarning() << "Failure loading program translations for" << lang
+                       << "from" << trDirectory();
+            delete m_trp;
+        }
     }
-    QLocale::setDefault(locale);
 
     m_ui.setupUi(this);
     m_ui.m_exitbtn->setFocusPolicy(Qt::NoFocus);
@@ -228,7 +241,11 @@ void KMetronome::about()
 void KMetronome::help()
 {
     m_helpWindow->setIcons(m_internalIcons);
-    QString hname = QString("help/%1/index.html").arg(configuredLanguage());
+    QString lang = configuredLanguage();
+    if (lang == "C") {
+        lang = "en";
+    }
+    QString hname = QString("help/%1/index.html").arg(lang);
     m_helpWindow->showPage(hname);
 }
 
@@ -741,9 +758,8 @@ QString KMetronome::configuredLanguage()
 {
     if (m_language.isEmpty()) {
         QSettings settings;
-        QString defLang = QLocale::system().name().left(2);
         settings.beginGroup("Settings");
-        m_language = settings.value("language", defLang).toString();
+        m_language = settings.value("language").toString();
         settings.endGroup();
     }
     //qDebug() << Q_FUNC_INFO << m_language;
@@ -773,10 +789,17 @@ void KMetronome::slotSwitchLanguage(QAction *action)
 void KMetronome::createLanguageMenu()
 {
     QString currentLang = configuredLanguage();
+    if (currentLang.isEmpty()) {
+        QLocale loc;
+        if (loc.language() == QLocale::C || loc.language() == QLocale::English)
+            currentLang = "C";
+        else
+            currentLang = loc.name().left(2);
+    }
     QActionGroup *languageGroup = new QActionGroup(this);
     connect(languageGroup, &QActionGroup::triggered, this, &KMetronome::slotSwitchLanguage);
     QStringList locales;
-    locales << "en";
+    locales << "C";
     QDirIterator it(trDirectory(), {"*.qm"}, QDir::NoFilter, QDirIterator::NoIteratorFlags);
     while (it.hasNext()) {
         QFileInfo f(it.next());
@@ -791,7 +814,7 @@ void KMetronome::createLanguageMenu()
     m_ui.menuLanguage->clear();
     for (const QString& loc : qAsConst(locales)) {
         QLocale qlocale(loc);
-        QString localeName = loc == "en" ? QLocale::languageToString(qlocale.language()) : qlocale.nativeLanguageName();
+        QString localeName = loc == "C" ? QLocale::languageToString(QLocale::English) : qlocale.nativeLanguageName();
         QAction *action = new QAction(localeName.section(" ", 0, 0), this);
         action->setCheckable(true);
         action->setData(loc);
@@ -838,12 +861,36 @@ void KMetronome::refreshIcons()
 
 void KMetronome::retranslateUi()
 {
-    QLocale locale(configuredLanguage());
-    if (!m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
-        qWarning() << "Failure loading Qt5 translations for" << configuredLanguage();
+    QLocale locale;
+    QString lang = configuredLanguage();
+    if (!lang.isEmpty()) {
+        locale = QLocale(lang);
     }
-    if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
-        qWarning() << "Failure loading program translations for" << configuredLanguage();
+    if (m_trq) {
+        QCoreApplication::removeTranslator(m_trq);
+        delete m_trq;
+    }
+    if (m_trp) {
+        QCoreApplication::removeTranslator(m_trp);
+        delete m_trp;
+    }
+    if (locale.language() != QLocale::C && locale.language() != QLocale::English) {
+        m_trq = new QTranslator(this);
+        if (m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
+            QCoreApplication::installTranslator(m_trq);
+        } else {
+            qWarning() << "Failure loading Qt5 translations for" << lang
+                       << "from" << trQtDirectory();
+            delete m_trq;
+        }
+        m_trp = new QTranslator(this);
+        if (m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
+            QCoreApplication::installTranslator(m_trp);
+        } else {
+            qWarning() << "Failure loading program translations for" << lang
+                       << "from" << trDirectory();
+            delete m_trp;
+        }
     }
     m_ui.retranslateUi(this);
     m_seq->retranslateUi();

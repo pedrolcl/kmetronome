@@ -119,8 +119,8 @@ private:
     QString m_bank;
     QString m_program;
     QString m_language;
-    QTranslator* m_trp;
-    QTranslator* m_trq;
+    QPointer<QTranslator> m_trp;
+    QPointer<QTranslator> m_trq;
     QAction* m_currentLang;
     QString m_style;
     bool m_darkMode;

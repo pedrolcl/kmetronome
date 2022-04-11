@@ -1,3 +1,6 @@
+2022-04-11
+    * Avoid warning when BUILD_DOCS is OFF and pandoc is not installed
+
 2022-01-27
     * Avoid loading translations for English
 

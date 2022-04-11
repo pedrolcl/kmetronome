@@ -15,8 +15,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 set(MANPAGE ${PROJECT_NAME}.1)
-include(PandocMacros)
 if (BUILD_DOCS)
+    include(PandocMacros)
     if (UNIX AND NOT APPLE)
         add_manpage(${MANPAGE})
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${MANPAGE}

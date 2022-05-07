@@ -53,7 +53,7 @@ endif()
 
 find_package(Qt${QT_VERSION_MAJOR} 5.12 COMPONENTS Gui Widgets DBus Svg LinguistTools REQUIRED)
 if(QT_VERSION VERSION_GREATER_EQUAL 6.0.0)
-    find_package(Qt6 COMPONENTS Core5Compat SvgWidgets REQUIRED)
+    find_package(Qt6SvgWidgets REQUIRED)
 endif()
 
 find_package(Drumstick 2.0 COMPONENTS ALSA REQUIRED)

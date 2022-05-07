@@ -107,7 +107,6 @@ if (QT_VERSION VERSION_GREATER_EQUAL 6.0.0)
     target_link_libraries( kmetronome
         Qt6::Gui
         Qt6::SvgWidgets
-        Qt6::Core5Compat
      )
 endif()
 

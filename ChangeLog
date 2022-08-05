@@ -1,3 +1,7 @@
+2022-08-05
+    * Help window fixed and simplified
+    * Fixed initial translation loading
+
 2022-05-07
     * Removed dependency on qt5compat when building with Qt6
 

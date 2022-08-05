@@ -118,7 +118,7 @@ KMetronome::KMetronome(QWidget *parent) :
             delete m_trq;
         }
         m_trp = new QTranslator(this);
-        if (!m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
+        if (m_trp->load(locale, QLatin1String("kmetronome"), QLatin1String("_"), trDirectory())) {
             QCoreApplication::installTranslator(m_trp);
         } else {
             qWarning() << "Failure loading program translations for" << lang
@@ -245,12 +245,7 @@ void KMetronome::about()
 void KMetronome::help()
 {
     m_helpWindow->setIcons(m_internalIcons);
-    QString lang = configuredLanguage();
-    if (lang == "C") {
-        lang = "en";
-    }
-    QString hname = QString("help/%1/index.html").arg(lang);
-    m_helpWindow->showPage(hname);
+    m_helpWindow->show();
 }
 
 void KMetronome::saveConfiguration()

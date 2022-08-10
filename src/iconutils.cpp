@@ -66,17 +66,19 @@ namespace IconUtils
 
     void SetupComboFigures(QComboBox *combo)
     {
-        QList<QPair<QString,QString>> elements = {
-            {QApplication::tr("Whole"),         ":/icons/notevalues/1.png" },
-            {QApplication::tr("Half"),          ":/icons/notevalues/2.png" },
-            {QApplication::tr("Quarter"),       ":/icons/notevalues/4.png" },
-            {QApplication::tr("Eight"),         ":/icons/notevalues/8.png" },
-            {QApplication::tr("Sixteenth"),     ":/icons/notevalues/16.png" },
-            {QApplication::tr("Thirty-Second"), ":/icons/notevalues/32.png" },
-            {QApplication::tr("Sixty-Fourth"),  ":/icons/notevalues/64.png" }
+        QList< QPair<QString,int> > elements = {
+            {QApplication::tr("Whole"),          1},
+            {QApplication::tr("Half"),           2},
+            {QApplication::tr("Quarter"),        4},
+            {QApplication::tr("Eight"),          8},
+            {QApplication::tr("Sixteenth"),     16},
+            {QApplication::tr("Thirty-Second"), 32},
+            {QApplication::tr("Sixty-Fourth"),  64}
         };
+        combo->clear();
         for(const auto &p : elements) {
-            combo->addItem(QIcon(GetPixmap(p.second)), p.first);
+            QString iconName = QStringLiteral(":/icons/notevalues/%1.png").arg(p.second);
+            combo->addItem(QIcon(GetPixmap(iconName)), p.first, p.second);
         }
     }
 

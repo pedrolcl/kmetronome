@@ -687,11 +687,10 @@ void KMetronome::display(int bar, int beat)
 
 void KMetronome::setFigure(int newValue)
 {
-    int ts_dd;
-    int x = newValue;
-    for(ts_dd = 0; x > 1; x /= 2)
-        ++ts_dd;
-    m_ui.m_figure->setCurrentIndex(ts_dd);
+    int ts_dd = m_ui.m_figure->findData(newValue);
+    if (ts_dd >= 0) {
+        m_ui.m_figure->setCurrentIndex(ts_dd);
+    }
 }
 
 void KMetronome::displayTempo(int newTempo)
@@ -891,7 +890,10 @@ void KMetronome::retranslateUi()
             delete m_trp;
         }
     }
+    auto f = getFigure();
     m_ui.retranslateUi(this);
+    IconUtils::SetupComboFigures(m_ui.m_figure);
+    setFigure(f);
     m_seq->retranslateUi();
     m_helpWindow->retranslateUi();
     createLanguageMenu();

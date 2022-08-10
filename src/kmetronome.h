@@ -44,7 +44,7 @@ public:
     void display(int, int);
     int getTempo() { return m_ui.m_tempo->value(); }
     int getBeatsBar() { return m_ui.m_beatsBar->value(); }
-    int getFigure() { return m_ui.m_figure->currentIndex(); }
+    int getFigure() { return m_ui.m_figure->currentData().toInt(); }
     void setBeatsBar(int newValue) { m_ui.m_beatsBar->setValue(newValue); }
     void setFigure(int newValue);
     void enableControls(bool e);

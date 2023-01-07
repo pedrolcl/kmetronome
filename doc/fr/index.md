@@ -248,9 +248,9 @@ QJackCtl.
 
 # Crédits et licence
 
-Programme Copyright © 2005-2022 Pedro Lopez-Cabanillas
+Programme Copyright © 2005-2023 Pedro Lopez-Cabanillas
 
-Documentation Copyright © 2005-2022 Pedro Lopez-Cabanillas
+Documentation Copyright © 2005-2023 Pedro Lopez-Cabanillas
 
 Ce programme est un logiciel libre ; vous pouvez le redistribuer et/ou modifier
 sous les termes de la licence publique générale GNU telle que publiée par

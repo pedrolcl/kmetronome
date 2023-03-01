@@ -755,9 +755,14 @@ void KMetronome::setSelectedPattern(const QString& pattern)
 QString KMetronome::configuredLanguage()
 {
     if (m_language.isEmpty()) {
+        QLocale loc;
+        QString defLang = QLocale::languageToCode(loc.language());
+        if (defLang.isEmpty() || defLang == "en") {
+            defLang = "C";
+        }
         QSettings settings;
         settings.beginGroup("Settings");
-        m_language = settings.value("language").toString();
+        m_language = settings.value("language", defLang).toString();
         settings.endGroup();
     }
     //qDebug() << Q_FUNC_INFO << m_language;

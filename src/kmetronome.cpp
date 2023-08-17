@@ -756,7 +756,11 @@ QString KMetronome::configuredLanguage()
 {
     if (m_language.isEmpty()) {
         QLocale loc;
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+        QString defLang = loc.name().split('_').at(0).toLower();
+#else
         QString defLang = QLocale::languageToCode(loc.language());
+#endif
         if (defLang.isEmpty() || defLang == "en") {
             defLang = "C";
         }

@@ -1,3 +1,6 @@
+2023-08-17
+    * Fixed compatibility with Qt < 6.3.0
+
 2023-03-01
     * Fixed default language setting
 
@@ -63,7 +66,7 @@
 
 2019-11-05 00:00 plcl
 
-    * Fixed the LCD number component, to use the application palette instead of hardcoded colors. 
+    * Fixed the LCD number component, to use the application palette instead of hardcoded colors.
       This fix provides better looking and usability with dark and light desktop themes.
     * Updated CMake buildsystem, requires CMake 3.1 or newer
     * Updated documentation.
@@ -90,13 +93,13 @@
 2010-09-10 00:00 plcl
 
     * drumstick: sync release 0.5
-    * request realtime priority for the MIDI input thread 
+    * request realtime priority for the MIDI input thread
 
 2010-06-06 00:00 plcl
 
     * Release 0.10.0
 
-2010-06-05 00:00 plcl 
+2010-06-05 00:00 plcl
 
     * German translation updated, by Rene Landert
     * Custom pattern samples
@@ -106,7 +109,7 @@
 
     * Enable the standard toolbar
     * Optionally hide the fake toolbar
-    * Import/export patterns 
+    * Import/export patterns
     * Updated translation template
 
 2010-05-20 00:00 plcl
@@ -121,7 +124,7 @@
 
 2010-04-19 00:00 plcl
 
-    * Release 0.9.3 
+    * Release 0.9.3
 
 2010-02-20 00:00 plcl
 
@@ -131,7 +134,7 @@
 
     * Release 0.9.2
     * Fixed dynamic linking issues with aseqmm
-    * assorted fixes 
+    * assorted fixes
 
 2009-12-21 00:00 plcl
 
@@ -171,125 +174,125 @@
 
 2008-12-29 00:00 plcl
 
-	* Version 0.9.0
+        * Version 0.9.0
 
 2008-11-23 00:00 plcl
 
-	* Converted to KDE4/Qt4
+        * Converted to KDE4/Qt4
 
 2008-03-24 00:00 plcl
 
-	* Fix the crash at startup when ALSA is not loaded
-	* Documentation updates
-	* Version 0.8.2
+        * Fix the crash at startup when ALSA is not loaded
+        * Documentation updates
+        * Version 0.8.2
 
 2008-03-21 00:00 plcl
 
-	* Fix a compilation error using GCC 4.
+        * Fix a compilation error using GCC 4.
 
-	* Fix MIDI output for QSynth/Fluidsynth and other soft synths. 
-	  It uses longer (configurable) durations, or even avoid using  
-	  note off events entirely.
+        * Fix MIDI output for QSynth/Fluidsynth and other soft synths.
+          It uses longer (configurable) durations, or even avoid using
+          note off events entirely.
 
-	* Schedule always one bar ahead of current time, to avoid the  
-	  nasty little gaps between patterns.
+        * Schedule always one bar ahead of current time, to avoid the
+          nasty little gaps between patterns.
 
-	* Version 0.8.1
+        * Version 0.8.1
 
 2005-06-20 21:17  plcl
 
-	* Implemented double click event handler, changing tempo as
-	  suggested by Chris.
+        * Implemented double click event handler, changing tempo as
+          suggested by Chris.
 
 2005-06-12 23:51  plcl
 
-	* Fix a typo. Thanks to Chris Cannam.
+        * Fix a typo. Thanks to Chris Cannam.
 
 2005-04-25 23:41  plcl
 
-	* updated version number
+        * updated version number
 
 2005-04-25 23:32  plcl
 
-	* removed some unneeded files
+        * removed some unneeded files
 
 2005-04-25 23:25  plcl
 
-	* minor changes
+        * minor changes
 
 2005-04-25 23:11  plcl
 
-	* more .cvsignore stuff
+        * more .cvsignore stuff
 
 2005-04-25 23:10  plcl
 
-	* .cvsignore files updated
+        * .cvsignore files updated
 
 2005-04-25 23:09  plcl
 
-	* minor changes
+        * minor changes
 
 2005-04-25 23:08  plcl
 
-	* autosave settings (window size...) * apply tempo/resolution
-	  changes after config. dialog accept changes
+        * autosave settings (window size...) * apply tempo/resolution
+          changes after config. dialog accept changes
 
 2005-04-23 22:00  plcl
 
-	* bug in sequencerthread: set_program event must be direct.
+        * bug in sequencerthread: set_program event must be direct.
 
 2005-04-19 22:53  plcl
 
-	* build system update
+        * build system update
 
 2005-04-19 22:31  plcl
 
-	* documentation update
+        * documentation update
 
 2005-04-16 23:22  plcl
 
-	* more files to ignore
+        * more files to ignore
 
 2005-04-16 23:21  plcl
 
-	* new DCOP interface commands: setTempo and setTimeSignature
+        * new DCOP interface commands: setTempo and setTimeSignature
 
 2005-04-04 23:27  plcl
 
-	* several unneeded files removed
+        * several unneeded files removed
 
 2005-04-04 23:21  plcl
 
-	* Documentation updated
+        * Documentation updated
 
 2005-04-04 23:21  plcl
 
-	* Spanish translation updated
+        * Spanish translation updated
 
 2005-04-04 23:20  plcl
 
-	* User interface updates * version number raised
+        * User interface updates * version number raised
 
 2005-04-03 03:11  plcl
 
-	* Configuration option to reconnect the input port
+        * Configuration option to reconnect the input port
 
 2005-04-03 03:09  plcl
 
-	* Eclipse CDT project files
+        * Eclipse CDT project files
 
 2005-03-30 00:06  plcl
 
-	* Some systems need to include <cmath> for pow().
+        * Some systems need to include <cmath> for pow().
 
 2005-03-29 22:51  plcl
 
-	* Fist public release
+        * Fist public release
 
 2005-03-29 20:34  plcl
 
-	* Initial import
+        * Initial import
 
 2005-03-29 20:34  plcl
 
-	* Initial revision
+        * Initial revision

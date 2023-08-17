@@ -17,7 +17,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project ( kmetronome
-    VERSION 1.3.1
+    VERSION 1.3.2
     LANGUAGES CXX
     DESCRIPTION "ALSA Sequencer based MIDI metronome"
     HOMEPAGE_URL "https://kmetronome.sourceforge.io"

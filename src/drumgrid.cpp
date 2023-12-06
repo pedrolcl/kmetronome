@@ -225,7 +225,11 @@ void DrumGrid::addEditAction(const QString& name, const char* slot, const QKeySe
     QShortcut* shortcut = new QShortcut(key, m_ui->tableView);
     connect (shortcut, SIGNAL(activated()), this, slot);
     m_shortcuts.append(shortcut);
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
     m_popup->addAction(name, this, slot, key);
+#else
+    m_popup->addAction(name, key, this, slot);
+#endif
 }
 
 void DrumGrid::readPattern()

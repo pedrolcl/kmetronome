@@ -5,7 +5,145 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title>Yardım Dizini</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
 </head>
 <body>
 <div id="header">
@@ -14,27 +152,32 @@
 <div id="TOC">
 <ul>
 <li><a href="#tanıtım">Tanıtım</a></li>
-<li><a href="#drumstick-metronomunu-kullanma">Drumstick Metronomunu Kullanma</a><ul>
+<li><a href="#drumstick-metronomunu-kullanma">Drumstick Metronomunu Kullanma</a>
+<ul>
 <li><a href="#özellikleri">Özellikleri</a></li>
 <li><a href="#başlarken">Başlarken</a></li>
 <li><a href="#yapılandırma">Yapılandırma</a></li>
 <li><a href="#kalıp-düzenleyici">Kalıp Düzenleyici</a></li>
 </ul></li>
-<li><a href="#komut-referansı">Komut Referansı</a><ul>
-<li><a href="#ana-pencere">Ana pencere</a><ul>
+<li><a href="#komut-referansı">Komut Referansı</a>
+<ul>
+<li><a href="#ana-pencere">Ana pencere</a>
+<ul>
 <li><a href="#dosya-menüsü">Dosya Menüsü</a></li>
 <li><a href="#düzenleme-menüsü">Düzenleme Menüsü</a></li>
 <li><a href="#ayarlar-menüsü">Ayarlar Menüsü</a></li>
 <li><a href="#yardım-menüsü">Yardım Menüsü</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#harici-kontrol">Harici kontrol</a><ul>
+<li><a href="#harici-kontrol">Harici kontrol</a>
+<ul>
 <li><a href="#d-bus-arayüzü">D-Bus Arayüzü</a></li>
 <li><a href="#evrensel-sistem-özel-mesajları">Evrensel Sistem Özel mesajları</a></li>
 <li><a href="#midi-sistemi-gerçek-zamanlı-arayüzü">MIDI Sistemi Gerçek Zamanlı Arayüzü</a></li>
 </ul></li>
 <li><a href="#kredi-ve-lisans">Kredi ve Lisans</a></li>
-<li><a href="#kurulum">Kurulum</a><ul>
+<li><a href="#kurulum">Kurulum</a>
+<ul>
 <li><a href="#drumstick-metronom-nasıl-edinilir">Drumstick Metronom nasıl edinilir</a></li>
 <li><a href="#gereksinimler">Gereksinimler</a></li>
 <li><a href="#derleme-ve-kurulum">Derleme ve Kurulum</a></li>
@@ -44,7 +187,7 @@
 <h1 id="tanıtım">Tanıtım</h1>
 <p>Drumstick Metronom, ALSA sıralayıcıyı kullanan MIDI tabanlı bir metronomdur.</p>
 <p>Hedef kitle, müzisyenler ve müzik öğrencileridir. Herhangi bir fiziksel gibi metronom müzik çalarken ritmi korumak için bir araçtır enstrümanlar.</p>
-<p>Dijital ses yerine MIDI kullanır, düşük CPU kullanımına izin verir ve çok hassastır ALSA sıralayıcı sayesinde zamanlama. Bu, bir MIDI'ye de ihtiyacınız olduğu anlamına gelir. ses üretimi için sentezleyici, çünkü program herhangi bir ses üretmez kendi kendine. En iyi sonuçlar bir donanım sentezleyici kullanmaktan gelir, ancak bunun yerine yazılım sentezleyicileri de kullanın.</p>
+<p>Dijital ses yerine MIDI kullanır, düşük CPU kullanımına izin verir ve çok hassastır ALSA sıralayıcı sayesinde zamanlama. Bu, bir MIDI’ye de ihtiyacınız olduğu anlamına gelir. ses üretimi için sentezleyici, çünkü program herhangi bir ses üretmez kendi kendine. En iyi sonuçlar bir donanım sentezleyici kullanmaktan gelir, ancak bunun yerine yazılım sentezleyicileri de kullanın.</p>
 <p>Destek isteyin, sorunları, hataları ve özellik isteklerini adresindeki izleme sistemine bildirin. <a href="https://sourceforge.net/p/kmetronome/support-requests/">SourceForge proje sitesi</a></p>
 <h1 id="drumstick-metronomunu-kullanma">Drumstick Metronomunu Kullanma</h1>
 <h2 id="özellikleri">Özellikleri</h2>
@@ -52,17 +195,17 @@
 <p>Tempo, kaydırıcı kullanılarak 25 ila 250 QPM arasında ayarlanabilir. birimler dakikada çeyrek (Mälzel Metronom birimleri). Ayrıca çift tıklayabilirsiniz yeni bir giriş yapabileceğiniz bir iletişim kutusu açmak için ana pencerenin üzerine doğrudan klavye ile tempo. Ayrıca seçebileceğiniz bir birleşik giriş kutusu var. ve İtalyan müzik adlarını kullanarak tempoyu görüntüleyin.</p>
 <p>Vuruş/Çubuk 1 ila 32 vuruş arasında ayarlanabilir. Bunlar vuruş sayısı her ölçü veya çubukta ve zaman imzasındaki paydır. not edilecekti.</p>
 <p>Vuruş uzunluğu, zaman işareti belirtimindeki paydadır, ve her vuruşun süresini temsil eder. Bu değeri değiştirmek, tempo birimlerinin anlamını değiştirin.</p>
-<p>Kalıp, bir kalıp tanımı seçmek için açılan bir listedir. Varsayılan &quot;Otomatik&quot; değer, programın aşağıdakileri kullanarak kalıplar oluşturduğu anlamına gelir. yapılandırma iletişim kutusunda (Güçlü/Zayıf) ayarlanan notlar ve ritim &quot;Vuruş/Çubuk&quot; ve &quot;Vuruş uzunluğu&quot; tarafından sağlanan tanım. Ayrıca içerir kullanıcı tanımlı kalıpların adları.</p>
+<p>Kalıp, bir kalıp tanımı seçmek için açılan bir listedir. Varsayılan “Otomatik” değer, programın aşağıdakileri kullanarak kalıplar oluşturduğu anlamına gelir. yapılandırma iletişim kutusunda (Güçlü/Zayıf) ayarlanan notlar ve ritim “Vuruş/Çubuk” ve “Vuruş uzunluğu” tarafından sağlanan tanım. Ayrıca içerir kullanıcı tanımlı kalıpların adları.</p>
 <h2 id="başlarken">Başlarken</h2>
 <p>Bu program MIDI protokolünü kullanır, bu nedenle kavramları tam olarak anlamak için MIDI hakkında bazı temel kavramlar arkasında. Burada iyi bir giriş bulabilirsiniz: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">MIDI nedir</a>.</p>
 <p>Drumstick Metronom MIDI olayları üretir. Olayları duymak istiyorsanız MIDI OUT bağlantı noktasını bundan bağlamanız gereken seslere çevrilmiş MIDI sentezleyicinin MIDI IN bağlantı noktasına programlayın. ya bir olabilir donanım MIDI sentezleyici veya bir yazılım. Eğer bu bir dış donanım sentezleyici, ayrıca ALSA destekli bir MIDI arayüzüne ihtiyacınız var bilgisayarınıza takılı ve her iki bilgisayara da bağlı bir MIDI kablosu bilgisayarın MIDI arayüzü ve sentezleyici MIDI IN soketi.</p>
-<p>Harici bir MIDI sentezleyiciniz yoksa, yine de ALSA sıralayıcıyı destekleyen bir MIDI yazılım sentezleyicisine sahip program <a href="https://qsynth.sourceforge.io">QSynth</a> gibi bağlantılar. Başlangıç ​​senin Drumstick Metronom'dan önce yazılım sentezleyici ve ardından bağlantıyı yapın iki program arasında, ya Drumstick Metronome'un yapılandırma iletişim kutusunda veya gibi bir harici bağlantı yöneticisi kullanarak <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>İyi bir <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> yüklemeyi unutmayın QSynth'in &quot;Kurulum...&quot; iletişim kutusuna girin.</p>
+<p>Harici bir MIDI sentezleyiciniz yoksa, yine de ALSA sıralayıcıyı destekleyen bir MIDI yazılım sentezleyicisine sahip program <a href="https://qsynth.sourceforge.io">QSynth</a> gibi bağlantılar. Başlangıç ​​senin Drumstick Metronom’dan önce yazılım sentezleyici ve ardından bağlantıyı yapın iki program arasında, ya Drumstick Metronome’un yapılandırma iletişim kutusunda veya gibi bir harici bağlantı yöneticisi kullanarak <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>İyi bir <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> yüklemeyi unutmayın QSynth’in “Kurulum…” iletişim kutusuna girin.</p>
 <h2 id="yapılandırma">Yapılandırma</h2>
-<p>Drumstick Metronom'un sınırlı oturum yönetimi yetenekleri vardır. Hatırlayabilir ALSA çıkış portu için bir bağlantı ve onun için bir bağlantı giriş portu. Program çıktığında ve hatırlandığında bağlantılar saklanır başlangıçta. Böyle yapmayı tercih ederseniz, bu özelliğe ihtiyacınız yoktur. aconnect veya başka bir eşdeğer yardımcı program kullanarak elle bağlantılar veya içinde bulunan patchbay gibi harici bir oturum yöneticisi kullanıyorsanız programı <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>Drumstick Metronom, .INS formatında bir enstrüman tanım dosyası kullanır, aynı Qtractor, TSE3, Cakewalk ve Sonar olarak formatlayın. <strong>Çıkış aracı</strong> açılır liste, standart General MIDI'den birini seçmenize izin verir, Roland GS ve Yamaha XG davul haritaları. Oluşturarak daha fazla tanım ekleyebilirsiniz. '$HOME/.local/share/kmetronome.sourceforge.net' konumunda 'drums.ins' adlı bir dosya. NS <strong>Banka</strong>, <strong>Program</strong>, <strong>Zayıf</strong> ve <strong>Güçlü not</strong> açılır listelerinin içeriği da bu tanıma bağlıdır.</p>
-<p><strong>Kanal</strong> genellikle 10'dur, yani Genel MIDI'nin perküsyon kanalı sentezleyici. 1 ile 16 arasında bir sayı olmalıdır.</p>
-<p><strong>Çözünürlük</strong>, her bir çeyrek nota için tik sayısıdır (zaman birimleri). Değer aralığı 48 ile 960 arasındadır. Varsayılan değer 120'dir.</p>
+<p>Drumstick Metronom’un sınırlı oturum yönetimi yetenekleri vardır. Hatırlayabilir ALSA çıkış portu için bir bağlantı ve onun için bir bağlantı giriş portu. Program çıktığında ve hatırlandığında bağlantılar saklanır başlangıçta. Böyle yapmayı tercih ederseniz, bu özelliğe ihtiyacınız yoktur. aconnect veya başka bir eşdeğer yardımcı program kullanarak elle bağlantılar veya içinde bulunan patchbay gibi harici bir oturum yöneticisi kullanıyorsanız programı <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
+<p>Drumstick Metronom, .INS formatında bir enstrüman tanım dosyası kullanır, aynı Qtractor, TSE3, Cakewalk ve Sonar olarak formatlayın. <strong>Çıkış aracı</strong> açılır liste, standart General MIDI’den birini seçmenize izin verir, Roland GS ve Yamaha XG davul haritaları. Oluşturarak daha fazla tanım ekleyebilirsiniz. ‘$HOME/.local/share/kmetronome.sourceforge.net’ konumunda ‘drums.ins’ adlı bir dosya. NS <strong>Banka</strong>, <strong>Program</strong>, <strong>Zayıf</strong> ve <strong>Güçlü not</strong> açılır listelerinin içeriği da bu tanıma bağlıdır.</p>
+<p><strong>Kanal</strong> genellikle 10’dur, yani Genel MIDI’nin perküsyon kanalı sentezleyici. 1 ile 16 arasında bir sayı olmalıdır.</p>
+<p><strong>Çözünürlük</strong>, her bir çeyrek nota için tik sayısıdır (zaman birimleri). Değer aralığı 48 ile 960 arasındadır. Varsayılan değer 120’dir.</p>
 <p><strong>Not süresi</strong>, zaman aralığının uzunluğudur (tik sayısı olarak). Bir NOTE ON ve buna karşılık gelen NOTE OFF olayı arasında. Bu kontrol yalnızca <strong>NOT KAPALI olayları gönder</strong> de etkinleştirildiğinde etkinleştirilir. Çok düşük değerler bazı sentezleyicilerde sessiz tıklamalara neden olabilir.</p>
 <p>Perküsyon seslerinin genellikle daha sonra gönderilmek üzere NOTE OFF olaylarına ihtiyacı yoktur. her NOT AÇIK. <strong>NOT KAPALI olayları gönder</strong> onay kutusunu seçin, yalnızca sentezleyici veya enstrüman bu ayarı destekler veya gerektirir.</p>
 <p><strong>Bank</strong> ve <strong>Program</strong> enstrümanlar için davul setini değiştirmek için kullanılır birkaç ayarı destekler. Birçok sentezleyici programı anlamıyor perküsyon kanalı için değişiklikler.</p>
@@ -75,16 +218,16 @@
 <h3 id="dosya-menüsü">Dosya Menüsü</h3>
 <dl>
 <dt><strong>Dosya → Kalıpları İçe Aktar</strong></dt>
-<dd><p>Kalıp tanımlarını Drumstick Metronom'a aktarır</p>
+<dd><p>Kalıp tanımlarını Drumstick Metronom’a aktarır</p>
 </dd>
 <dt><strong>Dosya → Kalıpları Dışa Aktar</strong></dt>
-<dd><p>Drumstick Metronom'dan kalıp tanımlarını dışa aktarır</p>
+<dd><p>Drumstick Metronom’dan kalıp tanımlarını dışa aktarır</p>
 </dd>
 <dt><strong>Dosya → Oynat/Durdur</strong></dt>
 <dd><p>Desen oynatmayı kontrol eder</p>
 </dd>
 <dt><strong>Dosya → Çık</strong></dt>
-<dd><p>Drumstick Metronom'dan Çıkılır</p>
+<dd><p>Drumstick Metronom’dan Çıkılır</p>
 </dd>
 </dl>
 <h3 id="düzenleme-menüsü">Düzenleme Menüsü</h3>
@@ -102,7 +245,7 @@
 <dd><p>Araç çubuğunu gösterir veya gizler. Her düğme için eşdeğer menü öğeleri vardır.</p>
 </dd>
 <dt><strong>Ayarlar → Yapılandırma</strong></dt>
-<dd><p>Drumstick Metronom'u yapılandırır</p>
+<dd><p>Drumstick Metronom’u yapılandırır</p>
 </dd>
 </dl>
 <h3 id="yardım-menüsü">Yardım Menüsü</h3>
@@ -123,7 +266,7 @@
 <h1 id="harici-kontrol">Harici kontrol</h1>
 <p>Drumstick Metronom, D-Bus arayüzü, System Realtime kullanılarak kontrol edilebilir ve Sisteme Özel MIDI mesajları.</p>
 <h2 id="d-bus-arayüzü">D-Bus Arayüzü</h2>
-<p>Drumstick Metronom, D-Bus arayüzü aracılığıyla bazı işlevler sağlar. Yapabilirsiniz Drumstick Metronom'u &quot;qdbusviewer&quot; gibi kontrol etmek için D-Bus etkinleştirilmiş bir program veya komut satırı yardımcı programı &quot;qdbus&quot;.</p>
+<p>Drumstick Metronom, D-Bus arayüzü aracılığıyla bazı işlevler sağlar. Yapabilirsiniz Drumstick Metronom’u “qdbusviewer” gibi kontrol etmek için D-Bus etkinleştirilmiş bir program veya komut satırı yardımcı programı “qdbus”.</p>
 <p>Örneğin, bu komutlar bir kabuk isteminden kullanılabilir:</p>
 <pre><code>$ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.play
 $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.stop
@@ -136,36 +279,36 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 <pre><code>Biçim: 0xF0 0x7F 0x7F 0x03 Komut Uzunluğu Pay Payda ... 0xF7
                             0x02: Zaman İmzası Değişikliği 
                             0x42: Zaman İmzası Değişikliği Gecikmeli</code></pre>
-<p>Notlar: her iki komut da yalnızca sonraki zamanlanmış desenleri etkiler. komutu alıyor. Uzunluk en az 2'dir. Aşağıdaki ekstra baytlar Pay ve Payda dikkate alınmaz.</p>
+<p>Notlar: her iki komut da yalnızca sonraki zamanlanmış desenleri etkiler. komutu alıyor. Uzunluk en az 2’dir. Aşağıdaki ekstra baytlar Pay ve Payda dikkate alınmaz.</p>
 <p>MMC Mesajları</p>
 <pre><code>Biçim: 0xF0 0x7F 0x7F 0x06 Komut 0xF7
                             0x01: Dur
                             0x02: Oynat
                             0x03: Ertelenmiş Oynatma</code></pre>
 <h2 id="midi-sistemi-gerçek-zamanlı-arayüzü">MIDI Sistemi Gerçek Zamanlı Arayüzü</h2>
-<p>için MIDI Sistem Gerçek Zamanlı mesajları üreten bir MIDI cihazı kullanabilirsiniz. Drumstick Metronom'u kontrol edin. Kabul edilen Sistem Gerçek Zamanlı mesajları şunlardır: Başlat (0xFA), Durdur (0xFC) ve Devam Et (0xFB).</p>
-<p>Birçok ana MIDI klavyesi ve MIDI düğmesi aygıtı bu üçünü sağlar. MIDI taşıma kontrolleri. Harici MIDI cihazlarınızı bağlamanız gerekiyor MIDI (veya USB) kablolarını kullanarak bilgisayara bağlayın ve Drumstick Metronom'un giriş portuna karşılık gelen ALSA portu. Bu bağlantı elle veya gibi bir oturum yönetim yazılımı kullanılarak yapılmalıdır. QJackCtl.</p>
+<p>için MIDI Sistem Gerçek Zamanlı mesajları üreten bir MIDI cihazı kullanabilirsiniz. Drumstick Metronom’u kontrol edin. Kabul edilen Sistem Gerçek Zamanlı mesajları şunlardır: Başlat (0xFA), Durdur (0xFC) ve Devam Et (0xFB).</p>
+<p>Birçok ana MIDI klavyesi ve MIDI düğmesi aygıtı bu üçünü sağlar. MIDI taşıma kontrolleri. Harici MIDI cihazlarınızı bağlamanız gerekiyor MIDI (veya USB) kablolarını kullanarak bilgisayara bağlayın ve Drumstick Metronom’un giriş portuna karşılık gelen ALSA portu. Bu bağlantı elle veya gibi bir oturum yönetim yazılımı kullanılarak yapılmalıdır. QJackCtl.</p>
 <h1 id="kredi-ve-lisans">Kredi ve Lisans</h1>
 <p>Program Telif Hakkı © 2005-2021 Pedro Lopez-Cabanillas</p>
 <p>Belgeleme Telif Hakkı © 2005-2021 Pedro Lopez-Cabanillas</p>
 <p>Bu program ücretsiz bir yazılımdır; yeniden dağıtabilir ve/veya değiştirebilirsiniz tarafından yayınlanan GNU Genel Kamu Lisansı koşulları altında Özgür Yazılım Vakfı; Lisansın 2. sürümü veya (isteğe bağlı olarak) herhangi bir sonraki sürüm.</p>
 <p>Bu program faydalı olacağı ümidiyle dağıtılmıştır, ancak HİÇBİR GARANTİ OLMADAN; zımni garanti bile olmadan SATILABİLİRLİK veya BELİRLİ BİR AMACA UYGUNLUK. Bkz. Daha fazla ayrıntı için GNU Genel Kamu Lisansı.</p>
-<p>GNU Genel Kamu Lisansının bir kopyasını almış olmalısınız Bu programla birlikte. Değilse, bkz. <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<p>GNU Genel Kamu Lisansının bir kopyasını almış olmalısınız Bu programla birlikte. Değilse, bkz. <a href="https://www.gnu.org/licenses">https://www.gnu.org/licenses</a></p>
 <h1 id="kurulum">Kurulum</h1>
 <h2 id="drumstick-metronom-nasıl-edinilir">Drumstick Metronom nasıl edinilir</h2>
 <p>Burada en son sürümü bulabilirsiniz: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Projenin dosyaları</a></p>
 <h2 id="gereksinimler">Gereksinimler</h2>
-<p>Drumstick Metronom'u başarılı bir şekilde derlemek ve kullanmak için Qt 5 veya daha sonra, Drumstick 2, ALSA sürücüleri ve ALSA kitaplığı.</p>
+<p>Drumstick Metronom’u başarılı bir şekilde derlemek ve kullanmak için Qt 5 veya daha sonra, Drumstick 2, ALSA sürücüleri ve ALSA kitaplığı.</p>
 <p>Ayrıca ses üretmek için bir MIDI sentezleyiciye ihtiyacınız var.</p>
 <p>Derleme sistemi <a href="https://cmake.org">CMake</a> 3.14 veya daha yenisini gerektirir.</p>
 <p>ALSA kitaplığı, sürücüler ve yardımcı programlar şu adreste bulunabilir: <a href="https://www.alsa-project.org">ALSA ana sayfası</a>.</p>
 <p>Drumstick::ALSA, Qt kullanan ALSA sıralayıcı arabirimi etrafındaki bir C++ sarmalayıcıdır nesneler, deyimler ve stil. adresinde bulabilirsiniz. <a href="https://drumstick.sourceforge.io">Drumstick ana sayfası</a>.</p>
 <p>Ayrıca <a href="https://kmetronome.sourceforge.io/kmetronome.shtml">Drumstick Metronom ana sayfasına</a> bakın.</p>
 <h2 id="derleme-ve-kurulum">Derleme ve Kurulum</h2>
-<p>Drumstick Metronom'u sisteminize derlemek ve kurmak için, Drumstick Metronom dağıtımının temel dizininde aşağıdakiler bulunur:</p>
+<p>Drumstick Metronom’u sisteminize derlemek ve kurmak için, Drumstick Metronom dağıtımının temel dizininde aşağıdakiler bulunur:</p>
 <pre><code>% cmake .
 % Yapmak
 % sudo kurulum yap</code></pre>
-<p>Drumstick Metronom 'cmake' ve 'make' kullandığından, sorun yaşamamanız gerekir onu derlemek. Herhangi bir sorunla karşılaşırsanız, lütfen bunları yazar veya projenin <a href="https://sourceforge.net/p/kmetronome/bugs/">hata izleme sistemi</a>.</p>
+<p>Drumstick Metronom ‘cmake’ ve ‘make’ kullandığından, sorun yaşamamanız gerekir onu derlemek. Herhangi bir sorunla karşılaşırsanız, lütfen bunları yazar veya projenin <a href="https://sourceforge.net/p/kmetronome/bugs/">hata izleme sistemi</a>.</p>
 </body>
 </html>

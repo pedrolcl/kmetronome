@@ -5,7 +5,145 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title>Índice de Ayuda</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
 </head>
 <body>
 <div id="header">
@@ -14,27 +152,32 @@
 <div id="TOC">
 <ul>
 <li><a href="#introducción">Introducción</a></li>
-<li><a href="#uso-de-drumstick-metronome">Uso de Drumstick Metronome</a><ul>
+<li><a href="#uso-de-drumstick-metronome">Uso de Drumstick Metronome</a>
+<ul>
 <li><a href="#características">Características</a></li>
 <li><a href="#para-empezar">Para Empezar</a></li>
 <li><a href="#configuración">Configuración</a></li>
 <li><a href="#editor-de-patrones">Editor de patrones</a></li>
 </ul></li>
-<li><a href="#referencia-de-comandos">Referencia de comandos</a><ul>
-<li><a href="#la-ventana-principal">La ventana principal</a><ul>
+<li><a href="#referencia-de-comandos">Referencia de comandos</a>
+<ul>
+<li><a href="#la-ventana-principal">La ventana principal</a>
+<ul>
 <li><a href="#el-menú-archivo">El menú Archivo</a></li>
 <li><a href="#el-menú-editar">El menú Editar</a></li>
 <li><a href="#el-menú-de-configuración">El menú de configuración</a></li>
 <li><a href="#el-menú-de-ayuda">El menú de ayuda</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#control-externo">Control externo</a><ul>
+<li><a href="#control-externo">Control externo</a>
+<ul>
 <li><a href="#interfaz-d-bus">Interfaz D-Bus</a></li>
 <li><a href="#mensajes-exclusivos-del-sistema-universal">Mensajes exclusivos del sistema universal</a></li>
 <li><a href="#interfaz-en-tiempo-real-del-sistema-midi">Interfaz en tiempo real del sistema MIDI</a></li>
 </ul></li>
 <li><a href="#créditos-y-licencia">Créditos y Licencia</a></li>
-<li><a href="#instalación">Instalación</a><ul>
+<li><a href="#instalación">Instalación</a>
+<ul>
 <li><a href="#cómo-obtener-drumstick-metronome">Cómo obtener Drumstick Metronome</a></li>
 <li><a href="#requisitos">Requisitos</a></li>
 <li><a href="#compilación-e-instalación">Compilación e instalación</a></li>
@@ -52,12 +195,12 @@
 <p>El tempo se puede configurar de 25 a 250 NPM usando el control deslizante. Las unidades son negras por minuto (unidades de metrónomo Mälzel). También puede hacer doble clic sobre la ventana principal para abrir un cuadro de diálogo donde puede ingresar un nuevo tempo directamente con el teclado. También hay un cuadro combinado para elegir y mostrar el tempo con nombres musicales italianos.</p>
 <p>Partes/Compás se puede configurar de 1 a 32 beats. Estos son el número de pulsos en cada compás, y es el numerador en el tipo de compás como sería anotado.</p>
 <p>La figura rítmica es el denominador de la especificación del tipo de compás, y representa la duración de cada pulso. Cambiar este valor no cambia el significado de las unidades de tempo.</p>
-<p>Patrón es una lista desplegable para elegir una definición de patrón. El valor por defecto &quot;Automático&quot; significa que el programa genera patrones utilizando los sonidos establecidos en el cuadro de diálogo de configuración (Fuerte / Débil) y el ritmo definido por &quot;Partes/Compas&quot; y &quot;Figura rítmica&quot;. También contiene los nombres de los patrones definidos por el usuario.</p>
+<p>Patrón es una lista desplegable para elegir una definición de patrón. El valor por defecto “Automático” significa que el programa genera patrones utilizando los sonidos establecidos en el cuadro de diálogo de configuración (Fuerte / Débil) y el ritmo definido por “Partes/Compas” y “Figura rítmica”. También contiene los nombres de los patrones definidos por el usuario.</p>
 <h2 id="para-empezar">Para Empezar</h2>
 <p>Este programa utiliza el protocolo MIDI, por lo que es una buena idea tener algunas nociones básicas sobre MIDI para comprender completamente los conceptos Detrás de eso. Aquí puede encontrar una buena introducción: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">Qué es MIDI</a>.</p>
 <p>Drumstick Metronome produce eventos MIDI. Si quieres escuchar los eventos traducido a sonidos, necesita conectar el puerto MIDI OUT desde este programa al puerto MIDI IN de un sintetizador MIDI. Puede ser un sintetizador MIDI hardware o software. Si es un sintetizador hardware externo, también se necesita una interfaz MIDI compatible con ALSA instalado en su computadora, y un cable MIDI conectado tanto a la interfaz MIDI del ordenador como a la toma MIDI IN del sintetizador.</p>
 <p>Si no tiene un sintetizador MIDI externo, aún puede usar el programa con un sintetizador software compatible MIDI con el secuenciador ALSA, como <a href="https://qsynth.sourceforge.io">QSynth</a>. Inicia tu sintetizador software antes de Drumstick Metronome, y luego haz la conexión entre los dos programas, ya sea en el cuadro de diálogo de configuración de Drumstick Metronome o usando un administrador de conexión externo como <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>No olvide instalar una buena <a href="https://en.wikipedia.org/wiki/SoundFont">Fuente de sonido</a> en el cuadro de diálogo &quot;Configuración ...&quot; de QSynth.</p>
+<p>No olvide instalar una buena <a href="https://en.wikipedia.org/wiki/SoundFont">Fuente de sonido</a> en el cuadro de diálogo “Configuración …” de QSynth.</p>
 <h2 id="configuración">Configuración</h2>
 <p>Drumstick Metronome tiene capacidades limitadas de gestión de sesiones. Puede recordar una conexión para el puerto de salida ALSA, y una conexión para su puerto de entrada. Las conexiones se almacenan cuando el programa termina y se recuerdan al inicio. No necesita esta función si prefiere hacer tales conexiones a mano, utilizando un conector o cualquier otra utilidad equivalente, o si usa un administrador de sesiones externo como el patchbay incluido en el programa <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
 <p>Drumstick Metronome utiliza un archivo de definición de instrumento en formato .INS, el mismo formato que Qtractor, TSE3, Cakewalk y Sonar. En el <strong>instrumento receptor</strong>, la lista desplegable permite elegir uno entre General MIDI, Roland GS y Yamaha XG. Puede agregar más definiciones creando un archivo llamado <code>drums.ins</code> en <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. Los contenidos de las listas desplegables <strong>Banco</strong>, <strong>Programa</strong>, <strong>Nota Débil</strong> y <strong>Nota fuerte</strong> también dependen de esta definición.</p>
@@ -69,7 +212,7 @@
 <p>En el modo de patrón <strong>Automático</strong>, el sonido de <strong>Nota fuerte</strong> se reproduce como primer tiempo en cada compás, mientras que cualquier otro tiempo en el mismo compás se reproduce usando el sonido de <strong>Nota débil</strong>. Los valores numéricos 33 y 34 son los sonidos GM2 y XG para el clic del metrónomo y la campana del metrónomo respectivamente.</p>
 <h2 id="editor-de-patrones">Editor de patrones</h2>
 <p>Con este cuadro de diálogo puede editar, probar y seleccionar patrones. Para crear nuevos patrones simplemente guarde la definición actual con un nuevo nombre. Los patrones están representados por una tabla. Las filas de la tabla corresponden a sonidos de percusión. Puede eliminar y agregar filas de una lista de sonidos definido por los ajustes del instrumento en el cuadro de diálogo de configuración. El número de columnas de la tabla determina la longitud del patrón, entre 1 y 99 elementos de cualquier duración de tiempo.</p>
-<p>Cada celda de la tabla acepta valores entre N = 1 y 9, correspondientes a la velocidad MIDI (N*127/9) de las notas, o 0 para cancelar el sonido. Los valores válidos también son &quot;f&quot; (= fuerte) y &quot;&quot;p&quot; (= piano) correspondientes a las velocidades variables definidas por los botones giratorios (Fuerte / Débil) en la ventana principal. Los valores de las celdas se pueden seleccionar y modificar usando el teclado o el ratón. No es necesario detener la reproducción antes de modificar los valores.</p>
+<p>Cada celda de la tabla acepta valores entre N = 1 y 9, correspondientes a la velocidad MIDI (N*127/9) de las notas, o 0 para cancelar el sonido. Los valores válidos también son “f” (= fuerte) y ““p” (= piano) correspondientes a las velocidades variables definidas por los botones giratorios (Fuerte / Débil) en la ventana principal. Los valores de las celdas se pueden seleccionar y modificar usando el teclado o el ratón. No es necesario detener la reproducción antes de modificar los valores.</p>
 <h1 id="referencia-de-comandos">Referencia de comandos</h1>
 <h2 id="la-ventana-principal">La ventana principal</h2>
 <h3 id="el-menú-archivo">El menú Archivo</h3>
@@ -150,7 +293,7 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 <p>Documentación Copyright © 2005-2023 Pedro Lopez-Cabanillas</p>
 <p>Este programa es software gratuito; puedes redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation; ya sea la versión 2 de la licencia, o (a su elección) cualquier versión posterior.</p>
 <p>Este programa se distribuye con la esperanza de que sea de utilidad, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO EN PARTICULAR. Ver el Licencia pública general GNU para más detalles.</p>
-<p>Debería haber recibido una copia de la Licencia Pública General GNU junto con este programa. De lo contrario, consulte <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<p>Debería haber recibido una copia de la Licencia Pública General GNU junto con este programa. De lo contrario, consulte <a href="https://www.gnu.org/licenses">https://www.gnu.org/licenses</a></p>
 <h1 id="instalación">Instalación</h1>
 <h2 id="cómo-obtener-drumstick-metronome">Cómo obtener Drumstick Metronome</h2>
 <p>Aquí puede encontrar la última versión: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Archivos del proyecto</a></p>

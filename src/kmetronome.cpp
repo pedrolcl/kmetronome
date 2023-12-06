@@ -819,7 +819,7 @@ void KMetronome::createLanguageMenu()
     }
     locales.sort();
     m_ui.menuLanguage->clear();
-    for (const QString& loc : qAsConst(locales)) {
+    for (const QString &loc : std::as_const(locales)) {
         QLocale qlocale(loc);
         QString localeName = loc == "C" ? QLocale::languageToString(QLocale::English) : qlocale.nativeLanguageName();
         QAction *action = new QAction(localeName.section(" ", 0, 0), this);

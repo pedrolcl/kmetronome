@@ -5,7 +5,145 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title>Hilfeindex</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
 </head>
 <body>
 <div id="header">
@@ -14,27 +152,31 @@
 <div id="TOC">
 <ul>
 <li><a href="#einführung">Einführung</a></li>
-<li><a href="#verwenden-des-drumstick-metronoms">Verwenden des Drumstick-Metronoms</a><ul>
+<li><a href="#verwenden-des-drumstick-metronoms">Verwenden des Drumstick-Metronoms</a>
+<ul>
 <li><a href="#merkmale">Merkmale</a></li>
 <li><a href="#einstieg">Einstieg</a></li>
 <li><a href="#aufbau">Aufbau</a></li>
-<li><a href="#muster-editor">Muster-Editor</a></li>
 </ul></li>
-<li><a href="#befehlsreferenz">Befehlsreferenz</a><ul>
-<li><a href="#das-hauptfenster">Das Hauptfenster</a><ul>
+<li><a href="#befehlsreferenz">Befehlsreferenz</a>
+<ul>
+<li><a href="#das-hauptfenster">Das Hauptfenster</a>
+<ul>
 <li><a href="#das-dateimenü">Das Dateimenü</a></li>
 <li><a href="#das-bearbeiten-menü">Das Bearbeiten-Menü</a></li>
 <li><a href="#das-einstellungsmenü">Das Einstellungsmenü</a></li>
 <li><a href="#das-hilfemenü">Das Hilfemenü</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#externe-steuerung">Externe Steuerung</a><ul>
+<li><a href="#externe-steuerung">Externe Steuerung</a>
+<ul>
 <li><a href="#d-bus-schnittstelle">D-Bus-Schnittstelle</a></li>
 <li><a href="#universelle-systemexklusive-nachrichten">Universelle systemexklusive Nachrichten</a></li>
 <li><a href="#midi-system-echtzeitschnittstelle">MIDI-System-Echtzeitschnittstelle</a></li>
 </ul></li>
 <li><a href="#credits-und-lizenz">Credits und Lizenz</a></li>
-<li><a href="#installation">Installation</a><ul>
+<li><a href="#installation">Installation</a>
+<ul>
 <li><a href="#so-erhalten-sie-ein-drumstick-metronom">So erhalten Sie ein Drumstick-Metronom</a></li>
 <li><a href="#anforderungen">Anforderungen</a></li>
 <li><a href="#kompilierung-und-installation">Kompilierung und Installation</a></li>
@@ -52,22 +194,22 @@
 <p>Das Tempo kann mit dem Schieberegler von 25 bis 250 QPM eingestellt werden. Die Einheiten sind Viertel pro Minute (Mälzel Metronom-Einheiten). Sie können auch doppelklicken über dem Hauptfenster, um ein Dialogfeld zu öffnen, in dem Sie ein neues eingeben können Tempo direkt mit der Tastatur. Es gibt auch eine Combobox zur Auswahl und zeigen Sie das Tempo mit italienischen Musiknamen an.</p>
 <p>Beats/Bar kann von 1 bis 32 Beats eingestellt werden. Das sind die Beats auf jedem Takt oder Takt, und es ist der Zähler auf der Taktart als es würde notiert werden.</p>
 <p>Die Beatlänge ist der Nenner der Taktartangabe, und repräsentiert die Dauer jedes Schlags. Ändern dieses Wertes nicht ändern Sie die Bedeutung der Tempoeinheiten.</p>
-<p>Muster ist eine Dropdown-Liste zur Auswahl einer Musterdefinition. Der Standard Der Wert &quot;Automatisch&quot; bedeutet, dass das Programm Muster unter Verwendung der im Konfigurationsdialog eingestellte Noten (stark/schwach) und den Rhythmus Definition durch &quot;Beats/Bar&quot; und &quot;Beat-Länge&quot;. Es enthält auch die Namen von benutzerdefinierten Mustern.</p>
+<p>Muster ist eine Dropdown-Liste zur Auswahl einer Musterdefinition. Der Standard Der Wert “Automatisch” bedeutet, dass das Programm Muster unter Verwendung der im Konfigurationsdialog eingestellte Noten (stark/schwach) und den Rhythmus Definition durch “Beats/Bar” und “Beat-Länge”. Es enthält auch die Namen von benutzerdefinierten Mustern.</p>
 <h2 id="einstieg">Einstieg</h2>
 <p>Dieses Programm verwendet das MIDI-Protokoll, daher ist es eine gute Idee, einige grundlegende Begriffe zu MIDI, um die Konzepte vollständig zu verstehen dahinter. Eine gute Einführung findest du hier: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">Was ist MIDI</a>.</p>
 <p>Drumstick Metronome erzeugt MIDI-Events. Wenn Sie die Ereignisse hören möchten in Klänge übersetzt, die Sie benötigen, um den MIDI OUT-Port davon zu verbinden Programm an den MIDI IN-Port eines MIDI-Synthesizers. Es kann entweder ein Hardware-MIDI-Synthesizer oder ein Software-Synthesizer. Wenn es ein externes ist Hardware-Synthesizer benötigen Sie außerdem ein von ALSA unterstütztes MIDI-Interface in Ihrem Computer installiert ist, und ein MIDI-Kabel, das an beide MIDI-Schnittstelle des Computers und die MIDI IN-Buchse des Synthesizers.</p>
 <p>Wenn Sie keinen externen MIDI-Synthesizer haben, können Sie trotzdem den Programm mit einem MIDI-Software-Synthesizer, der den ALSA-Sequenzer unterstützt Verbindungen, wie <a href="https://qsynth.sourceforge.io">QSynth</a>. Starte dein Software-Synthesizer vor Drumstick Metronome, und stellen Sie dann die Verbindung her zwischen den beiden Programmen, entweder im Konfigurationsdialog von Drumstick Metronome oder mit einem externen Verbindungsmanager wie <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>Vergessen Sie nicht, eine gute [Soundfont] zu installieren (https://en.wikipedia.org/wiki/SoundFont) in das Dialogfeld &quot;Setup...&quot; von QSynth.</p>
+<p>Vergessen Sie nicht, eine gute [Soundfont] zu installieren (https://en.wikipedia.org/wiki/SoundFont) in das Dialogfeld “Setup…” von QSynth.</p>
 <h2 id="aufbau">Aufbau</h2>
 <p>Drumstick Metronome verfügt über eingeschränkte Session-Management-Funktionen. Es kann sich erinnern ein Anschluss für den ALSA-Ausgangsport und ein Anschluss für seinen Eingangsport. Verbindungen werden beim Beenden des Programms gespeichert und gespeichert am Anfang. Sie brauchen diese Funktion nicht, wenn Sie dies vorziehen Verbindungen von Hand, mit aconnect oder einem anderen gleichwertigen Dienstprogramm, oder wenn Sie einen externen Session-Manager wie die im Lieferumfang enthaltene Patchbay verwenden Programm <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
 <p>Drumstick Metronome verwendet eine Instrumentendefinitionsdatei im .INS-Format Format als Qtractor, TSE3, Cakewalk und Sonar. Das <strong>Ausgabeinstrument</strong> Dropdown-Liste ermöglicht die Auswahl eines der Standard General MIDI, Roland GS und Yamaha XG Drummaps. Sie können weitere Definitionen hinzufügen, indem Sie eine Datei namens <code>drums.ins</code> unter <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. Die Inhalt der Dropdown-Listen <strong>Bank</strong>, <strong>Programm</strong>, <strong>Schwach</strong> und <strong>Starke Note</strong> hängen auch von dieser Definition ab.</p>
-<p><strong>Kanal</strong> ist normalerweise 10, d. h. der Percussion-Kanal eines General MIDI Synthesizer. Es muss eine Zahl zwischen 1 und 16 sein.</p>
+<p><strong>Kanal</strong> ist normalerweise 10, d. h. der Percussion-Kanal eines General MIDI Synthesizer. Es muss eine Zahl zwischen 1 und 16 sein.</p>
 <p><strong>Auflösung</strong> ist die Anzahl der Ticks (Zeiteinheiten) für jede Viertelnote. Wertebereich von 48 bis 960. Standardeinstellung bis 120.</p>
 <p><strong>Notendauer</strong> ist die Länge (in Anzahl von Ticks) der Zeitspanne zwischen einem NOTE ON und dem entsprechenden NOTE OFF-Ereignis. Diese Kontrolle ist nur aktiviert, wenn <strong>Sende NOTE OFF-Ereignisse</strong> ebenfalls aktiviert ist. Sehr niedrige Werte kann bei einigen Synthesizern gedämpfte Klicks verursachen.</p>
 <p>Percussion-Sounds brauchen normalerweise keine NOTE OFF-Events, um danach gesendet zu werden jede ANMERKUNG AN. Aktivieren Sie das Kontrollkästchen <strong>ANMERKUNG AUS-Ereignisse senden</strong> nur, wenn Sie Synthesizer oder Instrument unterstützt oder erfordert diese Einstellung.</p>
 <p><strong>Bank</strong> und <strong>Programm</strong> wird verwendet, um das Schlagzeug für Instrumente zu ändern unterstützt mehrere Einstellungen. Viele Synthesizer verstehen kein Programm Änderungen für den Percussion-Kanal.</p>
 <p>Im <strong>Automatic</strong>-Pattern-Modus wird der <strong>Starke Note</strong>-Sound als erster Beat gespielt in jedem Takt, während jeder andere Beat im gleichen Takt mit . gespielt wird der <strong>schwache Ton</strong>. Die Zahlenwerte 33 und 34 sind die GM2- und XG-Sounds für Metronomklick bzw. Metronomglocke.</p>
-<h2 id="muster-editor">Muster-Editor</h2>
+<p>##Muster-Editor</p>
 <p>In diesem Dialogfeld können Sie Muster bearbeiten, testen und auswählen. Erschaffen neue Muster speichern Sie einfach die aktuelle Definition unter einem neuen Namen. Muster werden durch eine Tabelle dargestellt. Die Zeilen in der Tabelle entsprechen die Percussion-Klänge. Sie können Zeilen aus einer Liste von Sounds entfernen und hinzufügen durch die Geräteeinstellungen im Konfigurationsdialog definiert. Die Anzahl der Spalten in der Tabelle bestimmen die Länge des Musters, zwischen 1 und 99 Elementen einer beliebigen Beatlänge.</p>
 <p>Jede Tabellenzelle akzeptiert Werte zwischen N=1 und 9, entsprechend der MIDI-Velocity (N*127/9) der Noten oder 0, um den Klang zu löschen. Gültig Werte sind auch f (=forte) und p (=piano) entsprechend Variable Geschwindigkeiten, die durch die Drehknöpfe (Strong/Weak) im Hauptfenster definiert werden. Die Zellenwerte können entweder über die Tastatur ausgewählt und geändert werden oder die Maus. Es ist nicht erforderlich, die Wiedergabe zu stoppen, bevor Sie die Zellen.</p>
 <h1 id="befehlsreferenz">Befehlsreferenz</h1>
@@ -150,7 +292,7 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 <p>Dokumentation Copyright © 2005-2023 Pedro Lopez-Cabanillas</p>
 <p>Dieses Programm ist freie Software; Sie können es weitergeben und/oder ändern es unter den Bedingungen der GNU General Public License, wie veröffentlicht von die Free Software Foundation; entweder Version 2 der Lizenz oder (nach Ihrer Wahl) jede spätere Version.</p>
 <p>Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, aber OHNE JEGLICHE GARANTIE; auch ohne die stillschweigende garantie von MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Details.</p>
-<p>Sie sollten eine Kopie der GNU General Public License erhalten haben zusammen mit diesem Programm. Falls nicht, siehe <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<p>Sie sollten eine Kopie der GNU General Public License erhalten haben zusammen mit diesem Programm. Falls nicht, siehe <a href="https://www.gnu.org/licenses">https://www.gnu.org/licenses</a></p>
 <h1 id="installation">Installation</h1>
 <h2 id="so-erhalten-sie-ein-drumstick-metronom">So erhalten Sie ein Drumstick-Metronom</h2>
 <p>Hier finden Sie die neueste Version: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Projektdateien</a></p>

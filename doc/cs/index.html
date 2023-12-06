@@ -5,7 +5,145 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title>Index nápovědy</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
 </head>
 <body>
 <div id="header">
@@ -14,27 +152,32 @@
 <div id="TOC">
 <ul>
 <li><a href="#úvod">Úvod</a></li>
-<li><a href="#použití-drumstick-metronome">Použití Drumstick Metronome</a><ul>
+<li><a href="#použití-drumstick-metronome">Použití Drumstick Metronome</a>
+<ul>
 <li><a href="#funkce">Funkce</a></li>
 <li><a href="#začínáme">Začínáme</a></li>
 <li><a href="#konfigurace">Konfigurace</a></li>
 <li><a href="#editor-vzorů">Editor vzorů</a></li>
 </ul></li>
-<li><a href="#reference-příkazů">Reference příkazů</a><ul>
-<li><a href="#hlavní-okno">Hlavní okno</a><ul>
+<li><a href="#reference-příkazů">Reference příkazů</a>
+<ul>
+<li><a href="#hlavní-okno">Hlavní okno</a>
+<ul>
 <li><a href="#nabídka-soubor">Nabídka Soubor</a></li>
 <li><a href="#nabídka-úpravy">Nabídka Úpravy</a></li>
 <li><a href="#nabídka-nastavení">Nabídka Nastavení</a></li>
 <li><a href="#nabídka-nápověda">Nabídka Nápověda</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#externí-kontrola">Externí kontrola</a><ul>
+<li><a href="#externí-kontrola">Externí kontrola</a>
+<ul>
 <li><a href="#rozhraní-d-bus">Rozhraní D-Bus</a></li>
 <li><a href="#zprávy-universal-system-exclusive">Zprávy Universal System Exclusive</a></li>
 <li><a href="#rozhraní-systému-midi-v-reálném-čase">Rozhraní systému MIDI v reálném čase</a></li>
 </ul></li>
 <li><a href="#kredity-a-licence">Kredity a licence</a></li>
-<li><a href="#instalace">Instalace</a><ul>
+<li><a href="#instalace">Instalace</a>
+<ul>
 <li><a href="#jak-získat-drumstick-metronome">Jak získat Drumstick Metronome</a></li>
 <li><a href="#požadavky">Požadavky</a></li>
 <li><a href="#kompilace-a-instalace">Kompilace a instalace</a></li>
@@ -52,12 +195,12 @@
 <p>Tempo lze nastavit od 25 do 250 QPM pomocí posuvníku. Jednotky jsou čtvrt za minutu (jednotky Mälzel Metronome). Můžete také dvakrát kliknout přes hlavní okno otevřete dialogové okno, kde můžete zadat nový tempo přímo pomocí klávesnice. Na výběr je také combo box a zobrazit tempo pomocí italských hudebních jmen.</p>
 <p>Beats/Bar lze nastavit od 1 do 32 taktů. Toto jsou počty úderů na každém taktu nebo taktu a je to čitatel na taktu jako bylo by to notováno.</p>
 <p>Délka taktu je jmenovatelem specifikace taktu, a představuje dobu trvání každé doby. Změna této hodnoty ne změnit význam jednotek tempa.</p>
-<p>Vzor je rozevírací seznam pro výběr definice vzoru. Výchozí Hodnota &quot;Automatic&quot; znamená, že program generuje vzory pomocí noty nastavené v konfiguračním dialogu (Strong/Weak) a rytmus definice poskytnutá &quot;údery/takty&quot; a &quot;délka taktu&quot;. Obsahuje také názvy uživatelsky definovaných vzorů.</p>
+<p>Vzor je rozevírací seznam pro výběr definice vzoru. Výchozí Hodnota “Automatic” znamená, že program generuje vzory pomocí noty nastavené v konfiguračním dialogu (Strong/Weak) a rytmus definice poskytnutá “údery/takty” a “délka taktu”. Obsahuje také názvy uživatelsky definovaných vzorů.</p>
 <h2 id="začínáme">Začínáme</h2>
 <p>Tento program používá protokol MIDI, takže je dobré mít některé základní pojmy o MIDI, abyste plně porozuměli konceptům za tím. Zde najdete dobrý úvod: <a href="https://www.midi.org/midi-articles/categories/MIDI%201.0">Co je MIDI</a>.</p>
 <p>Drumstick Metronome produkuje MIDI události. Pokud chcete slyšet události přeloženo do zvuků, z tohoto musíte připojit port MIDI OUT program do MIDI IN portu MIDI syntezátoru. Může to být buď a hardwarový MIDI syntezátor nebo softwarový. Pokud se jedná o externí hardwarový syntezátor, potřebujete také MIDI rozhraní s podporou ALSA nainstalovaný ve vašem počítači a MIDI kabel připojený k oběma MIDI rozhraní počítače a konektor MIDI IN syntezátoru.</p>
 <p>Pokud nemáte externí MIDI syntezátor, můžete jej stále používat program se softwarovým MIDI syntezátorem podporujícím sekvencer ALSA připojení, jako je <a href="https://qsynth.sourceforge.io">QSynth</a>. Začněte svůj softwarový syntezátor před Drumstick Metronome a poté proveďte připojení mezi těmito dvěma programy, buď v konfiguračním dialogu Drumstick Metronome nebo pomocí externího správce připojení jako <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
-<p>Nezapomeňte si nainstalovat dobrý <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> do dialogu &quot;Nastavení...&quot; QSynth.</p>
+<p>Nezapomeňte si nainstalovat dobrý <a href="https://en.wikipedia.org/wiki/SoundFont">Sound Font</a> do dialogu “Nastavení…” QSynth.</p>
 <h2 id="konfigurace">Konfigurace</h2>
 <p>Drumstick Metronome má omezené možnosti správy relací. Může si to pamatovat jedno připojení pro výstupní port ALSA a jedno připojení pro jeho vstupní port. Připojení jsou uložena při ukončení programu a zapamatována při spuštění. Tuto funkci nepotřebujete, pokud ji chcete vytvořit připojení ručně, pomocí aconnect nebo jiného ekvivalentního nástroje, popř pokud používáte externího správce relací, jako je patchbay obsažený v program <a href="https://qjackctl.sourceforge.io">QJackCtl</a>.</p>
 <p>Drumstick Metronome používá soubor definice nástroje ve formátu .INS, stejný formát jako Qtractor, TSE3, Cakewalk a Sonar. <strong>Výstupní nástroj</strong> rozevírací seznam umožňuje vybrat jeden ze standardních General MIDI, Bubnové mapy Roland GS a Yamaha XG. Můžete přidat další vytváření definic soubor s názvem <code>drums.ins</code> na <code>$HOME/.local/share/kmetronome.sourceforge.net</code>. The obsah rozbalovacích seznamů <strong>Banka</strong>, <strong>Program</strong>, <strong>Slabá</strong> a <strong>Silná poznámka</strong> závisí také na této definici.</p>
@@ -150,7 +293,7 @@ $ qdbus net.sourceforge.kmetronome-23324 / net.sourceforge.kmetronome.setTimeSig
 <p>Dokumentace Copyright © 2005-2023 Pedro Lopez-Cabanillas</p>
 <p>Tento program je svobodný software; můžete jej dále distribuovat a/nebo upravovat to za podmínek GNU General Public License, jak byla zveřejněna nadace pro svobodný software; buď verze 2 licence, nebo (podle vašeho uvážení) jakékoli pozdější verze.</p>
 <p>Tento program je distribuován v naději, že bude užitečný, ale BEZ JAKÉKOLI ZÁRUKY; dokonce bez předpokládané záruky OBCHODOVATELNOST nebo VHODNOST PRO KONKRÉTNÍ ÚČEL. Viz Další podrobnosti naleznete v GNU General Public License.</p>
-<p>Měli byste obdržet kopii GNU General Public License spolu s tímto programem. Pokud ne, přejděte na <a href="https://www.gnu.org/licenses" class="uri">https://www.gnu.org/licenses</a></p>
+<p>Měli byste obdržet kopii GNU General Public License spolu s tímto programem. Pokud ne, přejděte na <a href="https://www.gnu.org/licenses">https://www.gnu.org/licenses</a></p>
 <h1 id="instalace">Instalace</h1>
 <h2 id="jak-získat-drumstick-metronome">Jak získat Drumstick Metronome</h2>
 <p>Zde najdete nejnovější verzi: <a href="https://sourceforge.net/projects/kmetronome/files/kmetronome/">Soubory projektu</a></p>

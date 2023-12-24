@@ -12,7 +12,7 @@ synthesizer for sound generation, because the program does not produce any sound
 by itself. The best results come from using a hardware synthesizer, but you may
 also use software synthesizers instead.
 
-For brief building instructions, see INSTALL.
+For brief building instructions, see [INSTALL](INSTALL).
 
 ## Downloads
 
@@ -28,30 +28,28 @@ Sources: https://sourceforge.net/projects/kmetronome/files/
 
 You need the following software:
 
-* CMake 3.14 or later
-* Qt libraries 5.12 or later
+* CMake 3.16 or later
+* C++17 compiler
+* Qt libraries 6.2 or later (or Qt 5.12 or later)
 * ALSA library 
-* Drumstick libraries 2.0 or later
+* Drumstick libraries 2.9 or later
 
 ## Getting the development sources
 
-Compiling and hacking the SVN sources is a bit different compared to the
+Compiling and hacking the Git sources is a bit different compared to the
 distribution tarball. You can get the latest sources either using a sourceforge
-user account, or the anonymous user (with read only rights). The SVN client  
+user account, or the anonymous user (with read only rights). The Git client  
 documentation for SourceForge users is available at
-https://sourceforge.net/p/forge/documentation/SVN%20Overview/
+https://sourceforge.net/p/forge/documentation/Git/
 
-1. Check out the module drumstick from the SVN repository.
-        Host: svn.code.sf.net
-        Path: /p/drumstick/code/trunk
-        Module: drumstick
+1. Clone the [drumstick Git repository](https://sourceforge.net/p/drumstick/git/ci/master/tree/).
 
 There is also a [Git mirror at GitHub](https://github.com/pedrolcl/drumstick)
 
 example:
 
-~~~
-$ svn checkout https://svn.code.sf.net/p/drumstick/code/trunk drumstick
+~~~sh
+    git clone git://git.code.sf.net/p/drumstick/git drumstick-git
 ~~~
 
 The module 'drumstick' is also used by other projects in a similar way as an 
@@ -59,29 +57,25 @@ independent shared dynamic library.
 
 You need to configure, compile and optionally install drumstick libraries.
 
-2. Check out the module kmetronome from the SVN repository.
-        Host: svn.code.sf.net
-        Path: /p/kmetronome/code/trunk
-        Module: kmetronome
+2. Clone the [kmetronome Git repository](https://sourceforge.net/p/kmetronome/git/ci/master/tree/).
 
 There is also a [Git mirror at GitHub](https://github.com/pedrolcl/kmetronome)
 
 example:
 
-~~~
-$ svn checkout https://svn.code.sf.net/p/kmetronome/code/trunk kmetronome 
+~~~sh
+    git clone git://git.code.sf.net/p/kmetronome/git kmetronome-git
 ~~~
 
 4. Configure and compile
 
-~~~
-$ cd kmetronome
-$ mkdir build
-$ cd build
-$ cmake .. -DCMAKE_BUILD_TYPE=debug \
-           -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.11/gcc_64/ \
-           -DCMAKE_INSTALL_PREFIX=/usr/local/
-$ make VERBOSE=1
+~~~sh
+    cd kmetronome-git
+    mkdir build
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=debug \
+               -DCMAKE_PREFIX_PATH=$HOME/Qt/6.6.1/gcc_64/ \
+               -DCMAKE_INSTALL_PREFIX=/usr/local/
+    make VERBOSE=1
 ~~~
 
 5. Hack and enjoy!

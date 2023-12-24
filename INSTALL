@@ -1,4 +1,4 @@
-You will need CMake 3.1 or newer.  If your Linux distribution
+You will need CMake 3.16 or newer.  If your Linux distribution
 doesn't provide CMake, or if it provides an older version, you can get
 it here:
 
@@ -9,19 +9,19 @@ that page.  If you must build it from source, please read the instructions
 supplied here:
 
     https://cmake.org/install/
-    
+
 This program needs the Drumstick libraries. You should install the development
 package before trying to compile KMetronome. You can alternatively build
 KMetronome statically linked to Drumstick, see the advanced build options.
 
 Drumstick is available here:
 
-    http://drumstick.sourceforge.net 
-    
+    https://drumstick.sourceforge.io
+
 Building with CMake
 -------------------
 
-Unpack the tarball or check out CVS.  Assuming that you have the
+Unpack the tarball or check out the repository.  Assuming that you have the
 source in ~/src/kmetronome, you need to change to that directory:
 
 $ cd ~/src/kmetronome
@@ -29,61 +29,63 @@ $ cd ~/src/kmetronome
 Create a build directory, and change to it
 
 $ mkdir build
-$ cd build
 
 Now run CMake to generate the build files.
 
-$ cmake ..
+$ cmake -S . -B build
 
 Some variables you may want to set:
 
     * CMAKE_INSTALL_PREFIX:
-      cmake .. -DCMAKE_INSTALL_PREFIX=/usr 
+      cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr
 
     * CMAKE_PREFIX_PATH:
-      cmake .. -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.5/gcc_64/
+      cmake -S . -B build -DCMAKE_PREFIX_PATH=$HOME/Qt/5.12.5/gcc_64/
 
-If you are using your own compiled Drumstick source tree:
+If you are using your own compiled Drumstick sources:
 
     * Drumstick_DIR:
-      cmake .. -DDrumstick_DIR=$HOME/Projects/drumstick/build/
+      cmake -S . -B build -DDrumstick_DIR=$HOME/Projects/drumstick/build/
 
 For example:
 
-$ cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+$ cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr
 
-Look the configure.release and configure.debug scripts for more examples. 
-If you prefer to avoid all this typing, you can use ccmake to view and change 
+Look the configure.release and configure.debug scripts for more examples.
+If you prefer to avoid all this typing, you can use ccmake to view and change
 these options using a friendly curses-based interface:
 
-$ ccmake ..
+$ ccmake -S ~/src/kmetronome
 
 There is a GUI equivalent:
 
-$ cmake-gui ..
+$ cmake-gui ~/src/kmetronome
 
-Finally, run make, and then (sudo) make install, and you're done.
+Finally build, and then (sudo) install, and you're done.
 
-$ make
-$ sudo make install
+$ cmake --build build
+$ sudo cmake --install build
 
 To uninstall, use:
 
-$ sudo make uninstall
+$ sudo cmake --build build --target uninstall
 
 Advanced Build Options
 ----------------------
 
+CMake configuration outputs Makefiles by default in Unix, but you may
+prefer Ninja instead, using the cmake option: -G Ninja.
+
 By default, make will output brief details of each build step.  If you
 prefer to see full command lines, use:
 
-$ make VERBOSE=1
+$ cmake --build build --verbose
 
 Another option, useful for packagers, is setting DESTDIR at install
 time. The DESTDIR directory will be prepended to the prefix when
-copying the files:
+copying the files. https://cmake.org/cmake/help/latest/envvar/DESTDIR.html
 
-$ make install DESTDIR=~/rpmroot
+$ cmake --install build --prefix ~/rpmroot
 
 Dealing with Configuration Problems
 -----------------------------------

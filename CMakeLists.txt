@@ -1,32 +1,34 @@
-# Drumstick Metronome - ALSA Sequencer based MIDI metronome
-# Copyright (C) 2005-2023 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#[===========================================================================[
+  Drumstick Metronome - ALSA Sequencer based MIDI metronome
+  Copyright (C) 2005-2023 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+#]===========================================================================]
 
 cmake_minimum_required(VERSION 3.16)
 
 project ( kmetronome
-    VERSION 1.3.2
+    VERSION 1.4.0
     LANGUAGES CXX
     DESCRIPTION "ALSA Sequencer based MIDI metronome"
     HOMEPAGE_URL "https://kmetronome.sourceforge.io"
 )
 
-#set(PROJECT_RELEASE_DATE "August 10, 2021")
+set(PROJECT_RELEASE_DATE "December 24, 2023")
 option(BUILD_DOCS "Process Markdown sources of man pages and help files" ON)
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
-option(USE_QT5 "Choose buiding with Qt5 instead of Qt6" OFF)
+option(USE_QT5 "Prefer building with Qt5 instead of Qt6")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 include(SCMRevision)
@@ -36,16 +38,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED Yes)
 
 if (USE_QT5)
     find_package(QT NAMES Qt5 REQUIRED)
+    find_package(Qt5 5.12 COMPONENTS Gui Widgets DBus Svg LinguistTools REQUIRED)
 else()
     find_package(QT NAMES Qt6 REQUIRED)
+    find_package(Qt6 6.2 COMPONENTS Gui Widgets DBus Svg SvgWidgets LinguistTools REQUIRED)
 endif()
 if(QT_FOUND)
     message(STATUS "Found Qt version: ${QT_VERSION}")
-endif()
-
-find_package(Qt${QT_VERSION_MAJOR} 5.12 COMPONENTS Gui Widgets DBus Svg LinguistTools REQUIRED)
-if(QT_VERSION VERSION_GREATER_EQUAL 6.0.0)
-    find_package(Qt6SvgWidgets REQUIRED)
 endif()
 
 find_package(Drumstick 2.9 COMPONENTS ALSA REQUIRED)

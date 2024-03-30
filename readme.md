@@ -1,5 +1,7 @@
 # Drumstick Metronome (a.k.a. kmetronome)
 
+[![Build on Linux](https://github.com/pedrolcl/kmetronome/actions/workflows/linux-build.yml/badge.svg)](https://github.com/pedrolcl/kmetronome/actions/workflows/linux-build.yml)
+
 [Drumstick Metronome](https://kmetronome.sourceforge.io/kmetronome.shtml) is a MIDI based 
 metronome using the ALSA sequencer.
 

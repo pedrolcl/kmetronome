@@ -19,13 +19,13 @@
 cmake_minimum_required(VERSION 3.16)
 
 project ( kmetronome
-    VERSION 1.4.0
+    VERSION 1.4.1
     LANGUAGES CXX
     DESCRIPTION "ALSA Sequencer based MIDI metronome"
     HOMEPAGE_URL "https://kmetronome.sourceforge.io"
 )
 
-set(PROJECT_RELEASE_DATE "December 24, 2023")
+#set(PROJECT_RELEASE_DATE "December 24, 2023")
 option(BUILD_DOCS "Process Markdown sources of man pages and help files" ON)
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
 option(USE_QT5 "Prefer building with Qt5 instead of Qt6")
@@ -47,7 +47,7 @@ if(QT_FOUND)
     message(STATUS "Found Qt version: ${QT_VERSION}")
 endif()
 
-find_package(Drumstick 2.9 COMPONENTS ALSA REQUIRED)
+find_package(Drumstick 2.10 COMPONENTS ALSA REQUIRED)
 if(Drumstick_FOUND)
     message(STATUS "Found Drumstick version: ${Drumstick_VERSION}")
 endif()

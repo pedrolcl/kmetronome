@@ -20,10 +20,10 @@
 #define SEQUENCERADAPTER_H
 
 namespace drumstick {
-    class MidiPort;
-    class MidiQueue;
-    class SequencerEvent;
-};
+class MidiPort;
+class MidiQueue;
+class SequencerEvent;
+} // namespace drumstick
 
 #include <drumstick/alsaclient.h>
 

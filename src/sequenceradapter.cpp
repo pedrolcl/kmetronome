@@ -66,8 +66,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     m_Client->setClientName(QSTR_APPNAME);
     m_clientId = m_Client->getClientId();
 
-    //connect(m_Client, SIGNAL(eventReceived(SequencerEvent*)), 
-    //        SLOT(sequencerEvent(SequencerEvent*)), Qt::DirectConnection);
+    // Using a callback to receive sequencer events:
     m_Client->setHandler(this);
 
     m_Port = new MidiPort(this);
@@ -366,6 +365,7 @@ void SequencerAdapter::parse_sysex(SequencerEvent *ev)
 	}
 }
 
+// callback method to receive sequencer events:
 void SequencerAdapter::handleSequencerEvent(SequencerEvent *ev)
 {
     int when = 0;

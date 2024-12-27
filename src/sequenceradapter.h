@@ -19,19 +19,13 @@
 #ifndef SEQUENCERADAPTER_H
 #define SEQUENCERADAPTER_H
 
-namespace drumstick {
-class MidiPort;
-class MidiQueue;
-class SequencerEvent;
-} // namespace drumstick
-
 #include <drumstick/alsaclient.h>
 
 class DrumGridModel;
 
-const int TAG_FIXED(0);
-const int TAG_WEAK(1);
-const int TAG_STRONG(2);
+constexpr int TAG_FIXED{0};
+constexpr int TAG_WEAK{1};
+constexpr int TAG_STRONG{2};
 
 class SequencerAdapter : public QObject, public drumstick::ALSA::SequencerEventHandler
 {
@@ -116,10 +110,7 @@ public:
     int calc_lsb(int x);
     int calc_msb(int x);
 
-//public Q_SLOTS:    
-//    void sequencerEvent(SequencerEvent *ev);
-
-// SequencerEventHandler method
+    // SequencerEventHandler callback method
     void handleSequencerEvent(drumstick::ALSA::SequencerEvent *ev) override;
 
 signals:

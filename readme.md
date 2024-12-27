@@ -34,7 +34,7 @@ You need the following software:
 * C++17 compiler
 * Qt libraries 6.2 or later (or Qt 5.12 or later)
 * ALSA library 
-* Drumstick libraries 2.9 or later
+* Drumstick libraries 2.10 or later
 
 ## Getting the development sources
 

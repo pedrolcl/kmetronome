@@ -1,14 +1,14 @@
 Begin4
 Title:          Drumstick Metronome
-Version:        1.4.0
-Entered-date:   2023-12-24
+Version:        1.4.1
+Entered-date:   2024-12-28
 Description:    ALSA Sequencer based MIDI Metronome
 Keywords:       Qt ALSA MIDI Metronome
 Author:         plcl@users.sourceforge.net (Pedro Lopez-Cabanillas)
 Maintained-by:  plcl@users.sourceforge.net (Pedro Lopez-Cabanillas)
 Primary-site:   https://sourceforge.net/projects/kmetronome
 Alternate-site: https://kmetronome.sourceforge.io/
-Original-site:
+Original-site:  https://sourceforge.net/projects/kmetronome
 Platforms:      Linux, requires Qt and ALSA MIDI
 Copying-policy: GPL
 End

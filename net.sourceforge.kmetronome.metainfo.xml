@@ -22,9 +22,11 @@
     <!--TODO: pending better screenshots-->
     <screenshot type="default">
       <image>https://kmetronome.sourceforge.io/images/kmetronome1.png</image>
+      <caption>Main Window</caption>
     </screenshot>
     <screenshot>
       <image>https://kmetronome.sourceforge.io/images/kmetronome2.png</image>
+      <caption>Preferences</caption>
     </screenshot>
   </screenshots>
   <releases>

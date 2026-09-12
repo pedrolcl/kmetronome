@@ -1,6 +1,6 @@
 #[===========================================================================[
   Drumstick Metronome - ALSA Sequencer based MIDI metronome
-  Copyright (C) 2005-2024 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
+  Copyright (C) 2005-2026 Pedro Lopez-Cabanillas <plcl@users.sourceforge.net>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project ( kmetronome
-    VERSION 1.4.1
+    VERSION 1.4.2
     LANGUAGES CXX
     DESCRIPTION "ALSA Sequencer based MIDI metronome"
     HOMEPAGE_URL "https://kmetronome.sourceforge.io"
@@ -109,3 +109,33 @@ install( FILES net.sourceforge.kmetronome.desktop
 
 install( FILES net.sourceforge.kmetronome.metainfo.xml
          DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo )
+
+if (QT_VERSION VERSION_GREATER_EQUAL 6.5)
+    qt_generate_deploy_app_script(
+        TARGET ${PROJECT_NAME}
+        OUTPUT_SCRIPT deploy_script
+        INCLUDE_PLUGINS xcb wayland
+        NO_UNSUPPORTED_PLATFORM_ERROR
+        NO_TRANSLATIONS
+    )
+    install( SCRIPT ${deploy_script} )
+
+    install( CODE
+      "include(${CMAKE_SOURCE_DIR}/cmake_admin/CreateAppImage.cmake)
+       create_appimage(
+            EXE \"${PROJECT_NAME}\"
+            ICON \"${PROJECT_NAME}.png\"
+            DESKTOP \"net.sourceforge.${PROJECT_NAME}.desktop\"
+            WORKDIR \"${CMAKE_BINARY_DIR}\"
+            APPDIR \"${PROJECT_NAME}-v${PROJECT_VERSION}-${CMAKE_SYSTEM_PROCESSOR}.AppDir\"
+            ARCH \"${CMAKE_SYSTEM_PROCESSOR}\"
+       )"
+    )
+endif()
+
+if (DEFINED ENV{GITHUB_OUTPUT})
+    file(APPEND
+        "$ENV{GITHUB_OUTPUT}"
+        "config_version=${PROJECT_VERSION}\n"
+    )
+endif()

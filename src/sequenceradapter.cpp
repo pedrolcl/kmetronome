@@ -69,7 +69,7 @@ SequencerAdapter::SequencerAdapter(QObject *parent) :
     // Using a callback to receive sequencer events:
     m_Client->setHandler(this);
 
-    m_Port = new MidiPort(this);
+    m_Port = new MidiPort(m_Client);
     m_Port->attach( m_Client );
     m_Port->setPortName(QSTR_APPNAME);
     m_Port->setCapability(SND_SEQ_PORT_CAP_WRITE |

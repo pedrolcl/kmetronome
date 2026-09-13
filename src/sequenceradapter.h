@@ -33,7 +33,7 @@ class SequencerAdapter : public QObject, public drumstick::ALSA::SequencerEventH
 
 public:
     SequencerAdapter(QObject *parent);
-    virtual ~SequencerAdapter();
+    ~SequencerAdapter() override;
 
     void setBank(int newValue) { m_bank = newValue; }
     void setProgram(int newValue) { m_program = newValue; }

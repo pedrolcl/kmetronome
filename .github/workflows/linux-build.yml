@@ -45,7 +45,7 @@ jobs:
     - name: '${{ matrix.icon }} Install Qt'
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.11.1'
+        version: '6.11.2'
 
     - name: '${{ matrix.icon }} Install Dependencies'
       run: sudo apt-get update && sudo apt-get install -yq pkg-config libasound2-dev

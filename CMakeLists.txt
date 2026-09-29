@@ -34,9 +34,10 @@ project ( kmetronome
 )
 
 #set(PROJECT_RELEASE_DATE "December 24, 2023")
-option(BUILD_DOCS "Process Markdown sources of man pages and help files" ON)
+option(BUILD_DOCS "Process Markdown sources of man pages and help files" OFF)
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
 option(USE_QT5 "Prefer building with Qt5 instead of Qt6")
+option(INSTALL_DEPENDENCIES "Deploy dependency libraries" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
 include(SCMRevision)
@@ -118,7 +119,7 @@ install( FILES net.sourceforge.kmetronome.desktop
 install( FILES net.sourceforge.kmetronome.metainfo.xml
          DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo )
 
-if (QT_VERSION VERSION_GREATER_EQUAL 6.5)
+if (INSTALL_DEPENDENCIES AND QT_VERSION VERSION_GREATER_EQUAL 6.5)
     qt_generate_deploy_app_script(
         TARGET ${PROJECT_NAME}
         OUTPUT_SCRIPT deploy_script

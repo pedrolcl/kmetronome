@@ -113,8 +113,8 @@ KMetronome::KMetronome(QWidget *parent) :
         if (m_trq->load(locale, QLatin1String("qt"), QLatin1String("_"), trQtDirectory())) {
             QCoreApplication::installTranslator(m_trq);
         } else {
-            qWarning() << "Failure loading Qt5 translations for" << lang
-                       << "from" << trQtDirectory();
+            qWarning() << "Failure loading Qt translations for" << lang << "from"
+                       << trQtDirectory();
             delete m_trq;
         }
         m_trp = new QTranslator(this);

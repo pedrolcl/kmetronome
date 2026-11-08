@@ -36,7 +36,7 @@ project ( kmetronome
 set(PROJECT_RELEASE_DATE "November 8, 2026")
 option(BUILD_DOCS "Process Markdown sources of man pages and help files" OFF)
 option(EMBED_TRANSLATIONS "Embed translations instead of installing" OFF)
-option(USE_QT5 "Prefer building with Qt5 instead of Qt6")
+option(USE_QT5 "Prefer building with Qt5 instead of Qt6" OFF)
 option(INSTALL_DEPENDENCIES "Deploy dependency libraries" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_admin")
